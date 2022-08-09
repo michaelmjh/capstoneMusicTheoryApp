@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_elephant/question_parent.dart';
+import 'package:music_elephant/question_parent2.dart';
 
 import 'home_page.dart';
 import 'question_parent.dart';
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (context) => const HomePage(),
         '/questions': (context) => const QuestionParent(),
+        '/questions2': (context) => const QuestionParent2(),
       },
     );
   }

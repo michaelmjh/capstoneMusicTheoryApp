@@ -8,11 +8,21 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Music Elephant')),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/questions');
-          },
-          child: const Text('Questions'),
+        child: Column(
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/questions');
+              },
+              child: const Text('Questions'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/questions2');
+              },
+              child: const Text('Question arrange'),
+            ),
+          ],
         ),
       ),
     );
