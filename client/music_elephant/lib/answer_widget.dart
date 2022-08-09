@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 class AnswerWidget extends StatefulWidget {
   final selectHandler;
   final answer;
-  // bool isSelected = false;
-  final reset;
+  final clearAnswer;
+  final disabled;
+  final answerList;
+  final correctAnswers;
 
-  AnswerWidget(this.selectHandler, this.answer, this.reset);
+  AnswerWidget(this.selectHandler, this.answer, this.clearAnswer, this.disabled,
+      this.answerList, this.correctAnswers);
 
   @override
   State<AnswerWidget> createState() => _AnswerWidgetState();
@@ -19,22 +22,29 @@ class _AnswerWidgetState extends State<AnswerWidget> {
   Widget build(BuildContext context) {
     return Container(
       child: ElevatedButton(
-        // style: ElevatedButton.styleFrom(
-        //   primary: isSelected ? Colors.green : Colors.blue,
-        // ),
-        // onPressed: selectHandler,
-        style: widget.reset
-            ? ElevatedButton.styleFrom(primary: Colors.blue)
-            : ElevatedButton.styleFrom(
-                primary: isSelected ? Colors.green : Colors.blue),
-        onPressed: () => {
-          setState(
-            () {
-              isSelected = !isSelected;
-              widget.selectHandler();
-            },
-          ),
-        },
+        style: isSelected
+            ? ElevatedButton.styleFrom(primary: Colors.green)
+            : ElevatedButton.styleFrom(primary: Colors.blue),
+        onPressed: widget.disabled
+            ? () => {
+                  if (widget.answerList.contains(widget.answer))
+                    {
+                      isSelected = !isSelected,
+                      widget.clearAnswer(),
+                    }
+                }
+            : () => {
+                  setState(
+                    () {
+                      isSelected = !isSelected;
+                      if (isSelected) {
+                        widget.selectHandler();
+                      } else {
+                        widget.clearAnswer();
+                      }
+                    },
+                  ),
+                },
         child: Text(widget.answer.text),
       ),
     );
