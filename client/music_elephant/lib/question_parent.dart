@@ -16,16 +16,21 @@ class QuestionParent extends StatefulWidget {
 }
 
 class _QuestionState extends State<QuestionParent> {
+  // list of question objects and empty list to compare submitted answers against question object's list of correct answers
   List questions = QuestionData.shared.questions;
   List submittedAnswers = [];
+  // function which will compare the list of submitted answers to the question object's correct answer list
   Function deepEq = const DeepCollectionEquality().equals;
 
   int score = 0;
   int pageNumber = 1;
   int questionIndex = 0;
 
+  // string updates when question is submitted - tells user if right or wrong
   String submissionText = '';
 
+  // booleans track state of our answer buttons - connects to logic around button colours, whether buttons are
+  // disabled or clickable, and if they are visible depending on isSubmitted
   bool isSelected = false;
   bool isSubmitted = false;
   bool disabled = false;
@@ -36,9 +41,6 @@ class _QuestionState extends State<QuestionParent> {
       setState(() {
         isSelected == true;
         submittedAnswers.add(answer);
-        print('clicked ' + answer.text);
-        print(submittedAnswers.length);
-        print(questions[questionIndex].correctAnswer.length);
       });
     } else if (submittedAnswers.length ==
         questions[questionIndex].correctAnswer.length - 1) {
@@ -46,9 +48,6 @@ class _QuestionState extends State<QuestionParent> {
         isSelected == true;
         submittedAnswers.add(answer);
         disabled = true;
-        print('clicked ' + answer.text);
-        print(submittedAnswers.length);
-        print(questions[questionIndex].correctAnswer.length);
       });
     }
   }
