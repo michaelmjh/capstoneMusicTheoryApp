@@ -2,8 +2,11 @@ package com.example.server.components;
 
 import com.example.server.models.Lesson;
 import com.example.server.models.Level;
+import com.example.server.models.Question;
+import com.example.server.models.enums.Difficulty;
 import com.example.server.models.enums.LessonName;
 import com.example.server.models.enums.LevelName;
+import com.example.server.models.enums.QuestionType;
 import com.example.server.repositories.LessonRepository;
 import com.example.server.repositories.LevelRepository;
 import com.example.server.repositories.QuestionRepository;
@@ -45,5 +48,16 @@ public class DataLoader implements ApplicationRunner {
         lessonRepository.save(lesson2);
         Lesson lesson3 = new Lesson(LessonName.KEYSIGNATURES1, level1);
         lessonRepository.save(lesson3);
+        List questionAssets = new ArrayList<>();
+        questionAssets.add("this question image is here");
+        List answerOptions = new ArrayList<>();
+        answerOptions.add("A");
+        answerOptions.add("B");
+        answerOptions.add("C");
+        answerOptions.add("D");
+        List answerAssets = new ArrayList<>();
+        answerAssets.add("the answer image is here");
+        Question question1 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), lesson1.getLessonName(), Difficulty.EASY, questionAssets, answerOptions, answerAssets);
+        questionRepository.save(question1);
     }
 }
