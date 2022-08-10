@@ -1,4 +1,7 @@
 package com.example.server.repositories;
 
-public interface QuestionRepository {
+import com.example.server.models.Question;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface QuestionRepository extends JpaRepository<Question, Long> {
 }
