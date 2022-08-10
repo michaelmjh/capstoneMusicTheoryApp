@@ -1,5 +1,8 @@
 package com.example.server.models;
 
+import com.example.server.models.enums.LessonName;
+import com.example.server.models.enums.LevelName;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,19 +15,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name="userName")
     private String userName;
 
-    @Column
+    @Column(name="avatar")
     private String avatar;
 
-    @Column
-    private List<Enum> progress;
+    @Enumerated(EnumType.STRING)
+    private LessonName lessonName;
 
-    public User(String userName, String avatar){
+    @Enumerated(EnumType.STRING)
+    private LevelName levelName;
+
+    public User(String userName, String avatar, LessonName lessonName, LevelName levelName){
         this.userName = userName;
         this.avatar = avatar;
-        this.progress = new ArrayList<>();
+        this.lessonName = lessonName;
+        this.levelName = levelName;
     }
 
     public User(){
@@ -55,11 +62,19 @@ public class User {
         this.avatar = avatar;
     }
 
-    public List<Enum> getProgress() {
-        return progress;
+    public LessonName getLessonName() {
+        return lessonName;
     }
 
-    public void setProgress(List<Enum> progress) {
-        this.progress = progress;
+    public void setLessonName(LessonName lessonName) {
+        this.lessonName = lessonName;
+    }
+
+    public LevelName getLevelName() {
+        return levelName;
+    }
+
+    public void setLevelName(LevelName levelName) {
+        this.levelName = levelName;
     }
 }

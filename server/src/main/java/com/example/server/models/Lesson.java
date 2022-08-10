@@ -16,7 +16,7 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Enumerated(EnumType.STRING)
     private LessonName lessonName;
 
     @ManyToOne
@@ -24,6 +24,8 @@ public class Lesson {
     @JsonIgnoreProperties({"lessons"})
     private Level level;
 
+    @Column(name="slides")
+    @ElementCollection(targetClass=String.class)
     private List<String> slides;
 
     public Lesson(LessonName lessonName, Level level){
