@@ -4,7 +4,6 @@ import com.example.server.models.enums.Difficulty;
 import com.example.server.models.enums.LessonName;
 import com.example.server.models.enums.LevelName;
 import com.example.server.models.enums.QuestionType;
-import jdk.internal.org.jline.utils.DiffHelper;
 
 import javax.persistence.*;
 import java.util.List;

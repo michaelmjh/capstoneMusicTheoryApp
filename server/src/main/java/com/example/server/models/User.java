@@ -19,7 +19,7 @@ public class User {
     private String avatar;
 
     @Column
-    private List<Enum> progress;
+    private List<String> progress;
 
     public User(String userName, String avatar){
         this.userName = userName;
@@ -55,11 +55,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public List<Enum> getProgress() {
+    public List<String> getProgress() {
         return progress;
     }
 
-    public void setProgress(List<Enum> progress) {
+    public void setProgress(List<String> progress) {
         this.progress = progress;
     }
 }
