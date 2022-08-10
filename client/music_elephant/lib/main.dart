@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:music_elephant/Quiz/question_parent.dart';
 import 'package:music_elephant/Quiz/question_parent2.dart';
+import 'package:music_elephant/landing_page.dart';
 
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
 import './Quiz/question_parent.dart';
 import 'lesson.dart';
+import 'landing_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +31,7 @@ class _MyAppState extends State<MyApp> {
         // '/questions': (context) => const QuestionParent(),
         // '/questions2': (context) => const QuestionParent2(),
         '/lesson': (context) => const Lesson(),
+        '/landingpage': (context) => const LandingPage()
       },
     );
   }
