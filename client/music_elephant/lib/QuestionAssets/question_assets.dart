@@ -7,25 +7,14 @@ import 'package:music_elephant/QuestionAssets/answer_assets.dart';
 import 'question_model.dart';
 
 Question question1 = Question(
-  type: QuestionType.missing,
+  type: QuestionType.identify,
   level: Level.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
-  image: 'images/missing_note.jpg',
-  text: 'Choose the missing note',
-  answerOptions: [a, f, e, c],
+  image: 'images/question_images/easy/cmaj_identify_note_c.jpg',
+  text: 'Identify the note',
+  answerOptions: [b, c, f, a],
   correctAnswer: [c],
-);
-
-Question question3 = Question(
-  type: QuestionType.missing,
-  level: Level.intermediate,
-  lesson: Lesson.scales2,
-  difficulty: Difficulty.easy,
-  image: 'images/missing_note2.jpg',
-  text: 'Choose the missing notes',
-  answerOptions: [d, fSharp, b, g, cSharp, e],
-  correctAnswer: [b, d],
 );
 
 Question question2 = Question(
@@ -33,32 +22,54 @@ Question question2 = Question(
   level: Level.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
-  image: 'images/name_the_note.jpg',
-  text: 'Choose the missing note',
-  answerOptions: [a, f, e, c],
+  image: 'images/question_images/easy/Cmaj-identify-note-E.jpg',
+  text: 'Identify the note',
+  answerOptions: [e, c, f, d],
   correctAnswer: [e],
 );
 
-Question question4 = Question(
-  type: QuestionType.arrange,
+Question question3 = Question(
+  type: QuestionType.missing,
   level: Level.beginner,
-  lesson: Lesson.scales2,
+  lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
-  image: '',
-  text: 'Arrnge the notes in the key of C major',
-  answerOptions: [e, f, g, a],
-  correctAnswer: [e, f, g, a],
+  image: 'images/question_images/easy/Cmaj-missing-note-A.jpg',
+  text: 'Fill in the missing note',
+  answerOptions: [a, c, b, g],
+  correctAnswer: [a],
+);
+
+Question question4 = Question(
+  type: QuestionType.missing,
+  level: Level.beginner,
+  lesson: Lesson.scales1,
+  difficulty: Difficulty.easy,
+  image: 'images/question_images/easy/Cmaj-missing-note-E.jpg',
+  text: 'Fill in the missing note',
+  answerOptions: [e, c, b, a],
+  correctAnswer: [e],
 );
 
 Question question5 = Question(
   type: QuestionType.arrange,
   level: Level.beginner,
-  lesson: Lesson.scales2,
+  lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
   image: '',
-  text: 'Arrnge the notes in the key of C major',
-  answerOptions: [c, d, b, bFlat],
-  correctAnswer: [c, d, b, bFlat],
+  text: 'Arrange the first 4 notes of the C Major scale',
+  answerOptions: [e, c, f, d],
+  correctAnswer: [c, d, e, f],
+);
+
+Question question6 = Question(
+  type: QuestionType.arrange,
+  level: Level.beginner,
+  lesson: Lesson.scales1,
+  difficulty: Difficulty.easy,
+  image: '',
+  text: 'Arrange the last 4 notes of the C Major scale',
+  answerOptions: [c, g, a, b],
+  correctAnswer: [g, a, b, c],
 );
 
 class QuestionData {

@@ -13,7 +13,14 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  List questions = [question1, question2, question5];
+  List questions = [
+    question1,
+    question2,
+    question3,
+    question4,
+    question5,
+    question6
+  ];
 
   int score = 0;
   int pageNumber = 1;
