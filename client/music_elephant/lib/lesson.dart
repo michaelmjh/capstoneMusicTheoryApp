@@ -1,51 +1,75 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
-// ignore: prefer_const_constructors
-var image1 = Image(
-  image: AssetImage("client/music_elephant/images/lesson images/puppy1 .jpeg"),
-);
-var image2 = Image(
-  image: AssetImage("client/music_elephant/images/lesson images/puppy2 .jpeg"),
-);
-var image3 = Image(
-  image: AssetImage("client/music_elephant/images/lesson images/puppy3 .jpeg"),
-);
-var image4 = Image(
-  image: AssetImage("client/music_elephant/images/lesson images/puppy4 .jpeg"),
-);
-var image5 = Image(
-  image: AssetImage("client/music_elephant/images/lesson images/puppy5 .jpeg"),
-);
-
-List<Image> images = [image1, image2, image3, image4, image5];
-
-class Lesson extends StatelessWidget {
+class Lesson extends StatefulWidget {
   const Lesson({super.key});
+
+  @override
+  State<Lesson> createState() => _LessonState();
+}
+
+class _LessonState extends State<Lesson> {
+  List images = [
+    "images/lessonImages/puppy1.png",
+    "images/lessonImages/puppy2.png",
+    "images/lessonImages/puppy3.png",
+    "images/lessonImages/puppy4.png"
+  ];
+
+  final controller = SwiperController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('lesson'),
+        title: const Text('lesson'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ],
       ),
+      // body: Column(
+      //   children: [
       body: Swiper(
+        itemCount: images.length,
+        loop: false,
         itemBuilder: (BuildContext context, int index) {
-          return Image.network(images);
+          return Padding(
+            padding: const EdgeInsets.all(27.0),
+            child: Image.asset(images[index]),
+          );
         },
-        itemCount: 5,
-        itemWidth: 300.00,
-        itemHeight: 400.00,
+        itemWidth: 200.00,
+        itemHeight: 300.00,
         layout: SwiperLayout.STACK,
+        pagination: const SwiperPagination(
+            alignment: Alignment.topCenter, builder: SwiperPagination.dots),
+        control: const SwiperControl(
+            iconNext: Icons.arrow_forward, iconPrevious: Icons.arrow_back),
       ),
+      // ListTile(
+      //   title: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: <Widget>[
+      //       Expanded(
+      //         child: ElevatedButton(
+      //           onPressed: nextPage,
+      //           child: const Text('next page'),
+      //         ),
+      //       ),
+      //       Expanded(
+      //         child: ElevatedButton(
+      //           onPressed: SwiperController( nextPage({bool animation: true}),),
+      //           child: const Text('previous page'),
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ],
     );
   }
 }

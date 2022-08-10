@@ -67,16 +67,16 @@ class _QuestionState extends State<QuestionParent2> {
       ),
       body: Column(
         children: [
-          Row(
-            children: demoQuestion.answerOptions.map((answer) {
-              return QuestionWidget2(updateAnswer);
-            }).toList(),
-          ),
-          Row(
-            children: demoQuestion.answerOptions.map((answer) {
-              return AnswerWidget2(answer);
-            }).toList(),
-          ),
+          // Row(
+          //   children: demoQuestion.answerOptions.map((answer) {
+          //     return QuestionWidget2(updateAnswer);
+          //   }).toList(),
+          // ),
+          // Row(
+          //   children: demoQuestion.answerOptions.map((answer) {
+          //     return AnswerWidget2(answer);
+          //   }).toList(),
+          // ),
           Visibility(
             visible: completeAnswer,
             child: ElevatedButton(
