@@ -22,6 +22,12 @@ class HomePage extends StatelessWidget {
               },
               child: const Text('Question arrange'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/lesson');
+              },
+              child: const Text('Lesson'),
+            ),
           ],
         ),
       ),
