@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-class QuestionWidget2 extends StatefulWidget {
-  final updateAnswer;
+import '../QuestionAssets/answer_model.dart';
 
-  QuestionWidget2(this.updateAnswer);
+class QuestionWidget2 extends StatefulWidget {
+  final answerQuestion;
+  final needsReset;
+
+  QuestionWidget2(this.answerQuestion, this.needsReset);
 
   @override
   State<QuestionWidget2> createState() => _QuestionWidget2State();
@@ -14,8 +17,12 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.needsReset == true) {
+      updatedData = "";
+    }
+
     return Expanded(
-      child: DragTarget<String>(
+      child: DragTarget<Answer>(
         builder: (
           BuildContext context,
           List<dynamic> accepted,
@@ -31,8 +38,8 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
         },
         onAccept: (data) {
           setState(() {
-            updatedData = data;
-            widget.updateAnswer(data);
+            updatedData = data.text;
+            widget.answerQuestion(data);
           });
         },
       ),

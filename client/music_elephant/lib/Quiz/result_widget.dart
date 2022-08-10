@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  final int score;
-  final int length;
+  final score;
+  final length;
 
   Result({required this.score, required this.length});
 
-  // even though this widget is stateless, because it is rendered by a stateFUL widget, we can change what is displayed in this widget
-  // when its parent updates
   String get resultPhrase {
     String resultText = '';
     if (score == 3) {
@@ -34,7 +32,6 @@ class Result extends StatelessWidget {
         children: [
           const Text('End of Quiz!',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-          // string interpolation in Dart:
           Text('You scored $score out of $length',
               style:
                   const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
@@ -48,4 +45,3 @@ class Result extends StatelessWidget {
     );
   }
 }
-

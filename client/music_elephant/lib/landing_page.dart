@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:music_elephant/question_parent.dart';
-import 'package:music_elephant/question_parent2.dart';
-import 'question_parent.dart';
+import 'package:music_elephant/Quiz/question_parent.dart';
+import './Quiz/question_parent.dart';
+import 'Quiz/quiz.dart';
 import 'lesson.dart';
 
 class LandingPage extends StatefulWidget {

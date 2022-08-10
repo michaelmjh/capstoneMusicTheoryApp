@@ -51,25 +51,6 @@ class _LessonState extends State<Lesson> {
         control: const SwiperControl(
             iconNext: Icons.arrow_forward, iconPrevious: Icons.arrow_back),
       ),
-      // ListTile(
-      //   title: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: <Widget>[
-      //       Expanded(
-      //         child: ElevatedButton(
-      //           onPressed: nextPage,
-      //           child: const Text('next page'),
-      //         ),
-      //       ),
-      //       Expanded(
-      //         child: ElevatedButton(
-      //           onPressed: SwiperController( nextPage({bool animation: true}),),
-      //           child: const Text('previous page'),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ],
     );
   }
 }
