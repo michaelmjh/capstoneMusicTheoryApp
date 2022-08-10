@@ -50,16 +50,28 @@ Question question4 = Question(
   correctAnswer: [e, f, g, a],
 );
 
+Question question5 = Question(
+  type: QuestionType.arrange,
+  level: Level.beginner,
+  lesson: Lesson.scales2,
+  difficulty: Difficulty.easy,
+  image: '',
+  text: 'Arrnge the notes in the key of C major',
+  answerOptions: [c, d, b, bFlat],
+  correctAnswer: [c, d, b, bFlat],
+);
+
 class QuestionData {
   static QuestionData get shared => QuestionData();
 
-  List<Question> get questions => [
-        question1,
-        question2,
-        question3,
-      ];
+  List<Question> get questions =>
+      [question1, question2, question3, question4, question5];
 
   getQuestions() {
-    return questions;
+    return questions.shuffle();
+  }
+
+  getQuestion1() {
+    return question1;
   }
 }

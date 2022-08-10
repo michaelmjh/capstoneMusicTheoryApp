@@ -38,9 +38,9 @@ class Lesson extends StatelessWidget {
         ],
       ),
       body: Swiper(
-        itemBuilder: (BuildContext context, int index) {
-          return Image.network(images);
-        },
+        // itemBuilder: (BuildContext context, int index) {
+        //   return Image.network(images);
+        // },
         itemCount: 5,
         itemWidth: 300.00,
         itemHeight: 400.00,

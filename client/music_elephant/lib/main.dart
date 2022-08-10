@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:music_elephant/question_parent.dart';
-import 'package:music_elephant/question_parent2.dart';
+import 'package:music_elephant/Quiz/question_parent.dart';
+import 'package:music_elephant/Quiz/question_parent2.dart';
 
+import 'Quiz/quiz.dart';
 import 'home_page.dart';
-import 'question_parent.dart';
+import './Quiz/question_parent.dart';
 import 'lesson.dart';
 
 void main() {
@@ -24,8 +25,9 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/questions': (context) => const QuestionParent(),
-        '/questions2': (context) => const QuestionParent2(),
+        '/quiz': (context) => const Quiz(),
+        // '/questions': (context) => const QuestionParent(),
+        // '/questions2': (context) => const QuestionParent2(),
         '/lesson': (context) => const Lesson(),
       },
     );

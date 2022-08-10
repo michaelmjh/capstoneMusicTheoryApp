@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../QuestionAssets/answer_model.dart';
+
 class AnswerWidget2 extends StatefulWidget {
   final answer;
 
@@ -18,8 +20,8 @@ class _AnswerWidget2State extends State<AnswerWidget2> {
       child: Expanded(
         child: IgnorePointer(
           ignoring: !isDraggable,
-          child: Draggable<String>(
-            data: widget.answer.text,
+          child: Draggable<Answer>(
+            data: widget.answer,
             child: Container(
               color: isDraggable ? Colors.blue : Colors.grey,
               height: 120.0,
