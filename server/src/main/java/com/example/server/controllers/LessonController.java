@@ -1,5 +1,4 @@
 package com.example.server.controllers;
 
-
-public class MusicElephantController {
+public class LessonController {
 }
