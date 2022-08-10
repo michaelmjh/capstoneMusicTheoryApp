@@ -16,25 +16,28 @@ public class Question {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(name="questionType")
     private QuestionType questionType;
 
-    @Column
+    @Column(name="levelName")
     private LevelName levelName;
 
-    @Column
+    @Column(name="lessonName")
     private LessonName lessonName;
 
-    @Column
+    @Column(name="difficulty")
     private Difficulty difficulty;
 
-    @Column
+    @Column(name="questionAssets")
+    @ElementCollection(targetClass=String.class)
     private List<String> questionAssets;
 
-    @Column
+    @Column(name="answerOptions")
+    @ElementCollection(targetClass=String.class)
     private List<String> answerOptions;
 
-    @Column
+    @Column(name="answerAssets")
+    @ElementCollection(targetClass=String.class)
     private List<String> answerAssets;
 
     public Question(QuestionType questionType, LevelName levelName, LessonName lessonName, Difficulty difficulty, List<String> questionAssets, List<String> answerOptions, List<String> answerAssets){
