@@ -16,45 +16,60 @@ class QuestionParent extends StatefulWidget {
 }
 
 class _QuestionState extends State<QuestionParent> {
+  // list of question objects and empty list to compare submitted answers against question object's list of correct answers
   List questions = QuestionData.shared.questions;
-  bool isSelected = false;
   List submittedAnswers = [];
+  // function which will compare the list of submitted answers to the question object's correct answer list
   Function deepEq = const DeepCollectionEquality().equals;
-  bool isSubmitted = false;
-  String submissionText = '';
+
   int score = 0;
   int pageNumber = 1;
   int questionIndex = 0;
-  bool reset = false;
+
+  // string updates when question is submitted - tells user if right or wrong
+  String submissionText = '';
+
+  // booleans track state of our answer buttons - connects to logic around button colours, whether buttons are
+  // disabled or clickable, and if they are visible depending on isSubmitted
+  bool isSelected = false;
+  bool isSubmitted = false;
+  bool disabled = false;
 
   void answerQuestion(answer) {
-    if (isSelected) {
+    if (submittedAnswers.length <
+        questions[questionIndex].correctAnswer.length - 1) {
       setState(() {
-        isSelected = false;
-        submittedAnswers.remove(answer);
+        isSelected == true;
+        submittedAnswers.add(answer);
       });
-    } else {
+    } else if (submittedAnswers.length ==
+        questions[questionIndex].correctAnswer.length - 1) {
       setState(() {
-        isSelected = true;
-        if (submittedAnswers.length < question1.correctAnswer!.length) {
-          submittedAnswers.add(answer);
-        }
+        isSelected == true;
+        submittedAnswers.add(answer);
+        disabled = true;
       });
     }
   }
 
+  void clearAnswer() {
+    setState(() {
+      isSelected = false;
+      submittedAnswers.clear();
+      disabled = false;
+    });
+  }
+
   void submit() {
-    if (deepEq(submittedAnswers, question1.correctAnswer)) {
-      print('correct!');
+    if (deepEq(submittedAnswers, questions[questionIndex].correctAnswer)) {
       setState(() {
         isSubmitted = true;
         submissionText = 'You got the right answer!';
         score += 1;
       });
     } else if (submittedAnswers.isEmpty) {
-      print('no answer selected!');
+      null;
     } else {
-      print(submittedAnswers[0].text);
       setState(() {
         isSubmitted = true;
         submissionText = 'Aw boo you got it wrong :(';
@@ -69,10 +84,9 @@ class _QuestionState extends State<QuestionParent> {
           pageNumber += 1;
           questionIndex += 1;
           isSelected = false;
-          submittedAnswers = [];
+          submittedAnswers.clear();
           isSubmitted = false;
-        } else {
-          print('End of Quiz!');
+          disabled = false;
         }
       },
     );
@@ -112,7 +126,10 @@ class _QuestionState extends State<QuestionParent> {
                                 return AnswerWidget(
                                     () => answerQuestion(answer),
                                     answer,
-                                    reset);
+                                    clearAnswer,
+                                    disabled,
+                                    submittedAnswers,
+                                    questions[questionIndex].correctAnswer);
                               }).toList(),
                             ],
                           ),
