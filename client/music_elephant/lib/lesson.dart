@@ -16,12 +16,8 @@ class _LessonState extends State<Lesson> {
     "images/lessonImages/puppy4.png"
   ];
 
-  void nextPage(Function({bool animation  true}) next
+  final controller = SwiperController();
 
-  void previousPage() {
-    Image.asset(images[0 - 1]);
-  }
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,44 +32,44 @@ class _LessonState extends State<Lesson> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Swiper(
-            itemCount: images.length,
-            loop: false,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(27.0),
-                child: Image.asset(images[index]),
-              );
-            },
-            itemWidth: 200.00,
-            itemHeight: 300.00,
-            layout: SwiperLayout.STACK,
-            pagination: const SwiperPagination(),
-            control: const SwiperControl(iconPrevious: Icons.arrow_back_ios,  iconNext: Icons.arrow_forward_ios),
-          ),
-          // ListTile(
-          //   title: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: <Widget>[
-          //       Expanded(
-          //         child: ElevatedButton(
-          //           onPressed: nextPage,
-          //           child: const Text('next page'),
-          //         ),
-          //       ),
-          //       Expanded(
-          //         child: ElevatedButton(
-          //           onPressed: SwiperController( nextPage({bool animation: true}),),
-          //           child: const Text('previous page'),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-        ],
+      // body: Column(
+      //   children: [
+      body: Swiper(
+        itemCount: images.length,
+        loop: false,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.all(27.0),
+            child: Image.asset(images[index]),
+          );
+        },
+        itemWidth: 200.00,
+        itemHeight: 300.00,
+        layout: SwiperLayout.STACK,
+        pagination: const SwiperPagination(
+            alignment: Alignment.topCenter, builder: SwiperPagination.dots),
+        control: const SwiperControl(
+            iconNext: Icons.arrow_forward, iconPrevious: Icons.arrow_back),
       ),
+      // ListTile(
+      //   title: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: <Widget>[
+      //       Expanded(
+      //         child: ElevatedButton(
+      //           onPressed: nextPage,
+      //           child: const Text('next page'),
+      //         ),
+      //       ),
+      //       Expanded(
+      //         child: ElevatedButton(
+      //           onPressed: SwiperController( nextPage({bool animation: true}),),
+      //           child: const Text('previous page'),
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ],
     );
   }
 }
