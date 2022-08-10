@@ -19,14 +19,14 @@ class _AnswerWidget2State extends State<AnswerWidget2> {
         child: IgnorePointer(
           ignoring: !isDraggable,
           child: Draggable<String>(
-            data: widget.answer,
+            data: widget.answer.text,
             child: Container(
               color: isDraggable ? Colors.blue : Colors.grey,
               height: 120.0,
               width: 120.0,
               child: Center(
                 child: Text(
-                  widget.answer,
+                  widget.answer.text,
                 ),
               ),
             ),
@@ -35,7 +35,7 @@ class _AnswerWidget2State extends State<AnswerWidget2> {
               width: 120.0,
               child: Center(
                 child: Text(
-                  widget.answer,
+                  widget.answer.text,
                 ),
               ),
             ),

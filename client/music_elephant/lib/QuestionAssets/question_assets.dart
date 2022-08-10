@@ -17,6 +17,17 @@ Question question1 = Question(
   correctAnswer: [c],
 );
 
+Question question3 = Question(
+  type: QuestionType.missing,
+  level: Level.intermediate,
+  lesson: Lesson.scales2,
+  difficulty: Difficulty.easy,
+  image: 'images/missing_note2.jpg',
+  text: 'Choose the missing notes',
+  answerOptions: [d, fSharp, b, g, cSharp, e],
+  correctAnswer: [b, d],
+);
+
 Question question2 = Question(
   type: QuestionType.identify,
   level: Level.beginner,
@@ -28,15 +39,15 @@ Question question2 = Question(
   correctAnswer: [e],
 );
 
-Question question3 = Question(
-  type: QuestionType.missing,
-  level: Level.intermediate,
+Question question4 = Question(
+  type: QuestionType.arrange,
+  level: Level.beginner,
   lesson: Lesson.scales2,
   difficulty: Difficulty.easy,
-  image: 'images/missing_note2.jpg',
-  text: 'Choose the missing notes',
-  answerOptions: [d, fSharp, b, g, cSharp, e],
-  correctAnswer: [b, d],
+  image: '',
+  text: 'Arrnge the notes in the key of C major',
+  answerOptions: [e, f, g, a],
+  correctAnswer: [e, f, g, a],
 );
 
 class QuestionData {
