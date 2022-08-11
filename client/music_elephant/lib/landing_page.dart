@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:music_elephant/Quiz/question_parent.dart';
-import './Quiz/question_parent.dart';
+import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
+// import 'package:music_elephant/Quiz/question_parent.dart';
+// import './Quiz/question_parent.dart';
 import 'Quiz/quiz.dart';
 import 'lesson.dart';
 
@@ -14,6 +15,26 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  List<bool> progress = [false, false, false];
+
+  void updateProgress(difficulty) {
+    if (difficulty == 'easy') {
+      setState(() {
+        progress = [true, false, false];
+      });
+    }
+    if (difficulty == 'medium') {
+      setState(() {
+        progress = [true, false, false];
+      });
+    }
+    if (difficulty == 'hard') {
+      setState(() {
+        progress = [true, true, true];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,19 +49,19 @@ class _LandingPageState extends State<LandingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.star_border,
+                  progress[0] ? Icons.star : Icons.star_border,
                   color: Colors.yellow,
-                  size: 50.00,
+                  size: 100.00,
                 ),
                 Icon(
-                  Icons.star_border,
+                  progress[1] ? Icons.star : Icons.star_border,
                   color: Colors.yellow,
-                  size: 50.00,
+                  size: 100.00,
                 ),
                 Icon(
-                  Icons.star_border,
+                  progress[2] ? Icons.star : Icons.star_border,
                   color: Colors.yellow,
-                  size: 50.00,
+                  size: 100.00,
                 ),
               ],
             ),
