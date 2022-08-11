@@ -6,7 +6,6 @@ import 'Quiz/quiz.dart';
 import 'home_page.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
-import 'lesson_overview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +19,31 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<bool> progress = [false, false, false];
+
+  String currentDifficulty = "easy";
+
+  void updateProgress(difficulty) {
+    if (difficulty == 'easy') {
+      setState(() {
+        progress = [true, false, false];
+        currentDifficulty = "medium";
+      });
+    }
+    if (difficulty == 'medium') {
+      setState(() {
+        progress = [true, true, false];
+        currentDifficulty = "hard";
+      });
+    }
+    if (difficulty == 'hard') {
+      setState(() {
+        progress = [true, true, true];
+        currentDifficulty = "revision";
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,8 +52,7 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => const HomePage(),
         '/quiz': (context) => Quiz(QuestionData.shared.questions),
         '/lesson': (context) => const Lesson(),
-        '/landingpage': (context) => const LandingPage(),
-        '/lessonoverview': (context) => const LessonOv()
+        '/landingpage': (context) => LandingPage(progress, currentDifficulty),
       },
     );
   }
