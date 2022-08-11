@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_elephant/QuestionAssets/Enums/question_type.dart';
-import 'package:music_elephant/Quiz/question_parent.dart';
 import 'package:music_elephant/Quiz/question_widget2.dart';
-// import 'package:music_elephant/answer.dart';
 import 'package:collection/collection.dart';
 
 import '../QuestionAssets/question_assets.dart';
