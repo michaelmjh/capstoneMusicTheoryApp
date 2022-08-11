@@ -279,7 +279,7 @@ public class DataLoader implements ApplicationRunner {
 
         List question12Assets = new ArrayList();
         question12Assets.add("");
-        question12Assets.add("Arrange the last 4 notes of the F Major Scale");
+        question12Assets.add("Arrange the first 4 notes of the F Major Scale");
 
         List answer12Options = new ArrayList<>();
         answer12Options.add("F");
@@ -405,7 +405,7 @@ public class DataLoader implements ApplicationRunner {
 
         List question18Assets = new ArrayList();
         question18Assets.add("");
-        question18Assets.add("Arrange the last 4 notes of the Eb Major Scale");
+        question18Assets.add("Arrange the first 4 notes of the Eb Major Scale");
 
         List answer18Options = new ArrayList<>();
         answer18Options.add("Eb");

@@ -1,0 +1,45 @@
+package com.example.server.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+public class LessonSlide {
+
+    private String text;
+
+    private String image;
+
+    @ManyToOne
+    @JoinColumn(name="lesson_id", nullable = false)
+    @JsonIgnoreProperties({"lessons"})
+    private Lesson lesson;
+
+
+    public LessonSlide(Lesson lesson, String text, String image){
+        this.lesson = lesson;
+        this.text = text;
+        this.image = image;
+    }
+
+    public LessonSlide(){
+
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+}
