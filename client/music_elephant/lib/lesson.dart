@@ -47,6 +47,7 @@ class _LessonState extends State<Lesson> {
           'As an example if we apply the same method to figure out G Major, it would look like the above.\n\nSo the notes of the G Major Scale are:\n\nG	A	B	C	D	E	F# G',
       'image': 'images/lessonImages/scales_lesson_image_5.png'
     },
+    {'text': '', 'image': ''}
   ];
 
   final controller = SwiperController();
@@ -65,47 +66,59 @@ class _LessonState extends State<Lesson> {
           ),
         ],
       ),
-      body: Swiper(
-        itemCount: lessonSlides.length,
-        loop: false,
-        itemBuilder: (BuildContext context, int index) {
-          //   return Padding(
-          //       padding: const EdgeInsets.all(27.0),
-          //       child: Image.asset(images[index]));
-          // },
-          return Center(
-            child: Column(
-              children: [
-                Text('Scales Lesson 1',
-                    style:
-                        TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-                Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Image.asset(
-                    lessonSlides[index]['image'],
-                  ),
+      body: Stack(
+        children: [
+          Swiper(
+            itemCount: lessonSlides.length,
+            loop: false,
+            itemBuilder: (BuildContext context, int index) {
+              return Center(
+                child: Column(
+                  children: [
+                    Text('Scales Lesson 1',
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold)),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: index < lessonSlides.length - 1
+                          ? Image.asset(lessonSlides[index]['image'])
+                          : Text(''),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Text(
+                        lessonSlides[index]['text'],
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 30),
+                      child:
+                          Text('Slide ${index + 1} of ${lessonSlides.length}'),
+                    ),
+                    Visibility(
+                      visible: index == lessonSlides.length - 1,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Return to Lesson Page'),
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Text(
-                    lessonSlides[index]['text'],
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: Text('Slide ${index + 1} of ${lessonSlides.length}'))
-              ],
-            ),
-          );
-        },
-        itemWidth: 200.00,
-        itemHeight: 300.00,
-        layout: SwiperLayout.DEFAULT,
-        pagination: const SwiperPagination(
-            alignment: Alignment.bottomCenter, builder: SwiperPagination.dots),
-        control: const SwiperControl(
-            iconNext: Icons.arrow_forward, iconPrevious: Icons.arrow_back),
+              );
+            },
+            itemWidth: 200.00,
+            itemHeight: 300.00,
+            layout: SwiperLayout.DEFAULT,
+            pagination: const SwiperPagination(
+                alignment: Alignment.bottomCenter,
+                builder: SwiperPagination.dots),
+            control: const SwiperControl(
+                iconNext: Icons.arrow_forward, iconPrevious: Icons.arrow_back),
+          ),
+        ],
       ),
     );
   }
