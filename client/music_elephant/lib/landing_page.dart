@@ -3,42 +3,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
-// import 'package:music_elephant/Quiz/question_parent.dart';
-// import './Quiz/question_parent.dart';
 
 import 'Quiz/quiz.dart';
 import 'lesson.dart';
 
 class LandingPage extends StatefulWidget {
-  const LandingPage({super.key});
+  final List progress;
+  final String currentDifficulty;
+  // ignore: prefer_const_constructors_in_immutables
+  LandingPage(this.progress, this.currentDifficulty, {super.key});
 
   @override
   State<LandingPage> createState() => _LandingPageState();
 }
 
 class _LandingPageState extends State<LandingPage> {
-
-  List<bool> progress = [false, false, false];
-
-  void updateProgress(difficulty) {
-    if (difficulty == 'easy') {
-      setState(() {
-        progress = [true, false, false];
-      });
-    }
-    if (difficulty == 'medium') {
-      setState(() {
-        progress = [true, false, false];
-      });
-    }
-    if (difficulty == 'hard') {
-      setState(() {
-        progress = [true, true, true];
-      });
-    }
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,17 +32,17 @@ class _LandingPageState extends State<LandingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  progress[0] ? Icons.star : Icons.star_border,
+                  widget.progress[0] ? Icons.star : Icons.star_border,
                   color: Colors.yellow,
                   size: 100.00,
                 ),
                 Icon(
-                  progress[1] ? Icons.star : Icons.star_border,
+                  widget.progress[1] ? Icons.star : Icons.star_border,
                   color: Colors.yellow,
                   size: 100.00,
                 ),
                 Icon(
-                  progress[2] ? Icons.star : Icons.star_border,
+                  widget.progress[2] ? Icons.star : Icons.star_border,
                   color: Colors.yellow,
                   size: 100.00,
                 ),
@@ -79,26 +58,28 @@ class _LandingPageState extends State<LandingPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/quiz');
               },
-              child: const Text('Easy'),
+              child: widget.currentDifficulty == "revision"
+                  ? Text("Test Your Knowledge")
+                  : Text("Next Quiz"),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/quiz');
-              },
-              child: const Text('Normal'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/quiz');
-              },
-              child: const Text('Hard'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/quiz');
-              },
-              child: const Text('Revision'),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/quiz');
+            //   },
+            //   child: const Text('Normal'),
+            // ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/quiz');
+            //   },
+            //   child: const Text('Hard'),
+            // ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/quiz');
+            //   },
+            //   child: const Text('Revision'),
+            // ),
           ],
         ),
       ),

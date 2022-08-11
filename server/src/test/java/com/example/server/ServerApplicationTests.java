@@ -48,31 +48,31 @@ class ServerApplicationTests {
 		lessonRepository.save(lesson);
 	}
 
-	@Test
-	public void canCreateUser(){
-		Level level = new Level(LevelName.BEGINNER);
-		levelRepository.save(level);
-		Lesson lesson = new Lesson(LessonName.SCALES1, level);
-		lessonRepository.save(lesson);
-		User user = new User("EwanC1991", "images/myface.jpg", lesson.getLessonName(), level.getLevelName());
-		userRepository.save(user);
-	}
+//	@Test
+//	public void canCreateUser(){
+//		Level level = new Level(LevelName.BEGINNER);
+//		levelRepository.save(level);
+//		Lesson lesson = new Lesson(LessonName.SCALES1, level);
+//		lessonRepository.save(lesson);
+//		User user = new User("EwanC1991", "images/myface.jpg", lesson.getLessonName(), level.getLevelName());
+//		userRepository.save(user);
+//	}
 
-	@Test
-	public void canCreateQuestionsLessonsUserAndLevel(){
-		List<String> questionAssets = new ArrayList<>();
-		questionAssets.add("image is here");
-		List<String> answerAssets = new ArrayList<>();
-		answerAssets.add("answer is here");
-		List<String> answerOptions = new ArrayList<>();
-		answerOptions.add("answer options are here");
-		Level level = new Level(LevelName.BEGINNER);
-		levelRepository.save(level);
-		Lesson lesson = new Lesson(LessonName.SCALES1, level);
-		lessonRepository.save(lesson);
-		Question question = new Question(QuestionType.IDENTIFY, level.getLevelName(), lesson.getLessonName(), Difficulty.EASY, questionAssets, answerOptions, answerAssets);
-		questionRepository.save(question);
-	}
+//	@Test
+//	public void canCreateQuestionsLessonsUserAndLevel(){
+//		List<String> questionAssets = new ArrayList<>();
+//		questionAssets.add("image is here");
+//		List<String> answerAssets = new ArrayList<>();
+//		answerAssets.add("answer is here");
+//		List<String> answerOptions = new ArrayList<>();
+//		answerOptions.add("answer options are here");
+//		Level level = new Level(LevelName.BEGINNER);
+//		levelRepository.save(level);
+//		Lesson lesson = new Lesson(LessonName.SCALES1, level);
+//		lessonRepository.save(lesson);
+//		Question question = new Question(QuestionType.IDENTIFY, level.getLevelName(), lesson.getLessonName(), Difficulty.EASY, questionAssets, answerOptions, answerAssets);
+//		questionRepository.save(question);
+//	}
 
 
 
