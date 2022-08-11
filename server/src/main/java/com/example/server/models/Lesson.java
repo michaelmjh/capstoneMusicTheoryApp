@@ -24,9 +24,10 @@ public class Lesson {
     @JsonIgnoreProperties({"lessons"})
     private Level level;
 
-    @Column(name="slides")
-    @ElementCollection(targetClass=String.class)
-    private List<String> slides;
+
+    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"lesson"})
+    private List<LessonSlide> slides;
 
     public Lesson(LessonName lessonName, Level level){
         this.lessonName = lessonName;
@@ -62,11 +63,11 @@ public class Lesson {
         this.level = level;
     }
 
-    public List<String> getSlides() {
+    public List<LessonSlide> getSlides() {
         return slides;
     }
 
-    public void setSlides(List<String> slides) {
+    public void setSlides(List<LessonSlide> slides) {
         this.slides = slides;
     }
 }
