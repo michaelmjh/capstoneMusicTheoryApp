@@ -9,7 +9,7 @@ import 'lesson.dart';
 
 class LandingPage extends StatefulWidget {
   final List progress;
-  final String currentDifficulty;
+  final Difficulty currentDifficulty;
   // ignore: prefer_const_constructors_in_immutables
   LandingPage(this.progress, this.currentDifficulty, {super.key});
 
@@ -58,7 +58,7 @@ class _LandingPageState extends State<LandingPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/quiz');
               },
-              child: widget.currentDifficulty == "revision"
+              child: widget.currentDifficulty == Difficulty.revision
                   ? Text("Test Your Knowledge")
                   : Text("Next Quiz"),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
 import 'package:music_elephant/QuestionAssets/question_model.dart';
 import 'package:music_elephant/landing_page.dart';
 
@@ -7,6 +8,7 @@ import 'Quiz/quiz.dart';
 import 'home_page.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
+import 'journey.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,34 +24,36 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List<bool> progress = [false, false, false];
 
-  String currentDifficulty = "easy";
+  Difficulty currentDifficulty = Difficulty.easy;
   List<Question> currentQuiz = QuestionData.shared.easyQuestions;
 
   void updateProgress() {
-    if (currentDifficulty == 'easy') {
+    if (currentDifficulty == Difficulty.easy) {
       setState(() {
         progress = [true, false, false];
-        currentDifficulty = "medium";
+        currentDifficulty = Difficulty.medium;
         currentQuiz = QuestionData.shared.mediumQuestions;
       });
-    } else if (currentDifficulty == 'medium') {
+    } else if (currentDifficulty == Difficulty.medium) {
       setState(() {
         progress = [true, true, false];
-        currentDifficulty = "hard";
+        currentDifficulty = Difficulty.hard;
         currentQuiz = QuestionData.shared.hardQuestions;
       });
-    } else if (currentDifficulty == 'hard') {
+    } else if (currentDifficulty == Difficulty.hard) {
       setState(() {
         progress = [true, true, true];
-        currentDifficulty = "revision";
+        currentDifficulty = Difficulty.revision;
         currentQuiz = QuestionData.shared.allQuestions;
       });
     }
   }
 
-  // List selectedQuestions = QuestionData.shared.questions;
+  List selectedQuestions = [];
 
-  void quizGenerator() {}
+  void quizGenerator() {
+    selectedQuestions = QuestionData.shared.getQuestions();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +64,7 @@ class _MyAppState extends State<MyApp> {
         '/quiz': (context) => Quiz(currentQuiz, updateProgress),
         '/lesson': (context) => const Lesson(),
         '/landingpage': (context) => LandingPage(progress, currentDifficulty),
+        '/journey': (context) => const Journey(),
       },
     );
   }
