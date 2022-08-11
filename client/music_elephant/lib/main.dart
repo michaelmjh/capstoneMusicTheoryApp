@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:music_elephant/Quiz/question_parent2.dart';
 import 'package:music_elephant/landing_page.dart';
 
+import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
 // import './Quiz/question_parent.dart';
@@ -27,9 +28,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/quiz': (context) => const Quiz(),
-        // '/questions': (context) => const QuestionParent(),
-        // '/questions2': (context) => const QuestionParent2(),
+        '/quiz': (context) => Quiz(QuestionData.shared.questions),
         '/lesson': (context) => const Lesson(),
         '/landingpage': (context) => const LandingPage()
       },
