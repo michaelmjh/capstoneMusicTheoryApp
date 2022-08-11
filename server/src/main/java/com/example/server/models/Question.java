@@ -6,6 +6,7 @@ import com.example.server.models.enums.LevelName;
 import com.example.server.models.enums.QuestionType;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,7 @@ public class Question {
     private Difficulty difficulty;
 
     @Column(name="questionAssets")
-    @ElementCollection(targetClass=String.class)
+    @ElementCollection(targetClass = String.class)
     private List<String> questionAssets;
 
     @Column(name="answerOptions")
@@ -37,7 +38,7 @@ public class Question {
     private List<String> answerOptions;
 
     @Column(name="answerAssets")
-    @ElementCollection(targetClass=String.class)
+    @ElementCollection(targetClass = String.class)
     private List<String> answerAssets;
 
     public Question(QuestionType questionType, LevelName levelName, LessonName lessonName, Difficulty difficulty, List<String> questionAssets, List<String> answerOptions, List<String> answerAssets){
@@ -94,13 +95,6 @@ public class Question {
         this.difficulty = difficulty;
     }
 
-    public List<String> getQuestionAssets() {
-        return questionAssets;
-    }
-
-    public void setQuestionAssets(List<String> questionAssets) {
-        this.questionAssets = questionAssets;
-    }
 
     public List<String> getAnswerOptions() {
         return answerOptions;
@@ -108,6 +102,14 @@ public class Question {
 
     public void setAnswerOptions(List<String> answerOptions) {
         this.answerOptions = answerOptions;
+    }
+
+    public List<String> getQuestionAssets() {
+        return questionAssets;
+    }
+
+    public void setQuestionAssets(List<String> questionAssets) {
+        this.questionAssets = questionAssets;
     }
 
     public List<String> getAnswerAssets() {
