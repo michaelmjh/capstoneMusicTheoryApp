@@ -13,13 +13,31 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  List questions = [
+  List easy_questions = [
     question1,
     question2,
     question3,
     question4,
     question5,
     question6
+  ];
+
+  List medium_questions = [
+    question7,
+    question8,
+    question9,
+    question10,
+    question11,
+    question12
+  ];
+
+  List hard_questions = [
+    question13,
+    question14,
+    question15,
+    question16,
+    question17,
+    question18
   ];
 
   int score = 0;
@@ -37,13 +55,13 @@ class _QuizState extends State<Quiz> {
   void nextQuestion() {
     setState(
       () {
-        if (questionIndex < questions.length - 1) {
+        if (questionIndex < medium_questions.length - 1) {
           pageNumber += 1;
           questionIndex += 1;
-          if (questionIndex >= questions.length - 1) {
+          if (questionIndex >= medium_questions.length - 1) {
             final_question = true;
           }
-        } else if (questionIndex == questions.length - 1) {
+        } else if (questionIndex == medium_questions.length - 1) {
           questionIndex += 1;
         }
       },
@@ -64,10 +82,10 @@ class _QuizState extends State<Quiz> {
           ),
         ],
       ),
-      body: questionIndex < questions.length
-          ? QuestionContainer(questions[questionIndex], submissionText,
+      body: questionIndex < medium_questions.length
+          ? QuestionContainer(medium_questions[questionIndex], submissionText,
               nextQuestion, final_question, increaseScore)
-          : Result(score: score, length: questions.length),
+          : Result(score: score, length: medium_questions.length),
     );
   }
 }
