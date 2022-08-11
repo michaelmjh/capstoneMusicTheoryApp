@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:music_elephant/Quiz/question_parent.dart';
 import './Quiz/question_parent.dart';
@@ -18,21 +20,62 @@ class _LandingPageState extends State<LandingPage> {
       appBar: AppBar(
         title: const Text('Test your knowledge'),
       ),
-      body: Column(
-        children: [
-          MaterialApp(
-            initialRoute: '/lesson',
-            routes: {
-              '/lesson': (context) => const Lesson(),
-            },
-          ),
-          MaterialApp(
-            initialRoute: '/Quiz',
-            routes: {
-              '/quiz': (context) => const Quiz(),
-            },
-          )
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.star_border,
+                  color: Colors.yellow,
+                  size: 50.00,
+                ),
+                Icon(
+                  Icons.star_border,
+                  color: Colors.yellow,
+                  size: 50.00,
+                ),
+                Icon(
+                  Icons.star_border,
+                  color: Colors.yellow,
+                  size: 50.00,
+                ),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/lesson');
+              },
+              child: const Text('Lesson'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/quiz');
+              },
+              child: const Text('Easy'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/quiz');
+              },
+              child: const Text('Normal'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/quiz');
+              },
+              child: const Text('Hard'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/quiz');
+              },
+              child: const Text('Revision'),
+            ),
+          ],
+        ),
       ),
     );
   }

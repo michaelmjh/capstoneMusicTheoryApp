@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:music_elephant/Quiz/question_parent.dart';
-import 'package:music_elephant/Quiz/question_parent2.dart';
+// import 'package:music_elephant/Quiz/question_parent.dart';
+// import 'package:music_elephant/Quiz/question_parent2.dart';
 import 'package:music_elephant/landing_page.dart';
 
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
-import './Quiz/question_parent.dart';
+// import './Quiz/question_parent.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
 
