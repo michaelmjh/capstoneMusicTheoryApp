@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-// import 'package:music_elephant/Quiz/question_parent.dart';
-// import 'package:music_elephant/Quiz/question_parent2.dart';
 import 'package:music_elephant/landing_page.dart';
 
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
-// import './Quiz/question_parent.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
+import 'lesson_overview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +28,8 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => const HomePage(),
         '/quiz': (context) => Quiz(QuestionData.shared.questions),
         '/lesson': (context) => const Lesson(),
-        '/landingpage': (context) => const LandingPage()
+        '/landingpage': (context) => const LandingPage(),
+        '/lessonoverview': (context) => const LessonOv()
       },
     );
   }
