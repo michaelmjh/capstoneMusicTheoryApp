@@ -258,8 +258,24 @@ class QuestionData {
     // question18
   ];
 
-  getQuestions() {
-    return allQuestions.shuffle();
+  getQuestions(difficulty) {
+    var newQuestions = [];
+    allQuestions.forEach((question) {
+      if (question.difficulty == difficulty) {
+        newQuestions.add(question);
+      }
+    });
+    newQuestions.shuffle();
+    var shortList = selectFive(newQuestions);
+    return shortList;
+  }
+
+  selectFive(questions) {
+    var newShortList = [];
+    for (int i = 0; i < 5; i++) {
+      newShortList.add(questions[i]);
+    }
+    return newShortList;
   }
 
   getQuestion1() {

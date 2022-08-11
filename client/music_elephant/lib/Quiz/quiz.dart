@@ -8,8 +8,9 @@ import '../QuestionAssets/question_model.dart';
 class Quiz extends StatefulWidget {
   List questions;
   final updateProgress;
+  final quizGenerator;
 
-  Quiz(this.questions, this.updateProgress, {super.key});
+  Quiz(this.questions, this.updateProgress, this.quizGenerator, {super.key});
 
   @override
   State<Quiz> createState() => _QuizState();
@@ -69,7 +70,8 @@ class _QuizState extends State<Quiz> {
           : Result(
               score: score,
               length: widget.questions.length,
-              updateProgress: widget.updateProgress),
+              updateProgress: widget.updateProgress,
+              quizGenerator: widget.quizGenerator),
     );
   }
 }

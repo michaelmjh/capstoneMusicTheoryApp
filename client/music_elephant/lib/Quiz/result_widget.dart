@@ -4,11 +4,13 @@ class Result extends StatelessWidget {
   final score;
   final length;
   final updateProgress;
+  final quizGenerator;
 
   Result({
     required this.score,
     required this.length,
     required this.updateProgress,
+    required this.quizGenerator,
   });
 
   String get resultPhrase {
@@ -48,6 +50,7 @@ class Result extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               score > 3 ? updateProgress() : null;
+              quizGenerator();
               Navigator.pushNamed(context, '/landingpage');
             },
             child: const Text('Back to Lesson'),
