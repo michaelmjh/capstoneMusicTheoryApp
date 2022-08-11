@@ -42,4 +42,12 @@ public class LessonSlide {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
 }
