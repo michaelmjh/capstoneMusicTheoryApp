@@ -12,9 +12,9 @@ class _LessonOvState extends State<LessonOv> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        LandingPage,
-      ),
+      // child: Column(
+      //   LandingPage,
+      // ),
     );
   }
 }

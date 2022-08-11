@@ -9,24 +9,44 @@ class Lesson extends StatefulWidget {
 }
 
 class _LessonState extends State<Lesson> {
-  List images = [
-    "images/lessonImages/puppy1.png",
-    "images/lessonImages/puppy2.png",
-    "images/lessonImages/puppy3.png",
-    "images/lessonImages/puppy4.png"
-  ];
+  // List images = [
+  //   "images/lessonImages/puppy1.png",
+  //   "images/lessonImages/puppy2.png",
+  //   "images/lessonImages/puppy3.png",
+  //   "images/lessonImages/puppy4.png"
+  // ];
 
   List lessonSlides = [
     {
       'text':
-          'Scales are the building blocks of Music. They will unlock a lot of tools for understanding music theory! First you need to know all the notes that exist; they are listed below.',
-      'image': 'images/missing_note.jpg'
+          'Scales are the building blocks of Music. They will unlock a lot of tools for understanding music theory!\n\nFirst you need to know all the notes that exist; they are all shown above.',
+      'image': 'images/lessonImages/scales_lesson_image_1.png'
     },
     {
       'text':
-          'An easier way to look at it could to visualise a piano over 2 octaves. Each key on the piano is a note and the distance between each key is known as a Half step.',
-      'image': 'images/missing_note2'
-    }
+          'An easier way to look at it is to visualise a piano.\n\nEach key is a note and the distance between each key is known as a Half step.',
+      'image': 'images/lessonImages/scales_lesson_image_2.png'
+    },
+    {
+      'text':
+          'There are only 12 notes to learn.\n\nSome notes have 2 names, for example A#, also known as Bb.\n\nThese are called “Enharmonic Equivalents” which is a fancy term for notes with 2 names.\n\nThe name of the note will depend on which key the music is written in.',
+      'image': 'images/lessonImages/scales_lesson_image_2.png'
+    },
+    {
+      'text':
+          'Now to start we are going to look at Major Scales.\n\nAn easy way to remember the make up of a Major scale is:\n\n\nWhole, Whole, Half, Whole, Whole, Whole, Half\n\n\nThis refers to the distance between each note in the scale.\n\nA Whole Step is a jump of 2 notes and a Half Step is a jump of 1 note.',
+      'image': 'images/lessonImages/scales_lesson_image_3.png'
+    },
+    {
+      'text':
+          'So if we apply that formula to figure out the C Major Scale, it would be as above.\n\nSo the notes of the C Major Scale are:\n\nC	D	E	F	G	A	B	C\n\nYou can use this method to figure out any key!\n\nJust pick the starting note of the key you want to know and follow the same structure.',
+      'image': 'images/lessonImages/scales_lesson_image_4.png'
+    },
+    {
+      'text':
+          'As an example if we apply the same method to figure out G Major, it would look like the above.\n\nSo the notes of the G Major Scale are:\n\nG	A	B	C	D	E	F# G',
+      'image': 'images/lessonImages/scales_lesson_image_5.png'
+    },
   ];
 
   final controller = SwiperController();
@@ -45,27 +65,45 @@ class _LessonState extends State<Lesson> {
           ),
         ],
       ),
-      // body: Column(
-      //   children: [
       body: Swiper(
-        itemCount: images.length,
+        itemCount: lessonSlides.length,
         loop: false,
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
-              padding: const EdgeInsets.all(27.0),
-              // child: Image.asset(images[index]),
-              child: Column(
-                children: [
-                  Text(lessonSlides[index]['text']),
-                  // Image.asset(lessonSlides[index]['image']),
-                ],
-              ));
+          //   return Padding(
+          //       padding: const EdgeInsets.all(27.0),
+          //       child: Image.asset(images[index]));
+          // },
+          return Center(
+            child: Column(
+              children: [
+                Text('Scales Lesson 1',
+                    style:
+                        TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Image.asset(
+                    lessonSlides[index]['image'],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Text(
+                    lessonSlides[index]['text'],
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsets.only(top: 30),
+                    child: Text('Slide ${index + 1} of ${lessonSlides.length}'))
+              ],
+            ),
+          );
         },
         itemWidth: 200.00,
         itemHeight: 300.00,
-        layout: SwiperLayout.STACK,
+        layout: SwiperLayout.DEFAULT,
         pagination: const SwiperPagination(
-            alignment: Alignment.topCenter, builder: SwiperPagination.dots),
+            alignment: Alignment.bottomCenter, builder: SwiperPagination.dots),
         control: const SwiperControl(
             iconNext: Icons.arrow_forward, iconPrevious: Icons.arrow_back),
       ),
