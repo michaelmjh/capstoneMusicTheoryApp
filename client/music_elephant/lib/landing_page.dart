@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+
 import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
 // import 'package:music_elephant/Quiz/question_parent.dart';
 // import './Quiz/question_parent.dart';
+
 import 'Quiz/quiz.dart';
 import 'lesson.dart';
 
@@ -15,6 +17,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+
   List<bool> progress = [false, false, false];
 
   void updateProgress(difficulty) {
@@ -34,6 +37,7 @@ class _LandingPageState extends State<LandingPage> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

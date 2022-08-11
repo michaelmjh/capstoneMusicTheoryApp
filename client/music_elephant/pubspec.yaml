@@ -61,8 +61,8 @@ flutter:
     - images/
     - images/lessonImages/
     - images/question_images/easy/
+    - images/question_images/intermediate/
     - images/question_images/hard/
-    - images/question_images/intermidiate/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

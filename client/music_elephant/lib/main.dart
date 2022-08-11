@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_elephant/landing_page.dart';
 
+import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
 import 'lesson.dart';
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/quiz': (context) => const Quiz(),
+        '/quiz': (context) => Quiz(QuestionData.shared.questions),
         '/lesson': (context) => const Lesson(),
         '/landingpage': (context) => const LandingPage(),
         '/lessonoverview': (context) => const LessonOv()
