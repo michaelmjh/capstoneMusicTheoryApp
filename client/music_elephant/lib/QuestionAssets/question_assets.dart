@@ -210,11 +210,56 @@ Question question18 = Question(
 class QuestionData {
   static QuestionData get shared => QuestionData();
 
-  List<Question> get questions =>
-      [question1, question2, question3, question4, question5];
+  List<Question> get allQuestions => [
+        question1,
+        question2,
+        question3,
+        question4,
+        question5,
+        question6,
+        question7,
+        question8,
+        question9,
+        question10,
+        question11,
+        question12,
+        question13,
+        question14,
+        question15,
+        question16,
+        question17,
+        question18
+      ];
+
+  List<Question> easyQuestions = [
+    question1,
+    question2,
+    question3,
+    question4,
+    question5,
+    // question6,
+  ];
+
+  List<Question> mediumQuestions = [
+    question7,
+    question8,
+    question9,
+    question10,
+    question11,
+    // question12,
+  ];
+
+  List<Question> hardQuestions = [
+    question13,
+    question14,
+    question15,
+    question16,
+    question17,
+    // question18
+  ];
 
   getQuestions() {
-    return questions.shuffle();
+    return allQuestions.shuffle();
   }
 
   getQuestion1() {

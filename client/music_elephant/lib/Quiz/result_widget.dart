@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 class Result extends StatelessWidget {
   final score;
   final length;
+  final updateProgress;
 
-  Result({required this.score, required this.length});
+  Result({
+    required this.score,
+    required this.length,
+    required this.updateProgress,
+  });
 
   String get resultPhrase {
     String resultText = '';
-    if (score == 3) {
+    if (score >= 4) {
       resultText =
           'Perfect! You should feel comfortable moving on to the next section';
     } else if (score == 2) {
@@ -39,6 +44,13 @@ class Result extends StatelessWidget {
             resultPhrase,
             style: const TextStyle(fontSize: 14),
             textAlign: TextAlign.center,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              score > 3 ? updateProgress() : null;
+              Navigator.pushNamed(context, '/landingpage');
+            },
+            child: const Text('Back to Lesson'),
           ),
         ],
       ),

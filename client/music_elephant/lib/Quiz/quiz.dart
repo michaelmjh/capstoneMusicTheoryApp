@@ -7,8 +7,9 @@ import '../QuestionAssets/question_model.dart';
 
 class Quiz extends StatefulWidget {
   List questions;
+  final updateProgress;
 
-  Quiz(this.questions, {super.key});
+  Quiz(this.questions, this.updateProgress, {super.key});
 
   @override
   State<Quiz> createState() => _QuizState();
@@ -24,23 +25,23 @@ class _QuizState extends State<Quiz> {
   //   question6
   // ];
 
-  List medium_questions = [
-    question7,
-    question8,
-    question9,
-    question10,
-    question11,
-    question12
-  ];
+  // List medium_questions = [
+  //   question7,
+  //   question8,
+  //   question9,
+  //   question10,
+  //   question11,
+  //   question12
+  // ];
 
-  List hard_questions = [
-    question13,
-    question14,
-    question15,
-    question16,
-    question17,
-    question18
-  ];
+  // List hard_questions = [
+  //   question13,
+  //   question14,
+  //   question15,
+  //   question16,
+  //   question17,
+  //   question18
+  // ];
 
   int score = 0;
   int pageNumber = 1;
@@ -85,9 +86,17 @@ class _QuizState extends State<Quiz> {
         ],
       ),
       body: questionIndex < widget.questions.length
-          ? QuestionContainer(widget.questions[questionIndex], submissionText,
-              nextQuestion, final_question, increaseScore)
-          : Result(score: score, length: widget.questions.length),
+          ? QuestionContainer(
+              widget.questions[questionIndex],
+              submissionText,
+              nextQuestion,
+              final_question,
+              increaseScore,
+            )
+          : Result(
+              score: score,
+              length: widget.questions.length,
+              updateProgress: widget.updateProgress),
     );
   }
 }
