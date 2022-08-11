@@ -19,8 +19,13 @@ class QuestionContainer extends StatefulWidget {
   final final_question;
   final increaseScore;
 
-  QuestionContainer(this.question, this.submissionText, this.nextQuestion,
-      this.final_question, this.increaseScore);
+  QuestionContainer(
+    this.question,
+    this.submissionText,
+    this.nextQuestion,
+    this.final_question,
+    this.increaseScore,
+  );
 
   @override
   State<QuestionContainer> createState() => _QuestionContainerState();
