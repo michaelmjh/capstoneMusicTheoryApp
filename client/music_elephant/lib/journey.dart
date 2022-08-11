@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Journey extends StatefulWidget {
-  const Journey({super.key});
+  final quizGenerator;
+
+  const Journey(this.quizGenerator, {super.key});
 
   @override
   State<Journey> createState() => _JourneyState();
@@ -16,6 +18,7 @@ class _JourneyState extends State<Journey> {
         child: ElevatedButton(
           child: Text("Scales 1"),
           onPressed: () {
+            widget.quizGenerator();
             Navigator.pushNamed(context, '/landingpage');
           },
         ),

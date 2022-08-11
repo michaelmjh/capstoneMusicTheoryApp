@@ -32,28 +32,30 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         progress = [true, false, false];
         currentDifficulty = Difficulty.medium;
-        currentQuiz = QuestionData.shared.mediumQuestions;
       });
     } else if (currentDifficulty == Difficulty.medium) {
       setState(() {
         progress = [true, true, false];
         currentDifficulty = Difficulty.hard;
-        currentQuiz = QuestionData.shared.hardQuestions;
       });
     } else if (currentDifficulty == Difficulty.hard) {
       setState(() {
         progress = [true, true, true];
         currentDifficulty = Difficulty.revision;
-        currentQuiz = QuestionData.shared.allQuestions;
       });
     }
   }
 
-  List selectedQuestions = [];
+  var selectedQuestions;
 
   void quizGenerator() {
-    selectedQuestions = QuestionData.shared.getQuestions();
+    selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
+    selectedQuestions.shuffle();
   }
+
+  // void shuffle() {
+  //   selectedQuestions.shuffle();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +63,14 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/quiz': (context) => Quiz(currentQuiz, updateProgress),
+        '/quiz': (context) =>
+            Quiz(selectedQuestions, updateProgress, quizGenerator),
         '/lesson': (context) => const Lesson(),
-        '/landingpage': (context) => LandingPage(progress, currentDifficulty),
-        '/journey': (context) => const Journey(),
+        '/landingpage': (context) => LandingPage(
+              progress,
+              currentDifficulty,
+            ),
+        '/journey': (context) => Journey(quizGenerator),
       },
     );
   }
