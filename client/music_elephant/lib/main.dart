@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
 import 'package:music_elephant/QuestionAssets/question_model.dart';
 import 'package:music_elephant/landing_page.dart';
+import 'package:music_elephant/timeline.dart';
 
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
@@ -60,6 +61,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
@@ -71,6 +73,7 @@ class _MyAppState extends State<MyApp> {
               currentDifficulty,
             ),
         '/journey': (context) => Journey(quizGenerator),
+        '/timeline': (countext) => Timeline(),
       },
     );
   }

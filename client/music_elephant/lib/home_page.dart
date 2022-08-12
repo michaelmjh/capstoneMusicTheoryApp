@@ -16,6 +16,12 @@ class HomePage extends StatelessWidget {
               },
               child: const Text('Journey'),
             ),
+            ElevatedButton(
+              child: Text('Timeline'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/timeline');
+              },
+            )
           ],
         ),
       ),
