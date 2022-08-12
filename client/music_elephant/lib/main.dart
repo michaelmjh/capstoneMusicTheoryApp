@@ -4,6 +4,7 @@ import 'package:music_elephant/QuestionAssets/question_model.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
+import 'package:music_elephant/timeline.dart';
 
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
@@ -77,6 +78,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
@@ -90,6 +92,7 @@ class _MyAppState extends State<MyApp> {
         '/journey': (context) => Journey(selectedProfile, quizGenerator),
         '/users': (context) => UserContainer(users, setSelectedProfile),
         '/profile': (context) => SpecificProfile(selectedProfile),
+                '/timeline': (countext) => Timeline(),
       },
     );
   }
