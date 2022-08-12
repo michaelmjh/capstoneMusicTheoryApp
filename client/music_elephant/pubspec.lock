@@ -81,6 +81,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  interval_tree:
+    dependency: transitive
+    description:
+      name: interval_tree
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
+  item_selector:
+    dependency: "direct main"
+    description:
+      name: item_selector
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   lints:
     dependency: transitive
     description:
@@ -116,6 +130,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -184,6 +205,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  vs_scrollbar:
+    dependency: "direct main"
+    description:
+      name: vs_scrollbar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
 sdks:
   dart: ">=2.17.6 <3.0.0"
   flutter: ">=1.17.0"
