@@ -41,8 +41,15 @@ class _MyAppState extends State<MyApp> {
 
   var selectedProfile = "";
 
-  var lessons = [scales1];
-  var currentLesson = scales1;
+  var lessons = [scales1, scales2, scales3, chords1, chords2, chords3];
+  var completedLessons = [scales1, chords1, scales2];
+  var selectedLesson;
+
+  void setSelectedLesson(lesson) {
+    setState(() {
+      selectedLesson = lesson;
+    });
+  }
 
   void setSelectedProfile(newProfile) {
     setState(() {
@@ -88,7 +95,7 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => const HomePage(),
         '/quiz': (context) =>
             Quiz(selectedQuestions, updateProgress, quizGenerator),
-        '/lesson': (context) => Lesson(lessons[0]),
+        '/lesson': (context) => Lesson(selectedLesson),
         '/landingpage': (context) => LandingPage(
               progress,
               currentDifficulty,
@@ -96,7 +103,7 @@ class _MyAppState extends State<MyApp> {
         '/journey': (context) => Journey(selectedProfile, quizGenerator),
         '/users': (context) => UserContainer(users, setSelectedProfile),
         '/profile': (context) => SpecificProfile(selectedProfile),
-        '/timeline': (countext) => Timeline(),
+        '/timeline': (countext) => Timeline(lessons, completedLessons, setSelectedLesson),
       },
     );
   }

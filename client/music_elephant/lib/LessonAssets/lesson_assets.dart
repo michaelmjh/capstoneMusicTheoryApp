@@ -17,8 +17,18 @@ Lesson scales1 = Lesson(
   level: Level.beginner,
 );
 
-Lesson chords1 =
-    Lesson(name: LessonName.Chords1, slides: [], level: Level.beginner);
+Lesson chords1 = Lesson(
+    name: LessonName.Chords1,
+    slides: [
+      scalesSlide1,
+      scalesSlide2,
+      scalesSlide3,
+      scalesSlide4,
+      scalesSlide5,
+      scalesSlide6,
+      scalesSlide7
+    ],
+    level: Level.beginner);
 
 Lesson scales2 =
     Lesson(name: LessonName.Scales2, slides: [], level: Level.intermediate);

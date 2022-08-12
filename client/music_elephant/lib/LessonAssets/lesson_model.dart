@@ -20,7 +20,13 @@ enum LessonName {
   Scales2,
   Chords2,
   Scales3,
-  Chords3
+  Chords3,
+  DummyBeginner,
+  DummyIntermediate,
+  DummyAdvanced,
+  DummyBegEnd,
+  DummyIntEnd,
+  DummyAdvEnd
 }
 
 class LessonSlide {
