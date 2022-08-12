@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
   var selectedProfile = "";
 
   var lessons = [scales1];
+  var currentLesson = scales1;
 
   void setSelectedProfile(newProfile) {
     setState(() {

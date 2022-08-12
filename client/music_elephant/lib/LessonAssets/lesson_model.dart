@@ -16,7 +16,11 @@ enum LessonName {
   Scales1,
   Chords1,
   KeySignatures1,
-  Stave1;
+  Stave1,
+  Scales2,
+  Chords2,
+  Scales3,
+  Chords3
 }
 
 class LessonSlide {
