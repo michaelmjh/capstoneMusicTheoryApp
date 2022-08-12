@@ -2,18 +2,25 @@ package com.example.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "lessonSlides")
 public class LessonSlide {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(columnDefinition = "TEXT")
     private String text;
 
+    @Column(name="image")
     private String image;
 
     @ManyToOne
     @JoinColumn(name="lesson_id", nullable = false)
-    @JsonIgnoreProperties({"lessons"})
+    @JsonIgnoreProperties({"lessonSlides"})
     private Lesson lesson;
 
 
@@ -49,5 +56,13 @@ public class LessonSlide {
 
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
