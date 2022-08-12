@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
 import 'package:music_elephant/QuestionAssets/question_model.dart';
+import 'package:music_elephant/User/specific_profile.dart';
+import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
 
 import 'QuestionAssets/question_assets.dart';
@@ -26,6 +28,23 @@ class _MyAppState extends State<MyApp> {
 
   Difficulty currentDifficulty = Difficulty.easy;
   List<Question> currentQuiz = QuestionData.shared.easyQuestions;
+  var selectedQuestions;
+
+  var user1 = {"image": "image/dog-png-30.png", "name": "Ewan"};
+  var user2 = {"image": "image/dog-png-30.png", "name": "Michael"};
+  var user3 = {"image": "image/dog-png-30.png", "name": "Nick"};
+  var user4 = {"image": "image/dog-png-30.png", "name": "shuna"};
+
+  var users = ["Ewan", "Michael", "Nick", "Shuna", "Chris", "Josh", "Lou"];
+
+  var selectedProfile = "";
+
+  void setSelectedProfile(newProfile) {
+    setState(() {
+      selectedProfile = newProfile;
+    });
+    print(selectedProfile);
+  }
 
   void updateProgress() {
     if (currentDifficulty == Difficulty.easy) {
@@ -45,8 +64,6 @@ class _MyAppState extends State<MyApp> {
       });
     }
   }
-
-  var selectedQuestions;
 
   void quizGenerator() {
     selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
@@ -70,7 +87,9 @@ class _MyAppState extends State<MyApp> {
               progress,
               currentDifficulty,
             ),
-        '/journey': (context) => Journey(quizGenerator),
+        '/journey': (context) => Journey(selectedProfile, quizGenerator),
+        '/users': (context) => UserContainer(users, setSelectedProfile),
+        '/profile': (context) => SpecificProfile(selectedProfile),
       },
     );
   }
