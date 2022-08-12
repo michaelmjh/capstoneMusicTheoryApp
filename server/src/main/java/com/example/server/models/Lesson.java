@@ -19,15 +19,19 @@ public class Lesson {
     @Enumerated(EnumType.STRING)
     private LessonName lessonName;
 
+
+    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"lesson"})
+    private List<LessonSlide> slides;
+
+
     @ManyToOne
     @JoinColumn(name="level_id", nullable = false)
     @JsonIgnoreProperties({"lessons"})
     private Level level;
 
 
-    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"lesson"})
-    private List<LessonSlide> slides;
+
 
     public Lesson(LessonName lessonName, Level level){
         this.lessonName = lessonName;
