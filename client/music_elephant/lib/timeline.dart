@@ -62,16 +62,22 @@ class _TimelineState extends State<Timeline> {
     advList
         .insert(0, {'title': 'Advanced', 'status': null, 'level': 'advanced'});
     advList.add({'title': 'adv_end', 'status': null, 'level': 'advanced'});
-    newList.add(begList);
-    newList.add(intList);
-    newList.add(advList);
+    for (var item in begList) {
+      newList.add(item);
+    }
+    for (var item in intList) {
+      newList.add(item);
+    }
+    for (var item in advList) {
+      newList.add(item);
+    }
+    // print(newList);
   }
 
   @override
   Widget build(BuildContext context) {
     getLevels();
     setNewList();
-    print(begList);
     return Scaffold(
       appBar: AppBar(title: Text('User Timeline')),
       body: SingleChildScrollView(
@@ -100,7 +106,7 @@ class _Timeline1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = list;
+    final data = newList;
 
     return Flexible(
       child: FixedTimeline.tileBuilder(
@@ -116,10 +122,12 @@ class _Timeline1 extends StatelessWidget {
         ),
         builder: TimelineTileBuilder.connected(
           contentsBuilder: (context, index) {
-            if (list[index]['level'] == 'beginner') {
-              return _EmptyContentsBeginner(list[index]);
-            } else {
-              return _EmptyContentsInt(list[index]);
+            if (data[index]['level'] == 'beginner') {
+              return _EmptyContentsBeginner(data[index]);
+            } else if (data[index]['level'] == 'intermediate') {
+              return _EmptyContentsInt(data[index]);
+            } else if (data[index]['level'] == 'advanced') {
+              return _EmptyContentsAdv(data[index]);
             }
           },
           connectorBuilder: (_, index, __) {
@@ -199,15 +207,50 @@ class _EmptyContentsInt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 10.0),
-      height: 40.0,
-      child: Text(listItem['title'], style: TextStyle(fontSize: 20.0)),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2.0),
-        color: Colors.red,
-      ),
-    );
+    if (listItem['title'] == 'Intermediate') {
+      return Container(
+          height: 40.0,
+          child: Text(listItem['title'], style: TextStyle(fontSize: 30.0)));
+    } else if (listItem['title'] == 'int_end') {
+      return Divider(color: Colors.black, indent: 20.0, endIndent: 20.0);
+    } else {
+      return Container(
+        margin: EdgeInsets.only(left: 10.0),
+        height: 40.0,
+        child: Text(listItem['title'], style: TextStyle(fontSize: 20.0)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(2.0),
+          color: Colors.red,
+        ),
+      );
+    }
+  }
+}
+
+class _EmptyContentsAdv extends StatelessWidget {
+  final listItem;
+
+  const _EmptyContentsAdv(this.listItem);
+
+  @override
+  Widget build(BuildContext context) {
+    if (listItem['title'] == 'Advanced') {
+      return Container(
+          height: 40.0,
+          child: Text(listItem['title'], style: TextStyle(fontSize: 30.0)));
+    } else if (listItem['title'] == 'adv_end') {
+      return Divider(color: Colors.black, indent: 20.0, endIndent: 20.0);
+    } else {
+      return Container(
+        margin: EdgeInsets.only(left: 10.0),
+        height: 40.0,
+        child: Text(listItem['title'], style: TextStyle(fontSize: 20.0)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(2.0),
+          color: Colors.purple,
+        ),
+      );
+    }
   }
 }
 

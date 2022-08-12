@@ -40,6 +40,8 @@ class _MyAppState extends State<MyApp> {
 
   var selectedProfile = "";
 
+  
+
   void setSelectedProfile(newProfile) {
     setState(() {
       selectedProfile = newProfile;
