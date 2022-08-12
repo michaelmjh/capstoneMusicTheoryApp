@@ -20,9 +20,8 @@ enum LessonName {
 }
 
 class LessonSlide {
-  Lesson lesson;
   String text;
   String image;
 
-  LessonSlide({required this.lesson, required this.text, required this.image});
+  LessonSlide({required this.text, required this.image});
 }

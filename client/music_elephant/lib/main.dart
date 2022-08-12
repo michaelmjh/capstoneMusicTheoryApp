@@ -6,6 +6,7 @@ import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
 import 'package:music_elephant/timeline.dart';
 
+import 'LessonAssets/lesson_assets.dart';
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> {
 
   var selectedProfile = "";
 
-  
+  var lessons = [scales1];
 
   void setSelectedProfile(newProfile) {
     setState(() {
@@ -86,7 +87,7 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => const HomePage(),
         '/quiz': (context) =>
             Quiz(selectedQuestions, updateProgress, quizGenerator),
-        '/lesson': (context) => const Lesson(),
+        '/lesson': (context) => Lesson(lessons[0]),
         '/landingpage': (context) => LandingPage(
               progress,
               currentDifficulty,
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
         '/journey': (context) => Journey(selectedProfile, quizGenerator),
         '/users': (context) => UserContainer(users, setSelectedProfile),
         '/profile': (context) => SpecificProfile(selectedProfile),
-                '/timeline': (countext) => Timeline(),
+        '/timeline': (countext) => Timeline(),
       },
     );
   }
