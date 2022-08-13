@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final getLevels;
+  final setNewList;
+
+  const HomePage(this.getLevels, this.setNewList, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,8 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: Text('Timeline'),
               onPressed: () {
+                getLevels();
+                setNewList();
                 Navigator.pushNamed(context, '/timeline');
               },
             )
