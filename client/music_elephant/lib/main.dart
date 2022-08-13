@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     scales1: Difficulty.completed,
     chords1: Difficulty.completed,
     scales2: Difficulty.completed,
-    chords2: Difficulty.hard,
+    chords2: Difficulty.completed,
     begBoss: Difficulty.completed,
   };
 
@@ -169,8 +169,8 @@ class _MyAppState extends State<MyApp> {
     selectedQuestions.shuffle();
   }
 
-  void bossGenerator() {
-    selectedQuestions = QuestionData.shared.allQuestions;
+  void bossGenerator(level) {
+    selectedQuestions = QuestionData.shared.getAllQuestions(level);
     selectedQuestions.shuffle();
   }
 

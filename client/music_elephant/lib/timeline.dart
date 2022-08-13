@@ -245,7 +245,7 @@ class _Timeline1 extends StatelessWidget {
                     color: Colors.black,
                     onPressed: () {
                       setSelectedLesson(data[index]);
-                      bossGenerator();
+                      bossGenerator(data[index].level);
                       Navigator.pushNamed(context, '/landingpage');
                     },
                   ),
@@ -260,7 +260,7 @@ class _Timeline1 extends StatelessWidget {
                     color: Colors.black,
                     onPressed: () {
                       setSelectedLesson(data[index]);
-                      bossGenerator();
+                      bossGenerator(data[index].level);
                       Navigator.pushNamed(context, '/landingpage');
                     },
                   ),
@@ -275,7 +275,7 @@ class _Timeline1 extends StatelessWidget {
                     color: Colors.black,
                     onPressed: () {
                       setSelectedLesson(data[index]);
-                      bossGenerator();
+                      bossGenerator(data[index].level);
                       Navigator.pushNamed(context, '/landingpage');
                     },
                   ),
