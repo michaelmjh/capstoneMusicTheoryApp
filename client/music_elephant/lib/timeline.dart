@@ -13,9 +13,23 @@ class Timeline extends StatefulWidget {
   final lessons;
   final setSelectedLesson;
   final userProgress;
+  final completedLessons;
+  final getCompletedLessons;
+  final intUnlocked;
+  final advUnlocked;
+  final getLockedLessons;
+  final bossGenerator;
 
-  const Timeline(this.lessons, this.setSelectedLesson,
+  const Timeline(
+      this.lessons,
+      this.setSelectedLesson,
       this.userProgress,
+      this.completedLessons,
+      this.getCompletedLessons,
+      this.intUnlocked,
+      this.advUnlocked,
+      this.getLockedLessons,
+      this.bossGenerator,
       {super.key});
 
   @override
@@ -23,44 +37,44 @@ class Timeline extends StatefulWidget {
 }
 
 class _TimelineState extends State<Timeline> {
-  var begList = [];
-  var intList = [];
-  var advList = [];
-  var newList = [];
+  // var begList = [];
+  // var intList = [];
+  // var advList = [];
+  // var newList = [];
 
-  void getLevels() {
-    for (var item in widget.lessons) {
-      if (item.level == Level.beginner) {
-        begList.add(item);
-      } else if (item.level == Level.intermediate) {
-        intList.add(item);
-      } else if (item.level == Level.advanced) {
-        advList.add(item);
-      }
-    }
-  }
+  // void getLevels() {
+  //   for (var item in widget.lessons) {
+  //     if (item.level == Level.beginner) {
+  //       begList.add(item);
+  //     } else if (item.level == Level.intermediate) {
+  //       intList.add(item);
+  //     } else if (item.level == Level.advanced) {
+  //       advList.add(item);
+  //     }
+  //   }
+  // }
 
-  Lesson dummyBeg =
-      Lesson(name: "DummyBeginner", slides: [], level: Level.beginner);
-  Lesson dummyInt =
-      Lesson(name: "DummyIntermediate", slides: [], level: Level.intermediate);
-  Lesson dummyAdvStart =
-      Lesson(name: "DummyAdvanced", slides: [], level: Level.advanced);
+  // Lesson dummyBeg =
+  //     Lesson(name: "DummyBeginner", slides: [], level: Level.beginner);
+  // Lesson dummyInt =
+  //     Lesson(name: "DummyIntermediate", slides: [], level: Level.intermediate);
+  // Lesson dummyAdvStart =
+  //     Lesson(name: "DummyAdvanced", slides: [], level: Level.advanced);
 
-  void setNewList() {
-    begList.insert(0, dummyBeg);
-    intList.insert(0, dummyInt);
-    advList.insert(0, dummyAdvStart);
-    for (var item in begList) {
-      newList.add(item);
-    }
-    for (var item in intList) {
-      newList.add(item);
-    }
-    for (var item in advList) {
-      newList.add(item);
-    }
-  }
+  // void setNewList() {
+  //   begList.insert(0, dummyBeg);
+  //   intList.insert(0, dummyInt);
+  //   advList.insert(0, dummyAdvStart);
+  //   for (var item in begList) {
+  //     newList.add(item);
+  //   }
+  //   for (var item in intList) {
+  //     newList.add(item);
+  //   }
+  //   for (var item in advList) {
+  //     newList.add(item);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +89,10 @@ class _TimelineState extends State<Timeline> {
             child: Row(
               children: [
                 _Timeline1(
-                    getLevels,
-                    setNewList,
-                    newList,
-                    widget.setSelectedLesson,
-                    widget.userProgress,),
+                  newList,
+                  widget.setSelectedLesson,
+                  widget.userProgress,
+                ),
               ],
             ),
           ),
@@ -90,18 +103,15 @@ class _TimelineState extends State<Timeline> {
 }
 
 class _Timeline1 extends StatelessWidget {
-  final getLevels;
-  final setNewList;
   final newList;
   final setSelectedLesson;
   final userProgress;
 
   const _Timeline1(
-      this.getLevels,
-      this.setNewList,
-      this.newList,
-      this.setSelectedLesson,
-      this.userProgress,);
+    this.newList,
+    this.setSelectedLesson,
+    this.userProgress,
+  );
 
   @override
   Widget build(BuildContext context) {

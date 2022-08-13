@@ -52,8 +52,9 @@ class _MyAppState extends State<MyApp> {
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
     scales1: Difficulty.completed,
-    chords1: Difficulty.medium,
-    scales2: Difficulty.easy,
+    chords1: Difficulty.completed,
+    scales2: Difficulty.medium,
+    chords2: Difficulty.easy,
   };
 
   void setCurrentProgress(lesson, difficulty) {
@@ -85,10 +86,13 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  void setNewList() {
+  void setTimelineLessonList() {
     begList.insert(0, dummyBeg);
+    begList.add(begBoss);
     intList.insert(0, dummyInt);
+    intList.add(intBoss);
     advList.insert(0, dummyAdv);
+    advList.add(advBoss);
     for (var item in begList) {
       newList.add(item);
     }
@@ -97,6 +101,30 @@ class _MyAppState extends State<MyApp> {
     }
     for (var item in advList) {
       newList.add(item);
+    }
+  }
+
+  var completedLessons = [];
+
+  void getCompletedLessons() {
+    userProgress.keys.forEach((key) {
+      if (userProgress[key] == Difficulty.completed) {
+        completedLessons.add(key);
+      }
+    });
+  }
+
+  bool begUnlocked = true;
+  bool intUnlocked = false;
+  bool advUnlocked = false;
+
+  void getLockedLessons() {
+    for (var lesson in completedLessons) {
+      if (lesson.name == "BeginnerBoss") {
+        intUnlocked = true;
+      } else if (lesson.name == "IntermediateBoss") {
+        advUnlocked = true;
+      }
     }
   }
 
@@ -131,6 +159,11 @@ class _MyAppState extends State<MyApp> {
     selectedQuestions.shuffle();
   }
 
+  void bossGenerator() {
+    selectedQuestions = QuestionData.shared.allQuestions;
+    selectedQuestions.shuffle();
+  }
+
   // void shuffle() {
   //   selectedQuestions.shuffle();
   // }
@@ -141,7 +174,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(getLevels, setNewList),
+        '/': (context) => HomePage(getLevels, setTimelineLessonList),
         '/quiz': (context) =>
             Quiz(selectedQuestions, updateProgress, quizGenerator),
         '/lesson': (context) => Lesson(selectedLesson),
@@ -152,8 +185,16 @@ class _MyAppState extends State<MyApp> {
         '/journey': (context) => Journey(selectedProfile, quizGenerator),
         '/users': (context) => UserContainer(users, setSelectedProfile),
         '/profile': (context) => SpecificProfile(selectedProfile),
-        '/timeline': (countext) =>
-            Timeline(newList, setSelectedLesson, userProgress),
+        '/timeline': (countext) => Timeline(
+            newList,
+            setSelectedLesson,
+            userProgress,
+            completedLessons,
+            getCompletedLessons,
+            intUnlocked,
+            advUnlocked,
+            getLockedLessons,
+            bossGenerator),
       },
     );
   }
