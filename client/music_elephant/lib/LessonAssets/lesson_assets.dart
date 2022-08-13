@@ -4,7 +4,7 @@ import '../QuestionAssets/Enums/level.dart';
 import 'lesson_model.dart';
 
 Lesson scales1 = Lesson(
-  name: LessonName.Scales1,
+  name: "Scales 1",
   slides: [
     scalesSlide1,
     scalesSlide2,
@@ -18,7 +18,7 @@ Lesson scales1 = Lesson(
 );
 
 Lesson chords1 = Lesson(
-    name: LessonName.Chords1,
+    name: "Chords 1",
     slides: [
       scalesSlide1,
       scalesSlide2,
@@ -31,16 +31,14 @@ Lesson chords1 = Lesson(
     level: Level.beginner);
 
 Lesson scales2 =
-    Lesson(name: LessonName.Scales2, slides: [], level: Level.intermediate);
+    Lesson(name: "Scales 2", slides: [], level: Level.intermediate);
 
 Lesson chords2 =
-    Lesson(name: LessonName.Chords2, slides: [], level: Level.intermediate);
+    Lesson(name: "Chords 2", slides: [], level: Level.intermediate);
 
-Lesson scales3 =
-    Lesson(name: LessonName.Scales3, slides: [], level: Level.advanced);
+Lesson scales3 = Lesson(name: "Scales 3", slides: [], level: Level.advanced);
 
-Lesson chords3 =
-    Lesson(name: LessonName.Chords3, slides: [], level: Level.advanced);
+Lesson chords3 = Lesson(name: "Chords 3", slides: [], level: Level.advanced);
 
 class LessonData {
   static LessonData get shared => LessonData();

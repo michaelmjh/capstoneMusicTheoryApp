@@ -1,7 +1,7 @@
 import '../QuestionAssets/Enums/level.dart';
 
 class Lesson {
-  LessonName name;
+  String name;
   List<LessonSlide> slides;
   Level level;
 

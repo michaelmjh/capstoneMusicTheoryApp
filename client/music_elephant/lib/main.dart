@@ -41,9 +41,21 @@ class _MyAppState extends State<MyApp> {
 
   var selectedProfile = "";
 
+  // Dummy lessons and completed lessons - imagine user contains list of completed lessons
   var lessons = [scales1, scales2, scales3, chords1, chords2, chords3];
-  var completedLessons = [scales1, chords1, scales2];
+  var completedLessons = [scales1];
   var selectedLesson;
+  // Similarly imagine user has list of completed quizzes
+  var scalesEasyQuiz = QuestionData.shared.easyQuestions;
+  var scalesMediumQuiz = QuestionData.shared.mediumQuestions;
+  var scalesHardQuiz = QuestionData.shared.hardQuestions;
+  var completedQuizzes = [];
+
+  void setCompletedQuizzes() {
+    setState(() {
+      completedQuizzes.add(scalesEasyQuiz);
+    });
+  }
 
   void setSelectedLesson(lesson) {
     setState(() {
@@ -88,6 +100,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    setCompletedQuizzes();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
@@ -103,7 +117,8 @@ class _MyAppState extends State<MyApp> {
         '/journey': (context) => Journey(selectedProfile, quizGenerator),
         '/users': (context) => UserContainer(users, setSelectedProfile),
         '/profile': (context) => SpecificProfile(selectedProfile),
-        '/timeline': (countext) => Timeline(lessons, completedLessons, setSelectedLesson),
+        '/timeline': (countext) => Timeline(
+            lessons, completedLessons, setSelectedLesson, completedQuizzes),
       },
     );
   }

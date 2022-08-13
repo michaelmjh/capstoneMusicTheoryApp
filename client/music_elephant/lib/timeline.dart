@@ -15,8 +15,10 @@ class Timeline extends StatefulWidget {
   final lessons;
   final completedLessons;
   final setSelectedLesson;
+  final completedQuizzes;
 
   const Timeline(this.lessons, this.completedLessons, this.setSelectedLesson,
+      this.completedQuizzes,
       {super.key});
 
   @override
@@ -42,19 +44,17 @@ class _TimelineState extends State<Timeline> {
   }
 
   Lesson dummyBegStart =
-      Lesson(name: LessonName.DummyBeginner, slides: [], level: Level.beginner);
+      Lesson(name: "DummyBeginner", slides: [], level: Level.beginner);
   Lesson dummyBegEnd =
-      Lesson(name: LessonName.DummyBegEnd, slides: [], level: Level.beginner);
-  Lesson dummyIntStart = Lesson(
-      name: LessonName.DummyIntermediate,
-      slides: [],
-      level: Level.intermediate);
-  Lesson dummyIntEnd = Lesson(
-      name: LessonName.DummyIntEnd, slides: [], level: Level.intermediate);
+      Lesson(name: "DummyBegEnd", slides: [], level: Level.beginner);
+  Lesson dummyIntStart =
+      Lesson(name: "DummyIntermediate", slides: [], level: Level.intermediate);
+  Lesson dummyIntEnd =
+      Lesson(name: "DummyIntEnd", slides: [], level: Level.intermediate);
   Lesson dummyAdvStart =
-      Lesson(name: LessonName.DummyAdvanced, slides: [], level: Level.advanced);
+      Lesson(name: "DummyAdvanced", slides: [], level: Level.advanced);
   Lesson dummyAdvEnd =
-      Lesson(name: LessonName.DummyAdvEnd, slides: [], level: Level.advanced);
+      Lesson(name: "DummyAdvEnd", slides: [], level: Level.advanced);
 
   void setNewList() {
     begList.insert(0, dummyBegStart);
@@ -86,8 +86,13 @@ class _TimelineState extends State<Timeline> {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Row(
               children: [
-                _Timeline1(getLevels, setNewList, newList,
-                    widget.completedLessons, widget.setSelectedLesson),
+                _Timeline1(
+                    getLevels,
+                    setNewList,
+                    newList,
+                    widget.completedLessons,
+                    widget.setSelectedLesson,
+                    widget.completedQuizzes),
               ],
             ),
           ),
@@ -103,9 +108,10 @@ class _Timeline1 extends StatelessWidget {
   final newList;
   final completedLessons;
   final setSelectedLesson;
+  final completedQuizzes;
 
   const _Timeline1(this.getLevels, this.setNewList, this.newList,
-      this.completedLessons, this.setSelectedLesson);
+      this.completedLessons, this.setSelectedLesson, this.completedQuizzes);
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +132,7 @@ class _Timeline1 extends StatelessWidget {
         builder: TimelineTileBuilder.connected(
           contentsBuilder: (context, index) {
             if (data[index].level == Level.beginner) {
-              return _EmptyContentsBeginner(data[index]);
+              return _EmptyContentsBeginner(data[index], completedQuizzes);
             } else if (data[index].level == Level.intermediate) {
               return _EmptyContentsInt(data[index]);
             } else if (data[index].level == Level.advanced) {
@@ -136,25 +142,24 @@ class _Timeline1 extends StatelessWidget {
           connectorBuilder: (_, index, __) {
             if (index == 0 || completedLessons.contains(data[index])) {
               return SolidLineConnector(color: Color(0xff6ad192));
-            } else if (data[index].name == LessonName.DummyBeginner ||
-                data[index].name == LessonName.DummyBegEnd) {
+            } else if (data[index].name == "DummyBeginner") {
               return SolidLineConnector(color: Color(0xff6ad192));
             } else {
               return SolidLineConnector();
             }
           },
           indicatorBuilder: (_, index) {
-            if (data[index].name == LessonName.DummyBeginner) {
+            if (data[index].name == "DummyBeginner") {
               return DotIndicator(color: Colors.yellow);
-            } else if (data[index].name == LessonName.DummyBegEnd) {
+            } else if (data[index].name == "DummyBegEnd") {
               return null;
-            } else if (data[index].name == LessonName.DummyIntermediate) {
+            } else if (data[index].name == "DummyIntermediate") {
               return DotIndicator(color: Colors.orange);
-            } else if (data[index].name == LessonName.DummyIntEnd) {
+            } else if (data[index].name == "DummyIntEnd") {
               return null;
-            } else if (data[index].name == LessonName.DummyAdvanced) {
+            } else if (data[index].name == "DummyAdvanced") {
               return DotIndicator(color: Colors.teal);
-            } else if (data[index].name == LessonName.DummyAdvEnd) {
+            } else if (data[index].name == "DummyAdvEnd") {
               return null;
             } else {
               switch (completedLessons.contains(data[index])) {
@@ -188,26 +193,49 @@ class _Timeline1 extends StatelessWidget {
 
 class _EmptyContentsBeginner extends StatelessWidget {
   final listItem;
+  final completedQuizzes;
 
-  const _EmptyContentsBeginner(this.listItem);
+  const _EmptyContentsBeginner(this.listItem, this.completedQuizzes);
 
   @override
   Widget build(BuildContext context) {
-    if (listItem.name == LessonName.DummyBeginner) {
+    if (listItem.name == "DummyBeginner") {
       return Container(
           height: 40.0,
           child: Text("Beginner Lessons", style: TextStyle(fontSize: 30.0)));
-    } else if (listItem.name == LessonName.DummyBegEnd) {
+    } else if (listItem.name == "DummyBegEnd") {
       return Divider(color: Colors.black, indent: 20.0, endIndent: 20.0);
     } else {
-      return Container(
-        margin: EdgeInsets.only(left: 10.0),
-        height: 40.0,
-        child: Text(listItem.name.toString(), style: TextStyle(fontSize: 20.0)),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2.0),
-          color: Colors.blue,
-        ),
+      return Column(
+        children: [
+          Text(
+            listItem.name.toString(),
+            style: TextStyle(fontSize: 20.0),
+          ),
+          Row(children: [
+            Builder(builder: (__) {
+              if (completedQuizzes.length == 0) {
+                return Icon(Icons.star_border_outlined);
+              } else {
+                return Icon(Icons.star_border_outlined, color: Colors.yellow);
+              }
+            }),
+            Builder(builder: (__) {
+              if (completedQuizzes.length < 2) {
+                return Icon(Icons.star_border_outlined);
+              } else {
+                return Icon(Icons.star_border_outlined, color: Colors.yellow);
+              }
+            }),
+            Builder(builder: (__) {
+              if (completedQuizzes.length < 3) {
+                return Icon(Icons.star_border_outlined);
+              } else {
+                return Icon(Icons.star_border_outlined, color: Colors.yellow);
+              }
+            })
+          ]),
+        ],
       );
     }
   }
@@ -220,12 +248,12 @@ class _EmptyContentsInt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (listItem.name == LessonName.DummyIntermediate) {
+    if (listItem.name == "DummyIntermediate") {
       return Container(
           height: 40.0,
           child:
               Text("Intermediate Lessons", style: TextStyle(fontSize: 30.0)));
-    } else if (listItem.name == LessonName.DummyIntEnd) {
+    } else if (listItem.name == "DummyIntEnd") {
       return Divider(color: Colors.black, indent: 20.0, endIndent: 20.0);
     } else {
       return Container(
@@ -248,11 +276,11 @@ class _EmptyContentsAdv extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (listItem.name == LessonName.DummyAdvanced) {
+    if (listItem.name == "DummyAdvanced") {
       return Container(
           height: 40.0,
           child: Text("Advanced Lessons", style: TextStyle(fontSize: 30.0)));
-    } else if (listItem.name == LessonName.DummyAdvEnd) {
+    } else if (listItem.name == "DummyAdvEnd") {
       return Divider(color: Colors.black, indent: 20.0, endIndent: 20.0);
     } else {
       return Container(
