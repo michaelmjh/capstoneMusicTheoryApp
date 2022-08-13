@@ -6,16 +6,18 @@ import 'package:timelines/timelines.dart';
 import 'dart:math';
 
 import 'LessonAssets/lesson_model.dart';
+import 'QuestionAssets/Enums/difficulty.dart';
 import 'QuestionAssets/Enums/level.dart';
 
 class Timeline extends StatefulWidget {
   final lessons;
   final completedLessons;
   final setSelectedLesson;
-  final completedQuizzes;
+  final userProgress;
+  final lessonsInProgress;
 
   const Timeline(this.lessons, this.completedLessons, this.setSelectedLesson,
-      this.completedQuizzes,
+      this.userProgress, this.lessonsInProgress,
       {super.key});
 
   @override
@@ -64,8 +66,8 @@ class _TimelineState extends State<Timeline> {
 
   @override
   Widget build(BuildContext context) {
-    getLevels();
-    setNewList();
+    var newList = widget.lessons;
+
     return Scaffold(
       appBar: AppBar(title: Text('User Timeline')),
       body: SingleChildScrollView(
@@ -80,7 +82,8 @@ class _TimelineState extends State<Timeline> {
                     newList,
                     widget.completedLessons,
                     widget.setSelectedLesson,
-                    widget.completedQuizzes),
+                    widget.userProgress,
+                    widget.lessonsInProgress),
               ],
             ),
           ),
@@ -96,14 +99,35 @@ class _Timeline1 extends StatelessWidget {
   final newList;
   final completedLessons;
   final setSelectedLesson;
-  final completedQuizzes;
+  final userProgress;
+  final lessonsInProgress;
 
-  const _Timeline1(this.getLevels, this.setNewList, this.newList,
-      this.completedLessons, this.setSelectedLesson, this.completedQuizzes);
+  const _Timeline1(
+      this.getLevels,
+      this.setNewList,
+      this.newList,
+      this.completedLessons,
+      this.setSelectedLesson,
+      this.userProgress,
+      this.lessonsInProgress);
 
   @override
   Widget build(BuildContext context) {
     final data = newList;
+
+    var dummyIndexInt;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].name == "DummyIntermediate") {
+        dummyIndexInt = i + 1;
+      }
+    }
+
+    var dummyIndexAdv;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].name == "DummyAdvanced") {
+        dummyIndexAdv = i + 1;
+      }
+    }
 
     return Flexible(
       child: FixedTimeline.tileBuilder(
@@ -120,54 +144,76 @@ class _Timeline1 extends StatelessWidget {
         builder: TimelineTileBuilder.connected(
           contentsBuilder: (context, index) {
             if (data[index].level == Level.beginner) {
-              return _EmptyContentsBeginner(data[index], completedQuizzes);
+              return _EmptyContentsBeginner(data[index], userProgress);
             } else if (data[index].level == Level.intermediate) {
-              return _EmptyContentsInt(data[index], completedQuizzes);
+              return _EmptyContentsInt(data[index], userProgress);
             } else if (data[index].level == Level.advanced) {
-              return _EmptyContentsAdv(data[index], completedQuizzes);
+              return _EmptyContentsAdv(data[index], userProgress);
             }
           },
           connectorBuilder: (_, index, __) {
-            if (index == 0 || completedLessons.contains(data[index])) {
+            if (index == 0 ||
+                userProgress[data[index]] == Difficulty.completed) {
               return SolidLineConnector(color: Colors.pink);
-            } else if (data[index].name == "DummyBeginner") {
-              return SolidLineConnector(color: Colors.pinkAccent);
+            } else if (userProgress.containsKey(data[index]) == true) {
+              return SolidLineConnector(color: Colors.orange);
+            } else if (userProgress.containsKey(data[dummyIndexInt]) == true &&
+                data[index].name == "DummyIntermediate") {
+              return SolidLineConnector(color: Colors.orange);
+            } else if (userProgress.containsKey(data[dummyIndexAdv]) == true &&
+                data[index].name == "DummyAdvanced") {
+              return SolidLineConnector(color: Colors.orange);
             } else {
-              return SolidLineConnector();
+              return SolidLineConnector(color: Colors.grey);
             }
           },
           indicatorBuilder: (_, index) {
             if (data[index].name == "DummyBeginner") {
               return DotIndicator(color: Colors.pink);
-            } else if (data[index].name == "DummyBegEnd") {
-              return null;
             } else if (data[index].name == "DummyIntermediate") {
               return DotIndicator(color: Color.fromARGB(255, 12, 194, 175));
-            } else if (data[index].name == "DummyIntEnd") {
-              return null;
             } else if (data[index].name == "DummyAdvanced") {
               return DotIndicator(color: Color.fromARGB(255, 190, 94, 207));
-            } else if (data[index].name == "DummyAdvEnd") {
-              return null;
             } else {
-              switch (completedLessons.contains(data[index])) {
+              switch (userProgress.containsKey(data[index])) {
                 case true:
-                  return DotIndicator(
-                    color: Colors.pink,
+                  if (userProgress[data[index]] == Difficulty.completed) {
+                    return DotIndicator(
+                      color: Colors.pink,
+                      child: IconButton(
+                        icon: Icon(Icons.check, size: 20.0),
+                        color: Colors.white,
+                        onPressed: () {
+                          setSelectedLesson(data[index]);
+                          Navigator.pushNamed(context, '/landingpage');
+                        },
+                      ),
+                    );
+                  } else {
+                    return DotIndicator(
+                      color: Color.fromARGB(255, 229, 97, 141),
+                      child: IconButton(
+                        icon: Icon(Icons.lightbulb, size: 20.0),
+                        color: Colors.black,
+                        onPressed: () {
+                          setSelectedLesson(data[index]);
+                          Navigator.pushNamed(context, '/landingpage');
+                        },
+                      ),
+                    );
+                  }
+                case false:
+                  return OutlinedDotIndicator(
+                    color: Color(0xffbabdc0),
+                    backgroundColor: Color(0xffe6e7e9),
                     child: IconButton(
-                      icon: Icon(Icons.check, size: 20.0),
+                      icon: Icon(Icons.cloud, size: 0),
                       color: Colors.white,
                       onPressed: () {
                         setSelectedLesson(data[index]);
                         Navigator.pushNamed(context, '/landingpage');
                       },
                     ),
-                  );
-                case false:
-                default:
-                  return OutlinedDotIndicator(
-                    color: Color(0xffbabdc0),
-                    backgroundColor: Color(0xffe6e7e9),
                   );
               }
             }
@@ -182,12 +228,18 @@ class _Timeline1 extends StatelessWidget {
 
 class _EmptyContentsBeginner extends StatelessWidget {
   final listItem;
-  final completedQuizzes;
+  final userProgress;
 
-  const _EmptyContentsBeginner(this.listItem, this.completedQuizzes);
+  const _EmptyContentsBeginner(this.listItem, this.userProgress);
 
   @override
   Widget build(BuildContext context) {
+    var currentDiff = null;
+
+    if (userProgress.containsKey(listItem)) {
+      currentDiff = userProgress[listItem];
+    }
+
     if (listItem.name == "DummyBeginner") {
       return Container(
           height: 40.0,
@@ -215,27 +267,35 @@ class _EmptyContentsBeginner extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Builder(builder: (__) {
-                    if (completedQuizzes.length == 0) {
+                    if (currentDiff == null || currentDiff == Difficulty.easy) {
                       return Icon(Icons.star_border_outlined);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Container();
                     } else {
                       return Icon(Icons.star_border_outlined,
                           color: Colors.yellow);
                     }
                   }),
                   Builder(builder: (__) {
-                    if (completedQuizzes.length < 2) {
-                      return Icon(Icons.star_border_outlined);
-                    } else {
+                    if (currentDiff == Difficulty.hard ||
+                        currentDiff == Difficulty.revision) {
                       return Icon(Icons.star_border_outlined,
                           color: Colors.yellow);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Text('Lesson complete!');
+                    } else {
+                      return Icon(Icons.star_border_outlined);
                     }
                   }),
                   Builder(builder: (__) {
-                    if (completedQuizzes.length < 3) {
+                    if (currentDiff == Difficulty.revision) {
                       return Icon(Icons.star_border_outlined);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Container();
                     } else {
-                      return Icon(Icons.star_border_outlined,
-                          color: Colors.yellow);
+                      return Icon(
+                        Icons.star_border_outlined,
+                      );
                     }
                   })
                 ]),
@@ -248,12 +308,18 @@ class _EmptyContentsBeginner extends StatelessWidget {
 
 class _EmptyContentsInt extends StatelessWidget {
   final listItem;
-  final completedQuizzes;
+  final userProgress;
 
-  const _EmptyContentsInt(this.listItem, this.completedQuizzes);
+  const _EmptyContentsInt(this.listItem, this.userProgress);
 
   @override
   Widget build(BuildContext context) {
+    var currentDiff = null;
+
+    if (userProgress.containsKey(listItem)) {
+      currentDiff = userProgress[listItem];
+    }
+
     if (listItem.name == "DummyIntermediate") {
       return Container(
           height: 40.0,
@@ -282,27 +348,35 @@ class _EmptyContentsInt extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Builder(builder: (__) {
-                    if (completedQuizzes.length == 0) {
+                    if (currentDiff == null || currentDiff == Difficulty.easy) {
                       return Icon(Icons.star_border_outlined);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Container();
                     } else {
                       return Icon(Icons.star_border_outlined,
                           color: Colors.yellow);
                     }
                   }),
                   Builder(builder: (__) {
-                    if (completedQuizzes.length < 2) {
-                      return Icon(Icons.star_border_outlined);
-                    } else {
+                    if (currentDiff == Difficulty.hard ||
+                        currentDiff == Difficulty.revision) {
                       return Icon(Icons.star_border_outlined,
                           color: Colors.yellow);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Text('Lesson complete!');
+                    } else {
+                      return Icon(Icons.star_border_outlined);
                     }
                   }),
                   Builder(builder: (__) {
-                    if (completedQuizzes.length < 3) {
+                    if (currentDiff == Difficulty.revision) {
                       return Icon(Icons.star_border_outlined);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Container();
                     } else {
-                      return Icon(Icons.star_border_outlined,
-                          color: Colors.yellow);
+                      return Icon(
+                        Icons.star_border_outlined,
+                      );
                     }
                   })
                 ]),
@@ -315,12 +389,18 @@ class _EmptyContentsInt extends StatelessWidget {
 
 class _EmptyContentsAdv extends StatelessWidget {
   final listItem;
-  final completedQuizzes;
+  final userProgress;
 
-  const _EmptyContentsAdv(this.listItem, this.completedQuizzes);
+  const _EmptyContentsAdv(this.listItem, this.userProgress);
 
   @override
   Widget build(BuildContext context) {
+    var currentDiff = null;
+
+    if (userProgress.containsKey(listItem)) {
+      currentDiff = userProgress[listItem];
+    }
+
     if (listItem.name == "DummyAdvanced") {
       return Container(
           height: 40.0,
@@ -348,27 +428,35 @@ class _EmptyContentsAdv extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Builder(builder: (__) {
-                    if (completedQuizzes.length == 0) {
+                    if (currentDiff == null || currentDiff == Difficulty.easy) {
                       return Icon(Icons.star_border_outlined);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Container();
                     } else {
                       return Icon(Icons.star_border_outlined,
                           color: Colors.yellow);
                     }
                   }),
                   Builder(builder: (__) {
-                    if (completedQuizzes.length < 2) {
-                      return Icon(Icons.star_border_outlined);
-                    } else {
+                    if (currentDiff == Difficulty.hard ||
+                        currentDiff == Difficulty.revision) {
                       return Icon(Icons.star_border_outlined,
                           color: Colors.yellow);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Text('Lesson complete!');
+                    } else {
+                      return Icon(Icons.star_border_outlined);
                     }
                   }),
                   Builder(builder: (__) {
-                    if (completedQuizzes.length < 3) {
+                    if (currentDiff == Difficulty.revision) {
                       return Icon(Icons.star_border_outlined);
+                    } else if (currentDiff == Difficulty.completed) {
+                      return Container();
                     } else {
-                      return Icon(Icons.star_border_outlined,
-                          color: Colors.yellow);
+                      return Icon(
+                        Icons.star_border_outlined,
+                      );
                     }
                   })
                 ]),
