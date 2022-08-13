@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
 import 'package:music_elephant/QuestionAssets/question_model.dart';
+import 'package:music_elephant/User/add_profile.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
@@ -35,7 +36,15 @@ class _MyAppState extends State<MyApp> {
   var user3 = {"image": "image/dog-png-30.png", "name": "Nick"};
   var user4 = {"image": "image/dog-png-30.png", "name": "shuna"};
 
-  var users = ["Ewan", "Michael", "Nick", "Shuna", "Chris", "Josh", "Lou"];
+  var users = [
+    ["images/profiles/ewan.png", "Ewan"],
+    ["images/profiles/michael.png", "Michael"],
+    ["images/profiles/nick.png", "Nick"],
+    ["images/profiles/shuna.png", "Shuna"],
+    ["images/dog-png-30.png", "Ian"],
+    ["images/dog-png-30.png", "Josh"],
+    ["images/dog-png-30.png", "Lou"],
+  ];
 
   var selectedProfile = "";
 
@@ -77,19 +86,29 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/users',
       routes: {
         '/': (context) => const HomePage(),
-        '/quiz': (context) =>
-            Quiz(selectedQuestions, updateProgress, quizGenerator),
+        '/quiz': (context) => Quiz(
+              selectedQuestions,
+              updateProgress,
+              quizGenerator,
+            ),
         '/lesson': (context) => const Lesson(),
         '/landingpage': (context) => LandingPage(
               progress,
               currentDifficulty,
             ),
-        '/journey': (context) => Journey(selectedProfile, quizGenerator),
-        '/users': (context) => UserContainer(users, setSelectedProfile),
+        '/journey': (context) => Journey(
+              selectedProfile,
+              quizGenerator,
+            ),
+        '/users': (context) => UserContainer(
+              users,
+              setSelectedProfile,
+            ),
         '/profile': (context) => SpecificProfile(selectedProfile),
+        '/addProfile': (context) => AddProfile(),
       },
     );
   }
