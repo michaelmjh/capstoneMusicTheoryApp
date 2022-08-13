@@ -47,22 +47,14 @@ class _MyAppState extends State<MyApp> {
   var lessons = [scales1, scales2, scales3, chords1, chords2, chords3];
   var selectedLesson;
 
-  // DUMMY DATA - USER LESSON & QUIZ INFO
-  // Imagining the user has these lists stored in their profile:
-  var completedLessons = [scales1];
-  var lessonsInProgress = [chords1];
-
-  // this one may need some wrangling - this will track the user's
+  // DUMMY DATA - USER PROGRESS
+  // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
     scales1: Difficulty.completed,
     chords1: Difficulty.medium,
     scales2: Difficulty.easy,
   };
-
-  // var scalesEasyQuiz = QuestionData.shared.easyQuestions;
-  // var scalesMediumQuiz = QuestionData.shared.mediumQuestions;
-  // var scalesHardQuiz = QuestionData.shared.hardQuestions;
 
   void setCurrentProgress(lesson, difficulty) {
     setState(() {
@@ -74,14 +66,6 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       selectedLesson = lesson;
     });
-  }
-
-  void setLessonInProgress(lesson) {
-    lessonsInProgress.add(lesson);
-  }
-
-  void setCompletedLesson(lesson) {
-    completedLessons.add(lesson);
   }
 
   var begList = [];
@@ -168,8 +152,8 @@ class _MyAppState extends State<MyApp> {
         '/journey': (context) => Journey(selectedProfile, quizGenerator),
         '/users': (context) => UserContainer(users, setSelectedProfile),
         '/profile': (context) => SpecificProfile(selectedProfile),
-        '/timeline': (countext) => Timeline(newList, completedLessons,
-            setSelectedLesson, userProgress, lessonsInProgress),
+        '/timeline': (countext) =>
+            Timeline(newList, setSelectedLesson, userProgress),
       },
     );
   }

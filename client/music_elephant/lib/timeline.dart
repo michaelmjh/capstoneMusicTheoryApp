@@ -11,13 +11,11 @@ import 'QuestionAssets/Enums/level.dart';
 
 class Timeline extends StatefulWidget {
   final lessons;
-  final completedLessons;
   final setSelectedLesson;
   final userProgress;
-  final lessonsInProgress;
 
-  const Timeline(this.lessons, this.completedLessons, this.setSelectedLesson,
-      this.userProgress, this.lessonsInProgress,
+  const Timeline(this.lessons, this.setSelectedLesson,
+      this.userProgress,
       {super.key});
 
   @override
@@ -80,10 +78,8 @@ class _TimelineState extends State<Timeline> {
                     getLevels,
                     setNewList,
                     newList,
-                    widget.completedLessons,
                     widget.setSelectedLesson,
-                    widget.userProgress,
-                    widget.lessonsInProgress),
+                    widget.userProgress,),
               ],
             ),
           ),
@@ -97,19 +93,15 @@ class _Timeline1 extends StatelessWidget {
   final getLevels;
   final setNewList;
   final newList;
-  final completedLessons;
   final setSelectedLesson;
   final userProgress;
-  final lessonsInProgress;
 
   const _Timeline1(
       this.getLevels,
       this.setNewList,
       this.newList,
-      this.completedLessons,
       this.setSelectedLesson,
-      this.userProgress,
-      this.lessonsInProgress);
+      this.userProgress,);
 
   @override
   Widget build(BuildContext context) {
