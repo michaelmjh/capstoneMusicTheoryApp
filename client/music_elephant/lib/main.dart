@@ -53,8 +53,9 @@ class _MyAppState extends State<MyApp> {
   var userProgress = {
     scales1: Difficulty.completed,
     chords1: Difficulty.completed,
-    scales2: Difficulty.medium,
-    chords2: Difficulty.easy,
+    scales2: Difficulty.completed,
+    chords2: Difficulty.hard,
+    begBoss: Difficulty.completed,
   };
 
   void setCurrentProgress(lesson, difficulty) {
@@ -87,29 +88,38 @@ class _MyAppState extends State<MyApp> {
   }
 
   void setTimelineLessonList() {
-    begList.insert(0, dummyBeg);
-    begList.add(begBoss);
-    intList.insert(0, dummyInt);
-    intList.add(intBoss);
-    advList.insert(0, dummyAdv);
-    advList.add(advBoss);
-    for (var item in begList) {
+    var list1 = [...begList];
+    var list2 = [...intList];
+    var list3 = [...advList];
+    list1.insert(0, dummyBeg);
+    list1.add(begBoss);
+    list2.insert(0, dummyInt);
+    list2.add(intBoss);
+    list3.insert(0, dummyAdv);
+    list3.add(advBoss);
+    for (var item in list1) {
       newList.add(item);
     }
-    for (var item in intList) {
+    for (var item in list2) {
       newList.add(item);
     }
-    for (var item in advList) {
+    for (var item in list3) {
       newList.add(item);
     }
   }
 
   var completedLessons = [];
 
-  void getCompletedLessons() {
+  void getCompletedLessons(level) {
     userProgress.keys.forEach((key) {
-      if (userProgress[key] == Difficulty.completed) {
-        completedLessons.add(key);
+      if (key.level == level) {
+        if (key.name == "BeginnerBoss" ||
+            key.name == "IntermediateBoss" ||
+            key.name == "AdvancedBoss") {
+          null;
+        } else if (userProgress[key] == Difficulty.completed) {
+          completedLessons.add(key);
+        }
       }
     });
   }
@@ -119,13 +129,13 @@ class _MyAppState extends State<MyApp> {
   bool advUnlocked = false;
 
   void getLockedLessons() {
-    for (var lesson in completedLessons) {
-      if (lesson.name == "BeginnerBoss") {
+    userProgress.keys.forEach((key) {
+      if (key == "BeginnerBoss") {
         intUnlocked = true;
-      } else if (lesson.name == "IntermediateBoss") {
+      } else if (key == "IntermediateBoss") {
         advUnlocked = true;
       }
-    }
+    });
   }
 
   void setSelectedProfile(newProfile) {
@@ -174,7 +184,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(getLevels, setTimelineLessonList),
+        '/': (context) =>
+            HomePage(getLevels, setTimelineLessonList, getLockedLessons),
         '/quiz': (context) =>
             Quiz(selectedQuestions, updateProgress, quizGenerator),
         '/lesson': (context) => Lesson(selectedLesson),
@@ -194,7 +205,10 @@ class _MyAppState extends State<MyApp> {
             intUnlocked,
             advUnlocked,
             getLockedLessons,
-            bossGenerator),
+            bossGenerator,
+            begList,
+            intList,
+            advList),
       },
     );
   }

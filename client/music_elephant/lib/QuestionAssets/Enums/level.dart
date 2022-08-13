@@ -1,1 +1,1 @@
-enum Level { beginner, intermediate, advanced, boss }
+enum Level { beginner, intermediate, advanced }

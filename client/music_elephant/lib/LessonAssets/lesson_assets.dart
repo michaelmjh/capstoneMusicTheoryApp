@@ -47,10 +47,10 @@ Lesson dummyInt =
 Lesson dummyAdv =
     Lesson(name: "DummyAdvanced", slides: [], level: Level.advanced);
 
-Lesson begBoss = Lesson(name: "BeginnerBoss", slides: [], level: Level.boss);
+Lesson begBoss = Lesson(name: "BeginnerBoss", slides: [], level: Level.beginner);
 Lesson intBoss =
-    Lesson(name: "IntermediateBoss", slides: [], level: Level.boss);
-Lesson advBoss = Lesson(name: "AdvancedBoss", slides: [], level: Level.boss);
+    Lesson(name: "IntermediateBoss", slides: [], level: Level.intermediate);
+Lesson advBoss = Lesson(name: "AdvancedBoss", slides: [], level: Level.advanced);
 
 class LessonData {
   static LessonData get shared => LessonData();
