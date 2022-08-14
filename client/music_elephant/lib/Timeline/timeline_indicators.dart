@@ -67,6 +67,27 @@ class BossIndicator extends StatelessWidget {
   }
 }
 
+class AvailableIndicator extends StatelessWidget {
+  final listItem;
+  final setSelectedLesson;
+
+  const AvailableIndicator(this.listItem, this.setSelectedLesson);
+  @override
+  Widget build(BuildContext context) {
+    return DotIndicator(
+      color: Colors.grey,
+      child: IconButton(
+        icon: Icon(Icons.cloud),
+        iconSize: 15,
+        onPressed: () {
+          setSelectedLesson(listItem);
+          Navigator.pushNamed(context, '/landingpage');
+        },
+      ),
+    );
+  }
+}
+
 class LockedIndicator extends StatelessWidget {
   const LockedIndicator();
   @override
@@ -81,5 +102,3 @@ class LockedIndicator extends StatelessWidget {
     );
   }
 }
-
-

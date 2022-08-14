@@ -16,10 +16,8 @@ class TimelineWidget extends StatelessWidget {
   final completedLessons;
   final getCompletedLessons;
   final bossGenerator;
-  final begList;
-  final intList;
-  final advList;
   final checkIfBossUnlocked;
+  final checkIfBossCompleted;
 
   const TimelineWidget(
     this.newList,
@@ -28,10 +26,8 @@ class TimelineWidget extends StatelessWidget {
     this.completedLessons,
     this.getCompletedLessons,
     this.bossGenerator,
-    this.begList,
-    this.intList,
-    this.advList,
     this.checkIfBossUnlocked,
+    this.checkIfBossCompleted,
   );
 
   @override
@@ -172,9 +168,9 @@ class TimelineWidget extends StatelessWidget {
             } else if (newList[index].name == "BeginnerBoss" ||
                 newList[index].name == "IntermediateBoss" ||
                 newList[index].name == "AdvancedBoss") {
-                  // we run a check function to see if our userProgress shows that
-                  // all lessons in the appropriate section have been completed
-                  // if this is true, the boss level unlocks, if not we show a padlock
+              // we run a check function to see if our userProgress shows that
+              // all lessons in the appropriate section have been completed
+              // if this is true, the boss level unlocks, if not we show a padlock
               if (checkIfBossUnlocked(newList[index].level) == true) {
                 return BossIndicator(
                     newList[index], setSelectedLesson, bossGenerator);
@@ -188,7 +184,11 @@ class TimelineWidget extends StatelessWidget {
               return InProgressIndicator(newList[index], setSelectedLesson);
               // if the lesson is not contained in userProgress it is locked
             } else if (userProgress.containsKey(newList[index]) == false) {
-              return LockedIndicator();
+              if (checkIfBossCompleted(newList[index].level)) {
+                return AvailableIndicator(newList[index], setSelectedLesson);
+              } else {
+                return LockedIndicator();
+              }
             }
           },
           // this sets the spacing between indicators

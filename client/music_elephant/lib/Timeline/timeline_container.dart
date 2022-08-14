@@ -19,10 +19,8 @@ class Timeline extends StatefulWidget {
   final completedLessons;
   final getCompletedLessons;
   final bossGenerator;
-  final begList;
-  final intList;
-  final advList;
   final checkIfBossUnlocked;
+  final checkIfBossCompleted;
 
   const Timeline(
       this.lessons,
@@ -31,10 +29,8 @@ class Timeline extends StatefulWidget {
       this.completedLessons,
       this.getCompletedLessons,
       this.bossGenerator,
-      this.begList,
-      this.intList,
-      this.advList,
       this.checkIfBossUnlocked,
+      this.checkIfBossCompleted,
       {super.key});
 
   @override
@@ -61,10 +57,8 @@ class _TimelineState extends State<Timeline> {
                   widget.completedLessons,
                   widget.getCompletedLessons,
                   widget.bossGenerator,
-                  widget.begList,
-                  widget.intList,
-                  widget.advList,
                   widget.checkIfBossUnlocked,
+                  widget.checkIfBossCompleted,
                 ),
               ],
             ),

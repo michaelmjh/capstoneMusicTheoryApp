@@ -54,8 +54,8 @@ class _MyAppState extends State<MyApp> {
   var userProgress = {
     scales1: Difficulty.completed,
     chords1: Difficulty.completed,
-    scales2: Difficulty.completed,
-    chords2: Difficulty.completed,
+    scales2: Difficulty.hard,
+    // chords2: Difficulty.medium,
     begBoss: Difficulty.completed,
   };
 
@@ -172,6 +172,27 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  // function runs in timeline_widget to check if a boss level has been completed
+  // this runs when a lesson has not yet been attempted but should be made
+  // available to the user - so the function checks if the previous boss has been
+  // beaten, in which case the lesson should be available
+  bool checkIfBossCompleted(level) {
+    var boss;
+    switch (level) {
+      case Level.intermediate:
+        boss = begBoss;
+        break;
+      case Level.advanced:
+        boss = intBoss;
+        break;
+    }
+    if (userProgress.containsKey(boss)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void setSelectedProfile(newProfile) {
     setState(() {
       selectedProfile = newProfile;
@@ -239,10 +260,8 @@ class _MyAppState extends State<MyApp> {
             completedLessons,
             getCompletedLessons,
             bossGenerator,
-            begList,
-            intList,
-            advList,
-            checkIfBossUnlocked),
+            checkIfBossUnlocked,
+            checkIfBossCompleted),
       },
     );
   }
