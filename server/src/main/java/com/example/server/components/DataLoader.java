@@ -492,6 +492,10 @@ public class DataLoader implements ApplicationRunner {
         answer18Assets.add("G");
         answer18Assets.add("Ab");
 
+        Question question18 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question18Assets, answer18Options, answer18Assets);
+        questionRepository.save(question18);
+
+
 //        Saving Question 19
 
         List question19Assets = new ArrayList();
