@@ -141,15 +141,13 @@ class ContentsCard extends StatelessWidget {
                   } else if (currentDiff == Difficulty.completed) {
                     return Container();
                   } else {
-                    return Icon(Icons.star_border_outlined,
-                        color: Colors.yellow);
+                    return Icon(Icons.star, color: Colors.yellow);
                   }
                 }),
                 Builder(builder: (__) {
                   if (currentDiff == Difficulty.hard ||
                       currentDiff == Difficulty.revision) {
-                    return Icon(Icons.star_border_outlined,
-                        color: Colors.yellow);
+                    return Icon(Icons.star, color: Colors.yellow);
                   } else if (currentDiff == Difficulty.completed) {
                     return Text('Lesson complete!');
                   } else {
@@ -158,7 +156,7 @@ class ContentsCard extends StatelessWidget {
                 }),
                 Builder(builder: (__) {
                   if (currentDiff == Difficulty.revision) {
-                    return Icon(Icons.star_border_outlined);
+                    return Icon(Icons.star, color: Colors.yellow);
                   } else if (currentDiff == Difficulty.completed) {
                     return Container();
                   } else {

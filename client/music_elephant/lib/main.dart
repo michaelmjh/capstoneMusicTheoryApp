@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
     scales1: Difficulty.completed,
     chords1: Difficulty.completed,
     scales2: Difficulty.hard,
-    // chords2: Difficulty.medium,
+    chords2: Difficulty.revision,
     begBoss: Difficulty.completed,
   };
 
