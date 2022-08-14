@@ -5,8 +5,9 @@ import '../QuestionAssets/answer_model.dart';
 class QuestionWidget2 extends StatefulWidget {
   final answerQuestion;
   final needsReset;
+  final question;
 
-  QuestionWidget2(this.answerQuestion, this.needsReset);
+  QuestionWidget2(this.answerQuestion, this.needsReset, this.question,);
 
   @override
   State<QuestionWidget2> createState() => _QuestionWidget2State();
@@ -45,7 +46,7 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
         onAccept: (data) {
           setState(() {
             updatedData = data.text;
-            widget.answerQuestion(data);
+            widget.answerQuestion(data, widget.question);
           });
         },
       ),
