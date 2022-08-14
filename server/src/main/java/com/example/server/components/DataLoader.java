@@ -693,26 +693,26 @@ public class DataLoader implements ApplicationRunner {
         Question question27 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question27Assets, answer27Options, answer27Assets);
         questionRepository.save(question27);
 
-//        Saving Question 22
+//        Saving Question 28
 
-        List question22Assets = new ArrayList();
-        question22Assets.add("");
-        question22Assets.add("Complete the Gmaj chord");
+        List question28Assets = new ArrayList();
+        question28Assets.add("");
+        question28Assets.add("Complete the Abmaj chord");
 
-        List answer22Options = new ArrayList<>();
-        answer22Options.add("G");
-        answer22Options.add("B");
-        answer22Options.add("C");
-        answer22Options.add("D");
-
-
-        List answer22Assets = new ArrayList();
-
-        answer22Assets.add("B");
+        List answer28Options = new ArrayList<>();
+        answer28Options.add("Ab");
+        answer28Options.add("C");
+        answer28Options.add("Eb");
+        answer28Options.add("Bb");
 
 
-        Question question22 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question22Assets, answer22Options, answer22Assets);
-        questionRepository.save(question22);
+        List answer28Assets = new ArrayList();
+
+        answer28Assets.add("C");
+
+
+        Question question28 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question28Assets, answer28Options, answer28Assets);
+        questionRepository.save(question28);
 
 ////          Saving Question 23
 //
