@@ -738,29 +738,162 @@ public class DataLoader implements ApplicationRunner {
         questionRepository.save(question29);
 
 
-////        Saving Question 24
-//
-//        List question24Assets = new ArrayList();
-//        question24Assets.add("");
-//        question24Assets.add("Arrange the Gmaj chord in order");
-//
-//        List answer24Options = new ArrayList<>();
-//        answer24Options.add("G");
-//        answer24Options.add("D");
-//        answer24Options.add("B");
-//        answer24Options.add("C");
-//
-//
-//        List answer24Assets = new ArrayList();
-//
-//        answer24Assets.add("G");
-//        answer24Assets.add("B");
-//        answer24Assets.add("D");
-//
-//
-//        Question question24 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question24Assets, answer24Options, answer24Assets);
-//        questionRepository.save(question24);
+//        Saving Question 30
 
+        List question30Assets = new ArrayList();
+        question30Assets.add("");
+        question30Assets.add("Arrange the Amaj chord in order");
+
+        List answer30Options = new ArrayList<>();
+        answer30Options.add("A");
+        answer30Options.add("C#");
+        answer30Options.add("E");
+        answer30Options.add("B");
+
+
+        List answer30Assets = new ArrayList();
+
+        answer30Assets.add("A");
+        answer30Assets.add("C#");
+        answer30Assets.add("E");
+
+
+        Question question30 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question30Assets, answer30Options, answer30Assets);
+        questionRepository.save(question30);
+
+        //        Saving Question 31
+
+        List question31Assets = new ArrayList();
+        question31Assets.add("");
+        question31Assets.add("Identify the chord");
+
+        List answer31Options = new ArrayList<>();
+        answer31Options.add("Bbmaj");
+        answer31Options.add("Ebmaj");
+        answer31Options.add("Dmaj");
+        answer31Options.add("Gmaj");
+
+
+        List answer31Assets = new ArrayList();
+
+        answer31Assets.add("Dmaj");
+
+
+
+        Question question31 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question31Assets, answer31Options, answer31Assets);
+        questionRepository.save(question31);
+
+
+////        Saving Question 26
+//        List question26Assets = new ArrayList();
+//        question26Assets.add("");
+//        question26Assets.add("Identify the chord");
+//
+//        List answer26Options = new ArrayList<>();
+//        answer26Options.add("Cmaj");
+//        answer26Options.add("Gmaj");
+//        answer26Options.add("Fmaj");
+//        answer26Options.add("Dmaj");
+//
+//
+//        List answer26Assets = new ArrayList();
+//
+//        answer26Assets.add("Fmaj");
+//
+//
+//
+//        Question question26 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question26Assets, answer26Options, answer26Assets);
+//        questionRepository.save(question26);
+//
+//
+////        Saving Question 27
+//
+//        List question27Assets = new ArrayList();
+//        question27Assets.add("");
+//        question27Assets.add("Complete the Ebmaj chord");
+//
+//        List answer27Options = new ArrayList<>();
+//        answer27Options.add("Eb");
+//        answer27Options.add("G");
+//        answer27Options.add("Bb");
+//        answer27Options.add("F");
+//
+//
+//        List answer27Assets = new ArrayList();
+//
+//        answer27Assets.add("G");
+//
+//
+//        Question question27 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question27Assets, answer27Options, answer27Assets);
+//        questionRepository.save(question27);
+//
+////        Saving Question 28
+//
+//        List question28Assets = new ArrayList();
+//        question28Assets.add("");
+//        question28Assets.add("Complete the Abmaj chord");
+//
+//        List answer28Options = new ArrayList<>();
+//        answer28Options.add("Ab");
+//        answer28Options.add("C");
+//        answer28Options.add("Eb");
+//        answer28Options.add("Bb");
+//
+//
+//        List answer28Assets = new ArrayList();
+//
+//        answer28Assets.add("C");
+//
+//
+//        Question question28 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question28Assets, answer28Options, answer28Assets);
+//        questionRepository.save(question28);
+//
+////          Saving Question 29
+//
+//        List question29Assets = new ArrayList();
+//        question29Assets.add("");
+//        question29Assets.add("Arrange the Dmaj chord in order");
+//
+//        List answer29Options = new ArrayList<>();
+//        answer29Options.add("D");
+//        answer29Options.add("F#");
+//        answer29Options.add("A");
+//        answer29Options.add("E");
+//
+//
+//        List answer29Assets = new ArrayList();
+//
+//        answer29Assets.add("D");
+//        answer29Assets.add("F#");
+//        answer29Assets.add("A");
+//
+//
+//        Question question29 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question29Assets, answer29Options, answer29Assets);
+//        questionRepository.save(question29);
+//
+//
+////        Saving Question 30
+//
+//        List question30Assets = new ArrayList();
+//        question30Assets.add("");
+//        question30Assets.add("Arrange the Amaj chord in order");
+//
+//        List answer30Options = new ArrayList<>();
+//        answer30Options.add("A");
+//        answer30Options.add("C#");
+//        answer30Options.add("E");
+//        answer30Options.add("B");
+//
+//
+//        List answer30Assets = new ArrayList();
+//
+//        answer30Assets.add("A");
+//        answer30Assets.add("C#");
+//        answer30Assets.add("E");
+//
+//
+//        Question question30 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question30Assets, answer30Options, answer30Assets);
+//        questionRepository.save(question30);
 
     }
 }
