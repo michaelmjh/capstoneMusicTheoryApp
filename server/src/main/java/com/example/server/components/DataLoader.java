@@ -1,9 +1,6 @@
 package com.example.server.components;
 
-import com.example.server.models.Lesson;
-import com.example.server.models.LessonSlide;
-import com.example.server.models.Level;
-import com.example.server.models.Question;
+import com.example.server.models.*;
 import com.example.server.models.enums.Difficulty;
 import com.example.server.models.enums.LessonName;
 import com.example.server.models.enums.LevelName;
@@ -898,6 +895,9 @@ public class DataLoader implements ApplicationRunner {
 
         Question question36 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question36Assets, answer36Options, answer36Assets);
         questionRepository.save(question36);
+
+        User user1 = new User("Ewan", "", scales1.getLessonName(), level1.getLevelName());
+        userRepository.save(user1);
 
     }
 }
