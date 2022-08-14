@@ -872,28 +872,28 @@ public class DataLoader implements ApplicationRunner {
         questionRepository.save(question35);
 
 
-////        Saving Question 30
-//
-//        List question30Assets = new ArrayList();
-//        question30Assets.add("");
-//        question30Assets.add("Arrange the Amaj chord in order");
-//
-//        List answer30Options = new ArrayList<>();
-//        answer30Options.add("A");
-//        answer30Options.add("C#");
-//        answer30Options.add("E");
-//        answer30Options.add("B");
-//
-//
-//        List answer30Assets = new ArrayList();
-//
-//        answer30Assets.add("A");
-//        answer30Assets.add("C#");
-//        answer30Assets.add("E");
-//
-//
-//        Question question30 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question30Assets, answer30Options, answer30Assets);
-//        questionRepository.save(question30);
+//        Saving Question 36
+
+        List question36Assets = new ArrayList();
+        question36Assets.add("");
+        question36Assets.add("Arrange the Dbmin chord in order");
+
+        List answer36Options = new ArrayList<>();
+        answer36Options.add("Db");
+        answer36Options.add("E");
+        answer36Options.add("Ab");
+        answer36Options.add("Gb");
+
+
+        List answer36Assets = new ArrayList();
+
+        answer36Assets.add("Db");
+        answer36Assets.add("E");
+        answer36Assets.add("Ab");
+
+
+        Question question36 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question36Assets, answer36Options, answer36Assets);
+        questionRepository.save(question36);
 
     }
 }
