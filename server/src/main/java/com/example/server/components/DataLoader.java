@@ -848,30 +848,30 @@ public class DataLoader implements ApplicationRunner {
         Question question34 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question34Assets, answer34Options, answer34Assets);
         questionRepository.save(question34);
 
-////          Saving Question 29
-//
-//        List question29Assets = new ArrayList();
-//        question29Assets.add("");
-//        question29Assets.add("Arrange the Dmaj chord in order");
-//
-//        List answer29Options = new ArrayList<>();
-//        answer29Options.add("D");
-//        answer29Options.add("F#");
-//        answer29Options.add("A");
-//        answer29Options.add("E");
-//
-//
-//        List answer29Assets = new ArrayList();
-//
-//        answer29Assets.add("D");
-//        answer29Assets.add("F#");
-//        answer29Assets.add("A");
-//
-//
-//        Question question29 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question29Assets, answer29Options, answer29Assets);
-//        questionRepository.save(question29);
-//
-//
+//          Saving Question 35
+
+        List question35Assets = new ArrayList();
+        question35Assets.add("");
+        question35Assets.add("Arrange the Gbmin chord in order");
+
+        List answer35Options = new ArrayList<>();
+        answer35Options.add("Gb");
+        answer35Options.add("A");
+        answer35Options.add("Db");
+        answer35Options.add("Ab");
+
+
+        List answer35Assets = new ArrayList();
+
+        answer35Assets.add("Gb");
+        answer35Assets.add("A");
+        answer35Assets.add("Db");
+
+
+        Question question35 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question35Assets, answer35Options, answer35Assets);
+        questionRepository.save(question35);
+
+
 ////        Saving Question 30
 //
 //        List question30Assets = new ArrayList();
