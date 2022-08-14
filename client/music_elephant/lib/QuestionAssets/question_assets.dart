@@ -232,12 +232,12 @@ class QuestionData {
       ];
 
   List<Question> easyQuestions = [
-    question1,
-    question2,
-    question3,
-    question4,
+    // question1,
+    // question2,
+    // question3,
+    // question4,
     question5,
-    // question6,
+    question6,
   ];
 
   List<Question> mediumQuestions = [

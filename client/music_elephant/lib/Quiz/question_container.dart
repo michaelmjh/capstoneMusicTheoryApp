@@ -91,11 +91,33 @@ class _QuestionContainerState extends State<QuestionContainer> {
     return Column(
       children: [
         widget.question.type == QuestionType.arrange
-            ? Row(children: [
-                ...(widget.question.answerOptions as List).map((answer) {
-                  return QuestionWidget2(answerQuestion, needsReset);
-                }).toList(),
-              ])
+            ? Column(
+                children: [
+                  Container(
+                    child: Text(
+                      widget.question.text,
+                      style: TextStyle(fontSize: 23.0),
+                      textAlign: TextAlign.center,
+                    ),
+                    margin: EdgeInsets.only(top: 15.0),
+                  ),
+                  Container(
+                      child: Text(
+                        "(Drag the letters into the boxes)",
+                        style: TextStyle(fontSize: 18.0),
+                        textAlign: TextAlign.center,
+                      ),
+                      margin: EdgeInsets.only(top: 5.0, bottom: 15.0)),
+                  Row(
+                    children: [
+                      ...(widget.question.answerOptions as List).map((answer) {
+                        return QuestionWidget2(answerQuestion, needsReset);
+                      }).toList(),
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                ],
+              )
             : QuestionWidget(widget.question),
         !isSubmitted
             ? Column(
