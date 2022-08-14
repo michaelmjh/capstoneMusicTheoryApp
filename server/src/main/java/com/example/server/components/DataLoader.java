@@ -714,30 +714,30 @@ public class DataLoader implements ApplicationRunner {
         Question question28 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question28Assets, answer28Options, answer28Assets);
         questionRepository.save(question28);
 
-////          Saving Question 23
-//
-//        List question23Assets = new ArrayList();
-//        question23Assets.add("");
-//        question23Assets.add("Arrange the Cmaj chord in order");
-//
-//        List answer23Options = new ArrayList<>();
-//        answer23Options.add("G");
-//        answer23Options.add("C");
-//        answer23Options.add("E");
-//        answer23Options.add("D");
-//
-//
-//        List answer23Assets = new ArrayList();
-//
-//        answer23Assets.add("C");
-//        answer23Assets.add("E");
-//        answer23Assets.add("G");
-//
-//
-//        Question question23 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question23Assets, answer23Options, answer23Assets);
-//        questionRepository.save(question23);
-//
-//
+//          Saving Question 29
+
+        List question29Assets = new ArrayList();
+        question29Assets.add("");
+        question29Assets.add("Arrange the Dmaj chord in order");
+
+        List answer29Options = new ArrayList<>();
+        answer29Options.add("D");
+        answer29Options.add("F#");
+        answer29Options.add("A");
+        answer29Options.add("E");
+
+
+        List answer29Assets = new ArrayList();
+
+        answer29Assets.add("D");
+        answer29Assets.add("F#");
+        answer29Assets.add("A");
+
+
+        Question question29 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question29Assets, answer29Options, answer29Assets);
+        questionRepository.save(question29);
+
+
 ////        Saving Question 24
 //
 //        List question24Assets = new ArrayList();
