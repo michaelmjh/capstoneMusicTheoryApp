@@ -94,13 +94,41 @@ public class DataLoader implements ApplicationRunner {
         scales1.setSlides(scales1Assets);
         lessonRepository.save(scales1);
 
-//        List scales1Assets = new ArrayList<>();
-//        scales1Assets.add("the image is here");
-//        scales1Assets.add("the other image is here");
-//        scales1.setSlides(scales1Assets);
+//        Setting up Chords 1 Lesson
+        Lesson chords1 = new Lesson(LessonName.CHORDS1, level1);
+        lessonRepository.save(chords1);
+
+        LessonSlide chords1Slide1 = new LessonSlide(chords1,
+                "The next thing to go over is chords, they are basically a combination of notes played together to create a deeper harmony.\n\nWe are going to look at the 2 most common chords found in music, the Major Chord and the Minor Chord.\n\nContinuing on from your Major Scale lesson if you take the notes and number them from 1st to 8th it would look like the above image.\n\nThe numbers refer to the degrees of the scale, you’ll notice 1st and 8th are the same note but different octaves hence it’s referred to as the 8th degree, this continues into the next octave with 9th and so on but that’s for another lesson.", "images/lessonImages/chords_lesson_image_1.png");
+
+        lessonSlideRepository.save(chords1Slide1);
+
+        LessonSlide chords1Slide2 = new LessonSlide(chords1,
+                "The first chord to look at is the Major chord, It is made up of 3 notes, a root, a major 3rd and a 5th.\\n\\nLooking at a C major chord, the notes are C, E and G. C is your root note, E is your major 3rd and G is your 5th.", "images/lessonImages/chords_lesson_image_2.png");
+
+        lessonSlideRepository.save(chords1Slide2);
+
+        LessonSlide chords1Slide3 = new LessonSlide(chords1,
+                "The tonality of the chord is defined by the 3rd, you’ll notice it has been referred to as a major 3rd.\n\\n\\nThis is because in a Major chord, the 3rd is 2 whole steps away from the root which creates a happy and positive sounding chord. \\n\\nThis pattern of root (2 whole steps) major 3rd (1 and a half steps) 5th is the make up of every major chord and like the previous lesson can be used starting from any note.", "images/lessonImages/chords_lesson_image_2.png");
+
+        lessonSlideRepository.save(chords1Slide3);
+
+        LessonSlide chords1Slide4 = new LessonSlide(chords1,
+                "If you were to try and figure out the notes of a C minor chord, all you need to do is flatten the 3rd by a half step to create a minor 3rd. \\n\\nSo if you take the major 3rd note of E and take it down a half step, it becomes Eb, so the notes of the C minor chord is C, Eb and G. \\n\\n\\nA minor 3rd is 1 and half steps from your root note this creates a sad sounding chord. The pattern for a minor chord is root (1 and a half steps) minor 3rd (2 whole steps) 5th.", "images/lessonImages/chords_lesson_image_3.png");
+
+        lessonSlideRepository.save(chords1Slide4);
+
+        List chords1Assets = new ArrayList<>();
+        chords1Assets.add(chords1Slide1);
+        chords1Assets.add(chords1Slide2);
+        chords1Assets.add(chords1Slide3);
+        chords1Assets.add(chords1Slide4);
+
+        chords1.setSlides(chords1Assets);
+        lessonRepository.save(chords1);
+
 
 //        Saving Question 1
-
         List question1Assets = new ArrayList();
         question1Assets.add("/images/question_images/easy/Cmaj-identify-note-C.jpg");
         question1Assets.add("Identify this note");
@@ -347,8 +375,8 @@ public class DataLoader implements ApplicationRunner {
         //        Saving Question 13
 
         List question13Assets = new ArrayList();
-        question7Assets.add("/images/question_images/hard/Bmaj-identify-note-D#-G#.jpg");
-        question7Assets.add("Identify these notes");
+        question13Assets.add("/images/question_images/hard/Bmaj-identify-note-D#-G#.jpg");
+        question13Assets.add("Identify these notes");
 
         List answer13Options = new ArrayList<>();
         answer13Options.add("G#");
@@ -464,10 +492,111 @@ public class DataLoader implements ApplicationRunner {
         answer18Assets.add("G");
         answer18Assets.add("Ab");
 
+//        Saving Question 19
+
+        List question19Assets = new ArrayList();
+        question19Assets.add("");
+        question19Assets.add("Identify the chord");
+
+        List answer19Options = new ArrayList<>();
+        answer19Options.add("Cmaj");
+        answer19Options.add("Gmaj");
+        answer19Options.add("Fmaj");
+        answer19Options.add("Dmaj");
 
 
-        Question question18 = new Question(QuestionType.ARRANGE, level1.getLevelName(), scales1.getLessonName(), Difficulty.HARD, question18Assets, answer18Options, answer18Assets);
-        questionRepository.save(question18);
+        List answer19Assets = new ArrayList();
 
+        answer19Assets.add("Cmaj");
+
+
+
+        Question question19 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question19Assets, answer19Options, answer19Assets);
+        questionRepository.save(question19);
+
+
+//        Saving Question 20
+        List question20Assets = new ArrayList();
+        question20Assets.add("");
+        question20Assets.add("Identify the chord");
+
+        List answer20Options = new ArrayList<>();
+        answer20Options.add("Cmaj");
+        answer20Options.add("Gmaj");
+        answer20Options.add("Fmaj");
+        answer20Options.add("Dmaj");
+
+
+        List answer20Assets = new ArrayList();
+
+        answer20Assets.add("Gmaj");
+
+
+
+        Question question20 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question20Assets, answer20Options, answer20Assets);
+        questionRepository.save(question20);
+
+
+//        Saving Question 21
+
+        List question21Assets = new ArrayList();
+        question21Assets.add("");
+        question21Assets.add("Complete the Cmaj chord");
+
+        List answer21Options = new ArrayList<>();
+        answer21Options.add("C");
+        answer21Options.add("D");
+        answer21Options.add("G");
+        answer21Options.add("E");
+
+
+        List answer21Assets = new ArrayList();
+
+        answer21Assets.add("E");
+
+
+        Question question21 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question21Assets, answer21Options, answer21Assets);
+        questionRepository.save(question21);
+
+//        Saving Question 22
+
+        List question22Assets = new ArrayList();
+        question22Assets.add("");
+        question22Assets.add("Complete the Gmaj chord");
+
+        List answer22Options = new ArrayList<>();
+        answer22Options.add("G");
+        answer22Options.add("B");
+        answer22Options.add("C");
+        answer22Options.add("D");
+
+
+        List answer22Assets = new ArrayList();
+
+        answer22Assets.add("B");
+
+
+        Question question22 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question22Assets, answer22Options, answer22Assets);
+        questionRepository.save(question22);
+
+
+        List question22Assets = new ArrayList();
+        question22Assets.add("");
+        question22Assets.add("Complete the Gmaj chord");
+
+        List answer22Options = new ArrayList<>();
+        answer22Options.add("G");
+        answer22Options.add("B");
+        answer22Options.add("C");
+        answer22Options.add("D");
+
+
+        List answer22Assets = new ArrayList();
+
+        answer22Assets.add("B");
+
+
+        Question question22 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question22Assets, answer22Options, answer22Assets);
+        questionRepository.save(question22);
     }
 }
