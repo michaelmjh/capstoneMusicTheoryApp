@@ -806,48 +806,48 @@ public class DataLoader implements ApplicationRunner {
         questionRepository.save(question32);
 
 
-////        Saving Question 27
-//
-//        List question27Assets = new ArrayList();
-//        question27Assets.add("");
-//        question27Assets.add("Complete the Ebmaj chord");
-//
-//        List answer27Options = new ArrayList<>();
-//        answer27Options.add("Eb");
-//        answer27Options.add("G");
-//        answer27Options.add("Bb");
-//        answer27Options.add("F");
-//
-//
-//        List answer27Assets = new ArrayList();
-//
-//        answer27Assets.add("G");
-//
-//
-//        Question question27 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question27Assets, answer27Options, answer27Assets);
-//        questionRepository.save(question27);
-//
-////        Saving Question 28
-//
-//        List question28Assets = new ArrayList();
-//        question28Assets.add("");
-//        question28Assets.add("Complete the Abmaj chord");
-//
-//        List answer28Options = new ArrayList<>();
-//        answer28Options.add("Ab");
-//        answer28Options.add("C");
-//        answer28Options.add("Eb");
-//        answer28Options.add("Bb");
-//
-//
-//        List answer28Assets = new ArrayList();
-//
-//        answer28Assets.add("C");
-//
-//
-//        Question question28 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question28Assets, answer28Options, answer28Assets);
-//        questionRepository.save(question28);
-//
+//        Saving Question 33
+
+        List question33Assets = new ArrayList();
+        question33Assets.add("");
+        question33Assets.add("Complete the Abmin chord");
+
+        List answer33Options = new ArrayList<>();
+        answer33Options.add("Ab");
+        answer33Options.add("B");
+        answer33Options.add("Eb");
+        answer33Options.add("Db");
+
+
+        List answer33Assets = new ArrayList();
+
+        answer33Assets.add("B");
+
+
+        Question question33 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question33Assets, answer33Options, answer33Assets);
+        questionRepository.save(question33);
+
+//        Saving Question 34
+
+        List question34Assets = new ArrayList();
+        question28Assets.add("");
+        question28Assets.add("Complete the Abmaj chord");
+
+        List answer28Options = new ArrayList<>();
+        answer28Options.add("Ab");
+        answer28Options.add("C");
+        answer28Options.add("Eb");
+        answer28Options.add("Bb");
+
+
+        List answer28Assets = new ArrayList();
+
+        answer28Assets.add("C");
+
+
+        Question question28 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question28Assets, answer28Options, answer28Assets);
+        questionRepository.save(question28);
+
 ////          Saving Question 29
 //
 //        List question29Assets = new ArrayList();
