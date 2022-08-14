@@ -8,7 +8,6 @@ class ContentsBeginner extends StatelessWidget {
   final userProgress;
 
   const ContentsBeginner(this.listItem, this.userProgress);
-
   @override
   Widget build(BuildContext context) {
     var currentDiff = null;
@@ -88,7 +87,6 @@ class ContentsIntermediate extends StatelessWidget {
   final userProgress;
 
   const ContentsIntermediate(this.listItem, this.userProgress);
-
   @override
   Widget build(BuildContext context) {
     var currentDiff = null;
@@ -169,7 +167,6 @@ class ContentsAdvanced extends StatelessWidget {
   final userProgress;
 
   const ContentsAdvanced(this.listItem, this.userProgress);
-
   @override
   Widget build(BuildContext context) {
     var currentDiff = null;
@@ -249,7 +246,6 @@ class ContentsBoss extends StatelessWidget {
   final userProgress;
 
   const ContentsBoss(this.listItem, this.userProgress);
-
   @override
   Widget build(BuildContext context) {
     var currentDiff = null;

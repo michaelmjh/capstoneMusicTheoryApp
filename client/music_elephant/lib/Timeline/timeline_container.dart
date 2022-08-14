@@ -11,6 +11,7 @@ import '../QuestionAssets/Enums/difficulty.dart';
 import '../QuestionAssets/Enums/level.dart';
 import 'timeline_widget.dart';
 
+// TOP LEVEL OF TIMELINE - RENDERS TIMELINE WIDGET
 class Timeline extends StatefulWidget {
   final lessons;
   final setSelectedLesson;
@@ -21,6 +22,7 @@ class Timeline extends StatefulWidget {
   final begList;
   final intList;
   final advList;
+  final checkIfBossUnlocked;
 
   const Timeline(
       this.lessons,
@@ -32,6 +34,7 @@ class Timeline extends StatefulWidget {
       this.begList,
       this.intList,
       this.advList,
+      this.checkIfBossUnlocked,
       {super.key});
 
   @override
@@ -61,6 +64,7 @@ class _TimelineState extends State<Timeline> {
                   widget.begList,
                   widget.intList,
                   widget.advList,
+                  widget.checkIfBossUnlocked,
                 ),
               ],
             ),
