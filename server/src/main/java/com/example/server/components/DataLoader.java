@@ -672,48 +672,48 @@ public class DataLoader implements ApplicationRunner {
         questionRepository.save(question26);
 
 
-////        Saving Question 21
-//
-//        List question21Assets = new ArrayList();
-//        question21Assets.add("");
-//        question21Assets.add("Complete the Cmaj chord");
-//
-//        List answer21Options = new ArrayList<>();
-//        answer21Options.add("C");
-//        answer21Options.add("D");
-//        answer21Options.add("G");
-//        answer21Options.add("E");
-//
-//
-//        List answer21Assets = new ArrayList();
-//
-//        answer21Assets.add("E");
-//
-//
-//        Question question21 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question21Assets, answer21Options, answer21Assets);
-//        questionRepository.save(question21);
-//
-////        Saving Question 22
-//
-//        List question22Assets = new ArrayList();
-//        question22Assets.add("");
-//        question22Assets.add("Complete the Gmaj chord");
-//
-//        List answer22Options = new ArrayList<>();
-//        answer22Options.add("G");
-//        answer22Options.add("B");
-//        answer22Options.add("C");
-//        answer22Options.add("D");
-//
-//
-//        List answer22Assets = new ArrayList();
-//
-//        answer22Assets.add("B");
-//
-//
-//        Question question22 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question22Assets, answer22Options, answer22Assets);
-//        questionRepository.save(question22);
-//
+//        Saving Question 27
+
+        List question27Assets = new ArrayList();
+        question27Assets.add("");
+        question27Assets.add("Complete the Ebmaj chord");
+
+        List answer27Options = new ArrayList<>();
+        answer27Options.add("Eb");
+        answer27Options.add("G");
+        answer27Options.add("Bb");
+        answer27Options.add("F");
+
+
+        List answer27Assets = new ArrayList();
+
+        answer27Assets.add("G");
+
+
+        Question question27 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question27Assets, answer27Options, answer27Assets);
+        questionRepository.save(question27);
+
+//        Saving Question 22
+
+        List question22Assets = new ArrayList();
+        question22Assets.add("");
+        question22Assets.add("Complete the Gmaj chord");
+
+        List answer22Options = new ArrayList<>();
+        answer22Options.add("G");
+        answer22Options.add("B");
+        answer22Options.add("C");
+        answer22Options.add("D");
+
+
+        List answer22Assets = new ArrayList();
+
+        answer22Assets.add("B");
+
+
+        Question question22 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question22Assets, answer22Options, answer22Assets);
+        questionRepository.save(question22);
+
 ////          Saving Question 23
 //
 //        List question23Assets = new ArrayList();
