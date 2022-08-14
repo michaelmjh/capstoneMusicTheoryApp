@@ -776,7 +776,7 @@ public class DataLoader implements ApplicationRunner {
 
         List answer31Assets = new ArrayList();
 
-        answer31Assets.add("Dmaj");
+        answer31Assets.add("Ebmaj");
 
 
 
@@ -784,28 +784,28 @@ public class DataLoader implements ApplicationRunner {
         questionRepository.save(question31);
 
 
-////        Saving Question 26
-//        List question26Assets = new ArrayList();
-//        question26Assets.add("");
-//        question26Assets.add("Identify the chord");
-//
-//        List answer26Options = new ArrayList<>();
-//        answer26Options.add("Cmaj");
-//        answer26Options.add("Gmaj");
-//        answer26Options.add("Fmaj");
-//        answer26Options.add("Dmaj");
-//
-//
-//        List answer26Assets = new ArrayList();
-//
-//        answer26Assets.add("Fmaj");
-//
-//
-//
-//        Question question26 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question26Assets, answer26Options, answer26Assets);
-//        questionRepository.save(question26);
-//
-//
+//        Saving Question 32
+        List question32Assets = new ArrayList();
+        question32Assets.add("");
+        question32Assets.add("Identify the chord");
+
+        List answer32Options = new ArrayList<>();
+        answer32Options.add("Gbmaj");
+        answer32Options.add("Bmaj");
+        answer32Options.add("Bbmaj");
+        answer32Options.add("Emaj");
+
+
+        List answer32Assets = new ArrayList();
+
+        answer32Assets.add("Gbmaj");
+
+
+
+        Question question32 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question32Assets, answer32Options, answer32Assets);
+        questionRepository.save(question32);
+
+
 ////        Saving Question 27
 //
 //        List question27Assets = new ArrayList();
