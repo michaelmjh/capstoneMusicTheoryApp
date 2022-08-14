@@ -4,7 +4,7 @@ import 'package:music_elephant/QuestionAssets/question_model.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
-import 'package:music_elephant/timeline.dart';
+import 'package:music_elephant/Timeline/timeline_container.dart';
 
 import 'LessonAssets/lesson_assets.dart';
 import 'QuestionAssets/Enums/level.dart';
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     scales1: Difficulty.completed,
     chords1: Difficulty.completed,
     scales2: Difficulty.completed,
-    chords2: Difficulty.completed,
+    chords2: Difficulty.medium,
     begBoss: Difficulty.completed,
   };
 
@@ -124,20 +124,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  bool begUnlocked = true;
-  bool intUnlocked = false;
-  bool advUnlocked = false;
-
-  void getLockedLessons() {
-    userProgress.keys.forEach((key) {
-      if (key == "BeginnerBoss") {
-        intUnlocked = true;
-      } else if (key == "IntermediateBoss") {
-        advUnlocked = true;
-      }
-    });
-  }
-
   void setSelectedProfile(newProfile) {
     setState(() {
       selectedProfile = newProfile;
@@ -184,8 +170,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) =>
-            HomePage(getLevels, setTimelineLessonList, getLockedLessons),
+        '/': (context) => HomePage(getLevels, setTimelineLessonList),
         '/quiz': (context) =>
             Quiz(selectedQuestions, updateProgress, quizGenerator),
         '/lesson': (context) => Lesson(selectedLesson),
@@ -202,9 +187,6 @@ class _MyAppState extends State<MyApp> {
             userProgress,
             completedLessons,
             getCompletedLessons,
-            intUnlocked,
-            advUnlocked,
-            getLockedLessons,
             bossGenerator,
             begList,
             intList,

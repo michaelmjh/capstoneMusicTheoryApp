@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   final getLevels;
   final setLessonList;
-  final getLockedLessons;
 
-  const HomePage(this.getLevels, this.setLessonList, this.getLockedLessons,
+  const HomePage(this.getLevels, this.setLessonList,
       {super.key});
 
   @override
@@ -26,7 +25,6 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 getLevels();
                 setLessonList();
-                getLockedLessons();
                 Navigator.pushNamed(context, '/timeline');
               },
             )
