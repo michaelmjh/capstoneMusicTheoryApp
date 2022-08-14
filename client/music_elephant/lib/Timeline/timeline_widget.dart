@@ -97,7 +97,11 @@ class TimelineWidget extends StatelessWidget {
             // Contents widgets are split by level, therefore when building
             // the timeline we need to check which level each tile belongs to
             // before it builds it
-            if (newList[index].level == Level.beginner) {
+            if (newList[index].name == "BeginnerBoss" ||
+                newList[index].name == "IntermediateBoss" ||
+                newList[index].name == "AdvancedBoss") {
+              return ContentsBoss(newList[index], userProgress);
+            } else if (newList[index].level == Level.beginner) {
               return ContentsBeginner(newList[index], userProgress);
             } else if (newList[index].level == Level.intermediate) {
               return ContentsIntermediate(newList[index], userProgress);
@@ -106,10 +110,6 @@ class TimelineWidget extends StatelessWidget {
               // Boss lessons have a separate Contents widget - need to check by
               // the name of those lessons because we can't otherwise differentiate
               // them from the lessons belonging to each level
-            } else if (newList[index].name == "BeginnerBoss" ||
-                newList[index].name == "IntermediateBoss" ||
-                newList[index].name == "AdvancedBoss") {
-              return ContentsBoss(newList[index], userProgress);
             }
           },
           // CONNECTOR BUILDER
