@@ -31,7 +31,7 @@ public class QuestionController {
         return new ResponseEntity<>(questionRepository.findByLessonName(LessonName.valueOf(lessonName1)), HttpStatus.OK);
     }
 
-    @GetMapping(value ="/questions/scales1/easy")
+    @GetMapping(value ="/questions/scales1/difficulty")
     public ResponseEntity<List<Question>> getAllLesson1QuestionsWithDifficultyEasy(
             @RequestParam(name="lesson", required = false) String lessonName1,
             @RequestParam(name="difficulty", required = false) String difficulty1

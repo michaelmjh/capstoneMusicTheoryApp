@@ -94,13 +94,41 @@ public class DataLoader implements ApplicationRunner {
         scales1.setSlides(scales1Assets);
         lessonRepository.save(scales1);
 
-//        List scales1Assets = new ArrayList<>();
-//        scales1Assets.add("the image is here");
-//        scales1Assets.add("the other image is here");
-//        scales1.setSlides(scales1Assets);
+//        Setting up Chords 1 Lesson
+        Lesson chords1 = new Lesson(LessonName.CHORDS1, level1);
+        lessonRepository.save(chords1);
+
+        LessonSlide chords1Slide1 = new LessonSlide(chords1,
+                "The next thing to go over is chords, they are basically a combination of notes played together to create a deeper harmony.\n\nWe are going to look at the 2 most common chords found in music, the Major Chord and the Minor Chord.\n\nContinuing on from your Major Scale lesson if you take the notes and number them from 1st to 8th it would look like the above image.\n\nThe numbers refer to the degrees of the scale, you’ll notice 1st and 8th are the same note but different octaves hence it’s referred to as the 8th degree, this continues into the next octave with 9th and so on but that’s for another lesson.", "images/lessonImages/chords_lesson_image_1.png");
+
+        lessonSlideRepository.save(chords1Slide1);
+
+        LessonSlide chords1Slide2 = new LessonSlide(chords1,
+                "The first chord to look at is the Major chord, It is made up of 3 notes, a root, a major 3rd and a 5th.\\n\\nLooking at a C major chord, the notes are C, E and G. C is your root note, E is your major 3rd and G is your 5th.", "images/lessonImages/chords_lesson_image_2.png");
+
+        lessonSlideRepository.save(chords1Slide2);
+
+        LessonSlide chords1Slide3 = new LessonSlide(chords1,
+                "The tonality of the chord is defined by the 3rd, you’ll notice it has been referred to as a major 3rd.\n\\n\\nThis is because in a Major chord, the 3rd is 2 whole steps away from the root which creates a happy and positive sounding chord. \\n\\nThis pattern of root (2 whole steps) major 3rd (1 and a half steps) 5th is the make up of every major chord and like the previous lesson can be used starting from any note.", "images/lessonImages/chords_lesson_image_2.png");
+
+        lessonSlideRepository.save(chords1Slide3);
+
+        LessonSlide chords1Slide4 = new LessonSlide(chords1,
+                "If you were to try and figure out the notes of a C minor chord, all you need to do is flatten the 3rd by a half step to create a minor 3rd. \\n\\nSo if you take the major 3rd note of E and take it down a half step, it becomes Eb, so the notes of the C minor chord is C, Eb and G. \\n\\n\\nA minor 3rd is 1 and half steps from your root note this creates a sad sounding chord. The pattern for a minor chord is root (1 and a half steps) minor 3rd (2 whole steps) 5th.", "images/lessonImages/chords_lesson_image_3.png");
+
+        lessonSlideRepository.save(chords1Slide4);
+
+        List chords1Assets = new ArrayList<>();
+        chords1Assets.add(chords1Slide1);
+        chords1Assets.add(chords1Slide2);
+        chords1Assets.add(chords1Slide3);
+        chords1Assets.add(chords1Slide4);
+
+        chords1.setSlides(chords1Assets);
+        lessonRepository.save(chords1);
+
 
 //        Saving Question 1
-
         List question1Assets = new ArrayList();
         question1Assets.add("/images/question_images/easy/Cmaj-identify-note-C.jpg");
         question1Assets.add("Identify this note");
@@ -347,8 +375,8 @@ public class DataLoader implements ApplicationRunner {
         //        Saving Question 13
 
         List question13Assets = new ArrayList();
-        question7Assets.add("/images/question_images/hard/Bmaj-identify-note-D#-G#.jpg");
-        question7Assets.add("Identify these notes");
+        question13Assets.add("/images/question_images/hard/Bmaj-identify-note-D#-G#.jpg");
+        question13Assets.add("Identify these notes");
 
         List answer13Options = new ArrayList<>();
         answer13Options.add("G#");
@@ -464,10 +492,412 @@ public class DataLoader implements ApplicationRunner {
         answer18Assets.add("G");
         answer18Assets.add("Ab");
 
-
-
-        Question question18 = new Question(QuestionType.ARRANGE, level1.getLevelName(), scales1.getLessonName(), Difficulty.HARD, question18Assets, answer18Options, answer18Assets);
+        Question question18 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question18Assets, answer18Options, answer18Assets);
         questionRepository.save(question18);
+
+
+//        Saving Question 19
+
+        List question19Assets = new ArrayList();
+        question19Assets.add("");
+        question19Assets.add("Identify the chord");
+
+        List answer19Options = new ArrayList<>();
+        answer19Options.add("Cmaj");
+        answer19Options.add("Gmaj");
+        answer19Options.add("Fmaj");
+        answer19Options.add("Dmaj");
+
+
+        List answer19Assets = new ArrayList();
+
+        answer19Assets.add("Cmaj");
+
+
+
+        Question question19 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question19Assets, answer19Options, answer19Assets);
+        questionRepository.save(question19);
+
+
+//        Saving Question 20
+        List question20Assets = new ArrayList();
+        question20Assets.add("");
+        question20Assets.add("Identify the chord");
+
+        List answer20Options = new ArrayList<>();
+        answer20Options.add("Cmaj");
+        answer20Options.add("Gmaj");
+        answer20Options.add("Fmaj");
+        answer20Options.add("Dmaj");
+
+
+        List answer20Assets = new ArrayList();
+
+        answer20Assets.add("Gmaj");
+
+
+
+        Question question20 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question20Assets, answer20Options, answer20Assets);
+        questionRepository.save(question20);
+
+
+//        Saving Question 21
+
+        List question21Assets = new ArrayList();
+        question21Assets.add("");
+        question21Assets.add("Complete the Cmaj chord");
+
+        List answer21Options = new ArrayList<>();
+        answer21Options.add("C");
+        answer21Options.add("D");
+        answer21Options.add("G");
+        answer21Options.add("E");
+
+
+        List answer21Assets = new ArrayList();
+
+        answer21Assets.add("E");
+
+
+        Question question21 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question21Assets, answer21Options, answer21Assets);
+        questionRepository.save(question21);
+
+//        Saving Question 22
+
+        List question22Assets = new ArrayList();
+        question22Assets.add("");
+        question22Assets.add("Complete the Gmaj chord");
+
+        List answer22Options = new ArrayList<>();
+        answer22Options.add("G");
+        answer22Options.add("B");
+        answer22Options.add("C");
+        answer22Options.add("D");
+
+
+        List answer22Assets = new ArrayList();
+
+        answer22Assets.add("B");
+
+
+        Question question22 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question22Assets, answer22Options, answer22Assets);
+        questionRepository.save(question22);
+
+//          Saving Question 23
+
+        List question23Assets = new ArrayList();
+        question23Assets.add("");
+        question23Assets.add("Arrange the Cmaj chord in order");
+
+        List answer23Options = new ArrayList<>();
+        answer23Options.add("G");
+        answer23Options.add("C");
+        answer23Options.add("E");
+        answer23Options.add("D");
+
+
+        List answer23Assets = new ArrayList();
+
+        answer23Assets.add("C");
+        answer23Assets.add("E");
+        answer23Assets.add("G");
+
+
+        Question question23 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question23Assets, answer23Options, answer23Assets);
+        questionRepository.save(question23);
+
+
+//        Saving Question 24
+
+        List question24Assets = new ArrayList();
+        question24Assets.add("");
+        question24Assets.add("Arrange the Gmaj chord in order");
+
+        List answer24Options = new ArrayList<>();
+        answer24Options.add("G");
+        answer24Options.add("D");
+        answer24Options.add("B");
+        answer24Options.add("C");
+
+
+        List answer24Assets = new ArrayList();
+
+        answer24Assets.add("G");
+        answer24Assets.add("B");
+        answer24Assets.add("D");
+
+
+        Question question24 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question24Assets, answer24Options, answer24Assets);
+        questionRepository.save(question24);
+
+
+//        Saving Question 25
+
+        List question25Assets = new ArrayList();
+        question25Assets.add("");
+        question25Assets.add("Identify the chord");
+
+        List answer25Options = new ArrayList<>();
+        answer25Options.add("Bbmaj");
+        answer25Options.add("Ebmaj");
+        answer25Options.add("Dmaj");
+        answer25Options.add("Gmaj");
+
+
+        List answer25Assets = new ArrayList();
+
+        answer25Assets.add("Dmaj");
+
+
+
+        Question question25 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question25Assets, answer25Options, answer25Assets);
+        questionRepository.save(question25);
+
+
+//        Saving Question 26
+        List question26Assets = new ArrayList();
+        question26Assets.add("");
+        question26Assets.add("Identify the chord");
+
+        List answer26Options = new ArrayList<>();
+        answer26Options.add("Cmaj");
+        answer26Options.add("Gmaj");
+        answer26Options.add("Fmaj");
+        answer26Options.add("Dmaj");
+
+
+        List answer26Assets = new ArrayList();
+
+        answer26Assets.add("Fmaj");
+
+
+
+        Question question26 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question26Assets, answer26Options, answer26Assets);
+        questionRepository.save(question26);
+
+
+//        Saving Question 27
+
+        List question27Assets = new ArrayList();
+        question27Assets.add("");
+        question27Assets.add("Complete the Ebmaj chord");
+
+        List answer27Options = new ArrayList<>();
+        answer27Options.add("Eb");
+        answer27Options.add("G");
+        answer27Options.add("Bb");
+        answer27Options.add("F");
+
+
+        List answer27Assets = new ArrayList();
+
+        answer27Assets.add("G");
+
+
+        Question question27 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question27Assets, answer27Options, answer27Assets);
+        questionRepository.save(question27);
+
+//        Saving Question 28
+
+        List question28Assets = new ArrayList();
+        question28Assets.add("");
+        question28Assets.add("Complete the Abmaj chord");
+
+        List answer28Options = new ArrayList<>();
+        answer28Options.add("Ab");
+        answer28Options.add("C");
+        answer28Options.add("Eb");
+        answer28Options.add("Bb");
+
+
+        List answer28Assets = new ArrayList();
+
+        answer28Assets.add("C");
+
+
+        Question question28 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question28Assets, answer28Options, answer28Assets);
+        questionRepository.save(question28);
+
+//          Saving Question 29
+
+        List question29Assets = new ArrayList();
+        question29Assets.add("");
+        question29Assets.add("Arrange the Dmaj chord in order");
+
+        List answer29Options = new ArrayList<>();
+        answer29Options.add("D");
+        answer29Options.add("F#");
+        answer29Options.add("A");
+        answer29Options.add("E");
+
+
+        List answer29Assets = new ArrayList();
+
+        answer29Assets.add("D");
+        answer29Assets.add("F#");
+        answer29Assets.add("A");
+
+
+        Question question29 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question29Assets, answer29Options, answer29Assets);
+        questionRepository.save(question29);
+
+
+//        Saving Question 30
+
+        List question30Assets = new ArrayList();
+        question30Assets.add("");
+        question30Assets.add("Arrange the Amaj chord in order");
+
+        List answer30Options = new ArrayList<>();
+        answer30Options.add("A");
+        answer30Options.add("C#");
+        answer30Options.add("E");
+        answer30Options.add("B");
+
+
+        List answer30Assets = new ArrayList();
+
+        answer30Assets.add("A");
+        answer30Assets.add("C#");
+        answer30Assets.add("E");
+
+
+        Question question30 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question30Assets, answer30Options, answer30Assets);
+        questionRepository.save(question30);
+
+        //        Saving Question 31
+
+        List question31Assets = new ArrayList();
+        question31Assets.add("");
+        question31Assets.add("Identify the chord");
+
+        List answer31Options = new ArrayList<>();
+        answer31Options.add("Bbmaj");
+        answer31Options.add("Ebmaj");
+        answer31Options.add("Dmaj");
+        answer31Options.add("Gmaj");
+
+
+        List answer31Assets = new ArrayList();
+
+        answer31Assets.add("Ebmaj");
+
+
+
+        Question question31 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question31Assets, answer31Options, answer31Assets);
+        questionRepository.save(question31);
+
+
+//        Saving Question 32
+        List question32Assets = new ArrayList();
+        question32Assets.add("");
+        question32Assets.add("Identify the chord");
+
+        List answer32Options = new ArrayList<>();
+        answer32Options.add("Gbmaj");
+        answer32Options.add("Bmaj");
+        answer32Options.add("Bbmaj");
+        answer32Options.add("Emaj");
+
+
+        List answer32Assets = new ArrayList();
+
+        answer32Assets.add("Gbmaj");
+
+
+
+        Question question32 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question32Assets, answer32Options, answer32Assets);
+        questionRepository.save(question32);
+
+
+//        Saving Question 33
+
+        List question33Assets = new ArrayList();
+        question33Assets.add("");
+        question33Assets.add("Complete the Abmin chord");
+
+        List answer33Options = new ArrayList<>();
+        answer33Options.add("Ab");
+        answer33Options.add("B");
+        answer33Options.add("Eb");
+        answer33Options.add("Db");
+
+
+        List answer33Assets = new ArrayList();
+
+        answer33Assets.add("B");
+
+
+        Question question33 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question33Assets, answer33Options, answer33Assets);
+        questionRepository.save(question33);
+
+//        Saving Question 34
+
+        List question34Assets = new ArrayList();
+        question34Assets.add("");
+        question34Assets.add("Complete the Abmaj chord");
+
+        List answer34Options = new ArrayList<>();
+        answer34Options.add("Ab");
+        answer34Options.add("C");
+        answer34Options.add("Eb");
+        answer34Options.add("Bb");
+
+
+        List answer34Assets = new ArrayList();
+
+        answer34Assets.add("C");
+
+
+        Question question34 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question34Assets, answer34Options, answer34Assets);
+        questionRepository.save(question34);
+
+//          Saving Question 35
+
+        List question35Assets = new ArrayList();
+        question35Assets.add("");
+        question35Assets.add("Arrange the Gbmin chord in order");
+
+        List answer35Options = new ArrayList<>();
+        answer35Options.add("Gb");
+        answer35Options.add("A");
+        answer35Options.add("Db");
+        answer35Options.add("Ab");
+
+
+        List answer35Assets = new ArrayList();
+
+        answer35Assets.add("Gb");
+        answer35Assets.add("A");
+        answer35Assets.add("Db");
+
+
+        Question question35 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question35Assets, answer35Options, answer35Assets);
+        questionRepository.save(question35);
+
+
+//        Saving Question 36
+
+        List question36Assets = new ArrayList();
+        question36Assets.add("");
+        question36Assets.add("Arrange the Dbmin chord in order");
+
+        List answer36Options = new ArrayList<>();
+        answer36Options.add("Db");
+        answer36Options.add("E");
+        answer36Options.add("Ab");
+        answer36Options.add("Gb");
+
+
+        List answer36Assets = new ArrayList();
+
+        answer36Assets.add("Db");
+        answer36Assets.add("E");
+        answer36Assets.add("Ab");
+
+
+        Question question36 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question36Assets, answer36Options, answer36Assets);
+        questionRepository.save(question36);
 
     }
 }
