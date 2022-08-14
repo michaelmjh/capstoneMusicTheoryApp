@@ -40,10 +40,17 @@ Lesson scales3 = Lesson(name: "Scales 3", slides: [], level: Level.advanced);
 
 Lesson chords3 = Lesson(name: "Chords 3", slides: [], level: Level.advanced);
 
-Lesson dummyBeg = Lesson(name: "DummyBeginner", slides: [], level: Level.beginner);
-Lesson dummyInt = Lesson(name: "DummyIntermediate", slides: [], level: Level.intermediate);
-Lesson dummyAdv = Lesson(name: "DummyAdvanced", slides: [], level: Level.advanced);
+Lesson dummyBeg =
+    Lesson(name: "DummyBeginner", slides: [], level: Level.beginner);
+Lesson dummyInt =
+    Lesson(name: "DummyIntermediate", slides: [], level: Level.intermediate);
+Lesson dummyAdv =
+    Lesson(name: "DummyAdvanced", slides: [], level: Level.advanced);
 
+Lesson begBoss = Lesson(name: "BeginnerBoss", slides: [], level: Level.beginner);
+Lesson intBoss =
+    Lesson(name: "IntermediateBoss", slides: [], level: Level.intermediate);
+Lesson advBoss = Lesson(name: "AdvancedBoss", slides: [], level: Level.advanced);
 
 class LessonData {
   static LessonData get shared => LessonData();

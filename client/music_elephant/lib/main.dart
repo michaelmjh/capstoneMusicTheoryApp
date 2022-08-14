@@ -4,7 +4,7 @@ import 'package:music_elephant/QuestionAssets/question_model.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
-import 'package:music_elephant/timeline.dart';
+import 'package:music_elephant/Timeline/timeline_container.dart';
 
 import 'LessonAssets/lesson_assets.dart';
 import 'QuestionAssets/Enums/level.dart';
@@ -42,9 +42,10 @@ class _MyAppState extends State<MyApp> {
 
   var selectedProfile = "";
 
-  // DUMMY DATA - ALL LESSONS
+  // DUMMY DATA - LIST OF ALL LESSONS
   // Imagining this info will be stored in the app's main state
   var lessons = [scales1, scales2, scales3, chords1, chords2, chords3];
+  // Selected lesson required when navigating to the lesson page from the timeline
   var selectedLesson;
 
   // DUMMY DATA - USER PROGRESS
@@ -52,27 +53,38 @@ class _MyAppState extends State<MyApp> {
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
     scales1: Difficulty.completed,
-    chords1: Difficulty.medium,
-    scales2: Difficulty.easy,
+    chords1: Difficulty.completed,
+    scales2: Difficulty.hard,
+    chords2: Difficulty.revision,
+    begBoss: Difficulty.completed,
   };
 
+  // Function for updating the userProgress property - this is currently not used
+  // but could it be used when the user passes a quiz?
   void setCurrentProgress(lesson, difficulty) {
     setState(() {
       userProgress[lesson] = difficulty;
     });
   }
 
+  // Function is run inside timeline_widget when user presses on timeline indicator
   void setSelectedLesson(lesson) {
     setState(() {
       selectedLesson = lesson;
     });
   }
 
+  // These lists are used to build the timeline - the full question list is split
+  // out by difficulty, items are added at beginning and end of each list,
+  // then all lists are put back together again - the timeline then build
+  // itself builting the new full list
   var begList = [];
   var intList = [];
   var advList = [];
   var newList = [];
 
+  // This function splits the lessons into the above lists - it is run inside home_page.dart
+  // - it runs when the user presses one the button to navigate to the timeline
   void getLevels() {
     for (var item in lessons) {
       if (item.level == Level.beginner) {
@@ -85,18 +97,99 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  void setNewList() {
-    begList.insert(0, dummyBeg);
-    intList.insert(0, dummyInt);
-    advList.insert(0, dummyAdv);
-    for (var item in begList) {
+  // this function constructs the new full lesson list by adding a header to
+  // the start of each lesson level list, then a boss at the end of each lesson
+  // level list
+  // this runs inside home_page.dart after getLevels when the user presses on
+  // the button to navigate to the timeline
+  void setTimelineLessonList() {
+    var list1 = [...begList];
+    var list2 = [...intList];
+    var list3 = [...advList];
+    list1.insert(0, dummyBeg);
+    list1.add(begBoss);
+    list2.insert(0, dummyInt);
+    list2.add(intBoss);
+    list3.insert(0, dummyAdv);
+    list3.add(advBoss);
+    for (var item in list1) {
       newList.add(item);
     }
-    for (var item in intList) {
+    for (var item in list2) {
       newList.add(item);
     }
-    for (var item in advList) {
+    for (var item in list3) {
       newList.add(item);
+    }
+  }
+
+  // this list is used by the timeline to check whether a section has been
+  // compeleted, and therefore whether the next section can be unlocked or
+  // a boss quiz has been unlocked
+  var completedLessons = [];
+
+  // this function fills the completedLessons list and is coded to ignore
+  // boss lessons, because they shouldn't be included in the checks mentioned above
+  void getCompletedLessons(level) {
+    userProgress.keys.forEach((key) {
+      if (key.level == level) {
+        if (key.name == "BeginnerBoss" ||
+            key.name == "IntermediateBoss" ||
+            key.name == "AdvancedBoss") {
+          null;
+        } else if (userProgress[key] == Difficulty.completed) {
+          completedLessons.add(key);
+        }
+      }
+    });
+  }
+
+  // this function is used in timeline_widget - it checks if all lessons in
+  // a particular level have been completed
+  // if this is the case the function returns true, if not false
+  // it runs a function which creates a list of all completed lessons, then
+  // compares this to our existing lists of lessons divided into each level
+  // it turns these lists into sets in order to check if the completed lessons
+  // list contains all elements in the level list
+  bool checkIfBossUnlocked(level) {
+    var list = [];
+    getCompletedLessons(level);
+    switch (level) {
+      case Level.beginner:
+        list = begList;
+        break;
+      case Level.intermediate:
+        list = intList;
+        break;
+      case Level.advanced:
+        list = advList;
+        break;
+    }
+    if (completedLessons.toSet().containsAll(list)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // function runs in timeline_widget to check if a boss level has been completed
+  // this runs when a lesson has not yet been attempted but should be made
+  // available to the user - so the function checks if the previous boss has been
+  // beaten, in which case the lesson should be available
+  bool checkIfBossCompleted(level) {
+    var boss;
+    switch (level) {
+      case Level.intermediate:
+        boss = begBoss;
+        break;
+      case Level.advanced:
+        boss = intBoss;
+        break;
+    }
+    if (userProgress.containsKey(boss)) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -131,6 +224,14 @@ class _MyAppState extends State<MyApp> {
     selectedQuestions.shuffle();
   }
 
+  // this function gathers gathers all questions of a particular level and
+  // sends them to the lesson widget so the user can be tested on all questions
+  // from a particular level
+  void bossGenerator(level) {
+    selectedQuestions = QuestionData.shared.getAllQuestions(level);
+    selectedQuestions.shuffle();
+  }
+
   // void shuffle() {
   //   selectedQuestions.shuffle();
   // }
@@ -141,7 +242,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(getLevels, setNewList),
+        '/': (context) => HomePage(getLevels, setTimelineLessonList),
         '/quiz': (context) =>
             Quiz(selectedQuestions, updateProgress, quizGenerator),
         '/lesson': (context) => Lesson(selectedLesson),
@@ -152,8 +253,15 @@ class _MyAppState extends State<MyApp> {
         '/journey': (context) => Journey(selectedProfile, quizGenerator),
         '/users': (context) => UserContainer(users, setSelectedProfile),
         '/profile': (context) => SpecificProfile(selectedProfile),
-        '/timeline': (countext) =>
-            Timeline(newList, setSelectedLesson, userProgress),
+        '/timeline': (countext) => Timeline(
+            newList,
+            setSelectedLesson,
+            userProgress,
+            completedLessons,
+            getCompletedLessons,
+            bossGenerator,
+            checkIfBossUnlocked,
+            checkIfBossCompleted),
       },
     );
   }
