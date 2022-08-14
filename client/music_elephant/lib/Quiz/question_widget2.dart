@@ -30,6 +30,7 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
           List<dynamic> rejected,
         ) {
           return Container(
+            margin: EdgeInsets.only(bottom: 15.0),
             decoration: BoxDecoration(
               color: Colors.green,
               border: Border.all(color: Colors.black, width: 2),

@@ -130,6 +130,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                               return AnswerWidget2(answer);
                             }).toList(),
                           ],
+                          mainAxisAlignment: MainAxisAlignment.center,
                         )
                       : Row(
                           children: [
