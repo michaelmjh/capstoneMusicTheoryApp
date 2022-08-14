@@ -830,23 +830,23 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 34
 
         List question34Assets = new ArrayList();
-        question28Assets.add("");
-        question28Assets.add("Complete the Abmaj chord");
+        question34Assets.add("");
+        question34Assets.add("Complete the Abmaj chord");
 
-        List answer28Options = new ArrayList<>();
-        answer28Options.add("Ab");
-        answer28Options.add("C");
-        answer28Options.add("Eb");
-        answer28Options.add("Bb");
-
-
-        List answer28Assets = new ArrayList();
-
-        answer28Assets.add("C");
+        List answer34Options = new ArrayList<>();
+        answer34Options.add("Ab");
+        answer34Options.add("C");
+        answer34Options.add("Eb");
+        answer34Options.add("Bb");
 
 
-        Question question28 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question28Assets, answer28Options, answer28Assets);
-        questionRepository.save(question28);
+        List answer34Assets = new ArrayList();
+
+        answer34Assets.add("C");
+
+
+        Question question34 = new Question(QuestionType.COMPLETE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question34Assets, answer34Options, answer34Assets);
+        questionRepository.save(question34);
 
 ////          Saving Question 29
 //
