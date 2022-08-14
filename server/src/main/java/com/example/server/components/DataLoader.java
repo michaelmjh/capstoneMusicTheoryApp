@@ -650,28 +650,28 @@ public class DataLoader implements ApplicationRunner {
         questionRepository.save(question25);
 
 
-////        Saving Question 20
-//        List question20Assets = new ArrayList();
-//        question20Assets.add("");
-//        question20Assets.add("Identify the chord");
-//
-//        List answer20Options = new ArrayList<>();
-//        answer20Options.add("Cmaj");
-//        answer20Options.add("Gmaj");
-//        answer20Options.add("Fmaj");
-//        answer20Options.add("Dmaj");
-//
-//
-//        List answer20Assets = new ArrayList();
-//
-//        answer20Assets.add("Gmaj");
-//
-//
-//
-//        Question question20 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.EASY, question20Assets, answer20Options, answer20Assets);
-//        questionRepository.save(question20);
-//
-//
+//        Saving Question 26
+        List question26Assets = new ArrayList();
+        question26Assets.add("");
+        question26Assets.add("Identify the chord");
+
+        List answer26Options = new ArrayList<>();
+        answer26Options.add("Cmaj");
+        answer26Options.add("Gmaj");
+        answer26Options.add("Fmaj");
+        answer26Options.add("Dmaj");
+
+
+        List answer26Assets = new ArrayList();
+
+        answer26Assets.add("Fmaj");
+
+
+
+        Question question26 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), chords1.getLessonName(), Difficulty.MEDIUM, question26Assets, answer26Options, answer26Assets);
+        questionRepository.save(question26);
+
+
 ////        Saving Question 21
 //
 //        List question21Assets = new ArrayList();
