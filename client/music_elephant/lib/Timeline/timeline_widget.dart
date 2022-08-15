@@ -157,8 +157,10 @@ class TimelineWidget extends StatelessWidget {
           },
           // INDICATOR BUILDER
           indicatorBuilder: (_, index) {
-            // print(newList[index]);
-            // print(userProgress.containsKey(begBoss));
+            print(newList[index]);
+            print(userProgress);
+
+            // userProgress.keys.forEach
 
             // Aaaall of this logic checks which indicator should be displayed
             // in each tile depending on the user's progress and whether the
@@ -181,7 +183,7 @@ class TimelineWidget extends StatelessWidget {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
-              // if the tile is marked as completed in userProgress > display the pink tick indicator
+              // if the tile is marked as revision in userProgress > display the pink tick indicator
             } else if (userProgress[newList[index]] == 'REVISION') {
               return CompletedIndicator(newList[index], setSelectedLesson,
                   quizGenerator, bossGenerator, addLessonToUserProgress);
