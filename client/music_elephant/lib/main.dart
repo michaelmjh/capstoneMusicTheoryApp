@@ -220,10 +220,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   void quizGenerator() {
-    // selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
-    // selectedQuestions.shuffle();
-    // CHANGE THIS BACK!!!
-    selectedQuestions = QuestionData.shared.easyQuestions;
+    selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
+    selectedQuestions.shuffle();
   }
 
   // this function gathers gathers all questions of a particular level and
