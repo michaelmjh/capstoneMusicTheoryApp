@@ -7,7 +7,6 @@ class Timeline extends StatefulWidget {
   final setSelectedLesson;
   final userProgress;
   final completedLessons;
-  final getCompletedLessons;
   final bossGenerator;
   final checkIfBossUnlocked;
   final checkIfBossCompleted;
@@ -19,7 +18,6 @@ class Timeline extends StatefulWidget {
       this.setSelectedLesson,
       this.userProgress,
       this.completedLessons,
-      this.getCompletedLessons,
       this.bossGenerator,
       this.checkIfBossUnlocked,
       this.checkIfBossCompleted,
@@ -70,7 +68,6 @@ class _TimelineState extends State<Timeline> {
                     widget.setSelectedLesson,
                     widget.userProgress,
                     widget.completedLessons,
-                    widget.getCompletedLessons,
                     widget.bossGenerator,
                     widget.checkIfBossUnlocked,
                     widget.checkIfBossCompleted,

@@ -11,7 +11,6 @@ class TimelineWidget extends StatelessWidget {
   final setSelectedLesson;
   final userProgress;
   final completedLessons;
-  final getCompletedLessons;
   final bossGenerator;
   final checkIfBossUnlocked;
   final checkIfBossCompleted;
@@ -23,7 +22,6 @@ class TimelineWidget extends StatelessWidget {
     this.setSelectedLesson,
     this.userProgress,
     this.completedLessons,
-    this.getCompletedLessons,
     this.bossGenerator,
     this.checkIfBossUnlocked,
     this.checkIfBossCompleted,

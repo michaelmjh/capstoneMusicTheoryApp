@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
     [
       "images/profiles/michael.png",
       "Michael",
-      {"SCALES1": "HARD", "CHORDS1": "HARD"}
+      {"SCALES1": "REVISION", "CHORDS1": "REVISION"}
     ],
     ["images/profiles/nick.png", "Nick"],
     ["images/profiles/shuna.png", "Shuna"],
@@ -159,15 +159,15 @@ class _MyAppState extends State<MyApp> {
 
   // this function fills the completedLessons list and is coded to ignore
   // boss lessons, because they shouldn't be included in the checks mentioned above
-  void getCompletedLessons(levelName) {
+  void getCompletedLessons(level) {
     userProgress.keys.forEach((key) {
-      if (key == levelName) {
+      if (userProgress[key] == level) {
         if (key == "BeginnerBoss" ||
             key == "IntermediateBoss" ||
             key == "AdvancedBoss") {
           null;
         } else if (userProgress[key] == 'REVISION') {
-          completedLessons.add(key);
+          completedLessons.add(level);
         }
       }
     });
@@ -354,7 +354,6 @@ class _MyAppState extends State<MyApp> {
               setSelectedLesson,
               userProgress,
               completedLessons,
-              getCompletedLessons,
               bossGenerator,
               checkIfBossUnlocked,
               checkIfBossCompleted,
