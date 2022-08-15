@@ -156,6 +156,9 @@ class TimelineWidget extends StatelessWidget {
           },
           // INDICATOR BUILDER
           indicatorBuilder: (_, index) {
+            print(newList[index]);
+            // print(userProgress.containsKey(newList[index]));
+
             // Aaaall of this logic checks which indicator should be displayed
             // in each tile depending on the user's progress and whether the
             // level that tile belongs to has been unlocked yet
@@ -166,14 +169,14 @@ class TimelineWidget extends StatelessWidget {
               // if the tile is the Int header & this section is unlocked > show Int header indicator
               // otherwise it will show a padlock
             } else if (newList[index]['lessonName'] == "DummyIntermediate" &&
-                userProgress.containsKey('BeginnerBoss')) {
+                userProgress.containsKey(newList[index])) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
               // if the tile is the adv header & section is unlocked > show Adv header indicator
               // otherwise it will show a padlock
             } else if (newList[index]['lessonName'] == "DummyAdvanced" &&
-                userProgress.containsKey('IntermediateBoss')) {
+                userProgress.containsKey(newList[index])) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );

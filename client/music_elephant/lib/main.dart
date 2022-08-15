@@ -41,7 +41,26 @@ class _MyAppState extends State<MyApp> {
     [
       "images/profiles/michael.png",
       "Michael",
-      {"SCALES1": "REVISION", "CHORDS1": "REVISION"}
+      {
+        {
+          "id": 1,
+          "lessonName": "SCALES1",
+          "slides": [],
+          "level": {"id": 1, "levelName": "BEGINNER"}
+        }: "REVISION",
+        {
+          "id": 2,
+          "lessonName": "CHORDS1",
+          "slides": [],
+          "level": {"id": 1, "levelName": "BEGINNER"}
+        }: "REVISION",
+        {
+          "id": 3,
+          "lessonName": "BeginnerBoss",
+          "slides": [],
+          "level": {"id": 1, "levelName": "BEGINNER"}
+        }: "REVISION",
+      }
     ],
     ["images/profiles/nick.png", "Nick"],
     ["images/profiles/shuna.png", "Shuna"],
@@ -63,14 +82,6 @@ class _MyAppState extends State<MyApp> {
   void setUserProgress() {
     userProgress = users[1][2];
   }
-
-  // {
-  // "SCALES1": "MEDIUM",
-  // chords1: "HARD",
-  // begBoss: "REVISION",
-  // scales2: "EASY",
-  // chords2: "EASY",
-  // };
 
   // Function is run inside timeline_widget when user presses on timeline indicator
   void setSelectedLesson(lesson) {
@@ -107,7 +118,7 @@ class _MyAppState extends State<MyApp> {
   // level list
   // this runs inside home_page.dart after getLevels when the user presses on
   // the button to navigate to the timeline
-  void setTimelineLessonList() async {
+  void setTimelineLessonList() {
     var list1 = [...begList];
     var list2 = [...intList];
     var list3 = [...advList];
@@ -117,9 +128,10 @@ class _MyAppState extends State<MyApp> {
       "level": {"levelName": "BEGINNER"}
     });
     list1.add({
+      "id": 3,
       "lessonName": "BeginnerBoss",
       "slides": [],
-      "level": {"levelName": "BEGINNER"}
+      "level": {"id": 1, "levelName": "BEGINNER"}
     });
     list2.insert(0, {
       "lessonName": "DummyIntermediate",
@@ -127,9 +139,10 @@ class _MyAppState extends State<MyApp> {
       "level": {"levelName": "INTERMEDIATE"}
     });
     list2.add({
+      "id": 3,
       "lessonName": "IntermediateBoss",
       "slides": [],
-      "level": {"levelName": "INTERMEDIATE"}
+      "level": {"id": 1, "levelName": "INTERMEDIATE"}
     });
     list3.insert(0, {
       "lessonName": "DummyAdvanced",
@@ -137,9 +150,10 @@ class _MyAppState extends State<MyApp> {
       "level": {"levelName": "ADVANCED"}
     });
     list3.add({
+      "id": 3,
       "lessonName": "AdvancedBoss",
       "slides": [],
-      "level": {"levelName": "ADVANCED"}
+      "level": {"id": 1, "levelName": "ADVANCED"}
     });
     for (var item in list1) {
       newList.add(item);
@@ -161,13 +175,13 @@ class _MyAppState extends State<MyApp> {
   // boss lessons, because they shouldn't be included in the checks mentioned above
   void getCompletedLessons(level) {
     userProgress.keys.forEach((key) {
-      if (userProgress[key] == level) {
-        if (key == "BeginnerBoss" ||
-            key == "IntermediateBoss" ||
-            key == "AdvancedBoss") {
+      if (key['level']['levelName'] == level) {
+        if (key['lessonName'] == "BeginnerBoss" ||
+            key['lessonName'] == "IntermediateBoss" ||
+            key['lessonName'] == "AdvancedBoss") {
           null;
         } else if (userProgress[key] == 'REVISION') {
-          completedLessons.add(level);
+          completedLessons.add(key);
         }
       }
     });
