@@ -68,7 +68,7 @@ class BossIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
-      color: Colors.red,
+      color: Color(0xff75c8ae),
       child: IconButton(
         icon: Icon(Icons.bolt, size: 20.0),
         color: Colors.black,

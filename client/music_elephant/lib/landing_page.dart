@@ -34,6 +34,15 @@ class _LandingPageState extends State<LandingPage> {
         ),
         foregroundColor: Color(0xffffecb4),
         backgroundColor: Color(0xffe5771e),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Color(0xffffecb4),
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/timeline');
+          },
+        ),
       ),
       body: Container(
         color: Color(0xffffecb4),
@@ -42,6 +51,10 @@ class _LandingPageState extends State<LandingPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                "images/logo/Baton.png",
+                height: 500,
+              ),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: widget.selectedLesson.name != "BeginnerBoss" &&
@@ -110,14 +123,39 @@ class _LandingPageState extends State<LandingPage> {
                         ],
                       )
                     : Container(
-                        child: Column(
-                          children: [
-                            Text("Welcome to the boss level!"),
-                            Text(
-                                "This level contains only one quiz which will test your knowledge on EVERYTHING you have learned so far!!"),
-                            Text(
-                                "Beat the test and you will unlock the next level of lessons.")
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 70,
+                            right: 70,
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Welcome to the end of this section!",
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff5a3d2b),
+                                ),
+                              ),
+                              Text(
+                                "This quiz will test your knowledge of EVERYTHING you have learned so far!!",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  color: Color(0xff5a3d2b),
+                                ),
+                              ),
+                              Text(
+                                "Beat the test to unlock the next section.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  color: Color(0xff5a3d2b),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
               ),
@@ -168,7 +206,7 @@ class _LandingPageState extends State<LandingPage> {
                           widget.selectedLesson.name == "IntermediateBoss" ||
                           widget.selectedLesson.name == "AdvancedBoss") {
                         return Text(
-                          "Boss Quiz",
+                          "Section Quiz",
                           style: TextStyle(
                             fontSize: 32,
                             color: Color(0xffffecb4),
