@@ -17,10 +17,16 @@ class ContentsBeginner extends StatelessWidget {
     }
 
     if (listItem.name == "DummyBeginner") {
-      return Container(
-          height: 40.0,
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
           margin: EdgeInsets.only(left: 10.0),
-          child: Text("Beginner Lessons", style: TextStyle(fontSize: 25.0)));
+          child: Image.asset(
+            "images/logo/listBeg.png",
+            height: 125,
+          ),
+        ),
+      );
     } else {
       // The code for ContentsCard starts on line 115 of this file!
       return ContentsCard(listItem, currentDiff);
@@ -42,11 +48,16 @@ class ContentsIntermediate extends StatelessWidget {
     }
 
     if (listItem.name == "DummyIntermediate") {
-      return Container(
-          height: 40.0,
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
           margin: EdgeInsets.only(left: 10.0),
-          child:
-              Text("Intermediate Lessons", style: TextStyle(fontSize: 25.0)));
+          child: Image.asset(
+            "images/logo/listInt.png",
+            height: 125,
+          ),
+        ),
+      );
     } else {
       // The code for ContentsCard starts on line 115 of this file!
       return ContentsCard(listItem, currentDiff);
@@ -68,10 +79,16 @@ class ContentsAdvanced extends StatelessWidget {
     }
 
     if (listItem.name == "DummyAdvanced") {
-      return Container(
-          height: 40.0,
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
           margin: EdgeInsets.only(left: 10.0),
-          child: Text("Advanced Lessons", style: TextStyle(fontSize: 25.0)));
+          child: Image.asset(
+            "images/logo/listAdv.png",
+            height: 125,
+          ),
+        ),
+      );
     } else {
       // The code for ContentsCard starts on line 115 of this file!
       return ContentsCard(listItem, currentDiff);
@@ -88,21 +105,36 @@ class ContentsBoss extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.all(40.0),
-      color: Color.fromARGB(255, 206, 199, 199),
+      color: Color(0xff75c8ae),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
           side: BorderSide(
-            color: Color.fromARGB(255, 111, 109, 109),
+            color: Color(0xff75c8ae),
           )),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "Boss Level!",
-            style: TextStyle(fontSize: 20.0),
-          ),
-        ],
+      child: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Stack(
+                children: const [
+                  Text(
+                    'Test Your Skills',
+                    style: TextStyle(
+                        fontSize: 50,
+                        letterSpacing: 4,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xffffecb4),
+                        shadows: [
+                          Shadow(
+                            color: Color(0xff5a3d2b),
+                            blurRadius: 30,
+                          ),
+                        ]),
+                  ),
+                ],
+              ),
+            ]),
       ),
     );
   }
@@ -117,11 +149,11 @@ class ContentsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.all(40.0),
-      color: Color.fromARGB(255, 206, 199, 199),
+      color: Color(0xffe5771e),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
           side: BorderSide(
-            color: Color.fromARGB(255, 111, 109, 109),
+            color: Color(0xffe5771e),
           )),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -129,7 +161,10 @@ class ContentsCard extends StatelessWidget {
         children: [
           Text(
             listItem.name.toString(),
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(
+                fontSize: 32.0,
+                color: Color(0xffffecb4),
+                fontWeight: FontWeight.bold),
           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -137,31 +172,47 @@ class ContentsCard extends StatelessWidget {
               children: [
                 Builder(builder: (__) {
                   if (currentDiff == null || currentDiff == Difficulty.easy) {
-                    return Icon(Icons.star_border_outlined);
+                    return Icon(
+                      Icons.star_border_outlined,
+                      color: Color(0xffffecb4),
+                    );
                   } else if (currentDiff == Difficulty.completed) {
                     return Container();
                   } else {
-                    return Icon(Icons.star, color: Colors.yellow);
+                    return Icon(
+                      Icons.star,
+                      color: Color(0xffffecb4),
+                    );
                   }
                 }),
                 Builder(builder: (__) {
                   if (currentDiff == Difficulty.hard ||
                       currentDiff == Difficulty.revision) {
-                    return Icon(Icons.star, color: Colors.yellow);
+                    return Icon(
+                      Icons.star,
+                      color: Color(0xffffecb4),
+                    );
                   } else if (currentDiff == Difficulty.completed) {
                     return Text('Lesson complete!');
                   } else {
-                    return Icon(Icons.star_border_outlined);
+                    return Icon(
+                      Icons.star_border_outlined,
+                      color: Color(0xffffecb4),
+                    );
                   }
                 }),
                 Builder(builder: (__) {
                   if (currentDiff == Difficulty.revision) {
-                    return Icon(Icons.star, color: Colors.yellow);
+                    return Icon(
+                      Icons.star,
+                      color: Color(0xffffecb4),
+                    );
                   } else if (currentDiff == Difficulty.completed) {
                     return Container();
                   } else {
                     return Icon(
                       Icons.star_border_outlined,
+                      color: Color(0xffffecb4),
                     );
                   }
                 })
