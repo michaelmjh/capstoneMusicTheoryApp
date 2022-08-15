@@ -5,8 +5,9 @@ import 'users.dart';
 class UserContainer extends StatefulWidget {
   var users;
   final setSelectedProfile;
+  final _fetchData;
 
-  UserContainer(this.users, this.setSelectedProfile);
+  UserContainer(this.users, this.setSelectedProfile, this._fetchData);
 
   @override
   State<UserContainer> createState() => _UserContainerState();
@@ -20,7 +21,7 @@ class _UserContainerState extends State<UserContainer> {
     return Container(
       child: profileSelected == ""
           ? Users(widget.users, widget.setSelectedProfile)
-          : SpecificProfile(profileSelected),
+          : SpecificProfile(profileSelected, widget._fetchData),
     );
   }
 }

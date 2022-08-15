@@ -6,9 +6,10 @@ class CompletedIndicator extends StatelessWidget {
   final setSelectedLesson;
   final quizGenerator;
   final bossGenerator;
+  final addLessonToUserProgress;
 
   const CompletedIndicator(this.listItem, this.setSelectedLesson,
-      this.quizGenerator, this.bossGenerator);
+      this.quizGenerator, this.bossGenerator, this.addLessonToUserProgress);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -18,10 +19,11 @@ class CompletedIndicator extends StatelessWidget {
         color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
+          addLessonToUserProgress();
 
-          if (listItem.name == "BeginnerBoss" ||
-              listItem.name == "IntermediateBoss" ||
-              listItem.name == "AdvancedBoss") {
+          if (listItem['lessonName'] == "BeginnerBoss" ||
+              listItem['lessonName'] == "IntermediateBoss" ||
+              listItem['lessonName'] == "AdvancedBoss") {
             bossGenerator();
           } else {
             quizGenerator();
@@ -38,9 +40,10 @@ class InProgressIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
   final quizGenerator;
+  final addLessonToUserProgress;
 
-  const InProgressIndicator(
-      this.listItem, this.setSelectedLesson, this.quizGenerator);
+  const InProgressIndicator(this.listItem, this.setSelectedLesson,
+      this.quizGenerator, this.addLessonToUserProgress);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -50,6 +53,7 @@ class InProgressIndicator extends StatelessWidget {
         color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
+          addLessonToUserProgress();
           quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
@@ -62,9 +66,10 @@ class BossIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
   final bossGenerator;
+  final addLessonToUserProgress;
 
-  const BossIndicator(
-      this.listItem, this.setSelectedLesson, this.bossGenerator);
+  const BossIndicator(this.listItem, this.setSelectedLesson, this.bossGenerator,
+      this.addLessonToUserProgress);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -74,6 +79,8 @@ class BossIndicator extends StatelessWidget {
         color: Colors.black,
         onPressed: () {
           setSelectedLesson(listItem);
+          addLessonToUserProgress();
+
           bossGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
@@ -86,9 +93,10 @@ class AvailableIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
   final quizGenerator;
+  final addLessonToUserProgress;
 
-  const AvailableIndicator(
-      this.listItem, this.setSelectedLesson, this.quizGenerator);
+  const AvailableIndicator(this.listItem, this.setSelectedLesson,
+      this.quizGenerator, this.addLessonToUserProgress);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -98,6 +106,8 @@ class AvailableIndicator extends StatelessWidget {
         iconSize: 15,
         onPressed: () {
           setSelectedLesson(listItem);
+          addLessonToUserProgress();
+
           quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },

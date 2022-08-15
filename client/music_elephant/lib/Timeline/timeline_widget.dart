@@ -19,6 +19,7 @@ class TimelineWidget extends StatelessWidget {
   final checkIfBossUnlocked;
   final checkIfBossCompleted;
   final quizGenerator;
+  final addLessonToUserProgress;
 
   const TimelineWidget(
     this.newList,
@@ -30,6 +31,7 @@ class TimelineWidget extends StatelessWidget {
     this.checkIfBossUnlocked,
     this.checkIfBossCompleted,
     this.quizGenerator,
+    this.addLessonToUserProgress,
   );
 
   @override
@@ -40,13 +42,13 @@ class TimelineWidget extends StatelessWidget {
     // the appropriate colour for reflecting the user's progress
     var dummyIndexInt;
     for (var i = 0; i < newList.length; i++) {
-      if (newList[i].name == "DummyIntermediate") {
+      if (newList[i]['lessonName'] == "DummyIntermediate") {
         dummyIndexInt = i + 1;
       }
     }
     var dummyIndexAdv;
     for (var i = 0; i < newList.length; i++) {
-      if (newList[i].name == "DummyAdvanced") {
+      if (newList[i]['lessonName'] == "DummyAdvanced") {
         dummyIndexAdv = i + 1;
       }
     }
@@ -56,19 +58,19 @@ class TimelineWidget extends StatelessWidget {
     // should be shown on the timline, reflecting the user's progress
     var bossIndexBeg;
     for (var i = 0; i < newList.length; i++) {
-      if (newList[i].name == "BeginnerBoss") {
+      if (newList[i]['lessonName'] == "BeginnerBoss") {
         bossIndexBeg = i;
       }
     }
     var bossIndexInt;
     for (var i = 0; i < newList.length; i++) {
-      if (newList[i].name == "IntermediateBoss") {
+      if (newList[i]['lessonName'] == "IntermediateBoss") {
         bossIndexInt = i;
       }
     }
     var bossIndexAdv;
     for (var i = 0; i < newList.length; i++) {
-      if (newList[i].name == "AdvancedBoss") {
+      if (newList[i]['lessonName'] == "AdvancedBoss") {
         bossIndexBeg = i;
       }
     }
@@ -99,15 +101,15 @@ class TimelineWidget extends StatelessWidget {
             // Contents widgets are split by level, therefore when building
             // the timeline we need to check which level each tile belongs to
             // before it builds it
-            if (newList[index].name == "BeginnerBoss" ||
-                newList[index].name == "IntermediateBoss" ||
-                newList[index].name == "AdvancedBoss") {
+            if (newList[index]['lessonName'] == "BeginnerBoss" ||
+                newList[index]['lessonName'] == "IntermediateBoss" ||
+                newList[index]['lessonName'] == "AdvancedBoss") {
               return ContentsBoss(newList[index], userProgress);
-            } else if (newList[index].level == Level.beginner) {
+            } else if (newList[index]['level']['levelName'] == 'BEGINNER') {
               return ContentsBeginner(newList[index], userProgress);
-            } else if (newList[index].level == Level.intermediate) {
+            } else if (newList[index]['level']['levelName'] == 'INTERMEDIATE') {
               return ContentsIntermediate(newList[index], userProgress);
-            } else if (newList[index].level == Level.advanced) {
+            } else if (newList[index]['level']['levelName'] == 'ADVANCED') {
               return ContentsAdvanced(newList[index], userProgress);
               // Boss lessons have a separate Contents widget - need to check by
               // the name of those lessons because we can't otherwise differentiate
@@ -130,9 +132,8 @@ class TimelineWidget extends StatelessWidget {
               );
             } else if (userProgress.containsKey(newList[dummyIndexInt]) ==
                     true &&
-                newList[index].name == "DummyIntermediate") {
-              if (userProgress[newList[dummyIndexInt]] ==
-                  Difficulty.revision) {
+                newList[index]['lessonName'] == "DummyIntermediate") {
+              if (userProgress[newList[dummyIndexInt]] == Difficulty.revision) {
                 return SolidLineConnector(
                   color: Color(0xff75c8ae),
                 );
@@ -143,9 +144,8 @@ class TimelineWidget extends StatelessWidget {
               }
             } else if (userProgress.containsKey(newList[dummyIndexAdv]) ==
                     true &&
-                newList[index].name == "DummyAdvanced") {
-              if (userProgress[newList[dummyIndexInt]] ==
-                  Difficulty.revision) {
+                newList[index]['lessonName'] == "DummyAdvanced") {
+              if (userProgress[newList[dummyIndexInt]] == Difficulty.revision) {
                 return SolidLineConnector(
                   color: Color(0xff75c8ae),
                 );
@@ -165,20 +165,20 @@ class TimelineWidget extends StatelessWidget {
             // Aaaall of this logic checks which indicator should be displayed
             // in each tile depending on the user's progress and whether the
             // level that tile belongs to has been unlocked yet
-            if (newList[index].name == "DummyBeginner") {
+            if (newList[index]['lessonName'] == "DummyBeginner") {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
               // if the tile is the Int header & this section is unlocked > show Int header indicator
               // otherwise it will show a padlock
-            } else if (newList[index].name == "DummyIntermediate" &&
+            } else if (newList[index]['lessonName'] == "DummyIntermediate" &&
                 userProgress.containsKey(begBoss)) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
               // if the tile is the adv header & section is unlocked > show Adv header indicator
               // otherwise it will show a padlock
-            } else if (newList[index].name == "DummyAdvanced" &&
+            } else if (newList[index]['lessonName'] == "DummyAdvanced" &&
                 userProgress.containsKey(intBoss)) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
@@ -186,17 +186,18 @@ class TimelineWidget extends StatelessWidget {
               // if the tile is marked as completed in userProgress > display the pink tick indicator
             } else if (userProgress[newList[index]] == Difficulty.revision) {
               return CompletedIndicator(newList[index], setSelectedLesson,
-                  quizGenerator, bossGenerator);
+                  quizGenerator, bossGenerator, addLessonToUserProgress);
               // if tile is a boss ...
-            } else if (newList[index].name == "BeginnerBoss" ||
-                newList[index].name == "IntermediateBoss" ||
-                newList[index].name == "AdvancedBoss") {
+            } else if (newList[index]['lessonName'] == "BeginnerBoss" ||
+                newList[index]['lessonName'] == "IntermediateBoss" ||
+                newList[index]['lessonName'] == "AdvancedBoss") {
               // we run a check function to see if our userProgress shows that
               // all lessons in the appropriate section have been completed
               // if this is true, the boss level unlocks, if not we show a padlock
-              if (checkIfBossUnlocked(newList[index].level) == true) {
-                return BossIndicator(
-                    newList[index], setSelectedLesson, bossGenerator);
+              if (checkIfBossUnlocked(newList[index]['level']['levelName']) ==
+                  true) {
+                return BossIndicator(newList[index], setSelectedLesson,
+                    bossGenerator, addLessonToUserProgress);
               } else {
                 return LockedIndicator();
               }
@@ -204,15 +205,17 @@ class TimelineWidget extends StatelessWidget {
               // the indicator is a pink lightbulb
             } else if (userProgress.containsKey(newList[index]) &&
                 userProgress[newList[index]] != Difficulty.revision) {
-              return InProgressIndicator(
-                  newList[index], setSelectedLesson, quizGenerator);
+              return InProgressIndicator(newList[index], setSelectedLesson,
+                  quizGenerator, addLessonToUserProgress);
               // if the lesson is not contained in userProgress it is locked
             } else if (userProgress.containsKey(newList[index]) == false) {
-              if (checkIfBossCompleted(newList[index].level)) {
-                return AvailableIndicator(
-                    newList[index], setSelectedLesson, quizGenerator);
+              if (checkIfBossCompleted(newList[index]['level']['levelName'])) {
+                return AvailableIndicator(newList[index], setSelectedLesson,
+                    quizGenerator, addLessonToUserProgress);
               } else {
-                return LockedIndicator();
+                // return LockedIndicator();
+                return AvailableIndicator(newList[index], setSelectedLesson,
+                    quizGenerator, addLessonToUserProgress);
               }
             }
           },

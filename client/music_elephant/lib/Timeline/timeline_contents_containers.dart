@@ -16,7 +16,7 @@ class ContentsBeginner extends StatelessWidget {
       currentDiff = userProgress[listItem];
     }
 
-    if (listItem.name == "DummyBeginner") {
+    if (listItem['lessonName'] == "DummyBeginner") {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -47,7 +47,7 @@ class ContentsIntermediate extends StatelessWidget {
       currentDiff = userProgress[listItem];
     }
 
-    if (listItem.name == "DummyIntermediate") {
+    if (listItem['lessonName'] == "DummyIntermediate") {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -78,7 +78,7 @@ class ContentsAdvanced extends StatelessWidget {
       currentDiff = userProgress[listItem];
     }
 
-    if (listItem.name == "DummyAdvanced") {
+    if (listItem['lessonName'] == "DummyAdvanced") {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -160,7 +160,7 @@ class ContentsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            listItem.name.toString(),
+            listItem['lessonName'],
             style: TextStyle(
                 fontSize: 32.0,
                 color: Color(0xffffecb4),

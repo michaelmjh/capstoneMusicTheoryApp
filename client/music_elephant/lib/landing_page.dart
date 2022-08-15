@@ -44,9 +44,10 @@ class _LandingPageState extends State<LandingPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(30.0),
-                child: widget.selectedLesson.name != "BeginnerBoss" &&
-                        widget.selectedLesson.name != "IntermediateBoss" &&
-                        widget.selectedLesson.name != "AdvancedBoss"
+                child: widget.selectedLesson['lessonName'] != "BeginnerBoss" &&
+                        widget.selectedLesson['lessonName'] !=
+                            "IntermediateBoss" &&
+                        widget.selectedLesson['lessonName'] != "AdvancedBoss"
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -122,9 +123,10 @@ class _LandingPageState extends State<LandingPage> {
                       ),
               ),
               Visibility(
-                visible: widget.selectedLesson.name != "BeginnerBoss" &&
-                    widget.selectedLesson.name != "IntermediateBoss" &&
-                    widget.selectedLesson.name != "AdvancedBoss",
+                visible: widget.selectedLesson['lessonName'] !=
+                        "BeginnerBoss" &&
+                    widget.selectedLesson['lessonName'] != "IntermediateBoss" &&
+                    widget.selectedLesson['lessonName'] != "AdvancedBoss",
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: ElevatedButton(
@@ -164,9 +166,12 @@ class _LandingPageState extends State<LandingPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (__) {
-                      if (widget.selectedLesson.name == "BeginnerBoss" ||
-                          widget.selectedLesson.name == "IntermediateBoss" ||
-                          widget.selectedLesson.name == "AdvancedBoss") {
+                      if (widget.selectedLesson['lessonName'] ==
+                              "BeginnerBoss" ||
+                          widget.selectedLesson['lessonName'] ==
+                              "IntermediateBoss" ||
+                          widget.selectedLesson['lessonName'] ==
+                              "AdvancedBoss") {
                         return Text(
                           "Boss Quiz",
                           style: TextStyle(

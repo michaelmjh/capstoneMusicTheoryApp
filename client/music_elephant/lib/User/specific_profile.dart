@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class SpecificProfile extends StatefulWidget {
   var selectedProfile;
+  final _fetchData;
 
-  SpecificProfile(this.selectedProfile);
+  SpecificProfile(this.selectedProfile, this._fetchData);
 
   @override
   State<SpecificProfile> createState() => _SpecificProfileState();
@@ -89,7 +90,8 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/timeline');
+                          widget._fetchData();
+                          Navigator.pushNamed(context, '/');
                         },
                       ),
                     ),

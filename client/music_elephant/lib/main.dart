@@ -16,6 +16,11 @@ import 'lesson.dart';
 import 'landing_page.dart';
 import 'journey.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -34,11 +39,6 @@ class _MyAppState extends State<MyApp> {
   // List<Question> currentQuiz = QuestionData.shared.easyQuestions;
   var selectedQuestions;
 
-  var user1 = {"image": "image/dog-png-30.png", "name": "Ewan"};
-  var user2 = {"image": "image/dog-png-30.png", "name": "Michael"};
-  var user3 = {"image": "image/dog-png-30.png", "name": "Nick"};
-  var user4 = {"image": "image/dog-png-30.png", "name": "shuna"};
-
   var users = [
     ["images/profiles/ewan.png", "Ewan"],
     ["images/profiles/michael.png", "Michael"],
@@ -53,28 +53,42 @@ class _MyAppState extends State<MyApp> {
 
   // DUMMY DATA - LIST OF ALL LESSONS
   // Imagining this info will be stored in the app's main state
-  var lessons = [scales1, scales2, scales3, chords1, chords2, chords3];
+  // var lessons = [scales1, scales2, scales3, chords1, chords2, chords3];
+  var lessons = [];
   // Selected lesson required when navigating to the lesson page from the timeline
   var selectedLesson;
+
+  void _fetchData() async {
+    try {
+      var response = await Dio().get('http://localhost:8080/lessons');
+      setState(() {
+        lessons = response.data;
+      });
+
+      // print(lessons);
+    } catch (e) {
+      print(e);
+    }
+  }
 
   // DUMMY DATA - USER PROGRESS
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
-    scales1: Difficulty.revision,
-    chords1: Difficulty.revision,
-    // begBoss: Difficulty.revision,
-    // scales2: Difficulty.revision,
-    // chords2: Difficulty.medium,
+    "SCALES1": "MEDIUM",
+    // chords1: "HARD",
+    // begBoss: "REVISION",
+    // scales2: "EASY",
+    // chords2: "EASY",
   };
 
   // Function for updating the userProgress property - this is currently not used
   // but could it be used when the user passes a quiz?
-  void setCurrentProgress(lesson, difficulty) {
-    setState(() {
-      userProgress[lesson] = difficulty;
-    });
-  }
+  // void setCurrentProgress(lesson, difficulty) {
+  //   setState(() {
+  //     userProgress[lesson] = difficulty;
+  //   });
+  // }
 
   // Function is run inside timeline_widget when user presses on timeline indicator
   void setSelectedLesson(lesson) {
@@ -95,12 +109,14 @@ class _MyAppState extends State<MyApp> {
   // This function splits the lessons into the above lists - it is run inside home_page.dart
   // - it runs when the user presses one the button to navigate to the timeline
   void getLevels() {
+    // print(lessons);
     for (var item in lessons) {
-      if (item.level == Level.beginner) {
+      if (item['level']['levelName'] == 'BEGINNER') {
+        print(item['lessonName']);
         begList.add(item);
-      } else if (item.level == Level.intermediate) {
+      } else if (item['level']['levelName'] == 'INTERMEDIATE') {
         intList.add(item);
-      } else if (item.level == Level.advanced) {
+      } else if (item['level']['levelName'] == 'ADVANCED') {
         advList.add(item);
       }
     }
@@ -111,16 +127,40 @@ class _MyAppState extends State<MyApp> {
   // level list
   // this runs inside home_page.dart after getLevels when the user presses on
   // the button to navigate to the timeline
-  void setTimelineLessonList() {
+  void setTimelineLessonList() async {
     var list1 = [...begList];
     var list2 = [...intList];
     var list3 = [...advList];
-    list1.insert(0, dummyBeg);
-    list1.add(begBoss);
-    list2.insert(0, dummyInt);
-    list2.add(intBoss);
-    list3.insert(0, dummyAdv);
-    list3.add(advBoss);
+    list1.insert(0, {
+      "lessonName": "DummyBeginner",
+      "slides": [],
+      "level": {"levelName": "BEGINNER"}
+    });
+    list1.add({
+      "lessonName": "BeginnerBoss",
+      "slides": [],
+      "level": {"levelName": "BEGINNER"}
+    });
+    list2.insert(0, {
+      "lessonName": "DummyIntermediate",
+      "slides": [],
+      "level": {"levelName": "INTERMEDIATE"}
+    });
+    list2.add({
+      "lessonName": "IntermediateBoss",
+      "slides": [],
+      "level": {"levelName": "INTERMEDIATE"}
+    });
+    list3.insert(0, {
+      "lessonName": "DummyAdvanced",
+      "slides": [],
+      "level": {"levelName": "ADVANCED"}
+    });
+    list3.add({
+      "lessonName": "AdvancedBoss",
+      "slides": [],
+      "level": {"levelName": "ADVANCED"}
+    });
     for (var item in list1) {
       newList.add(item);
     }
@@ -139,12 +179,12 @@ class _MyAppState extends State<MyApp> {
 
   // this function fills the completedLessons list and is coded to ignore
   // boss lessons, because they shouldn't be included in the checks mentioned above
-  void getCompletedLessons(level) {
+  void getCompletedLessons(levelName) {
     userProgress.keys.forEach((key) {
-      if (key.level == level) {
-        if (key.name == "BeginnerBoss" ||
-            key.name == "IntermediateBoss" ||
-            key.name == "AdvancedBoss") {
+      if (key == levelName) {
+        if (key == "BeginnerBoss" ||
+            key == "IntermediateBoss" ||
+            key == "AdvancedBoss") {
           null;
         } else if (userProgress[key] == Difficulty.revision) {
           completedLessons.add(key);
@@ -210,25 +250,32 @@ class _MyAppState extends State<MyApp> {
   }
 
   void updateProgress() {
-    if (userProgress[selectedLesson] == Difficulty.easy ||
-        userProgress.containsKey(selectedLesson) == false) {
+    if (userProgress[selectedLesson] == 'EASY') {
       setState(() {
         // progress = [true, false, false];
         // currentDifficulty = Difficulty.medium;
-        userProgress[selectedLesson] = Difficulty.medium;
+        userProgress[selectedLesson] = 'MEDIUM';
       });
-    } else if (userProgress[selectedLesson] == Difficulty.medium) {
+    } else if (userProgress[selectedLesson] == 'MEDIUM') {
       setState(() {
         // progress = [true, true, false];
         // currentDifficulty = Difficulty.hard;
-        userProgress[selectedLesson] = Difficulty.hard;
+        userProgress[selectedLesson] = 'HARD';
       });
-    } else if (userProgress[selectedLesson] == Difficulty.hard) {
+    } else if (userProgress[selectedLesson] == 'HARD') {
       setState(() {
         // progress = [true, true, true];
         // currentDifficulty = Difficulty.revision;
-        userProgress[selectedLesson] = Difficulty.revision;
+        userProgress[selectedLesson] = 'REVISION';
       });
+    }
+  }
+
+  void addLessonToUserProgress() {
+    if (userProgress.containsKey(selectedLesson['lessonName']) == false) {
+      userProgress[selectedLesson['lessonName']] = 'EASY';
+    } else {
+      null;
     }
   }
 
@@ -242,10 +289,10 @@ class _MyAppState extends State<MyApp> {
     var newQuestions = [];
 
     allQuestions.forEach((question) {
-      if (selectedLesson.name == question.lesson.name &&
-          question.difficulty == userProgress[selectedLesson]) {
+      if (selectedLesson['lessonName'] == question.lesson.name &&
+          question.difficulty == userProgress[selectedLesson['lessonName']]) {
         newQuestions.add(question);
-        print(newQuestions);
+        // print(newQuestions);
       }
     });
     newQuestions.shuffle();
@@ -274,7 +321,6 @@ class _MyAppState extends State<MyApp> {
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
   void bossGenerator() {
-    print(selectedLesson.name);
     if (selectedLesson.level == Level.beginner) {
       selectedQuestions = QuestionData.shared.allBeginnerQuestions;
     } else if (selectedLesson.level == Level.intermediate) {
@@ -294,9 +340,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/users',
       routes: {
-        '/': (context) => HomePage(getLevels, setTimelineLessonList),
+        '/': (context) =>
+            HomePage(getLevels, setTimelineLessonList, _fetchData),
         '/quiz': (context) => Quiz(
               selectedQuestions,
               updateProgress,
@@ -317,8 +364,9 @@ class _MyAppState extends State<MyApp> {
         '/users': (context) => UserContainer(
               users,
               setSelectedProfile,
+              _fetchData,
             ),
-        '/profile': (context) => SpecificProfile(selectedProfile),
+        '/profile': (context) => SpecificProfile(selectedProfile, _fetchData),
         '/addProfile': (context) => AddProfile(),
         '/timeline': (countext) => Timeline(
             newList,
@@ -329,7 +377,8 @@ class _MyAppState extends State<MyApp> {
             bossGenerator,
             checkIfBossUnlocked,
             checkIfBossCompleted,
-            quizGenerator),
+            quizGenerator,
+            addLessonToUserProgress),
       },
     );
   }
