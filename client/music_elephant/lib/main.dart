@@ -63,10 +63,9 @@ class _MyAppState extends State<MyApp> {
   var userProgress = {
     scales1: Difficulty.revision,
     chords1: Difficulty.revision,
-    scales2: Difficulty.revision,
     begBoss: Difficulty.revision,
+    scales2: Difficulty.revision,
     chords2: Difficulty.revision,
-    intBoss: Difficulty.revision
   };
 
   // Function for updating the userProgress property - this is currently not used
@@ -147,7 +146,7 @@ class _MyAppState extends State<MyApp> {
             key.name == "IntermediateBoss" ||
             key.name == "AdvancedBoss") {
           null;
-        } else if (userProgress[key] == Difficulty.completed) {
+        } else if (userProgress[key] == Difficulty.revision) {
           completedLessons.add(key);
         }
       }
@@ -278,12 +277,7 @@ class _MyAppState extends State<MyApp> {
     } else if (selectedLesson.level == Level.advanced) {
       selectedQuestions = QuestionData.shared.allQuestions;
     }
-
     selectedQuestions.shuffle();
-
-    // for (var question in selectedQuestions) {
-    //   // print(question.level + question.difficulty);
-    // }
   }
 
   // void shuffle() {
