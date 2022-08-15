@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
-import '../LessonAssets/lesson_assets.dart';
-import '../QuestionAssets/Enums/difficulty.dart';
-import '../QuestionAssets/Enums/level.dart';
 import 'timeline_contents_containers.dart';
 import 'timeline_indicators.dart';
 
@@ -121,8 +118,7 @@ class TimelineWidget extends StatelessWidget {
             // All of the below logic checks which colour should apply to
             // each connector, depending on the user's progress and whether
             // the tile being shown is a header or a boss
-            if (index == 0 ||
-                userProgress[newList[index]] == Difficulty.revision) {
+            if (index == 0 || userProgress[newList[index]] == 'REVISION') {
               return SolidLineConnector(
                 color: Color(0xff75c8ae),
               );
@@ -133,7 +129,7 @@ class TimelineWidget extends StatelessWidget {
             } else if (userProgress.containsKey(newList[dummyIndexInt]) ==
                     true &&
                 newList[index]['lessonName'] == "DummyIntermediate") {
-              if (userProgress[newList[dummyIndexInt]] == Difficulty.revision) {
+              if (userProgress[newList[dummyIndexInt]] == 'REVISION') {
                 return SolidLineConnector(
                   color: Color(0xff75c8ae),
                 );
@@ -145,7 +141,7 @@ class TimelineWidget extends StatelessWidget {
             } else if (userProgress.containsKey(newList[dummyIndexAdv]) ==
                     true &&
                 newList[index]['lessonName'] == "DummyAdvanced") {
-              if (userProgress[newList[dummyIndexInt]] == Difficulty.revision) {
+              if (userProgress[newList[dummyIndexInt]] == 'REVISION') {
                 return SolidLineConnector(
                   color: Color(0xff75c8ae),
                 );
@@ -184,7 +180,7 @@ class TimelineWidget extends StatelessWidget {
                 color: Color(0xff75c8ae),
               );
               // if the tile is marked as completed in userProgress > display the pink tick indicator
-            } else if (userProgress[newList[index]] == Difficulty.revision) {
+            } else if (userProgress[newList[index]] == 'REVISION') {
               return CompletedIndicator(newList[index], setSelectedLesson,
                   quizGenerator, bossGenerator, addLessonToUserProgress);
               // if tile is a boss ...
@@ -204,7 +200,7 @@ class TimelineWidget extends StatelessWidget {
               // if the lesson exists in userProgress but it has not been marked as completed
               // the indicator is a pink lightbulb
             } else if (userProgress.containsKey(newList[index]) &&
-                userProgress[newList[index]] != Difficulty.revision) {
+                userProgress[newList[index]] != 'REVISION') {
               return InProgressIndicator(newList[index], setSelectedLesson,
                   quizGenerator, addLessonToUserProgress);
               // if the lesson is not contained in userProgress it is locked

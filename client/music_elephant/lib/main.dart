@@ -38,7 +38,11 @@ class _MyAppState extends State<MyApp> {
 
   var users = [
     ["images/profiles/ewan.png", "Ewan"],
-    ["images/profiles/michael.png", "Michael"],
+    [
+      "images/profiles/michael.png",
+      "Michael",
+      {"SCALES1": "HARD", "CHORDS1": "HARD"}
+    ],
     ["images/profiles/nick.png", "Nick"],
     ["images/profiles/shuna.png", "Shuna"],
     ["images/dog-png-30.png", "Ian"],
@@ -54,13 +58,19 @@ class _MyAppState extends State<MyApp> {
   // DUMMY DATA - USER PROGRESS
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
-  var userProgress = {
-    "SCALES1": "MEDIUM",
-    // chords1: "HARD",
-    // begBoss: "REVISION",
-    // scales2: "EASY",
-    // chords2: "EASY",
-  };
+  var userProgress;
+
+  void setUserProgress() {
+    userProgress = users[1][2];
+  }
+
+  // {
+  // "SCALES1": "MEDIUM",
+  // chords1: "HARD",
+  // begBoss: "REVISION",
+  // scales2: "EASY",
+  // chords2: "EASY",
+  // };
 
   // Function is run inside timeline_widget when user presses on timeline indicator
   void setSelectedLesson(lesson) {
@@ -81,7 +91,6 @@ class _MyAppState extends State<MyApp> {
   // This function splits the lessons into the above lists - it is run inside home_page.dart
   // - it runs when the user presses one the button to navigate to the timeline
   void getLevels() {
-    // print(lessons);
     for (var item in lessons!) {
       if (item['level']['levelName'] == 'BEGINNER') {
         begList.add(item);
@@ -157,7 +166,7 @@ class _MyAppState extends State<MyApp> {
             key == "IntermediateBoss" ||
             key == "AdvancedBoss") {
           null;
-        } else if (userProgress[key] == Difficulty.revision) {
+        } else if (userProgress[key] == 'REVISION') {
           completedLessons.add(key);
         }
       }
@@ -258,13 +267,12 @@ class _MyAppState extends State<MyApp> {
           question['difficulty'] ==
               userProgress[selectedLesson['lessonName']]) {
         newQuestions.add(question);
-        // print(newQuestions);
       }
     });
     newQuestions.shuffle();
     selectedQuestions = newQuestions;
-    // var shortList = selectFive(newQuestions);
-    // selectedQuestions = shortList;
+    var shortList = selectFive(newQuestions);
+    selectedQuestions = shortList;
   }
 
   selectFive(questions) {
@@ -290,11 +298,7 @@ class _MyAppState extends State<MyApp> {
     if (selectedLesson['level']['levelName'] == "BEGINNER") {
       selectedQuestions = questions;
     } else if (selectedLesson['level']['levelName'] == "INTERMEDIATE") {
-      // selectedQuestions = QuestionData.shared.allBeginnerQuestions;
-      // selectedQuestions = [...QuestionData.shared.allIntermediateQuestions];
-    } else if (selectedLesson['level']['levelName'] == "ADVANCED") {
-      // selectedQuestions = QuestionData.shared.allQuestions;
-    }
+    } else if (selectedLesson['level']['levelName'] == "ADVANCED") {}
     selectedQuestions.shuffle();
   }
 
@@ -302,16 +306,16 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     getData();
+    setUserProgress();
   }
 
   getData() async {
     lessons = await Helper().getLessons();
-    questions = await Helper().getScales1Questions();
+    questions = await Helper().getAllQuestions();
 
     if (lessons != null && questions != null) {
       setState(() {
         isLoaded = true;
-        print(isLoaded);
       });
     }
   }

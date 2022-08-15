@@ -1,14 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_elephant/LessonAssets/lesson_assets.dart';
-import 'package:music_elephant/journey.dart';
-import 'package:music_elephant/landing_page.dart';
-import 'package:timelines/timelines.dart';
-
-import 'dart:math';
-
-import '../LessonAssets/lesson1_model.dart';
-import '../QuestionAssets/Enums/difficulty.dart';
-import '../QuestionAssets/Enums/level.dart';
 import 'timeline_widget.dart';
 
 // TOP LEVEL OF TIMELINE - RENDERS TIMELINE WIDGET

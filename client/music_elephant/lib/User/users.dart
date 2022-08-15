@@ -50,7 +50,7 @@ class _UsersState extends State<Users> {
                 mainAxisSpacing: 40,
                 crossAxisCount: 2,
                 children: <Widget>[
-                  ...(widget.users as List<List<String>>).map(
+                  ...(widget.users as List<List>).map(
                     (user) {
                       return Container(
                         child: FlatButton(
