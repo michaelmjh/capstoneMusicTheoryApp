@@ -248,10 +248,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       initialRoute: '/users',
       routes: {
-        '/': (context) => const HomePage(),
+        // '/': (context) => const HomePage(getLevels, setLessonList),
         '/quiz': (context) => Quiz(
               selectedQuestions,
               updateProgress,
