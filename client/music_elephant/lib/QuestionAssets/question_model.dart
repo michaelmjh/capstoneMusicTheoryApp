@@ -7,7 +7,7 @@ import 'answer_model.dart';
 
 class Question {
   QuestionType type;
-  Level level;
+  Levelz level;
   Lesson lesson;
   Difficulty difficulty;
   String image;

@@ -3,7 +3,7 @@ import '../QuestionAssets/Enums/level.dart';
 class Lesson {
   String name;
   List<LessonSlide> slides;
-  Level level;
+  Levelz level;
 
   Lesson({
     required this.name,

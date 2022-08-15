@@ -8,14 +8,12 @@ import 'Quiz/quiz.dart';
 import 'lesson.dart';
 
 class LandingPage extends StatefulWidget {
-  final List progress;
-  final Difficulty currentDifficulty;
+  // final List progress;
+  // final Difficulty currentDifficulty;
   final selectedLesson;
   final userProgress;
   // ignore: prefer_const_constructors_in_immutables
-  LandingPage(this.progress, this.currentDifficulty, this.selectedLesson,
-      this.userProgress,
-      {super.key});
+  LandingPage(this.selectedLesson, this.userProgress, {super.key});
 
   @override
   State<LandingPage> createState() => _LandingPageState();

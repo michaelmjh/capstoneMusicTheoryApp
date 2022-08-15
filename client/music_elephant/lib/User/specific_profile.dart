@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class SpecificProfile extends StatefulWidget {
   var selectedProfile;
-  final _fetchData;
+  final getLevels;
+  final setTimelineLessonList;
 
-  SpecificProfile(this.selectedProfile, this._fetchData);
+  SpecificProfile(
+      this.selectedProfile, this.getLevels, this.setTimelineLessonList);
 
   @override
   State<SpecificProfile> createState() => _SpecificProfileState();
@@ -90,8 +92,9 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         onPressed: () {
-                          widget._fetchData();
-                          Navigator.pushNamed(context, '/');
+                          widget.getLevels();
+                          widget.setTimelineLessonList();
+                          Navigator.pushNamed(context, '/timeline');
                         },
                       ),
                     ),

@@ -14,7 +14,7 @@ Lesson scales1 = Lesson(
     scalesSlide6,
     scalesSlide7
   ],
-  level: Level.beginner,
+  level: Levelz.beginner,
 );
 
 Lesson chords1 = Lesson(
@@ -27,7 +27,7 @@ Lesson chords1 = Lesson(
       scalesSlide2,
       scalesSlide1
     ],
-    level: Level.beginner);
+    level: Levelz.beginner);
 
 Lesson scales2 = Lesson(
     name: "scales2",
@@ -39,9 +39,10 @@ Lesson scales2 = Lesson(
       scalesSlide6,
       scalesSlide1
     ],
-    level: Level.intermediate);
+    level: Levelz.intermediate);
 
-Lesson chords2 = Lesson(name: "chords2", slides: [], level: Level.intermediate);
+Lesson chords2 =
+    Lesson(name: "chords2", slides: [], level: Levelz.intermediate);
 
 Lesson scales3 = Lesson(
     name: "scales3",
@@ -53,23 +54,23 @@ Lesson scales3 = Lesson(
       scalesSlide1,
       scalesSlide2
     ],
-    level: Level.advanced);
+    level: Levelz.advanced);
 
-Lesson chords3 = Lesson(name: "chords3", slides: [], level: Level.advanced);
+Lesson chords3 = Lesson(name: "chords3", slides: [], level: Levelz.advanced);
 
 Lesson dummyBeg =
-    Lesson(name: "DummyBeginner", slides: [], level: Level.beginner);
+    Lesson(name: "DummyBeginner", slides: [], level: Levelz.beginner);
 Lesson dummyInt =
-    Lesson(name: "DummyIntermediate", slides: [], level: Level.intermediate);
+    Lesson(name: "DummyIntermediate", slides: [], level: Levelz.intermediate);
 Lesson dummyAdv =
-    Lesson(name: "DummyAdvanced", slides: [], level: Level.advanced);
+    Lesson(name: "DummyAdvanced", slides: [], level: Levelz.advanced);
 
 Lesson begBoss =
-    Lesson(name: "BeginnerBoss", slides: [], level: Level.beginner);
+    Lesson(name: "BeginnerBoss", slides: [], level: Levelz.beginner);
 Lesson intBoss =
-    Lesson(name: "IntermediateBoss", slides: [], level: Level.intermediate);
+    Lesson(name: "IntermediateBoss", slides: [], level: Levelz.intermediate);
 Lesson advBoss =
-    Lesson(name: "AdvancedBoss", slides: [], level: Level.advanced);
+    Lesson(name: "AdvancedBoss", slides: [], level: Levelz.advanced);
 
 class LessonData {
   static LessonData get shared => LessonData();

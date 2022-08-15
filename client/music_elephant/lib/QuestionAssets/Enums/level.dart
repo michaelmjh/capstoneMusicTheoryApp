@@ -1,1 +1,1 @@
-enum Level { beginner, intermediate, advanced }
+enum Levelz { beginner, intermediate, advanced }

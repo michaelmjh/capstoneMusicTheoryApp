@@ -10,7 +10,7 @@ import 'question_model.dart';
 // EASY QUESTIONS
 Question question1 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
   image: 'images/question_images/easy/cmaj_identify_note_c.jpg',
@@ -21,7 +21,7 @@ Question question1 = Question(
 
 Question question2 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
   image: 'images/question_images/easy/Cmaj-identify-note-E.jpg',
@@ -32,7 +32,7 @@ Question question2 = Question(
 
 Question question3 = Question(
   type: QuestionType.missing,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
   image: 'images/question_images/easy/Cmaj-missing-note-A.jpg',
@@ -43,7 +43,7 @@ Question question3 = Question(
 
 Question question4 = Question(
   type: QuestionType.missing,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
   image: 'images/question_images/easy/Cmaj-missing-note-E.jpg',
@@ -54,7 +54,7 @@ Question question4 = Question(
 
 Question question5 = Question(
   type: QuestionType.arrange,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
   image: '',
@@ -65,7 +65,7 @@ Question question5 = Question(
 
 Question question6 = Question(
   type: QuestionType.arrange,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.easy,
   image: '',
@@ -77,7 +77,7 @@ Question question6 = Question(
 // MEDIUM QUESTIONS
 Question question7 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.medium,
   image: 'images/question_images/intermediate/Gmaj-identify-note-C-E.jpg',
@@ -88,7 +88,7 @@ Question question7 = Question(
 
 Question question8 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.medium,
   image: 'images/question_images/intermediate/Fmaj-identify-note-F-Bb.jpg',
@@ -99,7 +99,7 @@ Question question8 = Question(
 
 Question question9 = Question(
   type: QuestionType.missing,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.medium,
   image: 'images/question_images/intermediate/Gmaj-missing-note-B.jpg',
@@ -110,7 +110,7 @@ Question question9 = Question(
 
 Question question10 = Question(
   type: QuestionType.missing,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.medium,
   image: 'images/question_images/intermediate/Gmaj-missing-note-F#.jpg',
@@ -121,7 +121,7 @@ Question question10 = Question(
 
 Question question11 = Question(
   type: QuestionType.arrange,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.medium,
   image: '',
@@ -132,7 +132,7 @@ Question question11 = Question(
 
 Question question12 = Question(
   type: QuestionType.arrange,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.medium,
   image: '',
@@ -144,7 +144,7 @@ Question question12 = Question(
 // HARD QUESTIONS
 Question question13 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.hard,
   image: 'images/question_images/hard/Bmaj-identify-note-D#-G#.jpg',
@@ -155,7 +155,7 @@ Question question13 = Question(
 
 Question question14 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.hard,
   image: 'images/question_images/hard/Dbmaj-identify-note-Db-Bb.jpg',
@@ -166,7 +166,7 @@ Question question14 = Question(
 
 Question question15 = Question(
   type: QuestionType.missing,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.hard,
   image: 'images/question_images/hard/Ebmaj-missing-note-Ab-Eb.jpg',
@@ -177,7 +177,7 @@ Question question15 = Question(
 
 Question question16 = Question(
   type: QuestionType.missing,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.hard,
   image: 'images/question_images/hard/Emaj-missing-note-F#-C#.jpg',
@@ -188,7 +188,7 @@ Question question16 = Question(
 
 Question question17 = Question(
   type: QuestionType.arrange,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.hard,
   image: '',
@@ -199,7 +199,7 @@ Question question17 = Question(
 
 Question question18 = Question(
   type: QuestionType.arrange,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.scales1,
   difficulty: Difficulty.hard,
   image: '',
@@ -211,7 +211,7 @@ Question question18 = Question(
 // CHORDS 1 QUESTIONS
 Question question19 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.chords1,
   difficulty: Difficulty.easy,
   image: '',
@@ -222,7 +222,7 @@ Question question19 = Question(
 
 Question question20 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.chords1,
   difficulty: Difficulty.medium,
   image: '',
@@ -233,7 +233,7 @@ Question question20 = Question(
 
 Question question21 = Question(
   type: QuestionType.identify,
-  level: Level.beginner,
+  level: Levelz.beginner,
   lesson: Lesson.chords1,
   difficulty: Difficulty.hard,
   image: '',
@@ -245,7 +245,7 @@ Question question21 = Question(
 // SCALES 2 QUESTIONS
 Question question22 = Question(
   type: QuestionType.identify,
-  level: Level.intermediate,
+  level: Levelz.intermediate,
   lesson: Lesson.scales2,
   difficulty: Difficulty.easy,
   image: '',
@@ -256,7 +256,7 @@ Question question22 = Question(
 
 Question question23 = Question(
   type: QuestionType.identify,
-  level: Level.intermediate,
+  level: Levelz.intermediate,
   lesson: Lesson.scales2,
   difficulty: Difficulty.medium,
   image: '',
@@ -267,7 +267,7 @@ Question question23 = Question(
 
 Question question24 = Question(
   type: QuestionType.identify,
-  level: Level.intermediate,
+  level: Levelz.intermediate,
   lesson: Lesson.scales2,
   difficulty: Difficulty.hard,
   image: '',
@@ -279,7 +279,7 @@ Question question24 = Question(
 // CHORDS 2 QUESTIONS
 Question question25 = Question(
   type: QuestionType.identify,
-  level: Level.intermediate,
+  level: Levelz.intermediate,
   lesson: Lesson.chords2,
   difficulty: Difficulty.easy,
   image: '',
@@ -290,7 +290,7 @@ Question question25 = Question(
 
 Question question26 = Question(
   type: QuestionType.identify,
-  level: Level.intermediate,
+  level: Levelz.intermediate,
   lesson: Lesson.chords2,
   difficulty: Difficulty.medium,
   image: '',
@@ -301,7 +301,7 @@ Question question26 = Question(
 
 Question question27 = Question(
   type: QuestionType.identify,
-  level: Level.intermediate,
+  level: Levelz.intermediate,
   lesson: Lesson.chords2,
   difficulty: Difficulty.hard,
   image: '',
@@ -426,16 +426,16 @@ class QuestionData {
 
   getAllQuestions(level) {
     var newQuestions = [];
-    if (level == Level.beginner) {
+    if (level == Levelz.beginner) {
       allQuestions.forEach((question) {
-        if (question.level == Level.beginner) {
+        if (question.level == Levelz.beginner) {
           newQuestions.add(question);
         }
       });
-    } else if (level == Level.intermediate) {
+    } else if (level == Levelz.intermediate) {
       allQuestions.forEach((question) {
-        if (question.level == Level.beginner ||
-            question.level == Level.intermediate) {
+        if (question.level == Levelz.beginner ||
+            question.level == Levelz.intermediate) {
           newQuestions.add(question);
         }
       });
