@@ -78,7 +78,9 @@ class _LessonState extends State<Lesson> {
                         padding: const EdgeInsets.all(20),
                         child: index < lesson.slides.length - 1
                             ? Image.asset(lesson.slides[index].image)
-                            : Text(''),
+                            : Text(
+                                '',
+                              ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -89,7 +91,10 @@ class _LessonState extends State<Lesson> {
                         ),
                         child: Text(
                           lesson.slides[index].text,
-                          style: TextStyle(fontSize: 22),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Color(0xff5a3d2b),
+                          ),
                         ),
                       ),
                       Center(
@@ -134,7 +139,7 @@ class _LessonState extends State<Lesson> {
               pagination: const SwiperPagination(
                 alignment: Alignment.bottomCenter,
                 builder: const DotSwiperPaginationBuilder(
-                    color: Color(0xffe5771e), activeColor: Color(0xff75c8ae)),
+                    color: Color(0xfff4a127), activeColor: Color(0xff75c8ae)),
               ),
               control: const SwiperControl(
                   iconNext: Icons.arrow_forward,

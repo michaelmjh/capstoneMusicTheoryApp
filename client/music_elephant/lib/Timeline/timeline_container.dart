@@ -43,24 +43,46 @@ class _TimelineState extends State<Timeline> {
     var newList = widget.lessons;
 
     return Scaffold(
-      appBar: AppBar(title: Text('User Timeline')),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Row(
-              children: [
-                TimelineWidget(
-                  newList,
-                  widget.setSelectedLesson,
-                  widget.userProgress,
-                  widget.completedLessons,
-                  widget.getCompletedLessons,
-                  widget.bossGenerator,
-                  widget.checkIfBossUnlocked,
-                  widget.checkIfBossCompleted,
-                ),
-              ],
+      appBar: AppBar(
+        title: Text(
+          "Select a Lesson",
+          style: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        foregroundColor: Color(0xffffecb4),
+        backgroundColor: Color(0xffe5771e),
+        leading: IconButton(
+          icon: Icon(
+            Icons.people,
+            color: Color(0xffffecb4),
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/users');
+          },
+        ),
+      ),
+      body: Container(
+        color: Color(0xffffecb4),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Row(
+                children: [
+                  TimelineWidget(
+                    newList,
+                    widget.setSelectedLesson,
+                    widget.userProgress,
+                    widget.completedLessons,
+                    widget.getCompletedLessons,
+                    widget.bossGenerator,
+                    widget.checkIfBossUnlocked,
+                    widget.checkIfBossCompleted,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
