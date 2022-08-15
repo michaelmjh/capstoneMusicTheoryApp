@@ -113,7 +113,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                     children: [
                       Container(
                         child: Text(
-                          widget.question['questionAssets'[1]],
+                          widget.question['questionAssets'][1],
                           style: TextStyle(fontSize: 23.0),
                           textAlign: TextAlign.center,
                         ),
@@ -150,7 +150,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                   widget.question['questionType'] == "ARRANGE"
                       ? Row(
                           children: [
-                            ...(widget.question['answerOptions'] as List<Answer>)
+                            ...(widget.question['answerOptions'] as List)
                                 .map((answer) {
                               return AnswerWidget2(answer);
                             }).toList(),
@@ -159,7 +159,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                         )
                       : Row(
                           children: [
-                            ...(widget.question['answerOptions'] as List<Answer>)
+                            ...(widget.question['answerOptions'] as List)
                                 .map((answer) {
                               return AnswerWidget(
                                   () => answerQuestion(answer, widget.question),
@@ -185,8 +185,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
             : Column(
                 children: [
                   Text(widget.submissionText),
-                  ...(widget.question['answerAssets'] as List<String>)
-                      .map((answer) {
+                  ...(widget.question['answerAssets'] as List).map((answer) {
                     return ElevatedButton(
                         onPressed: () {},
                         child: Text(answer),

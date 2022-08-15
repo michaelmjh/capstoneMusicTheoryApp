@@ -244,7 +244,7 @@ class _MyAppState extends State<MyApp> {
 
   void addLessonToUserProgress() {
     if (userProgress.containsKey(selectedLesson['lessonName']) == false) {
-      userProgress[selectedLesson.lessonName] = 'EASY';
+      userProgress[selectedLesson['lessonName']] = 'EASY';
     } else {
       null;
     }
@@ -306,7 +306,7 @@ class _MyAppState extends State<MyApp> {
 
   getData() async {
     lessons = await Helper().getLessons();
-    questions = await Helper().getAllQuestions();
+    questions = await Helper().getScales1Questions();
 
     if (lessons != null && questions != null) {
       setState(() {

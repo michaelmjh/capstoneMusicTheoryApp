@@ -21,4 +21,15 @@ class Helper {
       print(e);
     }
   }
+
+  Future<List<dynamic>?> getScales1Questions() async {
+    try {
+      var response =
+          await Dio().get('http://localhost:8080/questions?lessonName=SCALES1');
+      var json = response.data;
+      return json;
+    } catch (e) {
+      print(e);
+    }
+  }
 }
