@@ -140,7 +140,10 @@ class _QuestionContainerState extends State<QuestionContainer> {
                   );
                 },
               )
-            : QuestionWidget(widget.question),
+            : Builder(builder: (__) {
+                createEmptyAnswerList(widget.question);
+                return QuestionWidget(widget.question);
+              }),
         !isSubmitted
             ? Column(
                 children: [

@@ -4,8 +4,10 @@ import 'package:timelines/timelines.dart';
 class CompletedIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
+  final quizGenerator;
 
-  const CompletedIndicator(this.listItem, this.setSelectedLesson);
+  const CompletedIndicator(
+      this.listItem, this.setSelectedLesson, this.quizGenerator);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -15,6 +17,7 @@ class CompletedIndicator extends StatelessWidget {
         color: Colors.white,
         onPressed: () {
           setSelectedLesson(listItem);
+          quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
       ),
@@ -25,8 +28,10 @@ class CompletedIndicator extends StatelessWidget {
 class InProgressIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
+  final quizGenerator;
 
-  const InProgressIndicator(this.listItem, this.setSelectedLesson);
+  const InProgressIndicator(
+      this.listItem, this.setSelectedLesson, this.quizGenerator);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -36,6 +41,7 @@ class InProgressIndicator extends StatelessWidget {
         color: Colors.black,
         onPressed: () {
           setSelectedLesson(listItem);
+          quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
       ),
@@ -70,8 +76,10 @@ class BossIndicator extends StatelessWidget {
 class AvailableIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
+  final quizGenerator;
 
-  const AvailableIndicator(this.listItem, this.setSelectedLesson);
+  const AvailableIndicator(
+      this.listItem, this.setSelectedLesson, this.quizGenerator);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -81,6 +89,7 @@ class AvailableIndicator extends StatelessWidget {
         iconSize: 15,
         onPressed: () {
           setSelectedLesson(listItem);
+          quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
       ),

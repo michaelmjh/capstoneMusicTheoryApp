@@ -6,6 +6,7 @@ import 'package:music_elephant/QuestionAssets/answer_assets.dart';
 
 import 'question_model.dart';
 
+// SCALES 1 QUESTIONS
 // EASY QUESTIONS
 Question question1 = Question(
   type: QuestionType.identify,
@@ -207,6 +208,108 @@ Question question18 = Question(
   correctAnswer: [eFlat, f, g, aFlat],
 );
 
+// CHORDS 1 QUESTIONS
+Question question19 = Question(
+  type: QuestionType.identify,
+  level: Level.beginner,
+  lesson: Lesson.chords1,
+  difficulty: Difficulty.easy,
+  image: '',
+  text: 'question19',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+Question question20 = Question(
+  type: QuestionType.identify,
+  level: Level.beginner,
+  lesson: Lesson.chords1,
+  difficulty: Difficulty.medium,
+  image: '',
+  text: 'question20',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+Question question21 = Question(
+  type: QuestionType.identify,
+  level: Level.beginner,
+  lesson: Lesson.chords1,
+  difficulty: Difficulty.hard,
+  image: '',
+  text: 'question21',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+// SCALES 2 QUESTIONS
+Question question22 = Question(
+  type: QuestionType.identify,
+  level: Level.intermediate,
+  lesson: Lesson.scales2,
+  difficulty: Difficulty.easy,
+  image: '',
+  text: 'question22',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+Question question23 = Question(
+  type: QuestionType.identify,
+  level: Level.intermediate,
+  lesson: Lesson.scales2,
+  difficulty: Difficulty.medium,
+  image: '',
+  text: 'question23',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+Question question24 = Question(
+  type: QuestionType.identify,
+  level: Level.intermediate,
+  lesson: Lesson.scales2,
+  difficulty: Difficulty.hard,
+  image: '',
+  text: 'question24',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+// CHORDS 2 QUESTIONS
+Question question25 = Question(
+  type: QuestionType.identify,
+  level: Level.intermediate,
+  lesson: Lesson.chords2,
+  difficulty: Difficulty.easy,
+  image: '',
+  text: 'question25',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+Question question26 = Question(
+  type: QuestionType.identify,
+  level: Level.intermediate,
+  lesson: Lesson.chords2,
+  difficulty: Difficulty.medium,
+  image: '',
+  text: 'question26',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
+Question question27 = Question(
+  type: QuestionType.identify,
+  level: Level.intermediate,
+  lesson: Lesson.chords2,
+  difficulty: Difficulty.hard,
+  image: '',
+  text: 'question27',
+  answerOptions: [a, b, c, d],
+  correctAnswer: [a],
+);
+
 class QuestionData {
   static QuestionData get shared => QuestionData();
 
@@ -228,14 +331,77 @@ class QuestionData {
         question15,
         question16,
         question17,
-        question18
+        question18,
+        question19,
+        question20,
+        question21,
+        question22,
+        question23,
+        question24,
+        question25,
+        question26,
+        question27,
       ];
 
-  List<Question> easyQuestions = [
+  List<Question> allBeginnerQuestions = [
     // question1,
     // question2,
-    // question3,
-    // question4,
+    question3,
+    question4,
+    // question5,
+    // question6,
+    // question7,
+    // question8,
+    question9,
+    // question10,
+    // question11,
+    question12,
+    // question13,
+    question14,
+    question15,
+    question16,
+    // question17,
+    // question18,
+    question19,
+    question20,
+    question21
+  ];
+
+  List<Question> allIntermediateQuestions = [
+    question1,
+    question2,
+    question3,
+    question4,
+    // question5,
+    // question6,
+    // question7,
+    // question8,
+    // question9,
+    // question10,
+    // question11,
+    // question12,
+    // question13,
+    question14,
+    question15,
+    // question16,
+    // question17,
+    // question18,
+    // question19,
+    // question20,
+    // question21,
+    // question22,
+    question23,
+    question24,
+    question25,
+    question26,
+    question27
+  ];
+
+  List<Question> easyQuestions = [
+    question1,
+    question2,
+    question3,
+    question4,
     question5,
     question6,
   ];
@@ -283,7 +449,19 @@ class QuestionData {
     return shortList;
   }
 
-  getQuestions(difficulty) {
+  // getQuestions(difficulty) {
+  //   var newQuestions = [];
+  //   allQuestions.forEach((question) {
+  //     if (question.difficulty == difficulty) {
+  //       newQuestions.add(question);
+  //     }
+  //   });
+  //   newQuestions.shuffle();
+  //   var shortList = selectFive(newQuestions);
+  //   return shortList;
+  // }
+
+    getQuestions(difficulty) {
     var newQuestions = [];
     allQuestions.forEach((question) {
       if (question.difficulty == difficulty) {
@@ -298,6 +476,14 @@ class QuestionData {
   selectFive(questions) {
     var newShortList = [];
     for (int i = 0; i < 5; i++) {
+      newShortList.add(questions[i]);
+    }
+    return newShortList;
+  }
+
+  selectTen(questions) {
+    var newShortList = [];
+    for (int i = 0; i < 10; i++) {
       newShortList.add(questions[i]);
     }
     return newShortList;

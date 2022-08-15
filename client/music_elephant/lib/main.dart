@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   List<bool> progress = [false, false, false];
 
   Difficulty currentDifficulty = Difficulty.easy;
-  List<Question> currentQuiz = QuestionData.shared.easyQuestions;
+  // List<Question> currentQuiz = QuestionData.shared.easyQuestions;
   var selectedQuestions;
 
   var user1 = {"image": "image/dog-png-30.png", "name": "Ewan"};
@@ -61,11 +61,12 @@ class _MyAppState extends State<MyApp> {
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
-    scales1: Difficulty.completed,
-    chords1: Difficulty.completed,
-    scales2: Difficulty.hard,
+    scales1: Difficulty.revision,
+    chords1: Difficulty.revision,
+    scales2: Difficulty.revision,
+    begBoss: Difficulty.revision,
     chords2: Difficulty.revision,
-    begBoss: Difficulty.completed,
+    intBoss: Difficulty.revision
   };
 
   // Function for updating the userProgress property - this is currently not used
@@ -228,17 +229,60 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  // void quizGenerator() {
+  // selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
+  // selectedQuestions.shuffle();
+  // }
+
   void quizGenerator() {
-    selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
-    selectedQuestions.shuffle();
+    var allQuestions = QuestionData.shared.allQuestions;
+    var newQuestions = [];
+    allQuestions.forEach((question) {
+      if (selectedLesson.name == question.lesson.name &&
+          question.difficulty == currentDifficulty) {
+        newQuestions.add(question);
+      }
+    });
+    newQuestions.shuffle();
+    selectedQuestions = newQuestions;
+    // var shortList = selectFive(newQuestions);
+    // selectedQuestions = shortList;
+  }
+
+  selectFive(questions) {
+    var newShortList = [];
+    for (int i = 0; i < 5; i++) {
+      newShortList.add(questions[i]);
+    }
+    return newShortList;
+  }
+
+  selectTen(questions) {
+    var newShortList = [];
+    for (int i = 0; i < 10; i++) {
+      newShortList.add(questions[i]);
+    }
+    return newShortList;
   }
 
   // this function gathers gathers all questions of a particular level and
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
-  void bossGenerator(level) {
-    selectedQuestions = QuestionData.shared.getAllQuestions(level);
+  void bossGenerator() {
+    if (selectedLesson.level == Level.beginner) {
+      selectedQuestions = QuestionData.shared.easyQuestions;
+    } else if (selectedLesson.level == Level.intermediate) {
+      selectedQuestions = QuestionData.shared.easyQuestions;
+      selectedQuestions = [...QuestionData.shared.allIntermediateQuestions];
+    } else if (selectedLesson.level == Level.advanced) {
+      selectedQuestions = QuestionData.shared.allQuestions;
+    }
+
     selectedQuestions.shuffle();
+
+    for (var question in selectedQuestions) {
+      print(question.level + question.difficulty);
+    }
   }
 
   // void shuffle() {
@@ -248,10 +292,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-debugShowCheckedModeBanner: false,
-      initialRoute: '/users',
+      debugShowCheckedModeBanner: false,
+      // initialRoute: '/users',
+      initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => HomePage(getLevels, setTimelineLessonList),
         '/quiz': (context) => Quiz(
               selectedQuestions,
               updateProgress,
@@ -280,7 +325,8 @@ debugShowCheckedModeBanner: false,
             getCompletedLessons,
             bossGenerator,
             checkIfBossUnlocked,
-            checkIfBossCompleted),
+            checkIfBossCompleted,
+            quizGenerator),
       },
     );
   }
