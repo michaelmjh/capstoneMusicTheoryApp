@@ -7,6 +7,7 @@ import 'package:music_elephant/landing_page.dart';
 import 'package:music_elephant/Timeline/timeline_container.dart';
 
 import 'Helpers/helper.dart';
+import 'LessonAssets/lesson_assets.dart';
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
@@ -51,12 +52,6 @@ class _MyAppState extends State<MyApp> {
         {
           "id": 2,
           "lessonName": "CHORDS1",
-          "slides": [],
-          "level": {"id": 1, "levelName": "BEGINNER"}
-        }: "REVISION",
-        {
-          "id": 3,
-          "lessonName": "BeginnerBoss",
           "slides": [],
           "level": {"id": 1, "levelName": "BEGINNER"}
         }: "REVISION",
@@ -127,34 +122,19 @@ class _MyAppState extends State<MyApp> {
       "slides": [],
       "level": {"levelName": "BEGINNER"}
     });
-    list1.add({
-      "id": 3,
-      "lessonName": "BeginnerBoss",
-      "slides": [],
-      "level": {"id": 1, "levelName": "BEGINNER"}
-    });
+    list1.add(begBoss);
     list2.insert(0, {
       "lessonName": "DummyIntermediate",
       "slides": [],
       "level": {"levelName": "INTERMEDIATE"}
     });
-    list2.add({
-      "id": 3,
-      "lessonName": "IntermediateBoss",
-      "slides": [],
-      "level": {"id": 1, "levelName": "INTERMEDIATE"}
-    });
+    list2.add(intBoss);
     list3.insert(0, {
       "lessonName": "DummyAdvanced",
       "slides": [],
       "level": {"levelName": "ADVANCED"}
     });
-    list3.add({
-      "id": 3,
-      "lessonName": "AdvancedBoss",
-      "slides": [],
-      "level": {"id": 1, "levelName": "ADVANCED"}
-    });
+    list3.add(advBoss);
     for (var item in list1) {
       newList.add(item);
     }

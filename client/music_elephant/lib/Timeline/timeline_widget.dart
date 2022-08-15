@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
+import '../LessonAssets/lesson_assets.dart';
 import 'timeline_contents_containers.dart';
 import 'timeline_indicators.dart';
 
@@ -156,8 +157,8 @@ class TimelineWidget extends StatelessWidget {
           },
           // INDICATOR BUILDER
           indicatorBuilder: (_, index) {
-            print(newList[index]);
-            // print(userProgress.containsKey(newList[index]));
+            // print(newList[index]);
+            // print(userProgress.containsKey(begBoss));
 
             // Aaaall of this logic checks which indicator should be displayed
             // in each tile depending on the user's progress and whether the
@@ -169,14 +170,14 @@ class TimelineWidget extends StatelessWidget {
               // if the tile is the Int header & this section is unlocked > show Int header indicator
               // otherwise it will show a padlock
             } else if (newList[index]['lessonName'] == "DummyIntermediate" &&
-                userProgress.containsKey(newList[index])) {
+                userProgress.containsKey(begBoss)) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
               // if the tile is the adv header & section is unlocked > show Adv header indicator
               // otherwise it will show a padlock
             } else if (newList[index]['lessonName'] == "DummyAdvanced" &&
-                userProgress.containsKey(newList[index])) {
+                userProgress.containsKey(intBoss)) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );

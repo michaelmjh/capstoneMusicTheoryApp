@@ -72,6 +72,24 @@
 // Lesson advBoss =
 //     Lesson(name: "AdvancedBoss", slides: [], level: Levelz.advanced);
 
+var begBoss = {
+  "lessonName": "BeginnerBoss",
+  "slides": [],
+  "level": {"id": 1, "levelName": "BEGINNER"}
+};
+
+var intBoss = {
+  "lessonName": "IntermediateBoss",
+  "slides": [],
+  "level": {"id": 1, "levelName": "INTERMEDIATE"}
+};
+
+var advBoss = {
+  "lessonName": "AdvancedBoss",
+  "slides": [],
+  "level": {"id": 1, "levelName": "ADVANCED"}
+};
+
 // class LessonData {
 //   static LessonData get shared => LessonData();
 
