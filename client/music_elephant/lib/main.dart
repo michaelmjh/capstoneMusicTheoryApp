@@ -30,7 +30,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List<bool> progress = [false, false, false];
 
-  Difficulty currentDifficulty = Difficulty.easy;
+  Difficulty currentDifficulty = Difficulty.medium;
   // List<Question> currentQuiz = QuestionData.shared.easyQuestions;
   var selectedQuestions;
 
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
     chords1: Difficulty.revision,
     begBoss: Difficulty.revision,
     scales2: Difficulty.revision,
-    chords2: Difficulty.revision,
+    // chords2: Difficulty.medium,
   };
 
   // Function for updating the userProgress property - this is currently not used
@@ -301,6 +301,8 @@ class _MyAppState extends State<MyApp> {
         '/landingpage': (context) => LandingPage(
               progress,
               currentDifficulty,
+              selectedLesson,
+              userProgress,
             ),
         '/journey': (context) => Journey(
               selectedProfile,
