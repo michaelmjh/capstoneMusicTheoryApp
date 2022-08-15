@@ -21,6 +21,7 @@ class Timeline extends StatefulWidget {
   final bossGenerator;
   final checkIfBossUnlocked;
   final checkIfBossCompleted;
+  final quizGenerator;
 
   const Timeline(
       this.lessons,
@@ -31,6 +32,7 @@ class Timeline extends StatefulWidget {
       this.bossGenerator,
       this.checkIfBossUnlocked,
       this.checkIfBossCompleted,
+      this.quizGenerator,
       {super.key});
 
   @override
@@ -80,6 +82,7 @@ class _TimelineState extends State<Timeline> {
                     widget.bossGenerator,
                     widget.checkIfBossUnlocked,
                     widget.checkIfBossCompleted,
+                    widget.quizGenerator,
                   ),
                 ],
               ),

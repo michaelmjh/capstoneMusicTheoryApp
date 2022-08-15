@@ -4,8 +4,11 @@ import 'package:timelines/timelines.dart';
 class CompletedIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
+  final quizGenerator;
+  final bossGenerator;
 
-  const CompletedIndicator(this.listItem, this.setSelectedLesson);
+  const CompletedIndicator(this.listItem, this.setSelectedLesson,
+      this.quizGenerator, this.bossGenerator);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -15,6 +18,15 @@ class CompletedIndicator extends StatelessWidget {
         color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
+
+          if (listItem.name == "BeginnerBoss" ||
+              listItem.name == "IntermediateBoss" ||
+              listItem.name == "AdvancedBoss") {
+            bossGenerator();
+          } else {
+            quizGenerator();
+          }
+
           Navigator.pushNamed(context, '/landingpage');
         },
       ),
@@ -25,8 +37,10 @@ class CompletedIndicator extends StatelessWidget {
 class InProgressIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
+  final quizGenerator;
 
-  const InProgressIndicator(this.listItem, this.setSelectedLesson);
+  const InProgressIndicator(
+      this.listItem, this.setSelectedLesson, this.quizGenerator);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -36,6 +50,7 @@ class InProgressIndicator extends StatelessWidget {
         color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
+          quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
       ),
@@ -59,7 +74,7 @@ class BossIndicator extends StatelessWidget {
         color: Colors.black,
         onPressed: () {
           setSelectedLesson(listItem);
-          bossGenerator(listItem.level);
+          bossGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
       ),
@@ -70,8 +85,10 @@ class BossIndicator extends StatelessWidget {
 class AvailableIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
+  final quizGenerator;
 
-  const AvailableIndicator(this.listItem, this.setSelectedLesson);
+  const AvailableIndicator(
+      this.listItem, this.setSelectedLesson, this.quizGenerator);
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
@@ -81,6 +98,7 @@ class AvailableIndicator extends StatelessWidget {
         iconSize: 15,
         onPressed: () {
           setSelectedLesson(listItem);
+          quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
       ),

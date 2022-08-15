@@ -18,6 +18,7 @@ class TimelineWidget extends StatelessWidget {
   final bossGenerator;
   final checkIfBossUnlocked;
   final checkIfBossCompleted;
+  final quizGenerator;
 
   const TimelineWidget(
     this.newList,
@@ -28,6 +29,7 @@ class TimelineWidget extends StatelessWidget {
     this.bossGenerator,
     this.checkIfBossUnlocked,
     this.checkIfBossCompleted,
+    this.quizGenerator,
   );
 
   @override
@@ -118,7 +120,7 @@ class TimelineWidget extends StatelessWidget {
             // each connector, depending on the user's progress and whether
             // the tile being shown is a header or a boss
             if (index == 0 ||
-                userProgress[newList[index]] == Difficulty.completed) {
+                userProgress[newList[index]] == Difficulty.revision) {
               return SolidLineConnector(
                 color: Color(0xff75c8ae),
               );
@@ -130,7 +132,7 @@ class TimelineWidget extends StatelessWidget {
                     true &&
                 newList[index].name == "DummyIntermediate") {
               if (userProgress[newList[dummyIndexInt]] ==
-                  Difficulty.completed) {
+                  Difficulty.revision) {
                 return SolidLineConnector(
                   color: Color(0xff75c8ae),
                 );
@@ -143,7 +145,7 @@ class TimelineWidget extends StatelessWidget {
                     true &&
                 newList[index].name == "DummyAdvanced") {
               if (userProgress[newList[dummyIndexInt]] ==
-                  Difficulty.completed) {
+                  Difficulty.revision) {
                 return SolidLineConnector(
                   color: Color(0xff75c8ae),
                 );
@@ -182,8 +184,9 @@ class TimelineWidget extends StatelessWidget {
                 color: Color(0xff75c8ae),
               );
               // if the tile is marked as completed in userProgress > display the pink tick indicator
-            } else if (userProgress[newList[index]] == Difficulty.completed) {
-              return CompletedIndicator(newList[index], setSelectedLesson);
+            } else if (userProgress[newList[index]] == Difficulty.revision) {
+              return CompletedIndicator(newList[index], setSelectedLesson,
+                  quizGenerator, bossGenerator);
               // if tile is a boss ...
             } else if (newList[index].name == "BeginnerBoss" ||
                 newList[index].name == "IntermediateBoss" ||
@@ -200,12 +203,14 @@ class TimelineWidget extends StatelessWidget {
               // if the lesson exists in userProgress but it has not been marked as completed
               // the indicator is a pink lightbulb
             } else if (userProgress.containsKey(newList[index]) &&
-                userProgress[newList[index]] != Difficulty.completed) {
-              return InProgressIndicator(newList[index], setSelectedLesson);
+                userProgress[newList[index]] != Difficulty.revision) {
+              return InProgressIndicator(
+                  newList[index], setSelectedLesson, quizGenerator);
               // if the lesson is not contained in userProgress it is locked
             } else if (userProgress.containsKey(newList[index]) == false) {
               if (checkIfBossCompleted(newList[index].level)) {
-                return AvailableIndicator(newList[index], setSelectedLesson);
+                return AvailableIndicator(
+                    newList[index], setSelectedLesson, quizGenerator);
               } else {
                 return LockedIndicator();
               }

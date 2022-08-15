@@ -9,8 +9,11 @@ class Quiz extends StatefulWidget {
   List questions;
   final updateProgress;
   final quizGenerator;
+  final userProgress;
 
-  Quiz(this.questions, this.updateProgress, this.quizGenerator, {super.key});
+  Quiz(this.questions, this.updateProgress, this.quizGenerator,
+      this.userProgress,
+      {super.key});
 
   @override
   State<Quiz> createState() => _QuizState();

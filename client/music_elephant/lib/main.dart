@@ -30,8 +30,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   List<bool> progress = [false, false, false];
 
-  Difficulty currentDifficulty = Difficulty.easy;
-  List<Question> currentQuiz = QuestionData.shared.easyQuestions;
+  Difficulty currentDifficulty = Difficulty.medium;
+  // List<Question> currentQuiz = QuestionData.shared.easyQuestions;
   var selectedQuestions;
 
   var user1 = {"image": "image/dog-png-30.png", "name": "Ewan"};
@@ -61,11 +61,11 @@ class _MyAppState extends State<MyApp> {
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
-    scales1: Difficulty.completed,
-    chords1: Difficulty.completed,
-    scales2: Difficulty.hard,
-    chords2: Difficulty.revision,
-    begBoss: Difficulty.completed,
+    scales1: Difficulty.medium,
+    chords1: Difficulty.easy,
+    // begBoss: Difficulty.revision,
+    // scales2: Difficulty.revision,
+    // chords2: Difficulty.medium,
   };
 
   // Function for updating the userProgress property - this is currently not used
@@ -146,7 +146,7 @@ class _MyAppState extends State<MyApp> {
             key.name == "IntermediateBoss" ||
             key.name == "AdvancedBoss") {
           null;
-        } else if (userProgress[key] == Difficulty.completed) {
+        } else if (userProgress[key] == Difficulty.revision) {
           completedLessons.add(key);
         }
       }
@@ -210,34 +210,79 @@ class _MyAppState extends State<MyApp> {
   }
 
   void updateProgress() {
-    if (currentDifficulty == Difficulty.easy) {
+    if (userProgress[selectedLesson] == Difficulty.easy ||
+        userProgress.containsKey(selectedLesson) == false) {
       setState(() {
-        progress = [true, false, false];
-        currentDifficulty = Difficulty.medium;
+        // progress = [true, false, false];
+        // currentDifficulty = Difficulty.medium;
+        userProgress[selectedLesson] = Difficulty.medium;
       });
-    } else if (currentDifficulty == Difficulty.medium) {
+    } else if (userProgress[selectedLesson] == Difficulty.medium) {
       setState(() {
-        progress = [true, true, false];
-        currentDifficulty = Difficulty.hard;
+        // progress = [true, true, false];
+        // currentDifficulty = Difficulty.hard;
+        userProgress[selectedLesson] = Difficulty.hard;
       });
-    } else if (currentDifficulty == Difficulty.hard) {
+    } else if (userProgress[selectedLesson] == Difficulty.hard) {
       setState(() {
-        progress = [true, true, true];
-        currentDifficulty = Difficulty.revision;
+        // progress = [true, true, true];
+        // currentDifficulty = Difficulty.revision;
+        userProgress[selectedLesson] = Difficulty.revision;
       });
     }
   }
 
+  // void quizGenerator() {
+  // selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
+  // selectedQuestions.shuffle();
+  // }
+
   void quizGenerator() {
-    selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
-    selectedQuestions.shuffle();
+    var allQuestions = QuestionData.shared.allQuestions;
+    var newQuestions = [];
+
+    allQuestions.forEach((question) {
+      if (selectedLesson.name == question.lesson.name &&
+          question.difficulty == userProgress[selectedLesson]) {
+        newQuestions.add(question);
+        print(newQuestions);
+      }
+    });
+    newQuestions.shuffle();
+    selectedQuestions = newQuestions;
+    // var shortList = selectFive(newQuestions);
+    // selectedQuestions = shortList;
+  }
+
+  selectFive(questions) {
+    var newShortList = [];
+    for (int i = 0; i < 5; i++) {
+      newShortList.add(questions[i]);
+    }
+    return newShortList;
+  }
+
+  selectTen(questions) {
+    var newShortList = [];
+    for (int i = 0; i < 10; i++) {
+      newShortList.add(questions[i]);
+    }
+    return newShortList;
   }
 
   // this function gathers gathers all questions of a particular level and
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
-  void bossGenerator(level) {
-    selectedQuestions = QuestionData.shared.getAllQuestions(level);
+  void bossGenerator() {
+    print(selectedLesson.name);
+    if (selectedLesson.level == Level.beginner) {
+      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
+    } else if (selectedLesson.level == Level.intermediate) {
+      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
+      selectedQuestions = [...QuestionData.shared.allIntermediateQuestions];
+    } else if (selectedLesson.level == Level.advanced) {
+      selectedQuestions = QuestionData.shared.allQuestions;
+    }
     selectedQuestions.shuffle();
   }
 
@@ -256,11 +301,14 @@ class _MyAppState extends State<MyApp> {
               selectedQuestions,
               updateProgress,
               quizGenerator,
+              userProgress,
             ),
         '/lesson': (context) => Lesson(selectedLesson),
         '/landingpage': (context) => LandingPage(
               progress,
               currentDifficulty,
+              selectedLesson,
+              userProgress,
             ),
         '/journey': (context) => Journey(
               selectedProfile,
@@ -280,7 +328,8 @@ class _MyAppState extends State<MyApp> {
             getCompletedLessons,
             bossGenerator,
             checkIfBossUnlocked,
-            checkIfBossCompleted),
+            checkIfBossCompleted,
+            quizGenerator),
       },
     );
   }

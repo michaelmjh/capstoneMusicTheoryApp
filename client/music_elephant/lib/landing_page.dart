@@ -10,8 +10,12 @@ import 'lesson.dart';
 class LandingPage extends StatefulWidget {
   final List progress;
   final Difficulty currentDifficulty;
+  final selectedLesson;
+  final userProgress;
   // ignore: prefer_const_constructors_in_immutables
-  LandingPage(this.progress, this.currentDifficulty, {super.key});
+  LandingPage(this.progress, this.currentDifficulty, this.selectedLesson,
+      this.userProgress,
+      {super.key});
 
   @override
   State<LandingPage> createState() => _LandingPageState();
@@ -40,6 +44,10 @@ class _LandingPageState extends State<LandingPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(30.0),
+                            widget.selectedLesson.name != "BeginnerBoss" &&
+                    widget.selectedLesson.name != "IntermediateBoss" &&
+                    widget.selectedLesson.name != "AdvancedBoss"
+                    ?
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -50,7 +58,13 @@ class _LandingPageState extends State<LandingPage> {
                         backgroundColor: Color(0xff75c8ae),
                         child: Icon(
                           Icons.star,
-                          color: widget.progress[0]
+                          color: 
+                          widget.userProgress[widget.selectedLesson] ==
+                                    Difficulty.medium ||
+                                widget.userProgress[widget.selectedLesson] ==
+                                    Difficulty.hard ||
+                                widget.userProgress[widget.selectedLesson] ==
+                                    Difficulty.revision
                               ? Color(0xffe5771e)
                               : Color(0xffffecb4),
                           size: 100.00,
@@ -64,7 +78,11 @@ class _LandingPageState extends State<LandingPage> {
                         backgroundColor: Color(0xff75c8ae),
                         child: Icon(
                           Icons.star,
-                          color: widget.progress[0]
+                          color: 
+                          widget.userProgress[widget.selectedLesson] ==
+                                    Difficulty.hard ||
+                                widget.userProgress[widget.selectedLesson] ==
+                                    Difficulty.revision
                               ? Color(0xffe5771e)
                               : Color(0xffffecb4),
                           size: 100.00,
@@ -78,7 +96,8 @@ class _LandingPageState extends State<LandingPage> {
                         backgroundColor: Color(0xff75c8ae),
                         child: Icon(
                           Icons.star,
-                          color: widget.progress[0]
+                          color: widget.userProgress[widget.selectedLesson] ==
+                                Difficulty.revision
                               ? Color(0xffe5771e)
                               : Color(0xffffecb4),
                           size: 100.00,
@@ -87,8 +106,22 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   ],
                 ),
-              ),
-              Padding(
+              ) : 
+              Container(
+                    child: Column(
+                    children: [
+                      Text("Welcome to the boss level!"),
+                      Text(
+                          "This level contains only one quiz which will test your knowledge on EVERYTHING you have learned so far!!"),
+                      Text(
+                          "Beat the test and you will unlock the next level of lessons.")
+                    ],
+                  )),
+                              Visibility(
+              visible: widget.selectedLesson.name != "BeginnerBoss" &&
+                  widget.selectedLesson.name != "IntermediateBoss" &&
+                  widget.selectedLesson.name != "AdvancedBoss",
+              child: Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -112,6 +145,7 @@ class _LandingPageState extends State<LandingPage> {
                     Navigator.pushNamed(context, '/lesson');
                   },
                 ),
+              ),
               ),
 
               Padding(
@@ -141,34 +175,53 @@ class _LandingPageState extends State<LandingPage> {
                               color: Color(0xffffecb4),
                             ),
                           ),
+                          
+                           Builder(builder: (__) {
+              if (widget.selectedLesson.name == "BeginnerBoss" ||
+                  widget.selectedLesson.name == "IntermediateBoss" ||
+                  widget.selectedLesson.name == "AdvancedBoss") {
+                return Text("Boss Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
+              } else if (widget.userProgress[widget.selectedLesson] ==
+                      Difficulty.easy ||
+                  widget.userProgress.containsKey(widget.selectedLesson) ==
+                      false) {
+                return Text("Easy Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
+              } else if (widget.userProgress[widget.selectedLesson] ==
+                  Difficulty.medium) {
+                return Text("Medium Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
+              } else if (widget.userProgress[widget.selectedLesson] ==
+                  Difficulty.hard) {
+                return Text("Hard Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
+              } else if (widget.userProgress[widget.selectedLesson] ==
+                  Difficulty.revision) {
+                return Text("Revision Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
+              } else
+                return Text("error", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
+            })),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, '/quiz');
                   },
                 ),
               ),
-
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.pushNamed(context, '/quiz');
-              //   },
-              //   child: const Text('Normal'),
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.pushNamed(context, '/quiz');
-              //   },
-              //   child: const Text('Hard'),
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.pushNamed(context, '/quiz');
-              //   },
-              //   child: const Text('Revision'),
-              // ),
-            ],
-          ),
         ),
       ),
     );
