@@ -934,8 +934,16 @@ public class DataLoader implements ApplicationRunner {
         Question question36 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question36Assets, answer36Options, answer36Assets, answer36audio);
         questionRepository.save(question36);
 
-        User user1 = new User("Ewan", "", scales1.getLessonName(), level1.getLevelName());
+        User user1 = new User("Ewan", "images/profiles/ewan.png", scales1.getLessonName(), level1.getLevelName());
         userRepository.save(user1);
 
+        User user2 = new User("Michael", "images/profiles/michael.png", scales1.getLessonName(), level1.getLevelName());
+        userRepository.save(user2);
+
+        User user3 = new User("Shuna", "images/profiles/shuna.png", scales1.getLessonName(), level1.getLevelName());
+        userRepository.save(user3);
+
+        User user4 = new User("Nick", "images/profiles/nick.png", scales1.getLessonName(), level1.getLevelName());
+        userRepository.save(user4);
     }
 }

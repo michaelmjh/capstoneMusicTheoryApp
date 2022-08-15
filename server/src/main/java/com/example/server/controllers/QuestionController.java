@@ -24,14 +24,22 @@ public class QuestionController {
         return new ResponseEntity<>(questionRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value ="/questions/scales1")
+    @GetMapping(value ="/questions/lesson")
     public ResponseEntity<List<Question>> getAllLesson1Questions(
             @RequestParam(name="lesson", required = false) String lessonName1
     ){
         return new ResponseEntity<>(questionRepository.findByLessonName(LessonName.valueOf(lessonName1)), HttpStatus.OK);
     }
 
-    @GetMapping(value ="/questions/scales1/difficulty")
+    @GetMapping(value = "/questions/difficulty")
+    public ResponseEntity<List<Question>> getLessonsByDifficulty(
+        @RequestParam(name="difficulty", required = false) String searchDifficulty
+    ){
+        return new ResponseEntity<>(questionRepository.findByDifficulty(Difficulty.valueOf(searchDifficulty)), HttpStatus.OK);
+    }
+
+
+    @GetMapping(value ="/questions/lesson/difficulty")
     public ResponseEntity<List<Question>> getAllLesson1QuestionsWithDifficultyEasy(
             @RequestParam(name="lesson", required = false) String lessonName1,
             @RequestParam(name="difficulty", required = false) String difficulty1
