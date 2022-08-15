@@ -84,7 +84,7 @@ class TimelineWidget extends StatelessWidget {
           // CONNECTOR THEME
           connectorTheme: ConnectorThemeData(
             thickness: 4.0,
-            color: Color(0xffd3d3d3),
+            color: Color(0xff75c8ae),
           ),
           // INDICATOR THEME
           indicatorTheme: IndicatorThemeData(
@@ -121,27 +121,43 @@ class TimelineWidget extends StatelessWidget {
             // the tile being shown is a header or a boss
             if (index == 0 ||
                 userProgress[newList[index]] == Difficulty.revision) {
-              return SolidLineConnector(color: Colors.pink);
+              return SolidLineConnector(
+                color: Color(0xff75c8ae),
+              );
             } else if (userProgress.containsKey(newList[index]) == true) {
-              return SolidLineConnector(color: Colors.orange);
+              return SolidLineConnector(
+                color: Color(0xff75c8ae),
+              );
             } else if (userProgress.containsKey(newList[dummyIndexInt]) ==
                     true &&
                 newList[index].name == "DummyIntermediate") {
-              if (userProgress[newList[dummyIndexInt]] == Difficulty.revision) {
-                return SolidLineConnector(color: Colors.pink);
+              if (userProgress[newList[dummyIndexInt]] ==
+                  Difficulty.revision) {
+                return SolidLineConnector(
+                  color: Color(0xff75c8ae),
+                );
               } else {
-                return SolidLineConnector(color: Colors.orange);
+                return SolidLineConnector(
+                  color: Color(0xff75c8ae),
+                );
               }
             } else if (userProgress.containsKey(newList[dummyIndexAdv]) ==
                     true &&
                 newList[index].name == "DummyAdvanced") {
-              if (userProgress[newList[dummyIndexInt]] == Difficulty.revision) {
-                return SolidLineConnector(color: Colors.pink);
+              if (userProgress[newList[dummyIndexInt]] ==
+                  Difficulty.revision) {
+                return SolidLineConnector(
+                  color: Color(0xff75c8ae),
+                );
               } else {
-                return SolidLineConnector(color: Colors.orange);
+                return SolidLineConnector(
+                  color: Color(0xff75c8ae),
+                );
               }
             } else {
-              return SolidLineConnector(color: Colors.grey);
+              return SolidLineConnector(
+                color: Color(0xff5a3d2b),
+              );
             }
           },
           // INDICATOR BUILDER
@@ -150,17 +166,23 @@ class TimelineWidget extends StatelessWidget {
             // in each tile depending on the user's progress and whether the
             // level that tile belongs to has been unlocked yet
             if (newList[index].name == "DummyBeginner") {
-              return DotIndicator(color: Colors.pink);
+              return DotIndicator(
+                color: Color(0xff75c8ae),
+              );
               // if the tile is the Int header & this section is unlocked > show Int header indicator
               // otherwise it will show a padlock
             } else if (newList[index].name == "DummyIntermediate" &&
                 userProgress.containsKey(begBoss)) {
-              return DotIndicator(color: Color.fromARGB(255, 12, 194, 175));
+              return DotIndicator(
+                color: Color(0xff75c8ae),
+              );
               // if the tile is the adv header & section is unlocked > show Adv header indicator
               // otherwise it will show a padlock
             } else if (newList[index].name == "DummyAdvanced" &&
                 userProgress.containsKey(intBoss)) {
-              return DotIndicator(color: Color.fromARGB(255, 190, 94, 207));
+              return DotIndicator(
+                color: Color(0xff75c8ae),
+              );
               // if the tile is marked as completed in userProgress > display the pink tick indicator
             } else if (userProgress[newList[index]] == Difficulty.revision) {
               return CompletedIndicator(newList[index], setSelectedLesson,

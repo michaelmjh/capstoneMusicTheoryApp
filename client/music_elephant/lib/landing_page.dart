@@ -26,54 +26,88 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Test your knowledge'),
+        title: Text(
+          "Test Your Knowledge",
+          style: TextStyle(
+            fontSize: 32,
+          ),
+        ),
+        foregroundColor: Color(0xffffecb4),
+        backgroundColor: Color(0xffe5771e),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            widget.selectedLesson.name != "BeginnerBoss" &&
+      body: Container(
+        color: Color(0xffffecb4),
+        padding: const EdgeInsets.all(20),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                            widget.selectedLesson.name != "BeginnerBoss" &&
                     widget.selectedLesson.name != "IntermediateBoss" &&
                     widget.selectedLesson.name != "AdvancedBoss"
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        // widget.progress[0] ? Icons.star : Icons.star_border,
-                        widget.userProgress[widget.selectedLesson] ==
+                    ?
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Color(0xff75c8ae),
+                        child: Icon(
+                          Icons.star,
+                          color: 
+                          widget.userProgress[widget.selectedLesson] ==
                                     Difficulty.medium ||
                                 widget.userProgress[widget.selectedLesson] ==
                                     Difficulty.hard ||
                                 widget.userProgress[widget.selectedLesson] ==
                                     Difficulty.revision
-                            ? Icons.star
-                            : Icons.star_border,
-                        color: Colors.yellow,
-                        size: 100.00,
+                              ? Color(0xffe5771e)
+                              : Color(0xffffecb4),
+                          size: 100.00,
+                        ),
                       ),
-                      Icon(
-                        // widget.progress[1] ? Icons.star : Icons.star_border,
-                        widget.userProgress[widget.selectedLesson] ==
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Color(0xff75c8ae),
+                        child: Icon(
+                          Icons.star,
+                          color: 
+                          widget.userProgress[widget.selectedLesson] ==
                                     Difficulty.hard ||
                                 widget.userProgress[widget.selectedLesson] ==
                                     Difficulty.revision
-                            ? Icons.star
-                            : Icons.star_border,
-                        color: Colors.yellow,
-                        size: 100.00,
+                              ? Color(0xffe5771e)
+                              : Color(0xffffecb4),
+                          size: 100.00,
+                        ),
                       ),
-                      Icon(
-                        // widget.progress[2] ? Icons.star : Icons.star_border,
-                        widget.userProgress[widget.selectedLesson] ==
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Color(0xff75c8ae),
+                        child: Icon(
+                          Icons.star,
+                          color: widget.userProgress[widget.selectedLesson] ==
                                 Difficulty.revision
-                            ? Icons.star
-                            : Icons.star_border,
-                        color: Colors.yellow,
-                        size: 100.00,
+                              ? Color(0xffe5771e)
+                              : Color(0xffffecb4),
+                          size: 100.00,
+                        ),
                       ),
-                    ],
-                  )
-                : Container(
+                    ),
+                  ],
+                ),
+              ) : 
+              Container(
                     child: Column(
                     children: [
                       Text("Welcome to the boss level!"),
@@ -83,42 +117,111 @@ class _LandingPageState extends State<LandingPage> {
                           "Beat the test and you will unlock the next level of lessons.")
                     ],
                   )),
-            Visibility(
+                              Visibility(
               visible: widget.selectedLesson.name != "BeginnerBoss" &&
                   widget.selectedLesson.name != "IntermediateBoss" &&
                   widget.selectedLesson.name != "AdvancedBoss",
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/lesson');
-                },
-                child: const Text('Lesson'),
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xffe5771e),
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const Text(
+                      'Lesson',
+                      style: TextStyle(
+                        fontSize: 32,
+                        color: Color(0xffffecb4),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/lesson');
+                  },
+                ),
               ),
-            ),
-            ElevatedButton(onPressed: () {
-              Navigator.pushNamed(context, '/quiz');
-            }, child: Builder(builder: (__) {
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xffe5771e),
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: widget.currentDifficulty == Difficulty.revision
+                        ? Text(
+                            "Test Your Knowledge",
+                            style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),
+                          )
+                        : Text(
+                            "Next Quiz",
+                            style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),
+                          ),
+                          
+                           Builder(builder: (__) {
               if (widget.selectedLesson.name == "BeginnerBoss" ||
                   widget.selectedLesson.name == "IntermediateBoss" ||
                   widget.selectedLesson.name == "AdvancedBoss") {
-                return Text("Boss Quiz");
+                return Text("Boss Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
               } else if (widget.userProgress[widget.selectedLesson] ==
                       Difficulty.easy ||
                   widget.userProgress.containsKey(widget.selectedLesson) ==
                       false) {
-                return Text("Easy Quiz");
+                return Text("Easy Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
               } else if (widget.userProgress[widget.selectedLesson] ==
                   Difficulty.medium) {
-                return Text("Medium Quiz");
+                return Text("Medium Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
               } else if (widget.userProgress[widget.selectedLesson] ==
                   Difficulty.hard) {
-                return Text("Hard Quiz");
+                return Text("Hard Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
               } else if (widget.userProgress[widget.selectedLesson] ==
                   Difficulty.revision) {
-                return Text("Revision Quiz");
+                return Text("Revision Quiz", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
               } else
-                return Text("error");
+                return Text("error", style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),);
             })),
-          ],
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/quiz');
+                  },
+                ),
+              ),
         ),
       ),
     );

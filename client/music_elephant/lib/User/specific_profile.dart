@@ -89,7 +89,7 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/journey');
+                          Navigator.pushNamed(context, '/timeline');
                         },
                       ),
                     ),

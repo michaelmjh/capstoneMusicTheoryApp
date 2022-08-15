@@ -12,10 +12,10 @@ class CompletedIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
-      color: Colors.pink,
+      color: Color(0xff75c8ae),
       child: IconButton(
         icon: Icon(Icons.check, size: 20.0),
-        color: Colors.white,
+        color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
 
@@ -44,10 +44,10 @@ class InProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
-      color: Color.fromARGB(255, 229, 97, 141),
+      color: Color(0xff75c8ae),
       child: IconButton(
         icon: Icon(Icons.lightbulb, size: 20.0),
-        color: Colors.black,
+        color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
           quizGenerator();
@@ -92,7 +92,7 @@ class AvailableIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
-      color: Colors.grey,
+      color: Color(0xffe5771e),
       child: IconButton(
         icon: Icon(Icons.cloud),
         iconSize: 15,
@@ -111,10 +111,10 @@ class LockedIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DotIndicator(
-      color: Colors.grey,
+      color: Color(0xff5a3d2b),
       child: IconButton(
         icon: Icon(Icons.lock, size: 20.0),
-        color: Colors.black,
+        color: Color(0xffffecb4),
         onPressed: () {},
       ),
     );

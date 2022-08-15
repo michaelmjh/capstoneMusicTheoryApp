@@ -294,7 +294,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // initialRoute: '/users',
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(getLevels, setTimelineLessonList),
