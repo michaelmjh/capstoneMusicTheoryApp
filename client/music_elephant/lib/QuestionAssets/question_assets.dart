@@ -258,6 +258,31 @@ class QuestionData {
     // question18
   ];
 
+  getAllQuestions(level) {
+    var newQuestions = [];
+    if (level == Level.beginner) {
+      allQuestions.forEach((question) {
+        if (question.level == Level.beginner) {
+          newQuestions.add(question);
+        }
+      });
+    } else if (level == Level.intermediate) {
+      allQuestions.forEach((question) {
+        if (question.level == Level.beginner ||
+            question.level == Level.intermediate) {
+          newQuestions.add(question);
+        }
+      });
+    } else {
+      allQuestions.forEach((question) {
+        newQuestions.add(question);
+      });
+    }
+    newQuestions.shuffle();
+    var shortList = selectFive(newQuestions);
+    return shortList;
+  }
+
   getQuestions(difficulty) {
     var newQuestions = [];
     allQuestions.forEach((question) {
