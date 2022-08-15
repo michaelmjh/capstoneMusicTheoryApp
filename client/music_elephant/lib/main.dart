@@ -159,23 +159,24 @@ class _MyAppState extends State<MyApp> {
   // this function fills the completedLessons list and is coded to ignore
   // boss lessons, because they shouldn't be included in the checks mentioned above
   void getCompletedLessons(lesson) {
+    // userProgress.keys.forEach((key) {
+    //   if (key == lesson['lessonName']) {
+    //     if (key == begBoss || key == intBoss || key == advBoss) {
+    //       null;
+    //     } else if (userProgress[key] == 'REVISION') {
+    //       print('yay');
+    //       completedLessons.add(key);
+    //     }
+    //   }
 
-    for (var lesson in lessons) {
-      
-    }
-
-    print(lesson['lessonName']);
     userProgress.keys.forEach((key) {
-      // print(key);
-      if (key == lesson['lessonName']) {
-        if (key == begBoss || key == intBoss || key == advBoss) {
-          null;
-        } else if (userProgress[key] == 'REVISION') {
-          print('yay');
-          completedLessons.add(key);
-        }
+      if (key == begBoss || key == intBoss || key == advBoss) {
+        null;
+      } else if (userProgress[key] == 'REVISION') {
+        completedLessons.add(key);
       }
     });
+    // });
   }
 
   // this function is used in timeline_widget - it checks if all lessons in
@@ -190,7 +191,9 @@ class _MyAppState extends State<MyApp> {
     getCompletedLessons(lesson);
     switch (lesson['level']['levelName']) {
       case "BEGINNER":
-        list = begList;
+        for (var item in begList) {
+          list.add(item['lessonName']);
+        }
         break;
       case "INTERMEDIATE":
         list = intList;
