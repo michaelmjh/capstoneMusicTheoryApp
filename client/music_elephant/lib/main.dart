@@ -61,10 +61,10 @@ class _MyAppState extends State<MyApp> {
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
-    scales1: Difficulty.revision,
-    chords1: Difficulty.revision,
-    begBoss: Difficulty.revision,
-    scales2: Difficulty.revision,
+    scales1: Difficulty.medium,
+    chords1: Difficulty.easy,
+    // begBoss: Difficulty.revision,
+    // scales2: Difficulty.revision,
     // chords2: Difficulty.medium,
   };
 
@@ -210,20 +210,24 @@ class _MyAppState extends State<MyApp> {
   }
 
   void updateProgress() {
-    if (currentDifficulty == Difficulty.easy) {
+    if (userProgress[selectedLesson] == Difficulty.easy ||
+        userProgress.containsKey(selectedLesson) == false) {
       setState(() {
-        progress = [true, false, false];
-        currentDifficulty = Difficulty.medium;
+        // progress = [true, false, false];
+        // currentDifficulty = Difficulty.medium;
+        userProgress[selectedLesson] = Difficulty.medium;
       });
-    } else if (currentDifficulty == Difficulty.medium) {
+    } else if (userProgress[selectedLesson] == Difficulty.medium) {
       setState(() {
-        progress = [true, true, false];
-        currentDifficulty = Difficulty.hard;
+        // progress = [true, true, false];
+        // currentDifficulty = Difficulty.hard;
+        userProgress[selectedLesson] = Difficulty.hard;
       });
-    } else if (currentDifficulty == Difficulty.hard) {
+    } else if (userProgress[selectedLesson] == Difficulty.hard) {
       setState(() {
-        progress = [true, true, true];
-        currentDifficulty = Difficulty.revision;
+        // progress = [true, true, true];
+        // currentDifficulty = Difficulty.revision;
+        userProgress[selectedLesson] = Difficulty.revision;
       });
     }
   }
@@ -236,10 +240,12 @@ class _MyAppState extends State<MyApp> {
   void quizGenerator() {
     var allQuestions = QuestionData.shared.allQuestions;
     var newQuestions = [];
+
     allQuestions.forEach((question) {
       if (selectedLesson.name == question.lesson.name &&
-          question.difficulty == currentDifficulty) {
+          question.difficulty == userProgress[selectedLesson]) {
         newQuestions.add(question);
+        print(newQuestions);
       }
     });
     newQuestions.shuffle();
@@ -296,6 +302,7 @@ class _MyAppState extends State<MyApp> {
               selectedQuestions,
               updateProgress,
               quizGenerator,
+              userProgress,
             ),
         '/lesson': (context) => Lesson(selectedLesson),
         '/landingpage': (context) => LandingPage(
