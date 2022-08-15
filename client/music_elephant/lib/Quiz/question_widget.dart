@@ -10,11 +10,11 @@ class QuestionWidget extends StatelessWidget {
     return Column(
       children: [
         Image(
-            image: AssetImage(question.image),
+            image: AssetImage(question['questionAssets'[0]]),
             height: 200.00,
             width: 300.00),
         Text(
-          question.text,
+          question['questionAssets'[1]],
           style: TextStyle(fontSize: 28),
         ),
       ],

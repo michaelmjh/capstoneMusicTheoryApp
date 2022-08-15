@@ -7,7 +7,6 @@ import 'package:music_elephant/landing_page.dart';
 import 'package:music_elephant/Timeline/timeline_container.dart';
 
 import 'Helpers/helper.dart';
-import 'LessonAssets/lesson_assets.dart';
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
@@ -27,7 +26,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var lessons2;
+  var lessons;
+  var questions;
   var isLoaded = false;
 
   // List<bool> progress = [false, false, false];
@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
   // - it runs when the user presses one the button to navigate to the timeline
   void getLevels() {
     // print(lessons);
-    for (var item in lessons2!) {
+    for (var item in lessons!) {
       if (item['level']['levelName'] == 'BEGINNER') {
         begList.add(item);
       } else if (item['level']['levelName'] == 'INTERMEDIATE') {
@@ -200,10 +200,10 @@ class _MyAppState extends State<MyApp> {
     var boss;
     switch (level) {
       case "INTERMEDIATE":
-        boss = begBoss;
+        boss = 'BeginnerBoss';
         break;
       case "ADVANCED":
-        boss = intBoss;
+        boss = 'IntermediateBoss';
         break;
     }
     if (userProgress.containsKey(boss)) {
@@ -250,18 +250,13 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  // void quizGenerator() {
-  // selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
-  // selectedQuestions.shuffle();
-  // }
-
   void quizGenerator() {
-    var allQuestions = QuestionData.shared.allQuestions;
     var newQuestions = [];
 
-    allQuestions.forEach((question) {
-      if (selectedLesson['lessonName'] == question.lesson.name &&
-          question.difficulty == userProgress[selectedLesson['lessonName']]) {
+    questions.forEach((question) {
+      if (selectedLesson['lessonName'] == question['lessonName'] &&
+          question['difficulty'] ==
+              userProgress[selectedLesson['lessonName']]) {
         newQuestions.add(question);
         // print(newQuestions);
       }
@@ -292,20 +287,16 @@ class _MyAppState extends State<MyApp> {
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
   void bossGenerator() {
-    if (selectedLesson.level == "BEGINNER") {
-      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
-    } else if (selectedLesson.level == "INTERMEDIATE") {
-      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
-      selectedQuestions = [...QuestionData.shared.allIntermediateQuestions];
-    } else if (selectedLesson.level == "ADVANCED") {
-      selectedQuestions = QuestionData.shared.allQuestions;
+    if (selectedLesson['level']['levelName'] == "BEGINNER") {
+      selectedQuestions = questions;
+    } else if (selectedLesson['level']['levelName'] == "INTERMEDIATE") {
+      // selectedQuestions = QuestionData.shared.allBeginnerQuestions;
+      // selectedQuestions = [...QuestionData.shared.allIntermediateQuestions];
+    } else if (selectedLesson['level']['levelName'] == "ADVANCED") {
+      // selectedQuestions = QuestionData.shared.allQuestions;
     }
     selectedQuestions.shuffle();
   }
-
-  // void shuffle() {
-  //   selectedQuestions.shuffle();
-  // }
 
   @override
   void initState() {
@@ -314,10 +305,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   getData() async {
-    lessons2 = await Helper().getLessons();
-    if (lessons2 != null) {
+    lessons = await Helper().getLessons();
+    questions = await Helper().getAllQuestions();
+
+    if (lessons != null && questions != null) {
       setState(() {
         isLoaded = true;
+        print(isLoaded);
       });
     }
   }

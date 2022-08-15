@@ -6,7 +6,7 @@ import 'package:timelines/timelines.dart';
 
 import 'dart:math';
 
-import '../LessonAssets/lesson_model.dart';
+import '../LessonAssets/lesson1_model.dart';
 import '../QuestionAssets/Enums/difficulty.dart';
 import '../QuestionAssets/Enums/level.dart';
 import 'timeline_widget.dart';

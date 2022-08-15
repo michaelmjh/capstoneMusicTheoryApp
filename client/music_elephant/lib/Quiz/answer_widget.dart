@@ -45,7 +45,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                     },
                   ),
                 },
-        child: Text(widget.answer.text),
+        child: Text(widget.answer),
       ),
     );
   }

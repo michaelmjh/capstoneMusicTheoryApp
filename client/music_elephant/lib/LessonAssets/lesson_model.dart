@@ -1,37 +1,79 @@
-import '../QuestionAssets/Enums/level.dart';
+import 'dart:convert';
+
+List<Lesson> LessonFromJson(String str) =>
+    List<Lesson>.from(json.decode(str).map((x) => Lesson.fromJson(x)));
+
+String LessonToJson(List<Lesson> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Lesson {
-  String name;
-  List<LessonSlide> slides;
-  Levelz level;
-
   Lesson({
-    required this.name,
+    required this.id,
+    required this.lessonName,
     required this.slides,
     required this.level,
   });
+
+  int id;
+  String lessonName;
+  List<Slide> slides;
+  Level level;
+
+  factory Lesson.fromJson(Map<String, dynamic> json) => Lesson(
+        id: json["id"],
+        lessonName: json["lessonName"],
+        slides: List<Slide>.from(json["slides"].map((x) => Slide.fromJson(x))),
+        level: Level.fromJson(json["level"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "lessonName": lessonName,
+        "slides": List<dynamic>.from(slides.map((x) => x.toJson())),
+        "level": level.toJson(),
+      };
 }
 
-enum LessonName {
-  Scales1,
-  Chords1,
-  KeySignatures1,
-  Stave1,
-  Scales2,
-  Chords2,
-  Scales3,
-  Chords3,
-  DummyBeginner,
-  DummyIntermediate,
-  DummyAdvanced,
-  DummyBegEnd,
-  DummyIntEnd,
-  DummyAdvEnd
+class Level {
+  Level({
+    required this.id,
+    required this.levelName,
+  });
+
+  int id;
+  String levelName;
+
+  factory Level.fromJson(Map<String, dynamic> json) => Level(
+        id: json["id"],
+        levelName: json["levelName"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "levelName": levelName,
+      };
 }
 
-class LessonSlide {
+class Slide {
+  Slide({
+    required this.id,
+    required this.text,
+    required this.image,
+  });
+
+  int id;
   String text;
   String image;
 
-  LessonSlide({required this.text, required this.image});
+  factory Slide.fromJson(Map<String, dynamic> json) => Slide(
+        id: json["id"],
+        text: json["text"],
+        image: json["image"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "text": text,
+        "image": image,
+      };
 }
