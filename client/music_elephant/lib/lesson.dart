@@ -53,69 +53,96 @@ class _LessonState extends State<Lesson> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('lesson'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+        title: Text(
+          lesson.name.toString(),
+          style: TextStyle(
+            fontSize: 32,
           ),
-        ],
+        ),
+        foregroundColor: Color(0xffffecb4),
+        backgroundColor: Color(0xffe5771e),
       ),
-      body: Stack(
-        children: [
-          Swiper(
-            itemCount: lesson.slides.length,
-            loop: false,
-            itemBuilder: (BuildContext context, int index) {
-              return Center(
-                child: Column(
-                  children: [
-                    Text('Lesson:' + lesson.name.toString(),
-                        style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.bold)),
-                    Padding(
-                      padding: EdgeInsets.only(top: 15),
-                      child: index < lesson.slides.length - 1
-                          ? Image.asset(lesson.slides[index].image)
-                          : Text(''),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 15),
-                      child: Text(
-                        lesson.slides[index].text,
-                        style: TextStyle(fontSize: 22),
+      body: Container(
+        color: Color(0xffffecb4),
+        padding: const EdgeInsets.all(20),
+        child: Stack(
+          children: [
+            Swiper(
+              itemCount: lesson.slides.length,
+              loop: false,
+              itemBuilder: (BuildContext context, int index) {
+                return Center(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: index < lesson.slides.length - 1
+                            ? Image.asset(lesson.slides[index].image)
+                            : Text(''),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 30),
-                      child:
-                          Text('Slide ${index + 1} of ${lesson.slides.length}'),
-                    ),
-                    Visibility(
-                      visible: index == lesson.slides.length - 1,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Return to Lesson Page'),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 70.0,
+                          top: 20.0,
+                          right: 70.0,
+                          bottom: 20.0,
+                        ),
+                        child: Text(
+                          lesson.slides[index].text,
+                          style: TextStyle(fontSize: 22),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            itemWidth: 200.00,
-            itemHeight: 300.00,
-            layout: SwiperLayout.DEFAULT,
-            pagination: const SwiperPagination(
+                      Center(
+                        child: Visibility(
+                          visible: index == lesson.slides.length - 1,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 380.0,
+                            ),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: const Color(0xffe5771e),
+                                elevation: 10,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32),
+                                ),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Return to Lesson Page',
+                                  style: TextStyle(
+                                    fontSize: 32,
+                                    color: Color(0xffffecb4),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              itemWidth: 200.00,
+              itemHeight: 300.00,
+              layout: SwiperLayout.DEFAULT,
+              pagination: const SwiperPagination(
                 alignment: Alignment.bottomCenter,
-                builder: SwiperPagination.dots),
-            control: const SwiperControl(
-                iconNext: Icons.arrow_forward, iconPrevious: Icons.arrow_back),
-          ),
-        ],
+                builder: const DotSwiperPaginationBuilder(
+                    color: Color(0xffe5771e), activeColor: Color(0xff75c8ae)),
+              ),
+              control: const SwiperControl(
+                  iconNext: Icons.arrow_forward,
+                  iconPrevious: Icons.arrow_back,
+                  color: Color(0xff75c8ae)),
+            ),
+          ],
+        ),
       ),
     );
   }
