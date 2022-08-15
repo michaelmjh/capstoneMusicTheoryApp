@@ -59,9 +59,24 @@ class _QuestionContainerState extends State<QuestionContainer> {
     }
   }
 
-  void answerQuestion(answer) {
-    submittedAnswers.add(answer);
+// this function creates a list which will be filled when answers are clicked
+// this will allow an accurate check for questions with more than one answer
+  void createEmptyAnswerList(question) {
+    for (var i = 0; i < question.correctAnswer.length; i++) {
+      if (submittedAnswers.length != question.correctAnswer.length) {
+        submittedAnswers.add("");
+      }
+    }
+  }
 
+// this function adds answers to the above list at an index that matches
+// the correct answer list, if ths answer exists in that list
+  void answerQuestion(answer, question) {
+    var index;
+    if (question.correctAnswer.contains(answer)) {
+      index = question.correctAnswer.indexOf(answer);
+      submittedAnswers[index] = answer;
+    }
     if (submittedAnswers.length == widget.question.correctAnswer!.length) {
       setState(() {
         isSelected = true;
@@ -91,11 +106,40 @@ class _QuestionContainerState extends State<QuestionContainer> {
     return Column(
       children: [
         widget.question.type == QuestionType.arrange
-            ? Row(children: [
-                ...(widget.question.answerOptions as List).map((answer) {
-                  return QuestionWidget2(answerQuestion, needsReset);
-                }).toList(),
-              ])
+            ? Builder(
+                builder: (__) {
+                  createEmptyAnswerList(widget.question);
+                  return Column(
+                    children: [
+                      Container(
+                        child: Text(
+                          widget.question.text,
+                          style: TextStyle(fontSize: 23.0),
+                          textAlign: TextAlign.center,
+                        ),
+                        margin: EdgeInsets.only(top: 15.0),
+                      ),
+                      Container(
+                          child: Text(
+                            "(Drag the letters into the boxes)",
+                            style: TextStyle(fontSize: 18.0),
+                            textAlign: TextAlign.center,
+                          ),
+                          margin: EdgeInsets.only(top: 5.0, bottom: 15.0)),
+                      Row(
+                        children: [
+                          ...(widget.question.answerOptions as List)
+                              .map((answer) {
+                            return QuestionWidget2(
+                                answerQuestion, needsReset, widget.question);
+                          }).toList(),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                    ],
+                  );
+                },
+              )
             : QuestionWidget(widget.question),
         !isSubmitted
             ? Column(
@@ -108,13 +152,14 @@ class _QuestionContainerState extends State<QuestionContainer> {
                               return AnswerWidget2(answer);
                             }).toList(),
                           ],
+                          mainAxisAlignment: MainAxisAlignment.center,
                         )
                       : Row(
                           children: [
                             ...(widget.question.answerOptions as List<Answer>)
                                 .map((answer) {
                               return AnswerWidget(
-                                  () => answerQuestion(answer),
+                                  () => answerQuestion(answer, widget.question),
                                   answer,
                                   clearAnswer,
                                   disabled,
