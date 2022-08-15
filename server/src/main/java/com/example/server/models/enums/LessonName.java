@@ -4,5 +4,9 @@ public enum LessonName {
     SCALES1,
     CHORDS1,
     KEYSIGNATURES1,
-    STAVE1;
+    STAVE1,
+    SCALES2,
+    CHORDS2,
+    SCALES3,
+    CHORDS3;
 }

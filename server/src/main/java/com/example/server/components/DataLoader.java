@@ -37,6 +37,12 @@ public class DataLoader implements ApplicationRunner {
         Level level1 = new Level(LevelName.BEGINNER);
         levelRepository.save(level1);
 
+        Level level2 = new Level(LevelName.INTERMIDIATE);
+        levelRepository.save(level2);
+
+        Level level3 = new Level(LevelName.ADVANCED);
+        levelRepository.save(level3);
+
 //        Setting up the Scales1 Lesson
 
         Lesson scales1 = new Lesson(LessonName.SCALES1, level1);
@@ -84,6 +90,9 @@ public class DataLoader implements ApplicationRunner {
         scales1.setSlides(scales1Assets);
         lessonRepository.save(scales1);
 
+
+
+
 //        Setting up Chords 1 Lesson
         Lesson chords1 = new Lesson(LessonName.CHORDS1, level1);
         lessonRepository.save(chords1);
@@ -116,6 +125,20 @@ public class DataLoader implements ApplicationRunner {
 
         chords1.setSlides(chords1Assets);
         lessonRepository.save(chords1);
+
+//        Setting up future lessons
+
+        Lesson scales2 = new Lesson(LessonName.SCALES2, level2);
+        lessonRepository.save(scales2);
+
+        Lesson chords2 = new Lesson(LessonName.CHORDS2, level2);
+        lessonRepository.save(chords2);
+
+        Lesson scales3 = new Lesson(LessonName.SCALES3, level3);
+        lessonRepository.save(scales3);
+
+        Lesson chords3 = new Lesson(LessonName.CHORDS3, level3);
+        lessonRepository.save(chords3);
 
 
 //        Saving Question 1
