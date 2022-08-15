@@ -269,10 +269,11 @@ class _MyAppState extends State<MyApp> {
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
   void bossGenerator() {
+    print(selectedLesson.name);
     if (selectedLesson.level == Level.beginner) {
-      selectedQuestions = QuestionData.shared.easyQuestions;
+      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
     } else if (selectedLesson.level == Level.intermediate) {
-      selectedQuestions = QuestionData.shared.easyQuestions;
+      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
       selectedQuestions = [...QuestionData.shared.allIntermediateQuestions];
     } else if (selectedLesson.level == Level.advanced) {
       selectedQuestions = QuestionData.shared.allQuestions;
@@ -280,9 +281,9 @@ class _MyAppState extends State<MyApp> {
 
     selectedQuestions.shuffle();
 
-    for (var question in selectedQuestions) {
-      print(question.level + question.difficulty);
-    }
+    // for (var question in selectedQuestions) {
+    //   // print(question.level + question.difficulty);
+    // }
   }
 
   // void shuffle() {

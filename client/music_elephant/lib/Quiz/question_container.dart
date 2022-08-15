@@ -109,6 +109,8 @@ class _QuestionContainerState extends State<QuestionContainer> {
             ? Builder(
                 builder: (__) {
                   createEmptyAnswerList(widget.question);
+                  print(widget.question.lesson);
+                  print(widget.question.level);
                   return Column(
                     children: [
                       Container(
@@ -142,6 +144,8 @@ class _QuestionContainerState extends State<QuestionContainer> {
               )
             : Builder(builder: (__) {
                 createEmptyAnswerList(widget.question);
+                print(widget.question.lesson);
+                print(widget.question.level);
                 return QuestionWidget(widget.question);
               }),
         !isSubmitted

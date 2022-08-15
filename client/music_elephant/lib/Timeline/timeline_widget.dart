@@ -163,8 +163,8 @@ class TimelineWidget extends StatelessWidget {
               return DotIndicator(color: Color.fromARGB(255, 190, 94, 207));
               // if the tile is marked as completed in userProgress > display the pink tick indicator
             } else if (userProgress[newList[index]] == Difficulty.revision) {
-              return CompletedIndicator(
-                  newList[index], setSelectedLesson, quizGenerator);
+              return CompletedIndicator(newList[index], setSelectedLesson,
+                  quizGenerator, bossGenerator);
               // if tile is a boss ...
             } else if (newList[index].name == "BeginnerBoss" ||
                 newList[index].name == "IntermediateBoss" ||
