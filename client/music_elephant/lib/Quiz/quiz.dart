@@ -52,29 +52,32 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+        title: Text(
+          "Quiz",
+          style: TextStyle(
+            fontSize: 32,
           ),
-        ],
+        ),
+        foregroundColor: Color(0xffffecb4),
+        backgroundColor: Color(0xffe5771e),
       ),
-      body: questionIndex < widget.questions.length
-          ? QuestionContainer(
-              widget.questions[questionIndex],
-              submissionText,
-              nextQuestion,
-              final_question,
-              increaseScore,
-            )
-          : Result(
-              score: score,
-              length: widget.questions.length,
-              updateProgress: widget.updateProgress,
-              quizGenerator: widget.quizGenerator),
+      body: Container(
+        color: Color(0xffffecb4),
+        padding: const EdgeInsets.all(20),
+        child: questionIndex < widget.questions.length
+            ? QuestionContainer(
+                widget.questions[questionIndex],
+                submissionText,
+                nextQuestion,
+                final_question,
+                increaseScore,
+              )
+            : Result(
+                score: score,
+                length: widget.questions.length,
+                updateProgress: widget.updateProgress,
+                quizGenerator: widget.quizGenerator),
+      ),
     );
   }
 }

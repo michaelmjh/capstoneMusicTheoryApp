@@ -92,7 +92,7 @@ class _LessonState extends State<Lesson> {
                         child: Text(
                           lesson.slides[index].text,
                           style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 32,
                             color: Color(0xff5a3d2b),
                           ),
                         ),

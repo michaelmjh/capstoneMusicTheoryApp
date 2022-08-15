@@ -7,7 +7,11 @@ class QuestionWidget2 extends StatefulWidget {
   final needsReset;
   final question;
 
-  QuestionWidget2(this.answerQuestion, this.needsReset, this.question,);
+  QuestionWidget2(
+    this.answerQuestion,
+    this.needsReset,
+    this.question,
+  );
 
   @override
   State<QuestionWidget2> createState() => _QuestionWidget2State();
@@ -33,13 +37,18 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
           return Container(
             margin: EdgeInsets.only(bottom: 15.0),
             decoration: BoxDecoration(
-              color: Colors.green,
-              border: Border.all(color: Colors.black, width: 2),
+              color: Color(0xff75c8ae),
             ),
             height: 80.0,
             width: 80.0,
             child: Center(
-              child: Text(updatedData),
+              child: Text(
+                updatedData,
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Color(0xffffecb4),
+                ),
+              ),
             ),
           );
         },
