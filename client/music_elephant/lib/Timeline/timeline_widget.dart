@@ -157,10 +157,15 @@ class TimelineWidget extends StatelessWidget {
           },
           // INDICATOR BUILDER
           indicatorBuilder: (_, index) {
-            print(newList[index]);
-            print(userProgress);
+            // print(newList[index]['lessonName']);
+            // print(userProgress);
 
-            // userProgress.keys.forEach
+            var progressKey;
+
+            // userProgress.keys.forEach((key) {
+            //   if(userProgress[key] == )
+            //   print(userProgress[key]);
+            // });
 
             // Aaaall of this logic checks which indicator should be displayed
             // in each tile depending on the user's progress and whether the
@@ -184,7 +189,8 @@ class TimelineWidget extends StatelessWidget {
                 color: Color(0xff75c8ae),
               );
               // if the tile is marked as revision in userProgress > display the pink tick indicator
-            } else if (userProgress[newList[index]] == 'REVISION') {
+            } else if (userProgress[newList[index]['lessonName']] ==
+                'REVISION') {
               return CompletedIndicator(newList[index], setSelectedLesson,
                   quizGenerator, bossGenerator, addLessonToUserProgress);
               // if tile is a boss ...
@@ -194,7 +200,7 @@ class TimelineWidget extends StatelessWidget {
               // we run a check function to see if our userProgress shows that
               // all lessons in the appropriate section have been completed
               // if this is true, the boss level unlocks, if not we show a padlock
-              if (checkIfBossUnlocked(newList[index]['level']['levelName']) ==
+              if (checkIfBossUnlocked(newList[index]) ==
                   true) {
                 return BossIndicator(newList[index], setSelectedLesson,
                     bossGenerator, addLessonToUserProgress);

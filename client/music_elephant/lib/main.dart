@@ -42,20 +42,21 @@ class _MyAppState extends State<MyApp> {
     [
       "images/profiles/michael.png",
       "Michael",
-      {
-        {
-          "id": 1,
-          "lessonName": "SCALES1",
-          "slides": [],
-          "level": {"id": 1, "levelName": "BEGINNER"}
-        }: "REVISION",
-        {
-          "id": 2,
-          "lessonName": "CHORDS1",
-          "slides": [],
-          "level": {"id": 1, "levelName": "BEGINNER"}
-        }: "REVISION",
-      }
+      // {
+      // {
+      //   "id": 1,
+      //   "lessonName": "SCALES1",
+      //   "slides": [],
+      //   "level": {"id": 1, "levelName": "BEGINNER"}
+      // }: "REVISION",
+      // {
+      //   "id": 2,
+      //   "lessonName": "CHORDS1",
+      //   "slides": [],
+      //   "level": {"id": 1, "levelName": "BEGINNER"}
+      // }: "REVISION",
+      // }
+      {"SCALES1": "REVISION", "CHORDS1": "REVISION"}
     ],
     ["images/profiles/nick.png", "Nick"],
     ["images/profiles/shuna.png", "Shuna"],
@@ -151,16 +152,26 @@ class _MyAppState extends State<MyApp> {
   // a boss quiz has been unlocked
   var completedLessons = [];
 
+  void lesson;
+
+  void getLesson() {}
+
   // this function fills the completedLessons list and is coded to ignore
   // boss lessons, because they shouldn't be included in the checks mentioned above
-  void getCompletedLessons(level) {
+  void getCompletedLessons(lesson) {
+
+    for (var lesson in lessons) {
+      
+    }
+
+    print(lesson['lessonName']);
     userProgress.keys.forEach((key) {
-      if (key['level']['levelName'] == level) {
-        if (key['lessonName'] == "BeginnerBoss" ||
-            key['lessonName'] == "IntermediateBoss" ||
-            key['lessonName'] == "AdvancedBoss") {
+      // print(key);
+      if (key == lesson['lessonName']) {
+        if (key == begBoss || key == intBoss || key == advBoss) {
           null;
         } else if (userProgress[key] == 'REVISION') {
+          print('yay');
           completedLessons.add(key);
         }
       }
@@ -174,10 +185,10 @@ class _MyAppState extends State<MyApp> {
   // compares this to our existing lists of lessons divided into each level
   // it turns these lists into sets in order to check if the completed lessons
   // list contains all elements in the level list
-  bool checkIfBossUnlocked(level) {
+  bool checkIfBossUnlocked(lesson) {
     var list = [];
-    getCompletedLessons(level);
-    switch (level) {
+    getCompletedLessons(lesson);
+    switch (lesson['level']['levelName']) {
       case "BEGINNER":
         list = begList;
         break;
