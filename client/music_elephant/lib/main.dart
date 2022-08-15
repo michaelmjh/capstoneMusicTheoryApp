@@ -61,8 +61,8 @@ class _MyAppState extends State<MyApp> {
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress = {
-    scales1: Difficulty.medium,
-    chords1: Difficulty.easy,
+    scales1: Difficulty.revision,
+    chords1: Difficulty.revision,
     // begBoss: Difficulty.revision,
     // scales2: Difficulty.revision,
     // chords2: Difficulty.medium,
