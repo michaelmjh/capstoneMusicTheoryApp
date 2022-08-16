@@ -42,8 +42,11 @@ class _MyAppState extends State<MyApp> {
       "name": "Michael",
       "image": "images/profiles/michael.png",
       "userProgress": {
-        "SCALES1": "MEDIUM",
-        "CHORDS1": "EASY",
+        "SCALES1": "REVISION",
+        "CHORDS1": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "SCALES2": "REVISION",
+        "CHORDS2": "REVISION"
       }
     }
     // [
@@ -280,24 +283,15 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  // SCALES
-  // level: beginner
-  // Difficulty: medium
-
-  // CHORDS
-  // level: beginner
-  // Difficulty: easy
-
   void quizGenerator() {
     var newQuestions = [];
     var lessonName = selectedLesson['lessonName'];
     questions.forEach((question) {
       if (question['difficulty'] == userProgress[lessonName] &&
           question['lessonName'] == lessonName) {
-        print(question['id']);
-        print(question['difficulty']);
         newQuestions.add(question);
-      } else if (question['lessonName'] == lessonName) {
+      } else if (userProgress[lessonName] == 'REVISION' &&
+          question['lessonName'] == lessonName) {
         newQuestions.add(question);
       }
     });
@@ -328,10 +322,26 @@ class _MyAppState extends State<MyApp> {
   // from a particular level
   void bossGenerator() {
     var newQuestions = [];
-    if (selectedLesson['level']['levelName'] == "BEGINNER") {
-      newQuestions = questions;
-    } else if (selectedLesson['level']['levelName'] == "INTERMEDIATE") {
-    } else if (selectedLesson['level']['levelName'] == "ADVANCED") {}
+    var lessonName = selectedLesson['lessonName'];
+
+    questions.forEach((question) {
+      if (selectedLesson['level']['levelName'] == "BEGINNER" &&
+          question['levelName'] == "BEGINNER") {
+        newQuestions.add(question);
+      } else if (selectedLesson['level']['levelName' == 'INTERMEDIATE'] &&
+          question['levelName'] == "INTERMEDIATE") {
+        newQuestions.add(question);
+      } else if (selectedLesson['level']['levelName' == 'ADVANCED'] &&
+          question['levelName'] == "ADVANCED") {
+        newQuestions.add(question);
+      }
+    });
+
+    for (var question in newQuestions) {
+      print(question['id']);
+      print(question['difficulty']);
+      print(question['lessonName']);
+    }
 
     newQuestions.shuffle();
     var shortList = selectTen(newQuestions);
