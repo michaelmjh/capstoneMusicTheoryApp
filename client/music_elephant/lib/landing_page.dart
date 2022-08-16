@@ -22,6 +22,8 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
+    var lessonName = widget.selectedLesson['lessonName'];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -56,15 +58,12 @@ class _LandingPageState extends State<LandingPage> {
                               backgroundColor: Color(0xff75c8ae),
                               child: Icon(
                                 Icons.star,
-                                color: widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.medium ||
-                                        widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.hard ||
-                                        widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.revision
+                                color: widget.userProgress[lessonName] ==
+                                            "MEDIUM" ||
+                                        widget.userProgress[lessonName] ==
+                                            "HARD" ||
+                                        widget.userProgress[lessonName] ==
+                                            "REVISION"
                                     ? Color(0xffe5771e)
                                     : Color(0xffffecb4),
                                 size: 100.00,
@@ -78,14 +77,12 @@ class _LandingPageState extends State<LandingPage> {
                               backgroundColor: Color(0xff75c8ae),
                               child: Icon(
                                 Icons.star,
-                                color: widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.hard ||
-                                        widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.revision
-                                    ? Color(0xffe5771e)
-                                    : Color(0xffffecb4),
+                                color:
+                                    widget.userProgress[lessonName] == "HARD" ||
+                                            widget.userProgress[lessonName] ==
+                                                "REVISION"
+                                        ? Color(0xffe5771e)
+                                        : Color(0xffffecb4),
                                 size: 100.00,
                               ),
                             ),
@@ -97,9 +94,8 @@ class _LandingPageState extends State<LandingPage> {
                               backgroundColor: Color(0xff75c8ae),
                               child: Icon(
                                 Icons.star,
-                                color: widget.userProgress[
-                                            widget.selectedLesson] ==
-                                        Difficulty.revision
+                                color: widget.userProgress[lessonName] ==
+                                        "REVISION"
                                     ? Color(0xffe5771e)
                                     : Color(0xffffecb4),
                                 size: 100.00,

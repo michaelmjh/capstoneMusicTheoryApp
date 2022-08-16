@@ -42,21 +42,11 @@ class _MyAppState extends State<MyApp> {
     [
       "images/profiles/michael.png",
       "Michael",
-      // {
-      // {
-      //   "id": 1,
-      //   "lessonName": "SCALES1",
-      //   "slides": [],
-      //   "level": {"id": 1, "levelName": "BEGINNER"}
-      // }: "REVISION",
-      // {
-      //   "id": 2,
-      //   "lessonName": "CHORDS1",
-      //   "slides": [],
-      //   "level": {"id": 1, "levelName": "BEGINNER"}
-      // }: "REVISION",
-      // }
-      {"SCALES1": "REVISION", "CHORDS1": "REVISION"}
+      {
+        "SCALES1": "HARD",
+        // "CHORDS1": "MEDIUM",
+        // "BeginnerBoss": "REVISION"
+      }
     ],
     ["images/profiles/nick.png", "Nick"],
     ["images/profiles/shuna.png", "Shuna"],
@@ -152,23 +142,9 @@ class _MyAppState extends State<MyApp> {
   // a boss quiz has been unlocked
   var completedLessons = [];
 
-  void lesson;
-
-  void getLesson() {}
-
   // this function fills the completedLessons list and is coded to ignore
   // boss lessons, because they shouldn't be included in the checks mentioned above
   void getCompletedLessons(lesson) {
-    // userProgress.keys.forEach((key) {
-    //   if (key == lesson['lessonName']) {
-    //     if (key == begBoss || key == intBoss || key == advBoss) {
-    //       null;
-    //     } else if (userProgress[key] == 'REVISION') {
-    //       print('yay');
-    //       completedLessons.add(key);
-    //     }
-    //   }
-
     userProgress.keys.forEach((key) {
       if (key == begBoss || key == intBoss || key == advBoss) {
         null;
@@ -176,7 +152,6 @@ class _MyAppState extends State<MyApp> {
         completedLessons.add(key);
       }
     });
-    // });
   }
 
   // this function is used in timeline_widget - it checks if all lessons in
@@ -202,7 +177,9 @@ class _MyAppState extends State<MyApp> {
         list = advList;
         break;
     }
-    if (completedLessons.toSet().containsAll(list)) {
+    if (list.length == 0) {
+      return false;
+    } else if (completedLessons.toSet().containsAll(list)) {
       return true;
     } else {
       return false;
@@ -238,30 +215,32 @@ class _MyAppState extends State<MyApp> {
   }
 
   void updateProgress() {
-    if (userProgress[selectedLesson] == 'EASY') {
+    var lessonName = selectedLesson['lessonName'];
+    if (userProgress[lessonName] == 'EASY') {
       setState(() {
         // progress = [true, false, false];
         // currentDifficulty = Difficulty.medium;
-        userProgress[selectedLesson] = 'MEDIUM';
+        userProgress[lessonName] = 'MEDIUM';
       });
-    } else if (userProgress[selectedLesson] == 'MEDIUM') {
+    } else if (userProgress[lessonName] == 'MEDIUM') {
       setState(() {
         // progress = [true, true, false];
         // currentDifficulty = Difficulty.hard;
-        userProgress[selectedLesson] = 'HARD';
+        userProgress[lessonName] = 'HARD';
       });
-    } else if (userProgress[selectedLesson] == 'HARD') {
+    } else if (userProgress[lessonName] == 'HARD') {
       setState(() {
         // progress = [true, true, true];
         // currentDifficulty = Difficulty.revision;
-        userProgress[selectedLesson] = 'REVISION';
+        userProgress[lessonName] = 'REVISION';
       });
     }
   }
 
   void addLessonToUserProgress() {
-    if (userProgress.containsKey(selectedLesson['lessonName']) == false) {
-      userProgress[selectedLesson['lessonName']] = 'EASY';
+    var lessonName = selectedLesson['lessonName'];
+    if (userProgress.containsKey(lessonName) == false) {
+      userProgress[lessonName] = 'EASY';
     } else {
       null;
     }
@@ -269,11 +248,11 @@ class _MyAppState extends State<MyApp> {
 
   void quizGenerator() {
     var newQuestions = [];
+    var lessonName = selectedLesson['lessonName'];
 
     questions.forEach((question) {
-      if (selectedLesson['lessonName'] == question['lessonName'] &&
-          question['difficulty'] ==
-              userProgress[selectedLesson['lessonName']]) {
+      if (lessonName == question['lessonName'] &&
+          question['difficulty'] == userProgress[lessonName]) {
         newQuestions.add(question);
       }
     });
@@ -320,7 +299,6 @@ class _MyAppState extends State<MyApp> {
   getData() async {
     lessons = await Helper().getLessons();
     questions = await Helper().getAllQuestions();
-
     if (lessons != null && questions != null) {
       setState(() {
         isLoaded = true;
