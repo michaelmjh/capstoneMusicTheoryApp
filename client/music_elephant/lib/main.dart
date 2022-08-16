@@ -37,13 +37,12 @@ class _MyAppState extends State<MyApp> {
       "image": "images/profiles/ewan.png",
       "userProgress": {"SCALES1": "EASY", "CHORDS1": "MEDIUM"}
     },
-
     {
       "name": "Michael",
       "image": "images/profiles/michael.png",
       "userProgress": {
-        "SCALES1": "REVISION",
-        "CHORDS1": "REVISION",
+        "SCALES1": "MEDIUM",
+        "CHORDS1": "EASY",
         // "BeginnerBoss": "REVISION",
         // "SCALES2": "REVISION",
         // "CHORDS2": "REVISION",
@@ -51,32 +50,47 @@ class _MyAppState extends State<MyApp> {
         // "SCALES3": "REVISION",
         // "CHORDS3": "REVISION",
       }
-    }
-    // [
-    //   "images/profiles/nick.png",
-    //   "Nick",
-    //   {
-    //     "SCALES1": "REVISION",
-    //     "CHORDS1": "REVISION",
-    //     "BeginnerBoss": "REVISION",
-    //     "SCALES2": "REVISION",
-    //     "CHORDS3": "MEDIUM"
-    //   }
-    // ],
-    // [
-    //   "images/profiles/shuna.png",
-    //   "Shuna",
-    //   {
-    //     "SCALES1": "REVISION",
-    //     "CHORDS1": "REVISION",
-    //     "BeginnerBoss": "REVISION",
-    //     "SCALES2": "REVISION",
-    //     "CHORDS3": "REVISION"
-    //   }
-    // ],
-    // ["images/dog-png-30.png", "Ian"],
-    // ["images/dog-png-30.png", "Josh"],
-    // ["images/dog-png-30.png", "Lou"],
+    },
+    {
+      "name": "Nick",
+      "image": "images/profiles/nick.png",
+      "userProgress": {
+        "SCALES1": "REVISION",
+        "CHORDS1": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "SCALES2": "REVISION",
+        "CHORDS3": "MEDIUM"
+      }
+    },
+    {
+      "name": "Shuna",
+      "image": "images/profiles/shuna.png",
+      "userProgress": {
+        "SCALES1": "REVISION",
+        "CHORDS1": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "CHORDS2": "REVISION",
+        "SCALES2": "REVISION",
+        "IntermediateBoss": "REVISION",
+        "SCALES3": "REVISION",
+        "CHORDS3": "REVISION"
+      }
+    },
+    {
+      "name": "Ian",
+      "image": "images/dog-png-30.png",
+      "userProgress": {},
+    },
+    {
+      "name": "Josh",
+      "image": "images/dog-png-30.png",
+      "userProgress": {},
+    },
+    {
+      "name": "Lou",
+      "image": "images/dog-png-30.png",
+      "userProgress": {},
+    },
   ];
 
   var avatars = [
@@ -112,7 +126,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void setUserProgress() {
-    userProgress = users[1]['userProgress'];
+    userProgress = selectedProfile['userProgress'];
   }
 
   // Function is run inside timeline_widget when user presses on timeline indicator
@@ -380,7 +394,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     getData();
-    setUserProgress();
+    // setUserProgress();
   }
 
   getData() async {
@@ -418,9 +432,9 @@ class _MyAppState extends State<MyApp> {
         //       quizGenerator,
         //     ),
         '/users': (context) => UserContainer(users, setSelectedProfile,
-            getLevels, setTimelineLessonList, deleteUser),
-        '/profile': (context) => SpecificProfile(
-            selectedProfile, getLevels, setTimelineLessonList, deleteUser),
+            getLevels, setTimelineLessonList, deleteUser, setUserProgress),
+        '/profile': (context) => SpecificProfile(selectedProfile, getLevels,
+            setTimelineLessonList, deleteUser, setUserProgress),
         // '/addProfile': (context) => AddProfile(addUser),
         '/editProfile': (context) => EditProfile(),
         '/timeline': (countext) => Timeline(
