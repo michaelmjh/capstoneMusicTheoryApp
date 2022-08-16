@@ -41,8 +41,35 @@ class _QuestionContainerState extends State<QuestionContainer> {
 
   bool needsReset = false;
 
-  void submit() {
+  void submitArrange() {
     if (listsEqual(submittedAnswers, widget.question['answerAssets']) == true) {
+      setState(() {
+        isSubmitted = true;
+        widget.submissionText = 'You got the right answer!';
+        needsReset = true;
+        widget.increaseScore();
+      });
+    } else if (submittedAnswers.isEmpty) {
+      null;
+    } else {
+      setState(() {
+        isSubmitted = true;
+        widget.submissionText = 'Aw boo you got it wrong :(';
+        needsReset = true;
+      });
+    }
+  }
+
+  void submit() {
+    bool correct = false;
+    for (var item in widget.question['answerAssets']) {
+      for (var element in submittedAnswers) {
+        if (item == element) {
+          correct = true;
+        }
+      }
+    }
+    if (correct == true) {
       setState(() {
         isSubmitted = true;
         widget.submissionText = 'You got the right answer!';
@@ -70,35 +97,48 @@ class _QuestionContainerState extends State<QuestionContainer> {
     }
   }
 
+  bool answersFull = false;
+
 // this function adds answers to the above list at an index that matches
 // the correct answer list, if ths answer exists in that list
-  void answerQuestion(answer, question) {
+  void answerQuestion(answer) {
     var index;
-    if (question['answerAssets'].contains(answer)) {
-      index = question['answerAssets'].indexOf(answer);
-      submittedAnswers[index] = answer;
-    }
+    // setState(() {
+    //   isSelected = true;
+    // });
 
-    var submittedAnswersCheck = [];
+    // submittedAnswers.add(answer);
 
-    for (var answer in submittedAnswers) {
-      if (answer == "") {
-        null;
-      } else
-        submittedAnswersCheck.add(answer);
-    }
+    // if (question['answerAssets'].contains(answer)) {
+    //   index = question['answerAssets'].indexOf(answer);
+    //   submittedAnswers[index] = answer;
+    // }
 
-    print(submittedAnswersCheck.length);
+    // var submittedAnswersCheck = [];
 
-    if (submittedAnswersCheck.length ==
+    // for (var answer in submittedAnswers) {
+    //   if (answer == "") {
+    //     null;
+    //   } else
+    //     submittedAnswersCheck.add(answer);
+    // }
+
+    if (submittedAnswers.length != widget.question['answerAssets']!.length) {
+      setState(() {
+        submittedAnswers.add(answer);
+        isSelected = true;
+      });
+    } else if (submittedAnswers.length ==
         widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
         disabled = true;
       });
     }
-    print(submittedAnswers);
     // print(isSelected);
+    // print(widget.question['answerAssets']);
+    print(disabled);
+    print(submittedAnswers);
   }
 
   void answerQuestionArrange(answer, question, index) {
@@ -118,11 +158,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
 
   void clearAnswer(answer) {
     setState(() {
-      for (var item in submittedAnswers) {
-        if (item == answer) {
-          item = "";
-        }
-      }
+      submittedAnswers.remove(answer);
       isSelected = false;
       disabled = false;
     });
@@ -183,7 +219,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                 },
               )
             : Builder(builder: (__) {
-                createEmptyAnswerList(widget.question);
+                // createEmptyAnswerList(widget.question);
                 return QuestionWidget(widget.question);
               }),
         !isSubmitted
@@ -230,7 +266,11 @@ class _QuestionContainerState extends State<QuestionContainer> {
                           ),
                         ),
                         onPressed: () {
-                          submit();
+                          if (widget.question['questionType'] == "ARRANGE") {
+                            submitArrange();
+                          } else {
+                            submit();
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xffe5771e),

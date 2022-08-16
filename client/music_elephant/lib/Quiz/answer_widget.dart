@@ -5,11 +5,11 @@ class AnswerWidget extends StatefulWidget {
   final answer;
   final clearAnswer;
   final disabled;
-  final submittedAnswers;
-  final question;
+  final answerList;
+  final correctAnswers;
 
   AnswerWidget(this.answerQuestion, this.answer, this.clearAnswer,
-      this.disabled, this.submittedAnswers, this.question);
+      this.disabled, this.answerList, this.correctAnswers);
 
   @override
   State<AnswerWidget> createState() => _AnswerWidgetState();
@@ -39,7 +39,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
               ),
         onPressed: widget.disabled
             ? () => {
-                  if (widget.question['answerAssets'].contains(widget.answer))
+                  if (widget.answerList.contains(widget.answer))
                     {
                       isSelected = !isSelected,
                       widget.clearAnswer(widget.answer),
@@ -50,7 +50,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                     () {
                       isSelected = !isSelected;
                       if (isSelected) {
-                        widget.answerQuestion(widget.answer, widget.question);
+                        widget.answerQuestion(widget.answer);
                       } else {
                         widget.clearAnswer(widget.answer);
                       }
