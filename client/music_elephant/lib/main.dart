@@ -42,8 +42,8 @@ class _MyAppState extends State<MyApp> {
       "name": "Michael",
       "image": "images/profiles/michael.png",
       "userProgress": {
-        // "SCALES1": "REVISION",
-        // "CHORDS1": "MEDIUM",
+        "SCALES1": "MEDIUM",
+        "CHORDS1": "EASY",
       }
     }
     // [
@@ -280,27 +280,26 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  // SCALES
+  // level: beginner
+  // Difficulty: medium
+
+  // CHORDS
+  // level: beginner
+  // Difficulty: easy
+
   void quizGenerator() {
     var newQuestions = [];
     var lessonName = selectedLesson['lessonName'];
-
     questions.forEach((question) {
-      // if (lessonName == question['lessonName'] &&
-      //     question['difficulty'] == userProgress[lessonName]) {
-      //   newQuestions.add(question);
-      //   print(question['difficulty']);
-      //   print(userProgress[lessonName]);
-      // } else if (lessonName == question['lessonName']) {
-      //   newQuestions.add(question);
-
-      if (question['difficulty'] == 'EASY' &&
-          question['lessonName'] == 'SCALES1') {
+      if (question['difficulty'] == userProgress[lessonName] &&
+          question['lessonName'] == lessonName) {
+        print(question['id']);
+        print(question['difficulty']);
         newQuestions.add(question);
-        // print(question['lessonName']);
-        // print(question['levelName']);
-        // print(question['difficulty']);
+      } else if (question['lessonName'] == lessonName) {
+        newQuestions.add(question);
       }
-      // }
     });
     newQuestions.shuffle();
     selectedQuestions = newQuestions;
