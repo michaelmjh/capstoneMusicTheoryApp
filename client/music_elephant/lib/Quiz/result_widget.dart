@@ -18,15 +18,9 @@ class Result extends StatelessWidget {
     if (score >= 4) {
       resultText =
           'Perfect! You should feel comfortable moving on to the next section';
-    } else if (score == 2) {
+    } else {
       resultText =
-          'Well done! You missed one but we think you will be fine moving on to the next section.';
-    } else if (score == 1) {
-      resultText =
-          'You did a good job! But we would recommend revising this subject again before moving on.';
-    } else if (score == 0) {
-      resultText =
-          'Not to worry! Go back and revise this subject and you\'ll smash it next time!';
+          'Not to worry! Go back and revise this subject! You\'ll smash it next time!';
     }
     return resultText;
   }
@@ -37,23 +31,66 @@ class Result extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('End of Quiz!',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-          Text('You scored $score out of $length',
-              style:
-                  const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-          Text(
-            resultPhrase,
-            style: const TextStyle(fontSize: 14),
-            textAlign: TextAlign.center,
+          Image.asset(
+            score > 3 ? "images/logo/Happy.png" : "images/logo/Sad.png",
+            height: 500,
           ),
-          ElevatedButton(
-            onPressed: () {
-              score > 3 ? updateProgress() : null;
-              quizGenerator();
-              Navigator.pushNamed(context, '/landingpage');
-            },
-            child: const Text('Back to Lesson'),
+          const Text(
+            'End of Quiz!',
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Color(0xff5a3d2b),
+            ),
+          ),
+          Text(
+            'You scored $score out of $length',
+            style: const TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Color(0xff5a3d2b),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 70,
+              right: 70,
+            ),
+            child: Text(
+              resultPhrase,
+              style: const TextStyle(
+                fontSize: 22,
+                color: Color(0xff5a3d2b),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xffe5771e),
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  'Return to Lesson',
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Color(0xffffecb4),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                score > 3 ? updateProgress() : null;
+                quizGenerator();
+                Navigator.pushNamed(context, '/landingpage');
+              },
+            ),
           ),
         ],
       ),

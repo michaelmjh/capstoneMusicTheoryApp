@@ -23,12 +23,16 @@ class _AnswerWidget2State extends State<AnswerWidget2> {
         child: Draggable<String>(
           data: widget.answer,
           child: Container(
-            color: isDraggable ? Colors.blue : Colors.grey,
+            color: isDraggable ? Color(0xffe5771e) : Color(0xffffecb4),
             height: 80.0,
             width: 80.0,
             child: Center(
               child: Text(
                 widget.answer,
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Color(0xffffecb4),
+                ),
               ),
             ),
           ),

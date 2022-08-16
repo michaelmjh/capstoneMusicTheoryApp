@@ -10,4 +10,6 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByLessonName(Enum lessonName);
 
     List<Question> findByLessonNameAndDifficulty(Enum lessonName, Enum difficulty);
+
+    List<Question> findByDifficulty(Enum difficulty);
 }

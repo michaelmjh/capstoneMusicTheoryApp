@@ -23,8 +23,20 @@ class _AnswerWidgetState extends State<AnswerWidget> {
     return Container(
       child: ElevatedButton(
         style: isSelected
-            ? ElevatedButton.styleFrom(primary: Colors.green)
-            : ElevatedButton.styleFrom(primary: Colors.blue),
+            ? ElevatedButton.styleFrom(
+                primary: Color(0xff75c8ae),
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+              )
+            : ElevatedButton.styleFrom(
+                primary: Color(0xffe5771e),
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+              ),
         onPressed: widget.disabled
             ? () => {
                   if (widget.answerList.contains(widget.answer))
@@ -45,7 +57,13 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                     },
                   ),
                 },
-        child: Text(widget.answer),
+        child: Text(
+          widget.answer,
+          style: TextStyle(
+            fontSize: 32,
+            color: Color(0xffffecb4),
+          ),
+        ),
       ),
     );
   }

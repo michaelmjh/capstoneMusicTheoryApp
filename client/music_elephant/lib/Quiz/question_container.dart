@@ -114,7 +114,11 @@ class _QuestionContainerState extends State<QuestionContainer> {
                       Container(
                         child: Text(
                           widget.question['questionAssets'][1],
-                          style: TextStyle(fontSize: 23.0),
+                          style: TextStyle(
+                            fontSize: 32.0,
+                            color: Color(0xff5a3d2b),
+                            fontWeight: FontWeight.bold,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                         margin: EdgeInsets.only(top: 15.0),
@@ -122,7 +126,10 @@ class _QuestionContainerState extends State<QuestionContainer> {
                       Container(
                           child: Text(
                             "(Drag the letters into the boxes)",
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(
+                              fontSize: 32.0,
+                              color: Color(0xff5a3d2b),
+                            ),
                             textAlign: TextAlign.center,
                           ),
                           margin: EdgeInsets.only(top: 5.0, bottom: 15.0)),
@@ -157,7 +164,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                           ],
                           mainAxisAlignment: MainAxisAlignment.center,
                         )
-                      : Row(
+                      : Column(
                           children: [
                             ...(widget.question['answerOptions'] as List)
                                 .map((answer) {
@@ -173,11 +180,30 @@ class _QuestionContainerState extends State<QuestionContainer> {
                         ),
                   Visibility(
                     visible: isSelected,
-                    child: ElevatedButton(
-                      child: const Text('Submit'),
-                      onPressed: () {
-                        submit();
-                      },
+                    child: Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: ElevatedButton(
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            "Submit",
+                            style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          submit();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xffe5771e),
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                        ),
+                      ),
                     ),
                   )
                 ],
@@ -185,27 +211,79 @@ class _QuestionContainerState extends State<QuestionContainer> {
             : Column(
                 children: [
                   Text(widget.submissionText),
-                  ...(widget.question['answerAssets'] as List).map((answer) {
-                    return ElevatedButton(
-                        onPressed: () {},
-                        child: Text(answer),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                        ));
-                  }).toList(),
+                  ...(widget.question['answerAssets] as List<Answer>).map(
+                    (answer) {
+                      return Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            answer,
+                            style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xffe5771e),
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ).toList(),
                   !widget.final_question
-                      ? ElevatedButton(
-                          child: Text('Next Question'),
-                          onPressed: () {
-                            widget.nextQuestion();
-                            reset();
-                          },
+                      ? Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              widget.nextQuestion();
+                              reset();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xffe5771e),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32),
+                              ),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Next Question",
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  color: Color(0xffffecb4),
+                                ),
+                              ),
+                            ),
+                          ),
                         )
-                      : ElevatedButton(
-                          child: Text('Get Results'),
-                          onPressed: () {
-                            widget.nextQuestion();
-                          })
+                      : Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              widget.nextQuestion();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xffe5771e),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32),
+                              ),
+                            ),
+                            child: const Text(
+                              "Get Results",
+                              style: TextStyle(
+                                fontSize: 32,
+                                color: Color(0xffffecb4),
+                              ),
+                            ),
+                          ),
+                        ),
                 ],
               )
       ],

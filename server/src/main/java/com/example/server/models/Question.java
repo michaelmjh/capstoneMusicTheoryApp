@@ -41,7 +41,10 @@ public class Question {
     @ElementCollection(targetClass = String.class)
     private List<String> answerAssets;
 
-    public Question(QuestionType questionType, LevelName levelName, LessonName lessonName, Difficulty difficulty, List<String> questionAssets, List<String> answerOptions, List<String> answerAssets){
+    @Column(name="audio")
+    private String audio;
+
+    public Question(QuestionType questionType, LevelName levelName, LessonName lessonName, Difficulty difficulty, List<String> questionAssets, List<String> answerOptions, List<String> answerAssets, String audio){
         this.questionType = questionType;
         this.levelName = levelName;
         this.lessonName = lessonName;
@@ -49,6 +52,7 @@ public class Question {
         this.questionAssets = questionAssets;
         this.answerOptions = answerOptions;
         this.answerAssets = answerAssets;
+        this.audio = audio;
     }
 
     public Question(){
@@ -118,5 +122,13 @@ public class Question {
 
     public void setAnswerAssets(List<String> answerAssets) {
         this.answerAssets = answerAssets;
+    }
+
+    public String getAudio() {
+        return audio;
+    }
+
+    public void setAudio(String audio) {
+        this.audio = audio;
     }
 }
