@@ -44,11 +44,12 @@ class _MyAppState extends State<MyApp> {
       "userProgress": {
         "SCALES1": "REVISION",
         "CHORDS1": "REVISION",
-        "BeginnerBoss": "REVISION",
-        "SCALES2": "REVISION",
-        "CHORDS2": "REVISION",
+        // "BeginnerBoss": "REVISION",
+        // "SCALES2": "REVISION",
+        // "CHORDS2": "REVISION",
         // "IntermediateBoss": "REVISION",
         // "SCALES3": "REVISION",
+        // "CHORDS3": "REVISION",
       }
     }
     // [
@@ -216,10 +217,14 @@ class _MyAppState extends State<MyApp> {
         }
         break;
       case "INTERMEDIATE":
-        list = intList;
+        for (var item in intList) {
+          list.add(item['lessonName']);
+        }
         break;
       case "ADVANCED":
-        list = advList;
+        for (var item in advList) {
+          list.add(item['lessonName']);
+        }
         break;
     }
     if (list.length == 0) {
