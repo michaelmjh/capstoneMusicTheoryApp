@@ -40,7 +40,7 @@ public class DataLoader implements ApplicationRunner {
         Level level1 = new Level(LevelName.BEGINNER);
         levelRepository.save(level1);
 
-        Level level2 = new Level(LevelName.INTERMIDIATE);
+        Level level2 = new Level(LevelName.INTERMEDIATE);
         levelRepository.save(level2);
 
         Level level3 = new Level(LevelName.ADVANCED);
@@ -146,7 +146,7 @@ public class DataLoader implements ApplicationRunner {
 
 //        Saving Question 1
         List question1Assets = new ArrayList();
-        question1Assets.add("/images/question_images/easy/Cmaj-identify-note-C.png");
+        question1Assets.add("images/question_images/easy/Cmaj-identify-note-C.png");
         question1Assets.add("Identify this note");
 
         List answer1Options = new ArrayList<>();
@@ -158,7 +158,7 @@ public class DataLoader implements ApplicationRunner {
         List answer1Assets = new ArrayList();
         answer1Assets.add("C");
 
-        String answer1audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
+        String answer1audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
 
 
         Question question1 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question1Assets, answer1Options, answer1Assets, answer1audio);
@@ -167,7 +167,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 2
 
         List question2Assets = new ArrayList();
-        question2Assets.add("/images/question_images/easy/Cmaj-identify-note-E.png");
+        question2Assets.add("images/question_images/easy/Cmaj-identify-note-E.png");
         question2Assets.add("Identify this note");
 
         List answer2Options = new ArrayList<>();
@@ -179,7 +179,7 @@ public class DataLoader implements ApplicationRunner {
         List answer2Assets = new ArrayList();
         answer2Assets.add("E");
 
-        String answer2audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
+        String answer2audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
 
         Question question2 = new Question(QuestionType.IDENTIFY, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question2Assets, answer2Options, answer2Assets, answer2audio);
         questionRepository.save(question2);
@@ -187,7 +187,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 3
 
         List question3Assets = new ArrayList();
-        question3Assets.add("/images/question_images/easy/Cmaj-missing-note-A.png");
+        question3Assets.add("images/question_images/easy/Cmaj-missing-note-A.png");
         question3Assets.add("Fill in the missing notes");
 
         List answer3Options = new ArrayList<>();
@@ -197,10 +197,10 @@ public class DataLoader implements ApplicationRunner {
         answer3Options.add("G");
 
         List answer3Assets = new ArrayList();
-        answer3Assets.add("/images/question_images/easy/Cmaj-complete-scale.png");
+        answer3Assets.add("images/question_images/easy/Cmaj-complete-scale.png");
         answer3Assets.add("A");
 
-        String answer3audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
+        String answer3audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
 
         Question question3 = new Question(QuestionType.COMPLETE, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question3Assets, answer3Options, answer3Assets, answer3audio);
         questionRepository.save(question3);
@@ -208,7 +208,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 4
 
         List question4Assets = new ArrayList();
-        question4Assets.add("/images/question_images/easy/Cmaj-missing-note-E.png");
+        question4Assets.add("images/question_images/easy/Cmaj-missing-note-E.png");
         question4Assets.add("Fill in the missing notes");
 
         List answer4Options = new ArrayList<>();
@@ -218,10 +218,10 @@ public class DataLoader implements ApplicationRunner {
         answer4Options.add("A");
 
         List answer4Assets = new ArrayList();
-        answer4Assets.add("/images/question_images/easy/Cmaj-complete-scale.png");
+        answer4Assets.add("images/question_images/easy/Cmaj-complete-scale.png");
         answer4Assets.add("E");
 
-        String answer4audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
+        String answer4audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
 
         Question question4 = new Question(QuestionType.COMPLETE, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question4Assets, answer4Options, answer4Assets, answer4audio);
         questionRepository.save(question4);
@@ -244,7 +244,7 @@ public class DataLoader implements ApplicationRunner {
         answer5Assets.add("F");
         answer5Assets.add("D");
 
-        String answer5audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
+        String answer5audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
 
         Question question5 = new Question(QuestionType.ARRANGE, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question5Assets, answer5Options, answer5Assets, answer5audio);
         questionRepository.save(question5);
@@ -269,7 +269,7 @@ public class DataLoader implements ApplicationRunner {
         answer6Assets.add("A");
         answer6Assets.add("B");
 
-        String answer6audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
+        String answer6audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
 
         Question question6 = new Question(QuestionType.ARRANGE, level1.getLevelName(), scales1.getLessonName(), Difficulty.EASY, question6Assets, answer6Options, answer6Assets, answer6audio);
         questionRepository.save(question6);
@@ -1014,4 +1014,4 @@ public class DataLoader implements ApplicationRunner {
     }
 }
 
-//scales1.getLessonName(), level1.getLevelName()
+
