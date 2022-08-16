@@ -211,7 +211,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
             : Column(
                 children: [
                   Text(widget.submissionText),
-                  ...(widget.question['answerAssets] as List<Answer>).map(
+                  ...(widget.question['answerAssets'] as List).map(
                     (answer) {
                       return Padding(
                         padding: const EdgeInsets.all(30.0),
