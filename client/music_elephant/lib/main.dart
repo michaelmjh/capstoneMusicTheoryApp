@@ -46,7 +46,9 @@ class _MyAppState extends State<MyApp> {
         "CHORDS1": "REVISION",
         "BeginnerBoss": "REVISION",
         "SCALES2": "REVISION",
-        "CHORDS2": "REVISION"
+        "CHORDS2": "REVISION",
+        // "IntermediateBoss": "REVISION",
+        // "SCALES3": "REVISION",
       }
     }
     // [
