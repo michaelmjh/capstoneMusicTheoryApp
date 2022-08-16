@@ -44,10 +44,9 @@ class _LandingPageState extends State<LandingPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(30.0),
-                child: widget.selectedLesson['lessonName'] != "BeginnerBoss" &&
-                        widget.selectedLesson['lessonName'] !=
-                            "IntermediateBoss" &&
-                        widget.selectedLesson['lessonName'] != "AdvancedBoss"
+                child: lessonName != "BeginnerBoss" &&
+                        lessonName != "IntermediateBoss" &&
+                        lessonName != "AdvancedBoss"
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -117,10 +116,9 @@ class _LandingPageState extends State<LandingPage> {
                       ),
               ),
               Visibility(
-                visible: widget.selectedLesson['lessonName'] !=
-                        "BeginnerBoss" &&
-                    widget.selectedLesson['lessonName'] != "IntermediateBoss" &&
-                    widget.selectedLesson['lessonName'] != "AdvancedBoss",
+                visible: lessonName != "BeginnerBoss" &&
+                    lessonName != "IntermediateBoss" &&
+                    lessonName != "AdvancedBoss",
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: ElevatedButton(
@@ -160,12 +158,9 @@ class _LandingPageState extends State<LandingPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (__) {
-                      if (widget.selectedLesson['lessonName'] ==
-                              "BeginnerBoss" ||
-                          widget.selectedLesson['lessonName'] ==
-                              "IntermediateBoss" ||
-                          widget.selectedLesson['lessonName'] ==
-                              "AdvancedBoss") {
+                      if (lessonName == "BeginnerBoss" ||
+                          lessonName == "IntermediateBoss" ||
+                          lessonName == "AdvancedBoss") {
                         return Text(
                           "Boss Quiz",
                           style: TextStyle(
@@ -173,10 +168,8 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                              Difficulty.easy ||
-                          widget.userProgress
-                                  .containsKey(widget.selectedLesson) ==
+                      } else if (widget.userProgress[lessonName] == "EASY" ||
+                          widget.userProgress.containsKey(lessonName) ==
                               false) {
                         return Text(
                           "Easy Quiz",
@@ -185,8 +178,7 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                          Difficulty.medium) {
+                      } else if (widget.userProgress[lessonName] == "MEDIUM") {
                         return Text(
                           "Medium Quiz",
                           style: TextStyle(
@@ -194,8 +186,7 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                          Difficulty.hard) {
+                      } else if (widget.userProgress[lessonName] == "HARD") {
                         return Text(
                           "Hard Quiz",
                           style: TextStyle(
@@ -203,8 +194,8 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                          Difficulty.revision) {
+                      } else if (widget.userProgress[lessonName] ==
+                          "REVISION") {
                         return Text(
                           "Revision Quiz",
                           style: TextStyle(

@@ -31,10 +31,6 @@ class _MyAppState extends State<MyApp> {
   var questions;
   var isLoaded = false;
 
-  // List<bool> progress = [false, false, false];
-
-  // Difficulty currentDifficulty = Difficulty.medium;
-  // List<Question> currentQuiz = QuestionData.shared.easyQuestions;
   var selectedQuestions;
 
   var users = [
@@ -43,8 +39,8 @@ class _MyAppState extends State<MyApp> {
       "images/profiles/michael.png",
       "Michael",
       {
-        "SCALES1": "HARD",
-        // "CHORDS1": "MEDIUM",
+        "SCALES1": "REVISION",
+        "CHORDS1": "MEDIUM",
         // "BeginnerBoss": "REVISION"
       }
     ],
@@ -218,20 +214,14 @@ class _MyAppState extends State<MyApp> {
     var lessonName = selectedLesson['lessonName'];
     if (userProgress[lessonName] == 'EASY') {
       setState(() {
-        // progress = [true, false, false];
-        // currentDifficulty = Difficulty.medium;
         userProgress[lessonName] = 'MEDIUM';
       });
     } else if (userProgress[lessonName] == 'MEDIUM') {
       setState(() {
-        // progress = [true, true, false];
-        // currentDifficulty = Difficulty.hard;
         userProgress[lessonName] = 'HARD';
       });
     } else if (userProgress[lessonName] == 'HARD') {
       setState(() {
-        // progress = [true, true, true];
-        // currentDifficulty = Difficulty.revision;
         userProgress[lessonName] = 'REVISION';
       });
     }
@@ -253,6 +243,9 @@ class _MyAppState extends State<MyApp> {
     questions.forEach((question) {
       if (lessonName == question['lessonName'] &&
           question['difficulty'] == userProgress[lessonName]) {
+        newQuestions.add(question);
+      } else if (lessonName == question['lessonName']) {
+        print(question['lessonName']);
         newQuestions.add(question);
       }
     });
