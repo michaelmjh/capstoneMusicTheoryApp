@@ -41,7 +41,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
   bool needsReset = false;
 
   void submit() {
-    if (deepEq(submittedAnswers, widget.question.correctAnswer)) {
+    if (deepEq(submittedAnswers, widget.question['answerAssets'])) {
       setState(() {
         isSubmitted = true;
         widget.submissionText = 'You got the right answer!';
@@ -62,8 +62,8 @@ class _QuestionContainerState extends State<QuestionContainer> {
 // this function creates a list which will be filled when answers are clicked
 // this will allow an accurate check for questions with more than one answer
   void createEmptyAnswerList(question) {
-    for (var i = 0; i < question.correctAnswer.length; i++) {
-      if (submittedAnswers.length != question.correctAnswer.length) {
+    for (var i = 0; i < question['answerAssets'].length; i++) {
+      if (submittedAnswers.length != question['answerAssets'].length) {
         submittedAnswers.add("");
       }
     }
@@ -73,11 +73,11 @@ class _QuestionContainerState extends State<QuestionContainer> {
 // the correct answer list, if ths answer exists in that list
   void answerQuestion(answer, question) {
     var index;
-    if (question.correctAnswer.contains(answer)) {
-      index = question.correctAnswer.indexOf(answer);
+    if (question['answerAssets'].contains(answer)) {
+      index = question['answerAssets'].indexOf(answer);
       submittedAnswers[index] = answer;
     }
-    if (submittedAnswers.length == widget.question.correctAnswer!.length) {
+    if (submittedAnswers.length == widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
         disabled = true;
@@ -105,17 +105,15 @@ class _QuestionContainerState extends State<QuestionContainer> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        widget.question.type == QuestionType.arrange
+        widget.question['questionType'] == "ARRANGE"
             ? Builder(
                 builder: (__) {
                   createEmptyAnswerList(widget.question);
-                  print(widget.question.lesson);
-                  print(widget.question.level);
                   return Column(
                     children: [
                       Container(
                         child: Text(
-                          widget.question.text,
+                          widget.question['questionAssets'][1],
                           style: TextStyle(
                             fontSize: 32.0,
                             color: Color(0xff5a3d2b),
@@ -137,7 +135,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                           margin: EdgeInsets.only(top: 5.0, bottom: 15.0)),
                       Row(
                         children: [
-                          ...(widget.question.answerOptions as List)
+                          ...(widget.question['answerOptions'] as List)
                               .map((answer) {
                             return QuestionWidget2(
                                 answerQuestion, needsReset, widget.question);
@@ -151,17 +149,15 @@ class _QuestionContainerState extends State<QuestionContainer> {
               )
             : Builder(builder: (__) {
                 createEmptyAnswerList(widget.question);
-                print(widget.question.lesson);
-                print(widget.question.level);
                 return QuestionWidget(widget.question);
               }),
         !isSubmitted
             ? Column(
                 children: [
-                  widget.question.type == QuestionType.arrange
+                  widget.question['questionType'] == "ARRANGE"
                       ? Row(
                           children: [
-                            ...(widget.question.answerOptions as List<Answer>)
+                            ...(widget.question['answerOptions'] as List)
                                 .map((answer) {
                               return AnswerWidget2(answer);
                             }).toList(),
@@ -170,7 +166,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                         )
                       : Column(
                           children: [
-                            ...(widget.question.answerOptions as List<Answer>)
+                            ...(widget.question['answerOptions'] as List)
                                 .map((answer) {
                               return AnswerWidget(
                                   () => answerQuestion(answer, widget.question),
@@ -178,7 +174,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                                   clearAnswer,
                                   disabled,
                                   submittedAnswers,
-                                  widget.question.correctAnswer);
+                                  widget.question['answerAssets']);
                             }).toList(),
                           ],
                         ),
@@ -215,14 +211,14 @@ class _QuestionContainerState extends State<QuestionContainer> {
             : Column(
                 children: [
                   Text(widget.submissionText),
-                  ...(widget.question.correctAnswer as List<Answer>).map(
+                  ...(widget.question['answerAssets] as List<Answer>).map(
                     (answer) {
                       return Padding(
                         padding: const EdgeInsets.all(30.0),
                         child: ElevatedButton(
                           onPressed: () {},
                           child: Text(
-                            answer.text,
+                            answer,
                             style: TextStyle(
                               fontSize: 32,
                               color: Color(0xffffecb4),

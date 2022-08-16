@@ -20,7 +20,7 @@ class _AnswerWidget2State extends State<AnswerWidget2> {
       margin: EdgeInsets.only(left: 5.0, right: 5.0),
       child: IgnorePointer(
         ignoring: !isDraggable,
-        child: Draggable<Answer>(
+        child: Draggable<String>(
           data: widget.answer,
           child: Container(
             color: isDraggable ? Color(0xffe5771e) : Color(0xffffecb4),
@@ -28,7 +28,7 @@ class _AnswerWidget2State extends State<AnswerWidget2> {
             width: 80.0,
             child: Center(
               child: Text(
-                widget.answer.text,
+                widget.answer,
                 style: TextStyle(
                   fontSize: 32,
                   color: Color(0xffffecb4),
@@ -41,7 +41,7 @@ class _AnswerWidget2State extends State<AnswerWidget2> {
             width: 80.0,
             child: Center(
               child: Text(
-                widget.answer.text,
+                widget.answer,
               ),
             ),
           ),

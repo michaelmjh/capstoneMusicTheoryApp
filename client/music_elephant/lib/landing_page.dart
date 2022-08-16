@@ -8,14 +8,12 @@ import 'Quiz/quiz.dart';
 import 'lesson.dart';
 
 class LandingPage extends StatefulWidget {
-  final List progress;
-  final Difficulty currentDifficulty;
+  // final List progress;
+  // final Difficulty currentDifficulty;
   final selectedLesson;
   final userProgress;
   // ignore: prefer_const_constructors_in_immutables
-  LandingPage(this.progress, this.currentDifficulty, this.selectedLesson,
-      this.userProgress,
-      {super.key});
+  LandingPage(this.selectedLesson, this.userProgress, {super.key});
 
   @override
   State<LandingPage> createState() => _LandingPageState();
@@ -24,6 +22,8 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
+    var lessonName = widget.selectedLesson['lessonName'];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -57,9 +57,9 @@ class _LandingPageState extends State<LandingPage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(30.0),
-                child: widget.selectedLesson.name != "BeginnerBoss" &&
-                        widget.selectedLesson.name != "IntermediateBoss" &&
-                        widget.selectedLesson.name != "AdvancedBoss"
+                child: lessonName != "BeginnerBoss" &&
+                        lessonName != "IntermediateBoss" &&
+                        lessonName != "AdvancedBoss"
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -70,15 +70,12 @@ class _LandingPageState extends State<LandingPage> {
                               backgroundColor: Color(0xff75c8ae),
                               child: Icon(
                                 Icons.star,
-                                color: widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.medium ||
-                                        widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.hard ||
-                                        widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.revision
+                                color: widget.userProgress[lessonName] ==
+                                            "MEDIUM" ||
+                                        widget.userProgress[lessonName] ==
+                                            "HARD" ||
+                                        widget.userProgress[lessonName] ==
+                                            "REVISION"
                                     ? Color(0xffe5771e)
                                     : Color(0xffffecb4),
                                 size: 100.00,
@@ -92,14 +89,12 @@ class _LandingPageState extends State<LandingPage> {
                               backgroundColor: Color(0xff75c8ae),
                               child: Icon(
                                 Icons.star,
-                                color: widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.hard ||
-                                        widget.userProgress[
-                                                widget.selectedLesson] ==
-                                            Difficulty.revision
-                                    ? Color(0xffe5771e)
-                                    : Color(0xffffecb4),
+                                color:
+                                    widget.userProgress[lessonName] == "HARD" ||
+                                            widget.userProgress[lessonName] ==
+                                                "REVISION"
+                                        ? Color(0xffe5771e)
+                                        : Color(0xffffecb4),
                                 size: 100.00,
                               ),
                             ),
@@ -111,9 +106,8 @@ class _LandingPageState extends State<LandingPage> {
                               backgroundColor: Color(0xff75c8ae),
                               child: Icon(
                                 Icons.star,
-                                color: widget.userProgress[
-                                            widget.selectedLesson] ==
-                                        Difficulty.revision
+                                color: widget.userProgress[lessonName] ==
+                                        "REVISION"
                                     ? Color(0xffe5771e)
                                     : Color(0xffffecb4),
                                 size: 100.00,
@@ -160,9 +154,9 @@ class _LandingPageState extends State<LandingPage> {
                       ),
               ),
               Visibility(
-                visible: widget.selectedLesson.name != "BeginnerBoss" &&
-                    widget.selectedLesson.name != "IntermediateBoss" &&
-                    widget.selectedLesson.name != "AdvancedBoss",
+                visible: lessonName != "BeginnerBoss" &&
+                    lessonName != "IntermediateBoss" &&
+                    lessonName != "AdvancedBoss",
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: ElevatedButton(
@@ -202,9 +196,9 @@ class _LandingPageState extends State<LandingPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (__) {
-                      if (widget.selectedLesson.name == "BeginnerBoss" ||
-                          widget.selectedLesson.name == "IntermediateBoss" ||
-                          widget.selectedLesson.name == "AdvancedBoss") {
+                      if (lessonName == "BeginnerBoss" ||
+                          lessonName == "IntermediateBoss" ||
+                          lessonName == "AdvancedBoss") {
                         return Text(
                           "Section Quiz",
                           style: TextStyle(
@@ -212,10 +206,8 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                              Difficulty.easy ||
-                          widget.userProgress
-                                  .containsKey(widget.selectedLesson) ==
+                      } else if (widget.userProgress[lessonName] == "EASY" ||
+                          widget.userProgress.containsKey(lessonName) ==
                               false) {
                         return Text(
                           "Easy Quiz",
@@ -224,8 +216,7 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                          Difficulty.medium) {
+                      } else if (widget.userProgress[lessonName] == "MEDIUM") {
                         return Text(
                           "Medium Quiz",
                           style: TextStyle(
@@ -233,8 +224,7 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                          Difficulty.hard) {
+                      } else if (widget.userProgress[lessonName] == "HARD") {
                         return Text(
                           "Hard Quiz",
                           style: TextStyle(
@@ -242,8 +232,8 @@ class _LandingPageState extends State<LandingPage> {
                             color: Color(0xffffecb4),
                           ),
                         );
-                      } else if (widget.userProgress[widget.selectedLesson] ==
-                          Difficulty.revision) {
+                      } else if (widget.userProgress[lessonName] ==
+                          "REVISION") {
                         return Text(
                           "Revision Quiz",
                           style: TextStyle(

@@ -39,6 +39,10 @@ dependencies:
   card_swiper: ^2.0.1
   timeline_tile: ^2.0.0
   timelines: ^0.1.0
+  http: ^0.13.5
+  dio: ^4.0.6
+  flutter_hooks: ^0.18.5+1
+
 
 dev_dependencies:
   flutter_test:

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
-import 'package:music_elephant/QuestionAssets/question_model.dart';
 import 'package:music_elephant/User/add_profile.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
 import 'package:music_elephant/Timeline/timeline_container.dart';
 
+import 'Helpers/helper.dart';
 import 'LessonAssets/lesson_assets.dart';
-import 'QuestionAssets/Enums/level.dart';
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'home_page.dart';
@@ -28,20 +27,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<bool> progress = [false, false, false];
+  var lessons;
+  var questions;
+  var isLoaded = false;
 
-  Difficulty currentDifficulty = Difficulty.medium;
-  // List<Question> currentQuiz = QuestionData.shared.easyQuestions;
   var selectedQuestions;
-
-  var user1 = {"image": "image/dog-png-30.png", "name": "Ewan"};
-  var user2 = {"image": "image/dog-png-30.png", "name": "Michael"};
-  var user3 = {"image": "image/dog-png-30.png", "name": "Nick"};
-  var user4 = {"image": "image/dog-png-30.png", "name": "shuna"};
 
   var users = [
     ["images/profiles/ewan.png", "Ewan"],
-    ["images/profiles/michael.png", "Michael"],
+    [
+      "images/profiles/michael.png",
+      "Michael",
+      {
+        "SCALES1": "REVISION",
+        "CHORDS1": "MEDIUM",
+        // "BeginnerBoss": "REVISION"
+      }
+    ],
     ["images/profiles/nick.png", "Nick"],
     ["images/profiles/shuna.png", "Shuna"],
     ["images/dog-png-30.png", "Ian"],
@@ -51,29 +53,16 @@ class _MyAppState extends State<MyApp> {
 
   var selectedProfile = "";
 
-  // DUMMY DATA - LIST OF ALL LESSONS
-  // Imagining this info will be stored in the app's main state
-  var lessons = [scales1, scales2, scales3, chords1, chords2, chords3];
   // Selected lesson required when navigating to the lesson page from the timeline
   var selectedLesson;
 
   // DUMMY DATA - USER PROGRESS
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
-  var userProgress = {
-    scales1: Difficulty.revision,
-    chords1: Difficulty.revision,
-    // begBoss: Difficulty.revision,
-    // scales2: Difficulty.revision,
-    // chords2: Difficulty.medium,
-  };
+  var userProgress;
 
-  // Function for updating the userProgress property - this is currently not used
-  // but could it be used when the user passes a quiz?
-  void setCurrentProgress(lesson, difficulty) {
-    setState(() {
-      userProgress[lesson] = difficulty;
-    });
+  void setUserProgress() {
+    userProgress = users[1][2];
   }
 
   // Function is run inside timeline_widget when user presses on timeline indicator
@@ -95,12 +84,12 @@ class _MyAppState extends State<MyApp> {
   // This function splits the lessons into the above lists - it is run inside home_page.dart
   // - it runs when the user presses one the button to navigate to the timeline
   void getLevels() {
-    for (var item in lessons) {
-      if (item.level == Level.beginner) {
+    for (var item in lessons!) {
+      if (item['level']['levelName'] == 'BEGINNER') {
         begList.add(item);
-      } else if (item.level == Level.intermediate) {
+      } else if (item['level']['levelName'] == 'INTERMEDIATE') {
         intList.add(item);
-      } else if (item.level == Level.advanced) {
+      } else if (item['level']['levelName'] == 'ADVANCED') {
         advList.add(item);
       }
     }
@@ -115,11 +104,23 @@ class _MyAppState extends State<MyApp> {
     var list1 = [...begList];
     var list2 = [...intList];
     var list3 = [...advList];
-    list1.insert(0, dummyBeg);
+    list1.insert(0, {
+      "lessonName": "DummyBeginner",
+      "slides": [],
+      "level": {"levelName": "BEGINNER"}
+    });
     list1.add(begBoss);
-    list2.insert(0, dummyInt);
+    list2.insert(0, {
+      "lessonName": "DummyIntermediate",
+      "slides": [],
+      "level": {"levelName": "INTERMEDIATE"}
+    });
     list2.add(intBoss);
-    list3.insert(0, dummyAdv);
+    list3.insert(0, {
+      "lessonName": "DummyAdvanced",
+      "slides": [],
+      "level": {"levelName": "ADVANCED"}
+    });
     list3.add(advBoss);
     for (var item in list1) {
       newList.add(item);
@@ -139,16 +140,12 @@ class _MyAppState extends State<MyApp> {
 
   // this function fills the completedLessons list and is coded to ignore
   // boss lessons, because they shouldn't be included in the checks mentioned above
-  void getCompletedLessons(level) {
+  void getCompletedLessons(lesson) {
     userProgress.keys.forEach((key) {
-      if (key.level == level) {
-        if (key.name == "BeginnerBoss" ||
-            key.name == "IntermediateBoss" ||
-            key.name == "AdvancedBoss") {
-          null;
-        } else if (userProgress[key] == Difficulty.revision) {
-          completedLessons.add(key);
-        }
+      if (key == begBoss || key == intBoss || key == advBoss) {
+        null;
+      } else if (userProgress[key] == 'REVISION') {
+        completedLessons.add(key);
       }
     });
   }
@@ -160,21 +157,25 @@ class _MyAppState extends State<MyApp> {
   // compares this to our existing lists of lessons divided into each level
   // it turns these lists into sets in order to check if the completed lessons
   // list contains all elements in the level list
-  bool checkIfBossUnlocked(level) {
+  bool checkIfBossUnlocked(lesson) {
     var list = [];
-    getCompletedLessons(level);
-    switch (level) {
-      case Level.beginner:
-        list = begList;
+    getCompletedLessons(lesson);
+    switch (lesson['level']['levelName']) {
+      case "BEGINNER":
+        for (var item in begList) {
+          list.add(item['lessonName']);
+        }
         break;
-      case Level.intermediate:
+      case "INTERMEDIATE":
         list = intList;
         break;
-      case Level.advanced:
+      case "ADVANCED":
         list = advList;
         break;
     }
-    if (completedLessons.toSet().containsAll(list)) {
+    if (list.length == 0) {
+      return false;
+    } else if (completedLessons.toSet().containsAll(list)) {
       return true;
     } else {
       return false;
@@ -188,11 +189,11 @@ class _MyAppState extends State<MyApp> {
   bool checkIfBossCompleted(level) {
     var boss;
     switch (level) {
-      case Level.intermediate:
-        boss = begBoss;
+      case "INTERMEDIATE":
+        boss = 'BeginnerBoss';
         break;
-      case Level.advanced:
-        boss = intBoss;
+      case "ADVANCED":
+        boss = 'IntermediateBoss';
         break;
     }
     if (userProgress.containsKey(boss)) {
@@ -210,48 +211,48 @@ class _MyAppState extends State<MyApp> {
   }
 
   void updateProgress() {
-    if (userProgress[selectedLesson] == Difficulty.easy ||
-        userProgress.containsKey(selectedLesson) == false) {
+    var lessonName = selectedLesson['lessonName'];
+    if (userProgress[lessonName] == 'EASY') {
       setState(() {
-        // progress = [true, false, false];
-        // currentDifficulty = Difficulty.medium;
-        userProgress[selectedLesson] = Difficulty.medium;
+        userProgress[lessonName] = 'MEDIUM';
       });
-    } else if (userProgress[selectedLesson] == Difficulty.medium) {
+    } else if (userProgress[lessonName] == 'MEDIUM') {
       setState(() {
-        // progress = [true, true, false];
-        // currentDifficulty = Difficulty.hard;
-        userProgress[selectedLesson] = Difficulty.hard;
+        userProgress[lessonName] = 'HARD';
       });
-    } else if (userProgress[selectedLesson] == Difficulty.hard) {
+    } else if (userProgress[lessonName] == 'HARD') {
       setState(() {
-        // progress = [true, true, true];
-        // currentDifficulty = Difficulty.revision;
-        userProgress[selectedLesson] = Difficulty.revision;
+        userProgress[lessonName] = 'REVISION';
       });
     }
   }
 
-  // void quizGenerator() {
-  // selectedQuestions = QuestionData.shared.getQuestions(currentDifficulty);
-  // selectedQuestions.shuffle();
-  // }
+  void addLessonToUserProgress() {
+    var lessonName = selectedLesson['lessonName'];
+    if (userProgress.containsKey(lessonName) == false) {
+      userProgress[lessonName] = 'EASY';
+    } else {
+      null;
+    }
+  }
 
   void quizGenerator() {
-    var allQuestions = QuestionData.shared.allQuestions;
     var newQuestions = [];
+    var lessonName = selectedLesson['lessonName'];
 
-    allQuestions.forEach((question) {
-      if (selectedLesson.name == question.lesson.name &&
-          question.difficulty == userProgress[selectedLesson]) {
+    questions.forEach((question) {
+      if (lessonName == question['lessonName'] &&
+          question['difficulty'] == userProgress[lessonName]) {
         newQuestions.add(question);
-        print(newQuestions);
+      } else if (lessonName == question['lessonName']) {
+        print(question['lessonName']);
+        newQuestions.add(question);
       }
     });
     newQuestions.shuffle();
     selectedQuestions = newQuestions;
-    // var shortList = selectFive(newQuestions);
-    // selectedQuestions = shortList;
+    var shortList = selectFive(newQuestions);
+    selectedQuestions = shortList;
   }
 
   selectFive(questions) {
@@ -274,27 +275,35 @@ class _MyAppState extends State<MyApp> {
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
   void bossGenerator() {
-    print(selectedLesson.name);
-    if (selectedLesson.level == Level.beginner) {
-      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
-    } else if (selectedLesson.level == Level.intermediate) {
-      selectedQuestions = QuestionData.shared.allBeginnerQuestions;
-      selectedQuestions = [...QuestionData.shared.allIntermediateQuestions];
-    } else if (selectedLesson.level == Level.advanced) {
-      selectedQuestions = QuestionData.shared.allQuestions;
-    }
+    if (selectedLesson['level']['levelName'] == "BEGINNER") {
+      selectedQuestions = questions;
+    } else if (selectedLesson['level']['levelName'] == "INTERMEDIATE") {
+    } else if (selectedLesson['level']['levelName'] == "ADVANCED") {}
     selectedQuestions.shuffle();
   }
 
-  // void shuffle() {
-  //   selectedQuestions.shuffle();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    getData();
+    setUserProgress();
+  }
+
+  getData() async {
+    lessons = await Helper().getLessons();
+    questions = await Helper().getAllQuestions();
+    if (lessons != null && questions != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/users',
       routes: {
         '/': (context) => HomePage(getLevels, setTimelineLessonList),
         '/quiz': (context) => Quiz(
@@ -305,8 +314,8 @@ class _MyAppState extends State<MyApp> {
             ),
         '/lesson': (context) => Lesson(selectedLesson),
         '/landingpage': (context) => LandingPage(
-              progress,
-              currentDifficulty,
+              // progress,
+              // currentDifficulty,
               selectedLesson,
               userProgress,
             ),
@@ -315,21 +324,21 @@ class _MyAppState extends State<MyApp> {
               quizGenerator,
             ),
         '/users': (context) => UserContainer(
-              users,
-              setSelectedProfile,
-            ),
-        '/profile': (context) => SpecificProfile(selectedProfile),
+            users, setSelectedProfile, getLevels, setTimelineLessonList),
+        '/profile': (context) =>
+            SpecificProfile(selectedProfile, getLevels, setTimelineLessonList),
         '/addProfile': (context) => AddProfile(),
         '/timeline': (countext) => Timeline(
-            newList,
-            setSelectedLesson,
-            userProgress,
-            completedLessons,
-            getCompletedLessons,
-            bossGenerator,
-            checkIfBossUnlocked,
-            checkIfBossCompleted,
-            quizGenerator),
+              newList,
+              setSelectedLesson,
+              userProgress,
+              completedLessons,
+              bossGenerator,
+              checkIfBossUnlocked,
+              checkIfBossCompleted,
+              quizGenerator,
+              addLessonToUserProgress,
+            ),
       },
     );
   }

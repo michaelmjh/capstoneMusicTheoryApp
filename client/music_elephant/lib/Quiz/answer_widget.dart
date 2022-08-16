@@ -58,7 +58,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                   ),
                 },
         child: Text(
-          widget.answer.text,
+          widget.answer,
           style: TextStyle(
             fontSize: 32,
             color: Color(0xffffecb4),

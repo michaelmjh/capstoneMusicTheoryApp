@@ -28,7 +28,7 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
 
     return Container(
       margin: EdgeInsets.only(left: 5.0, right: 5.0),
-      child: DragTarget<Answer>(
+      child: DragTarget<String>(
         builder: (
           BuildContext context,
           List<dynamic> accepted,
@@ -54,7 +54,7 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
         },
         onAccept: (data) {
           setState(() {
-            updatedData = data.text;
+            updatedData = data;
             widget.answerQuestion(data, widget.question);
           });
         },

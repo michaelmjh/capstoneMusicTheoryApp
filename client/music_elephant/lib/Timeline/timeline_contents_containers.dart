@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:timelines/timelines.dart';
-
-import '../QuestionAssets/Enums/difficulty.dart';
 
 class ContentsBeginner extends StatelessWidget {
   final listItem;
@@ -11,12 +8,13 @@ class ContentsBeginner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var currentDiff = null;
+    var lessonName = listItem['lessonName'];
 
-    if (userProgress.containsKey(listItem)) {
-      currentDiff = userProgress[listItem];
+    if (userProgress.containsKey(lessonName)) {
+      currentDiff = userProgress[lessonName];
     }
 
-    if (listItem.name == "DummyBeginner") {
+    if (lessonName == "DummyBeginner") {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -29,7 +27,7 @@ class ContentsBeginner extends StatelessWidget {
       );
     } else {
       // The code for ContentsCard starts on line 115 of this file!
-      return ContentsCard(listItem, currentDiff);
+      return ContentsCard(lessonName, currentDiff);
     }
   }
 }
@@ -42,12 +40,13 @@ class ContentsIntermediate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var currentDiff = null;
+    var lessonName = listItem['lessonName'];
 
-    if (userProgress.containsKey(listItem)) {
-      currentDiff = userProgress[listItem];
+    if (userProgress.containsKey(lessonName)) {
+      currentDiff = userProgress[lessonName];
     }
 
-    if (listItem.name == "DummyIntermediate") {
+    if (lessonName == "DummyIntermediate") {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -60,7 +59,7 @@ class ContentsIntermediate extends StatelessWidget {
       );
     } else {
       // The code for ContentsCard starts on line 115 of this file!
-      return ContentsCard(listItem, currentDiff);
+      return ContentsCard(lessonName, currentDiff);
     }
   }
 }
@@ -73,12 +72,13 @@ class ContentsAdvanced extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var currentDiff = null;
+    var lessonName = listItem['lessonName'];
 
-    if (userProgress.containsKey(listItem)) {
-      currentDiff = userProgress[listItem];
+    if (userProgress.containsKey(lessonName)) {
+      currentDiff = userProgress[lessonName];
     }
 
-    if (listItem.name == "DummyAdvanced") {
+    if (lessonName == "DummyAdvanced") {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -91,7 +91,7 @@ class ContentsAdvanced extends StatelessWidget {
       );
     } else {
       // The code for ContentsCard starts on line 115 of this file!
-      return ContentsCard(listItem, currentDiff);
+      return ContentsCard(lessonName, currentDiff);
     }
   }
 }
@@ -141,10 +141,10 @@ class ContentsBoss extends StatelessWidget {
 }
 
 class ContentsCard extends StatelessWidget {
-  final listItem;
+  final lessonName;
   final currentDiff;
 
-  const ContentsCard(this.listItem, this.currentDiff);
+  const ContentsCard(this.lessonName, this.currentDiff);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -160,7 +160,7 @@ class ContentsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            listItem.name.toString(),
+            lessonName,
             style: TextStyle(
                 fontSize: 32.0,
                 color: Color(0xffffecb4),
@@ -171,13 +171,11 @@ class ContentsCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Builder(builder: (__) {
-                  if (currentDiff == null || currentDiff == Difficulty.easy) {
+                  if (currentDiff == null || currentDiff == 'EASY') {
                     return Icon(
                       Icons.star_border_outlined,
                       color: Color(0xffffecb4),
                     );
-                  } else if (currentDiff == Difficulty.completed) {
-                    return Container();
                   } else {
                     return Icon(
                       Icons.star,
@@ -186,14 +184,11 @@ class ContentsCard extends StatelessWidget {
                   }
                 }),
                 Builder(builder: (__) {
-                  if (currentDiff == Difficulty.hard ||
-                      currentDiff == Difficulty.revision) {
+                  if (currentDiff == 'HARD' || currentDiff == 'REVISION') {
                     return Icon(
                       Icons.star,
                       color: Color(0xffffecb4),
                     );
-                  } else if (currentDiff == Difficulty.completed) {
-                    return Text('Lesson complete!');
                   } else {
                     return Icon(
                       Icons.star_border_outlined,
@@ -202,13 +197,11 @@ class ContentsCard extends StatelessWidget {
                   }
                 }),
                 Builder(builder: (__) {
-                  if (currentDiff == Difficulty.revision) {
+                  if (currentDiff == 'REVISION') {
                     return Icon(
                       Icons.star,
                       color: Color(0xffffecb4),
                     );
-                  } else if (currentDiff == Difficulty.completed) {
-                    return Container();
                   } else {
                     return Icon(
                       Icons.star_border_outlined,
