@@ -44,9 +44,9 @@ class _MyAppState extends State<MyApp> {
       "userProgress": {
         "SCALES1": "REVISION",
         "CHORDS1": "REVISION",
-        // "BeginnerBoss": "REVISION",
-        // "SCALES2": "REVISION",
-        // "CHORDS2": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "SCALES2": "REVISION",
+        "CHORDS2": "REVISION",
         // "IntermediateBoss": "REVISION",
         // "SCALES3": "REVISION",
         // "CHORDS3": "REVISION",
@@ -283,11 +283,17 @@ class _MyAppState extends State<MyApp> {
 
   void addLessonToUserProgress() {
     var lessonName = selectedLesson['lessonName'];
-    if (userProgress.containsKey(lessonName) == false) {
+    if (lessonName == 'BeginnerBoss' ||
+        lessonName == 'IntermediateBoss' ||
+        lessonName == 'AdvancedBoss') {
+      null;
+    } else if (userProgress.containsKey(lessonName) == false) {
       userProgress[lessonName] = 'EASY';
     } else {
       null;
     }
+
+    print(userProgress);
   }
 
   void quizGenerator() {
@@ -297,9 +303,14 @@ class _MyAppState extends State<MyApp> {
       if (question['difficulty'] == userProgress[lessonName] &&
           question['lessonName'] == lessonName) {
         newQuestions.add(question);
-      } else if (userProgress[lessonName] == 'REVISION' &&
+      } else if (userProgress[lessonName] == null &&
           question['lessonName'] == lessonName) {
-        newQuestions.add(question);
+        if (question['difficulty'] == 'EASY') {
+          newQuestions.add(question);
+        } else if (userProgress[lessonName] == 'REVISION' &&
+            question['lessonName'] == lessonName) {
+          newQuestions.add(question);
+        }
       }
     });
     newQuestions.shuffle();
@@ -310,16 +321,24 @@ class _MyAppState extends State<MyApp> {
 
   selectFive(questions) {
     var newShortList = [];
-    for (int i = 0; i < 5; i++) {
-      newShortList.add(questions[i]);
+    if (questions.length == 0) {
+      null;
+    } else {
+      for (int i = 0; i < 5; i++) {
+        newShortList.add(questions[i]);
+      }
     }
     return newShortList;
   }
 
   selectTen(questions) {
     var newShortList = [];
-    for (int i = 0; i < 10; i++) {
-      newShortList.add(questions[i]);
+    if (questions.length == 0) {
+      null;
+    } else {
+      for (int i = 0; i < 10; i++) {
+        newShortList.add(questions[i]);
+      }
     }
     return newShortList;
   }
@@ -335,10 +354,10 @@ class _MyAppState extends State<MyApp> {
       if (selectedLesson['level']['levelName'] == "BEGINNER" &&
           question['levelName'] == "BEGINNER") {
         newQuestions.add(question);
-      } else if (selectedLesson['level']['levelName' == 'INTERMEDIATE'] &&
+      } else if (selectedLesson['level']['levelName'] == 'INTERMEDIATE' &&
           question['levelName'] == "INTERMEDIATE") {
         newQuestions.add(question);
-      } else if (selectedLesson['level']['levelName' == 'ADVANCED'] &&
+      } else if (selectedLesson['level']['levelName'] == 'ADVANCED' &&
           question['levelName'] == "ADVANCED") {
         newQuestions.add(question);
       }
@@ -388,6 +407,7 @@ class _MyAppState extends State<MyApp> {
         '/landingpage': (context) => LandingPage(
               selectedLesson,
               userProgress,
+              addLessonToUserProgress,
             ),
         // '/journey': (context) => Journey(
         //       selectedProfile,

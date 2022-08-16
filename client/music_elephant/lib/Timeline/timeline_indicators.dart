@@ -19,7 +19,6 @@ class CompletedIndicator extends StatelessWidget {
         color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
-          addLessonToUserProgress();
 
           if (listItem['lessonName'] == "BeginnerBoss" ||
               listItem['lessonName'] == "IntermediateBoss" ||
@@ -53,8 +52,7 @@ class BossIndicator extends StatelessWidget {
         color: Colors.black,
         onPressed: () {
           setSelectedLesson(listItem);
-          addLessonToUserProgress();
-
+          // addLessonToUserProgress();
           bossGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
@@ -80,8 +78,7 @@ class AvailableIndicator extends StatelessWidget {
         iconSize: 15,
         onPressed: () {
           setSelectedLesson(listItem);
-          addLessonToUserProgress();
-
+          // addLessonToUserProgress();
           quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
