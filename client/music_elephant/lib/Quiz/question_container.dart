@@ -77,12 +77,10 @@ class _QuestionContainerState extends State<QuestionContainer> {
 // the correct answer list, if ths answer exists in that list
   void answerQuestion(answer, question) {
     var index;
-
-    // if (question['answerAssets'].contains(answer)) {
-    // print(question['answerAssets']);
-    submittedAnswers[index] = answer;
-    print(submittedAnswers);
-    // }
+    if (question['answerAssets'].contains(answer)) {
+      index = question['answerAssets'].indexOf(answer);
+      submittedAnswers[index] = answer;
+    }
     if (submittedAnswers.length == widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
@@ -91,7 +89,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
     }
   }
 
-    void answerQuestionArrange(answer, question, index) {
+  void answerQuestionArrange(answer, question, index) {
     var i;
 
     i = index;
@@ -160,8 +158,8 @@ class _QuestionContainerState extends State<QuestionContainer> {
                               .map((answer) {
                             // print(widget.question['answerOptions']
                             // .indexOf(answer));
-                            return QuestionWidget2(answerQuestion, needsReset,
-                                widget.question, answer);
+                            return QuestionWidget2(answerQuestionArrange,
+                                needsReset, widget.question, answer);
                           }).toList(),
                         ],
                         mainAxisAlignment: MainAxisAlignment.center,
