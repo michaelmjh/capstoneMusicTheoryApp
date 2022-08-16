@@ -1,7 +1,6 @@
 package com.example.server.models;
 
-import com.example.server.models.enums.LessonName;
-import com.example.server.models.enums.LevelName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,17 +20,16 @@ public class User {
     @Column(name="avatar")
     private String avatar;
 
-    @Enumerated(EnumType.STRING)
-    private LessonName lessonName;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"})
+    private List<Progress> progress;
 
-    @Enumerated(EnumType.STRING)
-    private LevelName levelName;
 
-    public User(String userName, String avatar, LessonName lessonName, LevelName levelName){
+
+    public User(String userName, String avatar){
         this.userName = userName;
         this.avatar = avatar;
-        this.lessonName = lessonName;
-        this.levelName = levelName;
+        this.progress = new ArrayList<>();
     }
 
     public User(){
@@ -62,19 +60,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public LessonName getLessonName() {
-        return lessonName;
+    public List<Progress> getProgress() {
+        return progress;
     }
 
-    public void setLessonName(LessonName lessonName) {
-        this.lessonName = lessonName;
-    }
-
-    public LevelName getLevelName() {
-        return levelName;
-    }
-
-    public void setLevelName(LevelName levelName) {
-        this.levelName = levelName;
+    public void setProgress(List<Progress> progress) {
+        this.progress = progress;
     }
 }

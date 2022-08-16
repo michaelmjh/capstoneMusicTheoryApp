@@ -27,6 +27,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     LessonSlideRepository lessonSlideRepository;
 
+    @Autowired
+    ProgressRepository progressRepository;
+
     public DataLoader(){
 
     }
@@ -184,7 +187,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 3
 
         List question3Assets = new ArrayList();
-        question3Assets.add("/images/question_images/easy/Cmaj-missing-note-A.jpg");
+        question3Assets.add("/images/question_images/easy/Cmaj-missing-note-A.png");
         question3Assets.add("Fill in the missing notes");
 
         List answer3Options = new ArrayList<>();
@@ -194,7 +197,7 @@ public class DataLoader implements ApplicationRunner {
         answer3Options.add("G");
 
         List answer3Assets = new ArrayList();
-        answer3Assets.add("/images/question_images/easy/Cmaj-complete-scale.jpg");
+        answer3Assets.add("/images/question_images/easy/Cmaj-complete-scale.png");
         answer3Assets.add("A");
 
         String answer3audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
@@ -205,7 +208,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 4
 
         List question4Assets = new ArrayList();
-        question4Assets.add("/images/question_images/easy/Cmaj-missing-note-E.jpg");
+        question4Assets.add("/images/question_images/easy/Cmaj-missing-note-E.png");
         question4Assets.add("Fill in the missing notes");
 
         List answer4Options = new ArrayList<>();
@@ -215,7 +218,7 @@ public class DataLoader implements ApplicationRunner {
         answer4Options.add("A");
 
         List answer4Assets = new ArrayList();
-        answer4Assets.add("/images/question_images/easy/Cmaj-complete-scale.jpg");
+        answer4Assets.add("/images/question_images/easy/Cmaj-complete-scale.png");
         answer4Assets.add("E");
 
         String answer4audio = "/audio/question_audio/easy/Cmaj-complete-scale.mp3";
@@ -274,7 +277,7 @@ public class DataLoader implements ApplicationRunner {
         //        Saving Question 7
 
         List question7Assets = new ArrayList();
-        question7Assets.add("/images/question_images/intermediate/Gmaj-identify-note-C-E.jpg");
+        question7Assets.add("/images/question_images/intermediate/Gmaj-identify-note-C-E.png");
         question7Assets.add("Identify these notes");
 
         List answer7Options = new ArrayList<>();
@@ -295,7 +298,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 8
 
         List question8Assets = new ArrayList();
-        question8Assets.add("/images/question_images/intermediate/Fmaj-identify-note-F-Bb.jpg");
+        question8Assets.add("/images/question_images/intermediate/Fmaj-identify-note-F-Bb.png");
         question8Assets.add("Identify these notes");
 
         List answer8Options = new ArrayList<>();
@@ -316,7 +319,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 9
 
         List question9Assets = new ArrayList();
-        question9Assets.add("/images/question_images/intermediate/Gmaj-missing-note-B.jpg");
+        question9Assets.add("/images/question_images/intermediate/Gmaj-missing-note-B.png");
         question9Assets.add("Fill in the missing note");
 
         List answer9Options = new ArrayList<>();
@@ -326,7 +329,7 @@ public class DataLoader implements ApplicationRunner {
         answer9Options.add("B");
 
         List answer9Assets = new ArrayList();
-        answer9Assets.add("/images/question_images/intermediate/Gmaj-complete-scale.jpg");
+        answer9Assets.add("/images/question_images/intermediate/Gmaj-complete-scale.png");
         answer9Assets.add("B");
 
         String answer9audio = "/audio/question_audio/intermediate/Gmaj-complete-scale.mp3";
@@ -337,7 +340,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 10
 
         List question10Assets = new ArrayList();
-        question10Assets.add("/images/question_images/intermediate/Gmaj-missing-note-F#.jpg");
+        question10Assets.add("/images/question_images/intermediate/Gmaj-missing-note-F#.png");
         question10Assets.add("Fill in the missing notes");
 
         List answer10Options = new ArrayList<>();
@@ -347,7 +350,7 @@ public class DataLoader implements ApplicationRunner {
         answer10Options.add("B");
 
         List answer10Assets = new ArrayList();
-        answer10Assets.add("/images/question_images/intermediate/Gmaj-complete-scale.jpg");
+        answer10Assets.add("/images/question_images/intermediate/Gmaj-complete-scale.png");
         answer10Assets.add("F#");
 
         String answer10audio = "/audio/question_audio/intermediate/Gmaj-complete-scale.mp3";
@@ -407,7 +410,7 @@ public class DataLoader implements ApplicationRunner {
         //        Saving Question 13
 
         List question13Assets = new ArrayList();
-        question13Assets.add("/images/question_images/hard/Bmaj-identify-note-D#-G#.jpg");
+        question13Assets.add("/images/question_images/hard/Bmaj-identify-note-D#-G#.png");
         question13Assets.add("Identify these notes");
 
         List answer13Options = new ArrayList<>();
@@ -428,7 +431,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 14
 
         List question14Assets = new ArrayList();
-        question14Assets.add("/images/question_images/hard/Dbmaj-identify-note-Db-Bb.jpg");
+        question14Assets.add("/images/question_images/hard/Dbmaj-identify-note-Db-Bb.png");
         question14Assets.add("Identify these notes");
 
         List answer14Options = new ArrayList<>();
@@ -449,7 +452,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 15
 
         List question15Assets = new ArrayList();
-        question15Assets.add("/images/question_images/hard/Ebmaj-missing-note-Ab-Eb.jpg");
+        question15Assets.add("/images/question_images/hard/Ebmaj-missing-note-Ab-Eb.png");
         question15Assets.add("Fill in the missing note");
 
         List answer15Options = new ArrayList<>();
@@ -459,7 +462,7 @@ public class DataLoader implements ApplicationRunner {
         answer15Options.add("Bb");
 
         List answer15Assets = new ArrayList();
-        answer15Assets.add("/images/question_images/intermediate/Ebmaj-complete-scale.jpg");
+        answer15Assets.add("/images/question_images/intermediate/Ebmaj-complete-scale.png");
         answer15Assets.add("Ab");
         answer15Assets.add("Eb");
 
@@ -471,7 +474,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 16
 
         List question16Assets = new ArrayList();
-        question16Assets.add("/images/question_images/hard/Emaj-missing-note-F#-C#.jpg");
+        question16Assets.add("/images/question_images/hard/Emaj-missing-note-F#-C#.png");
         question16Assets.add("Fill in the missing notes");
 
         List answer16Options = new ArrayList<>();
@@ -481,7 +484,7 @@ public class DataLoader implements ApplicationRunner {
         answer16Options.add("D#");
 
         List answer16Assets = new ArrayList();
-        answer16Assets.add("/images/question_images/intermediate/Emaj-complete-scale.jpg");
+        answer16Assets.add("/images/question_images/intermediate/Emaj-complete-scale.png");
         answer16Assets.add("F#");
         answer16Assets.add("C#");
 
@@ -542,7 +545,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 19
 
         List question19Assets = new ArrayList();
-        question19Assets.add("/images/question_images/easy/C-maj-identify-chord.jpg");
+        question19Assets.add("/images/question_images/easy/C-maj-identify-chord.png");
         question19Assets.add("Identify the chord");
 
         List answer19Options = new ArrayList<>();
@@ -564,7 +567,7 @@ public class DataLoader implements ApplicationRunner {
 
 //        Saving Question 20
         List question20Assets = new ArrayList();
-        question20Assets.add("/images/question_images/easy/G-maj-identify-chord.jpg");
+        question20Assets.add("/images/question_images/easy/G-maj-identify-chord.png");
         question20Assets.add("Identify the chord");
 
         List answer20Options = new ArrayList<>();
@@ -587,7 +590,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 21
 
         List question21Assets = new ArrayList();
-        question21Assets.add("/images/question_images/easy/C-maj-complete-the-chord.jpg");
+        question21Assets.add("/images/question_images/easy/C-maj-complete-the-chord.png");
         question21Assets.add("Complete the C major chord");
 
         List answer21Options = new ArrayList<>();
@@ -609,7 +612,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 22
 
         List question22Assets = new ArrayList();
-        question22Assets.add("/images/question_images/easy/G-maj-complete-the-chord.jpg");
+        question22Assets.add("/images/question_images/easy/G-maj-complete-the-chord.png");
         question22Assets.add("Complete the G major chord");
 
         List answer22Options = new ArrayList<>();
@@ -681,7 +684,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 25
 
         List question25Assets = new ArrayList();
-        question25Assets.add("/images/question_images/intermediate/Dmaj-identify-chord.jpg");
+        question25Assets.add("/images/question_images/intermediate/Dmaj-identify-chord.png");
         question25Assets.add("Identify the chord");
 
         List answer25Options = new ArrayList<>();
@@ -703,7 +706,7 @@ public class DataLoader implements ApplicationRunner {
 
 //        Saving Question 26
         List question26Assets = new ArrayList();
-        question26Assets.add("/images/question_images/intermediate/Fmaj-identify-chord.jpg");
+        question26Assets.add("/images/question_images/intermediate/Fmaj-identify-chord.png");
         question26Assets.add("Identify the chord");
 
         List answer26Options = new ArrayList<>();
@@ -726,7 +729,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 27
 
         List question27Assets = new ArrayList();
-        question27Assets.add("/images/question_images/intermediate/Ebmaj-complete-the-chord.jpg");
+        question27Assets.add("/images/question_images/intermediate/Ebmaj-complete-the-chord.png");
         question27Assets.add("Complete the Eb major chord");
 
         List answer27Options = new ArrayList<>();
@@ -749,7 +752,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 28
 
         List question28Assets = new ArrayList();
-        question28Assets.add("/images/question_images/intermediate/Abmaj-complete-the-chord.jpg");
+        question28Assets.add("/images/question_images/intermediate/Abmaj-complete-the-chord.png");
         question28Assets.add("Complete the Ab major chord");
 
         List answer28Options = new ArrayList<>();
@@ -820,7 +823,7 @@ public class DataLoader implements ApplicationRunner {
         //        Saving Question 31
 
         List question31Assets = new ArrayList();
-        question31Assets.add("/images/question_images/hard/Ebmaj-identify-chord.jpg");
+        question31Assets.add("/images/question_images/hard/Ebmaj-identify-chord.png");
         question31Assets.add("Identify the chord");
 
         List answer31Options = new ArrayList<>();
@@ -842,7 +845,7 @@ public class DataLoader implements ApplicationRunner {
 
 //        Saving Question 32
         List question32Assets = new ArrayList();
-        question32Assets.add("/images/question_images/hard/Gbmaj-identify-chord.jpg");
+        question32Assets.add("/images/question_images/hard/Gbmaj-identify-chord.png");
         question32Assets.add("Identify the chord");
 
         List answer32Options = new ArrayList<>();
@@ -866,7 +869,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 33
 
         List question33Assets = new ArrayList();
-        question33Assets.add("/images/question_images/hard/Abmin-complete-the-chord.jpg");
+        question33Assets.add("/images/question_images/hard/Abmin-complete-the-chord.png");
         question33Assets.add("Complete the Ab minor chord");
 
         List answer33Options = new ArrayList<>();
@@ -888,7 +891,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 34
 
         List question34Assets = new ArrayList();
-        question34Assets.add("/images/question_images/hard/Abmaj-complete-the-chord.jpg");
+        question34Assets.add("/images/question_images/hard/Abmaj-complete-the-chord.png");
         question34Assets.add("Complete the Ab major chord");
 
         List answer34Options = new ArrayList<>();
@@ -957,16 +960,58 @@ public class DataLoader implements ApplicationRunner {
         Question question36 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question36Assets, answer36Options, answer36Assets, answer36audio);
         questionRepository.save(question36);
 
-        User user1 = new User("Ewan", "images/profiles/ewan.png", scales1.getLessonName(), level1.getLevelName());
+        User user1 = new User("Ewan", "images/profiles/ewan.png");
+        userRepository.save(user1);
+        Difficulty currentDifficulty = Difficulty.EASY;
+        Progress user1Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty, user1);
+        progressRepository.save(user1Scales1Progress);
+        Progress user1Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty, user1);
+        progressRepository.save(user1Chords1progress);
+        List user1Progress = new ArrayList<>();
+        user1Progress.add(user1Scales1Progress);
+        user1Progress.add(user1Scales1Progress);
+        user1.setProgress(user1Progress);
         userRepository.save(user1);
 
-        User user2 = new User("Michael", "images/profiles/michael.png", scales1.getLessonName(), level1.getLevelName());
+        User user2 = new User("Michael", "images/profiles/michael.png");
+        userRepository.save(user2);
+        Difficulty currentDifficulty2 = Difficulty.EASY;
+        Progress user2Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty2, user2);
+        progressRepository.save(user2Scales1Progress);
+        Progress user2Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty2, user2);
+        progressRepository.save(user2Chords1progress);
+        List user2Progress = new ArrayList<>();
+        user2Progress.add(user2Scales1Progress);
+        user2Progress.add(user2Scales1Progress);
+        user2.setProgress(user2Progress);
         userRepository.save(user2);
 
-        User user3 = new User("Shuna", "images/profiles/shuna.png", scales1.getLessonName(), level1.getLevelName());
+        User user3 = new User("Shuna", "images/profiles/shuna.png");
+        userRepository.save(user3);
+        Difficulty currentDifficulty3 = Difficulty.EASY;
+        Progress user3Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty3, user3);
+        progressRepository.save(user3Scales1Progress);
+        Progress user3Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty3, user3);
+        progressRepository.save(user3Chords1progress);
+        List user3Progress = new ArrayList<>();
+        user3Progress.add(user3Scales1Progress);
+        user3Progress.add(user3Scales1Progress);
+        user3.setProgress(user3Progress);
         userRepository.save(user3);
 
-        User user4 = new User("Nick", "images/profiles/nick.png", scales1.getLessonName(), level1.getLevelName());
+        User user4 = new User("Nick", "images/profiles/nick.png");
+        userRepository.save(user4);
+        Difficulty currentDifficulty4 = Difficulty.EASY;
+        Progress user4Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty4, user4);
+        progressRepository.save(user4Scales1Progress);
+        Progress user4Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty4, user4);
+        progressRepository.save(user4Chords1progress);
+        List user4Progress = new ArrayList<>();
+        user4Progress.add(user4Scales1Progress);
+        user4Progress.add(user4Scales1Progress);
+        user4.setProgress(user4Progress);
         userRepository.save(user4);
     }
 }
+
+//scales1.getLessonName(), level1.getLevelName()
