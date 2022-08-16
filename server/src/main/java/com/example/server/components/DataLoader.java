@@ -197,7 +197,7 @@ public class DataLoader implements ApplicationRunner {
         answer3Options.add("G");
 
         List answer3Assets = new ArrayList();
-        answer3Assets.add("images/question_images/easy/Cmaj-complete-scale.png");
+//        answer3Assets.add("images/question_images/easy/Cmaj-complete-scale.png");
         answer3Assets.add("A");
 
         String answer3audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
@@ -218,7 +218,7 @@ public class DataLoader implements ApplicationRunner {
         answer4Options.add("A");
 
         List answer4Assets = new ArrayList();
-        answer4Assets.add("images/question_images/easy/Cmaj-complete-scale.png");
+//        answer4Assets.add("images/question_images/easy/Cmaj-complete-scale.png");
         answer4Assets.add("E");
 
         String answer4audio = "audio/question_audio/easy/Cmaj-complete-scale.mp3";
@@ -329,7 +329,7 @@ public class DataLoader implements ApplicationRunner {
         answer9Options.add("B");
 
         List answer9Assets = new ArrayList();
-        answer9Assets.add("images/question_images/intermediate/Gmaj-complete-scale.png");
+//        answer9Assets.add("images/question_images/intermediate/Gmaj-complete-scale.png");
         answer9Assets.add("B");
 
         String answer9audio = "audio/question_audio/intermediate/Gmaj-complete-scale.mp3";
@@ -350,7 +350,7 @@ public class DataLoader implements ApplicationRunner {
         answer10Options.add("B");
 
         List answer10Assets = new ArrayList();
-        answer10Assets.add("images/question_images/intermediate/Gmaj-complete-scale.png");
+//        answer10Assets.add("images/question_images/intermediate/Gmaj-complete-scale.png");
         answer10Assets.add("F#");
 
         String answer10audio = "audio/question_audio/intermediate/Gmaj-complete-scale.mp3";
@@ -462,7 +462,7 @@ public class DataLoader implements ApplicationRunner {
         answer15Options.add("Bb");
 
         List answer15Assets = new ArrayList();
-        answer15Assets.add("images/question_images/intermediate/Ebmaj-complete-scale.png");
+//        answer15Assets.add("images/question_images/intermediate/Ebmaj-complete-scale.png");
         answer15Assets.add("Ab");
         answer15Assets.add("Eb");
 
@@ -484,7 +484,7 @@ public class DataLoader implements ApplicationRunner {
         answer16Options.add("D#");
 
         List answer16Assets = new ArrayList();
-        answer16Assets.add("images/question_images/intermediate/Emaj-complete-scale.png");
+//        answer16Assets.add("images/question_images/intermediate/Emaj-complete-scale.png");
         answer16Assets.add("F#");
         answer16Assets.add("C#");
 
