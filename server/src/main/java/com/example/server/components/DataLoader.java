@@ -146,7 +146,7 @@ public class DataLoader implements ApplicationRunner {
 
 //        Saving Question 1
         List question1Assets = new ArrayList();
-        question1Assets.add("/images/question_images/easy/Cmaj-identify-note-C.jpg");
+        question1Assets.add("/images/question_images/easy/Cmaj-identify-note-C.png");
         question1Assets.add("Identify this note");
 
         List answer1Options = new ArrayList<>();
@@ -167,7 +167,7 @@ public class DataLoader implements ApplicationRunner {
 //        Saving Question 2
 
         List question2Assets = new ArrayList();
-        question2Assets.add("/images/question_images/easy/Cmaj-identify-note-E.jpg");
+        question2Assets.add("/images/question_images/easy/Cmaj-identify-note-E.png");
         question2Assets.add("Identify this note");
 
         List answer2Options = new ArrayList<>();
