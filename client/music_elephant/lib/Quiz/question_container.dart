@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_elephant/QuestionAssets/Enums/question_type.dart';
 import 'package:music_elephant/Quiz/question_widget2.dart';
 import 'package:collection/collection.dart';
+import 'package:quiver/collection.dart';
 
 import '../QuestionAssets/question_assets.dart';
 import '../QuestionAssets/question_model.dart';
@@ -41,7 +42,10 @@ class _QuestionContainerState extends State<QuestionContainer> {
   bool needsReset = false;
 
   void submit() {
-    if (deepEq(submittedAnswers, widget.question['answerAssets'])) {
+    // print(submittedAnswers);
+    // print(widget.question['answerAssets']);
+    // if (submittedAnswers == widget.question['answerAssets']) {
+    if (listsEqual(submittedAnswers, widget.question['answerAssets']) == true) {
       setState(() {
         isSubmitted = true;
         widget.submissionText = 'You got the right answer!';
@@ -73,10 +77,27 @@ class _QuestionContainerState extends State<QuestionContainer> {
 // the correct answer list, if ths answer exists in that list
   void answerQuestion(answer, question) {
     var index;
-    if (question['answerAssets'].contains(answer)) {
-      index = question['answerAssets'].indexOf(answer);
-      submittedAnswers[index] = answer;
+
+    // if (question['answerAssets'].contains(answer)) {
+    // print(question['answerAssets']);
+    submittedAnswers[index] = answer;
+    print(submittedAnswers);
+    // }
+    if (submittedAnswers.length == widget.question['answerAssets']!.length) {
+      setState(() {
+        isSelected = true;
+        disabled = true;
+      });
     }
+  }
+
+    void answerQuestionArrange(answer, question, index) {
+    var i;
+
+    i = index;
+    submittedAnswers[i] = answer;
+    print(submittedAnswers);
+    // }
     if (submittedAnswers.length == widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
@@ -137,8 +158,10 @@ class _QuestionContainerState extends State<QuestionContainer> {
                         children: [
                           ...(widget.question['answerOptions'] as List)
                               .map((answer) {
-                            return QuestionWidget2(
-                                answerQuestion, needsReset, widget.question);
+                            // print(widget.question['answerOptions']
+                            // .indexOf(answer));
+                            return QuestionWidget2(answerQuestion, needsReset,
+                                widget.question, answer);
                           }).toList(),
                         ],
                         mainAxisAlignment: MainAxisAlignment.center,

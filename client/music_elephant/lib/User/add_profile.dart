@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddProfile extends StatefulWidget {
-  final addUser;
+  // final addUser;
 
-  const AddProfile(this.addUser, {Key? key}) : super(key: key);
+  const AddProfile({Key? key}) : super(key: key);
 
   @override
   State<AddProfile> createState() => _nameState();
@@ -54,7 +54,7 @@ class _nameState extends State<AddProfile> {
                   ),
                 ),
                 onPressed: () {
-                  widget.addUser(profileController.text);
+                  // widget.addUser(profileController.text);
                   Navigator.pushNamed(context, '/users');
                 },
                 child: const Padding(

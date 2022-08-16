@@ -6,11 +6,13 @@ class QuestionWidget2 extends StatefulWidget {
   final answerQuestion;
   final needsReset;
   final question;
+  final answer;
 
   QuestionWidget2(
     this.answerQuestion,
     this.needsReset,
     this.question,
+    this.answer,
   );
 
   @override
@@ -55,7 +57,8 @@ class _QuestionWidget2State extends State<QuestionWidget2> {
         onAccept: (data) {
           setState(() {
             updatedData = data;
-            widget.answerQuestion(data, widget.question);
+            var index = widget.question["answerOptions"].indexOf(widget.answer);
+            widget.answerQuestion(data, widget.question, index);
           });
         },
       ),

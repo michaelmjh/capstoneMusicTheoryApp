@@ -32,45 +32,45 @@ class _MyAppState extends State<MyApp> {
   var selectedQuestions;
 
   var users = [
-    [
-      "images/profiles/ewan.png",
-      "Ewan",
-      {"SCALES1": "EASY", "CHORDS1": "MEDIUM"}
-    ],
-    [
-      "images/profiles/michael.png",
-      "Michael",
-      {
-        "SCALES1": "REVISION",
-        "CHORDS1": "MEDIUM",
-      }
-    ],
-    [
-      "images/profiles/nick.png",
-      "Nick",
-      {
-        "SCALES1": "REVISION",
-        "CHORDS1": "REVISION",
-        "BeginnerBoss": "REVISION",
-        "SCALES2": "REVISION",
-        "CHORDS3": "MEDIUM"
-      }
-    ],
-    [
-      "images/profiles/shuna.png",
-      "Shuna",
-      {
-        "SCALES1": "REVISION",
-        "CHORDS1": "REVISION",
-        "BeginnerBoss": "REVISION",
-        "SCALES2": "REVISION",
-        "CHORDS3": "REVISION"
-      }
-    ],
-    ["images/dog-png-30.png", "Ian"],
-    ["images/dog-png-30.png", "Josh"],
-    ["images/dog-png-30.png", "Lou"],
+    {
+      "name": "Ewan",
+      "image": "images/profiles/ewan.png",
+      "userProgress": {"SCALES1": "EASY", "CHORDS1": "MEDIUM"}
+    },
 
+    {
+      "name": "Michael",
+      "image": "images/profiles/michael.png",
+      "userProgress": {
+        // "SCALES1": "REVISION",
+        // "CHORDS1": "MEDIUM",
+      }
+    }
+    // [
+    //   "images/profiles/nick.png",
+    //   "Nick",
+    //   {
+    //     "SCALES1": "REVISION",
+    //     "CHORDS1": "REVISION",
+    //     "BeginnerBoss": "REVISION",
+    //     "SCALES2": "REVISION",
+    //     "CHORDS3": "MEDIUM"
+    //   }
+    // ],
+    // [
+    //   "images/profiles/shuna.png",
+    //   "Shuna",
+    //   {
+    //     "SCALES1": "REVISION",
+    //     "CHORDS1": "REVISION",
+    //     "BeginnerBoss": "REVISION",
+    //     "SCALES2": "REVISION",
+    //     "CHORDS3": "REVISION"
+    //   }
+    // ],
+    // ["images/dog-png-30.png", "Ian"],
+    // ["images/dog-png-30.png", "Josh"],
+    // ["images/dog-png-30.png", "Lou"],
   ];
 
   var avatars = [
@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
     newUser['name'] = newName;
     newUser['image'] = "images/dog-png-30.png";
     newUser['userProgress'] = {};
-    users.add(newUser);
+    // users.add(newUser);
   }
 
   void deleteUser(selectedProfile) {
@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void setUserProgress() {
-    userProgress = users[1][2];
+    userProgress = users[1]['userProgress'];
   }
 
   // Function is run inside timeline_widget when user presses on timeline indicator
@@ -285,13 +285,22 @@ class _MyAppState extends State<MyApp> {
     var lessonName = selectedLesson['lessonName'];
 
     questions.forEach((question) {
-      if (lessonName == question['lessonName'] &&
-          question['difficulty'] == userProgress[lessonName]) {
+      // if (lessonName == question['lessonName'] &&
+      //     question['difficulty'] == userProgress[lessonName]) {
+      //   newQuestions.add(question);
+      //   print(question['difficulty']);
+      //   print(userProgress[lessonName]);
+      // } else if (lessonName == question['lessonName']) {
+      //   newQuestions.add(question);
+
+      if (question['difficulty'] == 'EASY' &&
+          question['lessonName'] == 'SCALES1') {
         newQuestions.add(question);
-      } else if (lessonName == question['lessonName']) {
-        print(question['lessonName']);
-        newQuestions.add(question);
+        // print(question['lessonName']);
+        // print(question['levelName']);
+        // print(question['difficulty']);
       }
+      // }
     });
     newQuestions.shuffle();
     selectedQuestions = newQuestions;
@@ -364,15 +373,15 @@ class _MyAppState extends State<MyApp> {
               selectedLesson,
               userProgress,
             ),
-        '/journey': (context) => Journey(
-              selectedProfile,
-              quizGenerator,
-            ),
+        // '/journey': (context) => Journey(
+        //       selectedProfile,
+        //       quizGenerator,
+        //     ),
         '/users': (context) => UserContainer(users, setSelectedProfile,
             getLevels, setTimelineLessonList, deleteUser),
         '/profile': (context) => SpecificProfile(
             selectedProfile, getLevels, setTimelineLessonList, deleteUser),
-        '/addProfile': (context) => AddProfile(addUser),
+        // '/addProfile': (context) => AddProfile(addUser),
         '/editProfile': (context) => EditProfile(),
         '/timeline': (countext) => Timeline(
               newList,
