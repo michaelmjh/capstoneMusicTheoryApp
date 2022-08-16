@@ -42,9 +42,6 @@ class _QuestionContainerState extends State<QuestionContainer> {
   bool needsReset = false;
 
   void submit() {
-    // print(submittedAnswers);
-    // print(widget.question['answerAssets']);
-    // if (submittedAnswers == widget.question['answerAssets']) {
     if (listsEqual(submittedAnswers, widget.question['answerAssets']) == true) {
       setState(() {
         isSubmitted = true;
@@ -81,12 +78,27 @@ class _QuestionContainerState extends State<QuestionContainer> {
       index = question['answerAssets'].indexOf(answer);
       submittedAnswers[index] = answer;
     }
-    if (submittedAnswers.length == widget.question['answerAssets']!.length) {
+
+    var submittedAnswersCheck = [];
+
+    for (var answer in submittedAnswers) {
+      if (answer == "") {
+        null;
+      } else
+        submittedAnswersCheck.add(answer);
+    }
+
+    print(submittedAnswersCheck.length);
+
+    if (submittedAnswersCheck.length ==
+        widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
         disabled = true;
       });
     }
+    print(submittedAnswers);
+    // print(isSelected);
   }
 
   void answerQuestionArrange(answer, question, index) {
@@ -95,7 +107,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
     i = index;
     submittedAnswers[i] = answer;
     print(submittedAnswers);
-    // }
+
     if (submittedAnswers.length == widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
@@ -104,10 +116,14 @@ class _QuestionContainerState extends State<QuestionContainer> {
     }
   }
 
-  void clearAnswer() {
+  void clearAnswer(answer) {
     setState(() {
+      for (var item in submittedAnswers) {
+        if (item == answer) {
+          item = "";
+        }
+      }
       isSelected = false;
-      submittedAnswers.clear();
       disabled = false;
     });
   }
@@ -156,8 +172,6 @@ class _QuestionContainerState extends State<QuestionContainer> {
                         children: [
                           ...(widget.question['answerOptions'] as List)
                               .map((answer) {
-                            // print(widget.question['answerOptions']
-                            // .indexOf(answer));
                             return QuestionWidget2(answerQuestionArrange,
                                 needsReset, widget.question, answer);
                           }).toList(),
@@ -190,12 +204,13 @@ class _QuestionContainerState extends State<QuestionContainer> {
                             ...(widget.question['answerOptions'] as List)
                                 .map((answer) {
                               return AnswerWidget(
-                                  () => answerQuestion(answer, widget.question),
+                                  // () => answerQuestion(answer, widget.question),
+                                  answerQuestion,
                                   answer,
                                   clearAnswer,
                                   disabled,
                                   submittedAnswers,
-                                  widget.question['answerAssets']);
+                                  widget.question);
                             }).toList(),
                           ],
                         ),

@@ -5,12 +5,17 @@ class Result extends StatelessWidget {
   final length;
   final updateProgress;
   final quizGenerator;
+  final selectedLesson;
+  final bossGenerator;
 
   Result({
     required this.score,
     required this.length,
     required this.updateProgress,
     required this.quizGenerator,
+    required this.selectedLesson,
+    required,
+    this.bossGenerator,
   });
 
   String get resultPhrase {
@@ -86,8 +91,24 @@ class Result extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                score > 3 ? updateProgress() : null;
-                quizGenerator();
+                print(selectedLesson['lessonName']);
+                if (selectedLesson['lessonName'] == 'BeginnerBoss' ||
+                    selectedLesson['lessonName'] == 'IntermediateBoss' ||
+                    selectedLesson['lessonName'] == 'AdvancedBoss') {
+                  if (score > 8) {
+                    updateProgress();
+                    bossGenerator();
+                  } else {
+                    null;
+                  }
+                } else {
+                  if (score > 3) {
+                    updateProgress();
+                    quizGenerator();
+                  } else {
+                    null;
+                  }
+                }
                 Navigator.pushNamed(context, '/landingpage');
               },
             ),

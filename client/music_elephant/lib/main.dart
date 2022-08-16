@@ -44,9 +44,9 @@ class _MyAppState extends State<MyApp> {
       "userProgress": {
         "SCALES1": "REVISION",
         "CHORDS1": "REVISION",
-        "BeginnerBoss": "REVISION",
-        "SCALES2": "REVISION",
-        "CHORDS2": "REVISION",
+        // "BeginnerBoss": "REVISION",
+        // "SCALES2": "REVISION",
+        // "CHORDS2": "REVISION",
         // "IntermediateBoss": "REVISION",
         // "SCALES3": "REVISION",
         // "CHORDS3": "REVISION",
@@ -266,7 +266,8 @@ class _MyAppState extends State<MyApp> {
 
   void updateProgress() {
     var lessonName = selectedLesson['lessonName'];
-    if (userProgress[lessonName] == 'EASY') {
+    if (userProgress[lessonName] == null ||
+        userProgress[lessonName] == 'EASY') {
       setState(() {
         userProgress[lessonName] = 'MEDIUM';
       });
@@ -279,6 +280,7 @@ class _MyAppState extends State<MyApp> {
         userProgress[lessonName] = 'REVISION';
       });
     }
+    print(userProgress);
   }
 
   void addLessonToUserProgress() {
@@ -303,12 +305,12 @@ class _MyAppState extends State<MyApp> {
       if (question['difficulty'] == userProgress[lessonName] &&
           question['lessonName'] == lessonName) {
         newQuestions.add(question);
+      } else if (userProgress[lessonName] == 'REVISION' &&
+          question['lessonName'] == lessonName) {
+        newQuestions.add(question);
       } else if (userProgress[lessonName] == null &&
           question['lessonName'] == lessonName) {
         if (question['difficulty'] == 'EASY') {
-          newQuestions.add(question);
-        } else if (userProgress[lessonName] == 'REVISION' &&
-            question['lessonName'] == lessonName) {
           newQuestions.add(question);
         }
       }
@@ -402,6 +404,8 @@ class _MyAppState extends State<MyApp> {
               updateProgress,
               quizGenerator,
               userProgress,
+              selectedLesson,
+              bossGenerator,
             ),
         '/lesson': (context) => Lesson(selectedLesson),
         '/landingpage': (context) => LandingPage(

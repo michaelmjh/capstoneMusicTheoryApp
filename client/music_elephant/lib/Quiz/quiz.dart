@@ -10,9 +10,11 @@ class Quiz extends StatefulWidget {
   final updateProgress;
   final quizGenerator;
   final userProgress;
+  final selectedLesson;
+  final bossGenerator;
 
   Quiz(this.questions, this.updateProgress, this.quizGenerator,
-      this.userProgress,
+      this.userProgress, this.selectedLesson, this.bossGenerator,
       {super.key});
 
   @override
@@ -76,7 +78,10 @@ class _QuizState extends State<Quiz> {
                 score: score,
                 length: widget.questions.length,
                 updateProgress: widget.updateProgress,
-                quizGenerator: widget.quizGenerator),
+                quizGenerator: widget.quizGenerator,
+                selectedLesson: widget.selectedLesson,
+                bossGenerator: widget.bossGenerator,
+              ),
       ),
     );
   }

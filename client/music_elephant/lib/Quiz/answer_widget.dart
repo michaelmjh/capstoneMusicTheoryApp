@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AnswerWidget extends StatefulWidget {
-  final selectHandler;
+  final answerQuestion;
   final answer;
   final clearAnswer;
   final disabled;
-  final answerList;
-  final correctAnswers;
+  final submittedAnswers;
+  final question;
 
-  AnswerWidget(this.selectHandler, this.answer, this.clearAnswer, this.disabled,
-      this.answerList, this.correctAnswers);
+  AnswerWidget(this.answerQuestion, this.answer, this.clearAnswer,
+      this.disabled, this.submittedAnswers, this.question);
 
   @override
   State<AnswerWidget> createState() => _AnswerWidgetState();
@@ -39,10 +39,10 @@ class _AnswerWidgetState extends State<AnswerWidget> {
               ),
         onPressed: widget.disabled
             ? () => {
-                  if (widget.answerList.contains(widget.answer))
+                  if (widget.question['answerAssets'].contains(widget.answer))
                     {
                       isSelected = !isSelected,
-                      widget.clearAnswer(),
+                      widget.clearAnswer(widget.answer),
                     }
                 }
             : () => {
@@ -50,9 +50,9 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                     () {
                       isSelected = !isSelected;
                       if (isSelected) {
-                        widget.selectHandler();
+                        widget.answerQuestion(widget.answer, widget.question);
                       } else {
-                        widget.clearAnswer();
+                        widget.clearAnswer(widget.answer);
                       }
                     },
                   ),

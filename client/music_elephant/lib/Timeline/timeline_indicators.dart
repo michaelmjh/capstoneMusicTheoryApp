@@ -52,7 +52,6 @@ class BossIndicator extends StatelessWidget {
         color: Colors.black,
         onPressed: () {
           setSelectedLesson(listItem);
-          // addLessonToUserProgress();
           bossGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
@@ -78,7 +77,6 @@ class AvailableIndicator extends StatelessWidget {
         iconSize: 15,
         onPressed: () {
           setSelectedLesson(listItem);
-          // addLessonToUserProgress();
           quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
