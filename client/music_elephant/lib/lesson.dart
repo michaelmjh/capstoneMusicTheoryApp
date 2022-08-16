@@ -43,8 +43,8 @@ class _LessonState extends State<Lesson> {
                       Padding(
                         padding: const EdgeInsets.all(20),
                         child: index < lesson['slides'].length - 1
-                            ? Container()
-                            // ? Image.asset(lesson['slides'][index]['image'])
+                            // ? Container()
+                            ? Image.asset(lesson['slides'][index]['image'])
                             : Text(
                                 '',
                               ),
