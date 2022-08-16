@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
 import 'package:music_elephant/User/add_profile.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
@@ -8,12 +7,9 @@ import 'package:music_elephant/Timeline/timeline_container.dart';
 
 import 'Helpers/helper.dart';
 import 'LessonAssets/lesson_assets.dart';
-import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
-import 'home_page.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
-import 'journey.dart';
 
 void main() {
   runApp(const MyApp());
@@ -305,7 +301,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/users',
       routes: {
-        '/': (context) => HomePage(getLevels, setTimelineLessonList),
         '/quiz': (context) => Quiz(
               selectedQuestions,
               updateProgress,
@@ -318,10 +313,6 @@ class _MyAppState extends State<MyApp> {
               // currentDifficulty,
               selectedLesson,
               userProgress,
-            ),
-        '/journey': (context) => Journey(
-              selectedProfile,
-              quizGenerator,
             ),
         '/users': (context) => UserContainer(
             users, setSelectedProfile, getLevels, setTimelineLessonList),
