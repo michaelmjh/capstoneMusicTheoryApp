@@ -32,22 +32,45 @@ class _MyAppState extends State<MyApp> {
   var selectedQuestions;
 
   var users = [
-    {'name': "Ewan", 'image': "images/profiles/ewan.png", 'userProgress': {}},
-    {
-      'image': "images/profiles/michael.png",
-      'name': "Michael",
-      'userProgress': {
+    [
+      "images/profiles/ewan.png",
+      "Ewan",
+      {"SCALES1": "EASY", "CHORDS1": "MEDIUM"}
+    ],
+    [
+      "images/profiles/michael.png",
+      "Michael",
+      {
+        "SCALES1": "REVISION",
+        "CHORDS1": "MEDIUM",
+      }
+    ],
+    [
+      "images/profiles/nick.png",
+      "Nick",
+      {
         "SCALES1": "REVISION",
         "CHORDS1": "REVISION",
         "BeginnerBoss": "REVISION",
-        "SCALES2": "MEDIUM"
+        "SCALES2": "REVISION",
+        "CHORDS3": "MEDIUM"
       }
-    },
-    {'name': "Nick", 'image': "images/profiles/nick.png", 'userProgress': {}},
-    {'name': "Shuna", 'image': "images/profiles/shuna.png", 'userProgress': {}},
-    {'name': "Ian", 'image': "images/dog-png-30.png", 'userProgress': {}},
-    {'name': "Josh", 'image': "images/dog-png-30.png", 'userProgress': {}},
-    {'name': "Lou", 'image': "images/dog-png-30.png", 'userProgress': {}},
+    ],
+    [
+      "images/profiles/shuna.png",
+      "Shuna",
+      {
+        "SCALES1": "REVISION",
+        "CHORDS1": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "SCALES2": "REVISION",
+        "CHORDS3": "REVISION"
+      }
+    ],
+    ["images/dog-png-30.png", "Ian"],
+    ["images/dog-png-30.png", "Josh"],
+    ["images/dog-png-30.png", "Lou"],
+
   ];
 
   var avatars = [
@@ -296,11 +319,15 @@ class _MyAppState extends State<MyApp> {
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
   void bossGenerator() {
+    var newQuestions = [];
     if (selectedLesson['level']['levelName'] == "BEGINNER") {
-      selectedQuestions = questions;
+      newQuestions = questions;
     } else if (selectedLesson['level']['levelName'] == "INTERMEDIATE") {
     } else if (selectedLesson['level']['levelName'] == "ADVANCED") {}
-    selectedQuestions.shuffle();
+
+    newQuestions.shuffle();
+    var shortList = selectTen(newQuestions);
+    selectedQuestions = shortList;
   }
 
   @override
@@ -326,7 +353,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/users',
       routes: {
-        '/': (context) => HomePage(getLevels, setTimelineLessonList),
         '/quiz': (context) => Quiz(
               selectedQuestions,
               updateProgress,
