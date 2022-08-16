@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
 import 'package:music_elephant/User/add_profile.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
@@ -8,13 +7,11 @@ import 'package:music_elephant/Timeline/timeline_container.dart';
 
 import 'Helpers/helper.dart';
 import 'LessonAssets/lesson_assets.dart';
-import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
 import 'User/edit_profile.dart';
 import 'home_page.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
-import 'journey.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,8 +38,9 @@ class _MyAppState extends State<MyApp> {
       'name': "Michael",
       'userProgress': {
         "SCALES1": "REVISION",
-        "CHORDS1": "MEDIUM",
-        // "BeginnerBoss": "REVISION"
+        "CHORDS1": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "SCALES2": "MEDIUM"
       }
     },
     {'name': "Nick", 'image': "images/profiles/nick.png", 'userProgress': {}},
@@ -337,8 +335,6 @@ class _MyAppState extends State<MyApp> {
             ),
         '/lesson': (context) => Lesson(selectedLesson),
         '/landingpage': (context) => LandingPage(
-              // progress,
-              // currentDifficulty,
               selectedLesson,
               userProgress,
             ),
