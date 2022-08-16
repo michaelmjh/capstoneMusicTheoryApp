@@ -2,11 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:music_elephant/QuestionAssets/Enums/difficulty.dart';
-
-import 'Quiz/quiz.dart';
-import 'lesson.dart';
-
 class LandingPage extends StatefulWidget {
   // final List progress;
   // final Difficulty currentDifficulty;

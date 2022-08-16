@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
-class AddProfile extends StatefulWidget {
-  final addUser;
-
-  const AddProfile(this.addUser, {Key? key}) : super(key: key);
+class EditProfile extends StatefulWidget {
+  EditProfile({Key? key}) : super(key: key);
 
   @override
-  State<AddProfile> createState() => _nameState();
+  State<EditProfile> createState() => _EditProfileState();
 }
 
-// ignore: camel_case_types
-class _nameState extends State<AddProfile> {
-  final profileController = TextEditingController();
+class _EditProfileState extends State<EditProfile> {
+  final editController = TextEditingController();
+  // ..text = selectedProfile['name'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Create Profile",
+          "Edit Profile",
           style: TextStyle(
             fontSize: 32,
           ),
@@ -33,7 +31,7 @@ class _nameState extends State<AddProfile> {
             padding: const EdgeInsets.all(32),
             children: [
               TextField(
-                controller: profileController,
+                controller: editController,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.person),
                   labelText: "Enter your name",
@@ -54,8 +52,7 @@ class _nameState extends State<AddProfile> {
                   ),
                 ),
                 onPressed: () {
-                  widget.addUser(profileController.text);
-                  Navigator.pushNamed(context, '/users');
+                  // Navigator.pushNamed(context, '/profile');
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
@@ -74,15 +71,4 @@ class _nameState extends State<AddProfile> {
       ),
     );
   }
-
-  // Widget buildProfile() => const TextField(
-  //       controller: profileController,
-  //       decoration: InputDecoration(
-  //         prefixIcon: Icon(Icons.person),
-  //         labelText: "Enter your name",
-  //         border: OutlineInputBorder(),
-  //       ),
-  //       keyboardType: TextInputType.name,
-  //       textInputAction: TextInputAction.done,
-  //     );
 }

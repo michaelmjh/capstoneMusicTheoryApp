@@ -50,12 +50,12 @@ class _UsersState extends State<Users> {
                 mainAxisSpacing: 40,
                 crossAxisCount: 2,
                 children: <Widget>[
-                  ...(widget.users as List<List>).map(
+                  ...(widget.users as List).map(
                     (user) {
                       return Container(
                         child: FlatButton(
                           onPressed: () {
-                            widget.setSelectedProfile(user[1]);
+                            widget.setSelectedProfile(user);
                             Navigator.pushNamed(context, "/profile");
                           },
                           child: Material(
@@ -78,14 +78,14 @@ class _UsersState extends State<Users> {
                                   children: [
                                     Ink.image(
                                       image: AssetImage(
-                                        user[0],
+                                        user['image'],
                                       ),
                                       height: 315,
                                       width: 315,
                                     ),
                                     SizedBox(height: 6),
                                     Text(
-                                      user[1],
+                                      user['name'],
                                       style: TextStyle(
                                         fontSize: 32,
                                         color: Color(0xffffecb4),

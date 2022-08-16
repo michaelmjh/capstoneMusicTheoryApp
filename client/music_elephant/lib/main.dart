@@ -8,6 +8,8 @@ import 'package:music_elephant/Timeline/timeline_container.dart';
 import 'Helpers/helper.dart';
 import 'LessonAssets/lesson_assets.dart';
 import 'Quiz/quiz.dart';
+import 'User/edit_profile.dart';
+import 'home_page.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
 
@@ -68,9 +70,18 @@ class _MyAppState extends State<MyApp> {
     ["images/dog-png-30.png", "Ian"],
     ["images/dog-png-30.png", "Josh"],
     ["images/dog-png-30.png", "Lou"],
+
   ];
 
-  var selectedProfile = "";
+  var avatars = [
+    {"images/profiles/nick.png"},
+    {"images/profiles/shuna.png"},
+    {"images/dog-png-30.png"},
+    {"images/profiles/michael.png"},
+    {"images/profiles/ewan.png"}
+  ];
+
+  var selectedProfile = {};
 
   // Selected lesson required when navigating to the lesson page from the timeline
   var selectedLesson;
@@ -79,6 +90,20 @@ class _MyAppState extends State<MyApp> {
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress;
+
+  void addUser(newName) {
+    var newUser = {'name': "", 'image': "", 'userProgress': {}};
+    newUser['name'] = newName;
+    newUser['image'] = "images/dog-png-30.png";
+    newUser['userProgress'] = {};
+    users.add(newUser);
+  }
+
+  void deleteUser(selectedProfile) {
+    setState(() {
+      users.remove(selectedProfile);
+    });
+  }
 
   void setUserProgress() {
     userProgress = users[1][2];
@@ -336,16 +361,19 @@ class _MyAppState extends State<MyApp> {
             ),
         '/lesson': (context) => Lesson(selectedLesson),
         '/landingpage': (context) => LandingPage(
-              // progress,
-              // currentDifficulty,
               selectedLesson,
               userProgress,
             ),
-        '/users': (context) => UserContainer(
-            users, setSelectedProfile, getLevels, setTimelineLessonList),
-        '/profile': (context) =>
-            SpecificProfile(selectedProfile, getLevels, setTimelineLessonList),
-        '/addProfile': (context) => AddProfile(),
+        '/journey': (context) => Journey(
+              selectedProfile,
+              quizGenerator,
+            ),
+        '/users': (context) => UserContainer(users, setSelectedProfile,
+            getLevels, setTimelineLessonList, deleteUser),
+        '/profile': (context) => SpecificProfile(
+            selectedProfile, getLevels, setTimelineLessonList, deleteUser),
+        '/addProfile': (context) => AddProfile(addUser),
+        '/editProfile': (context) => EditProfile(),
         '/timeline': (countext) => Timeline(
               newList,
               setSelectedLesson,
