@@ -30,18 +30,41 @@ class _MyAppState extends State<MyApp> {
   var selectedQuestions;
 
   var users = [
-    ["images/profiles/ewan.png", "Ewan"],
+    [
+      "images/profiles/ewan.png",
+      "Ewan",
+      {"SCALES1": "EASY", "CHORDS1": "MEDIUM"}
+    ],
     [
       "images/profiles/michael.png",
       "Michael",
       {
         "SCALES1": "REVISION",
         "CHORDS1": "MEDIUM",
-        // "BeginnerBoss": "REVISION"
       }
     ],
-    ["images/profiles/nick.png", "Nick"],
-    ["images/profiles/shuna.png", "Shuna"],
+    [
+      "images/profiles/nick.png",
+      "Nick",
+      {
+        "SCALES1": "REVISION",
+        "CHORDS1": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "SCALES2": "REVISION",
+        "CHORDS3": "MEDIUM"
+      }
+    ],
+    [
+      "images/profiles/shuna.png",
+      "Shuna",
+      {
+        "SCALES1": "REVISION",
+        "CHORDS1": "REVISION",
+        "BeginnerBoss": "REVISION",
+        "SCALES2": "REVISION",
+        "CHORDS3": "REVISION"
+      }
+    ],
     ["images/dog-png-30.png", "Ian"],
     ["images/dog-png-30.png", "Josh"],
     ["images/dog-png-30.png", "Lou"],
@@ -271,11 +294,15 @@ class _MyAppState extends State<MyApp> {
   // sends them to the lesson widget so the user can be tested on all questions
   // from a particular level
   void bossGenerator() {
+    var newQuestions = [];
     if (selectedLesson['level']['levelName'] == "BEGINNER") {
-      selectedQuestions = questions;
+      newQuestions = questions;
     } else if (selectedLesson['level']['levelName'] == "INTERMEDIATE") {
     } else if (selectedLesson['level']['levelName'] == "ADVANCED") {}
-    selectedQuestions.shuffle();
+
+    newQuestions.shuffle();
+    var shortList = selectTen(newQuestions);
+    selectedQuestions = shortList;
   }
 
   @override
