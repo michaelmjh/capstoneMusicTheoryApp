@@ -27,6 +27,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     LessonSlideRepository lessonSlideRepository;
 
+    @Autowired
+    ProgressRepository progressRepository;
+
     public DataLoader(){
 
     }
@@ -957,16 +960,58 @@ public class DataLoader implements ApplicationRunner {
         Question question36 = new Question(QuestionType.ARRANGE, level1.getLevelName(), chords1.getLessonName(), Difficulty.HARD, question36Assets, answer36Options, answer36Assets, answer36audio);
         questionRepository.save(question36);
 
-        User user1 = new User("Ewan", "images/profiles/ewan.png", scales1.getLessonName(), level1.getLevelName());
+        User user1 = new User("Ewan", "images/profiles/ewan.png");
+        userRepository.save(user1);
+        Difficulty currentDifficulty = Difficulty.EASY;
+        Progress user1Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty, user1);
+        progressRepository.save(user1Scales1Progress);
+        Progress user1Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty, user1);
+        progressRepository.save(user1Chords1progress);
+        List user1Progress = new ArrayList<>();
+        user1Progress.add(user1Scales1Progress);
+        user1Progress.add(user1Scales1Progress);
+        user1.setProgress(user1Progress);
         userRepository.save(user1);
 
-        User user2 = new User("Michael", "images/profiles/michael.png", scales1.getLessonName(), level1.getLevelName());
+        User user2 = new User("Michael", "images/profiles/michael.png");
+        userRepository.save(user2);
+        Difficulty currentDifficulty2 = Difficulty.EASY;
+        Progress user2Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty2, user2);
+        progressRepository.save(user2Scales1Progress);
+        Progress user2Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty2, user2);
+        progressRepository.save(user2Chords1progress);
+        List user2Progress = new ArrayList<>();
+        user2Progress.add(user2Scales1Progress);
+        user2Progress.add(user2Scales1Progress);
+        user2.setProgress(user2Progress);
         userRepository.save(user2);
 
-        User user3 = new User("Shuna", "images/profiles/shuna.png", scales1.getLessonName(), level1.getLevelName());
+        User user3 = new User("Shuna", "images/profiles/shuna.png");
+        userRepository.save(user3);
+        Difficulty currentDifficulty3 = Difficulty.EASY;
+        Progress user3Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty3, user3);
+        progressRepository.save(user3Scales1Progress);
+        Progress user3Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty3, user3);
+        progressRepository.save(user3Chords1progress);
+        List user3Progress = new ArrayList<>();
+        user3Progress.add(user3Scales1Progress);
+        user3Progress.add(user3Scales1Progress);
+        user3.setProgress(user3Progress);
         userRepository.save(user3);
 
-        User user4 = new User("Nick", "images/profiles/nick.png", scales1.getLessonName(), level1.getLevelName());
+        User user4 = new User("Nick", "images/profiles/nick.png");
+        userRepository.save(user4);
+        Difficulty currentDifficulty4 = Difficulty.EASY;
+        Progress user4Scales1Progress = new Progress(scales1.getLessonName(), currentDifficulty4, user4);
+        progressRepository.save(user4Scales1Progress);
+        Progress user4Chords1progress = new Progress(chords1.getLessonName(), currentDifficulty4, user4);
+        progressRepository.save(user4Chords1progress);
+        List user4Progress = new ArrayList<>();
+        user4Progress.add(user4Scales1Progress);
+        user4Progress.add(user4Scales1Progress);
+        user4.setProgress(user4Progress);
         userRepository.save(user4);
     }
 }
+
+//scales1.getLessonName(), level1.getLevelName()
