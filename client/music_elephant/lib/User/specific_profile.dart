@@ -4,9 +4,10 @@ class SpecificProfile extends StatefulWidget {
   var selectedProfile;
   final getLevels;
   final setTimelineLessonList;
+  final deleteUser;
 
-  SpecificProfile(
-      this.selectedProfile, this.getLevels, this.setTimelineLessonList);
+  SpecificProfile(this.selectedProfile, this.getLevels,
+      this.setTimelineLessonList, this.deleteUser);
 
   @override
   State<SpecificProfile> createState() => _SpecificProfileState();
@@ -47,14 +48,14 @@ class _SpecificProfileState extends State<SpecificProfile> {
                         children: [
                           Ink.image(
                             image: AssetImage(
-                              "images/profiles/michael.png",
+                              widget.selectedProfile['image'],
                             ),
                             height: 300,
                             width: 300,
                           ),
                           SizedBox(height: 6),
                           Text(
-                            widget.selectedProfile,
+                            widget.selectedProfile['name'],
                             style: TextStyle(
                               fontSize: 32,
                               color: Color(0xffffecb4),
@@ -119,7 +120,33 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/journey');
+                          Navigator.pushNamed(context, '/editProfile');
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(70.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xffe5771e),
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const Text(
+                            'delete Profile',
+                            style: TextStyle(
+                              fontSize: 32,
+                              color: Color(0xffffecb4),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          widget.deleteUser(widget.selectedProfile);
+                          Navigator.pop(context, '/users');
                         },
                       ),
                     ),
@@ -127,12 +154,12 @@ class _SpecificProfileState extends State<SpecificProfile> {
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Image.asset(
-                "images/us.jpg",
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(20),
+            //   child: Image.asset(
+            //     "images/us.jpg",
+            //   ),
+            // ),
           ],
         ),
       ),

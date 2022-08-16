@@ -7,8 +7,10 @@ class UserContainer extends StatefulWidget {
   final setSelectedProfile;
   final getLevels;
   final setTimelineLessonList;
+  final deleteUser;
 
-  UserContainer(this.users, this.setSelectedProfile, this.getLevels, this.setTimelineLessonList);
+  UserContainer(this.users, this.setSelectedProfile, this.getLevels,
+      this.setTimelineLessonList, this.deleteUser);
 
   @override
   State<UserContainer> createState() => _UserContainerState();
@@ -22,9 +24,8 @@ class _UserContainerState extends State<UserContainer> {
     return Container(
       child: profileSelected == ""
           ? Users(widget.users, widget.setSelectedProfile)
-          : SpecificProfile(
-              profileSelected, widget.getLevels, widget.setTimelineLessonList
-            ),
+          : SpecificProfile(profileSelected, widget.getLevels,
+              widget.setTimelineLessonList, widget.deleteUser),
     );
   }
 }
