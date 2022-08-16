@@ -10,6 +10,7 @@ import 'Helpers/helper.dart';
 import 'LessonAssets/lesson_assets.dart';
 import 'QuestionAssets/question_assets.dart';
 import 'Quiz/quiz.dart';
+import 'User/edit_profile.dart';
 import 'home_page.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
@@ -34,24 +35,32 @@ class _MyAppState extends State<MyApp> {
   var selectedQuestions;
 
   var users = [
-    ["images/profiles/ewan.png", "Ewan"],
-    [
-      "images/profiles/michael.png",
-      "Michael",
-      {
+    {'name': "Ewan", 'image': "images/profiles/ewan.png", 'userProgress': {}},
+    {
+      'image': "images/profiles/michael.png",
+      'name': "Michael",
+      'userProgress': {
         "SCALES1": "REVISION",
         "CHORDS1": "MEDIUM",
         // "BeginnerBoss": "REVISION"
       }
-    ],
-    ["images/profiles/nick.png", "Nick"],
-    ["images/profiles/shuna.png", "Shuna"],
-    ["images/dog-png-30.png", "Ian"],
-    ["images/dog-png-30.png", "Josh"],
-    ["images/dog-png-30.png", "Lou"],
+    },
+    {'name': "Nick", 'image': "images/profiles/nick.png", 'userProgress': {}},
+    {'name': "Shuna", 'image': "images/profiles/shuna.png", 'userProgress': {}},
+    {'name': "Ian", 'image': "images/dog-png-30.png", 'userProgress': {}},
+    {'name': "Josh", 'image': "images/dog-png-30.png", 'userProgress': {}},
+    {'name': "Lou", 'image': "images/dog-png-30.png", 'userProgress': {}},
   ];
 
-  var selectedProfile = "";
+  var avatars = [
+    {"images/profiles/nick.png"},
+    {"images/profiles/shuna.png"},
+    {"images/dog-png-30.png"},
+    {"images/profiles/michael.png"},
+    {"images/profiles/ewan.png"}
+  ];
+
+  var selectedProfile = {};
 
   // Selected lesson required when navigating to the lesson page from the timeline
   var selectedLesson;
@@ -60,6 +69,20 @@ class _MyAppState extends State<MyApp> {
   // this may need some wrangling - this will track the user's
   // progress in the quizzes so we can show overall progress in the timeline
   var userProgress;
+
+  void addUser(newName) {
+    var newUser = {'name': "", 'image': "", 'userProgress': {}};
+    newUser['name'] = newName;
+    newUser['image'] = "images/dog-png-30.png";
+    newUser['userProgress'] = {};
+    users.add(newUser);
+  }
+
+  void deleteUser(selectedProfile) {
+    setState(() {
+      users.remove(selectedProfile);
+    });
+  }
 
   void setUserProgress() {
     userProgress = users[1][2];
@@ -323,11 +346,12 @@ class _MyAppState extends State<MyApp> {
               selectedProfile,
               quizGenerator,
             ),
-        '/users': (context) => UserContainer(
-            users, setSelectedProfile, getLevels, setTimelineLessonList),
-        '/profile': (context) =>
-            SpecificProfile(selectedProfile, getLevels, setTimelineLessonList),
-        '/addProfile': (context) => AddProfile(),
+        '/users': (context) => UserContainer(users, setSelectedProfile,
+            getLevels, setTimelineLessonList, deleteUser),
+        '/profile': (context) => SpecificProfile(
+            selectedProfile, getLevels, setTimelineLessonList, deleteUser),
+        '/addProfile': (context) => AddProfile(addUser),
+        '/editProfile': (context) => EditProfile(),
         '/timeline': (countext) => Timeline(
               newList,
               setSelectedLesson,
