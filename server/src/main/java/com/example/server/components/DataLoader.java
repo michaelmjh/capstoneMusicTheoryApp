@@ -40,7 +40,7 @@ public class DataLoader implements ApplicationRunner {
         Level level1 = new Level(LevelName.BEGINNER);
         levelRepository.save(level1);
 
-        Level level2 = new Level(LevelName.INTERMIDIATE);
+        Level level2 = new Level(LevelName.INTERMEDIATE);
         levelRepository.save(level2);
 
         Level level3 = new Level(LevelName.ADVANCED);
