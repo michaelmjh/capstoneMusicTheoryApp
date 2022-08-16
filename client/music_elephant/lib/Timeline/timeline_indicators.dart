@@ -36,32 +36,6 @@ class CompletedIndicator extends StatelessWidget {
   }
 }
 
-class InProgressIndicator extends StatelessWidget {
-  final listItem;
-  final setSelectedLesson;
-  final quizGenerator;
-  final addLessonToUserProgress;
-
-  const InProgressIndicator(this.listItem, this.setSelectedLesson,
-      this.quizGenerator, this.addLessonToUserProgress);
-  @override
-  Widget build(BuildContext context) {
-    return DotIndicator(
-      color: Color(0xff75c8ae),
-      child: IconButton(
-        icon: Icon(Icons.lightbulb, size: 20.0),
-        color: Color(0xffffecb4),
-        onPressed: () {
-          setSelectedLesson(listItem);
-          addLessonToUserProgress();
-          quizGenerator();
-          Navigator.pushNamed(context, '/landingpage');
-        },
-      ),
-    );
-  }
-}
-
 class BossIndicator extends StatelessWidget {
   final listItem;
   final setSelectedLesson;
