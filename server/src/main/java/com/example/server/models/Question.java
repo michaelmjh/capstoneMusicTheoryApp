@@ -4,9 +4,9 @@ import com.example.server.models.enums.Difficulty;
 import com.example.server.models.enums.LessonName;
 import com.example.server.models.enums.LevelName;
 import com.example.server.models.enums.QuestionType;
-import jdk.internal.org.jline.utils.DiffHelper;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -17,28 +17,34 @@ public class Question {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(name="questionType")
     private QuestionType questionType;
 
-    @Column
+    @Column(name="levelName")
     private LevelName levelName;
 
-    @Column
+    @Column(name="lessonName")
     private LessonName lessonName;
 
-    @Column
+    @Column(name="difficulty")
     private Difficulty difficulty;
 
-    @Column
+    @Column(name="questionAssets")
+    @ElementCollection(targetClass = String.class)
     private List<String> questionAssets;
 
-    @Column
+    @Column(name="answerOptions")
+    @ElementCollection(targetClass=String.class)
     private List<String> answerOptions;
 
-    @Column
+    @Column(name="answerAssets")
+    @ElementCollection(targetClass = String.class)
     private List<String> answerAssets;
 
-    public Question(QuestionType questionType, LevelName levelName, LessonName lessonName, Difficulty difficulty, List<String> questionAssets, List<String> answerOptions, List<String> answerAssets){
+    @Column(name="audio")
+    private String audio;
+
+    public Question(QuestionType questionType, LevelName levelName, LessonName lessonName, Difficulty difficulty, List<String> questionAssets, List<String> answerOptions, List<String> answerAssets, String audio){
         this.questionType = questionType;
         this.levelName = levelName;
         this.lessonName = lessonName;
@@ -46,6 +52,7 @@ public class Question {
         this.questionAssets = questionAssets;
         this.answerOptions = answerOptions;
         this.answerAssets = answerAssets;
+        this.audio = audio;
     }
 
     public Question(){
@@ -92,13 +99,6 @@ public class Question {
         this.difficulty = difficulty;
     }
 
-    public List<String> getQuestionAssets() {
-        return questionAssets;
-    }
-
-    public void setQuestionAssets(List<String> questionAssets) {
-        this.questionAssets = questionAssets;
-    }
 
     public List<String> getAnswerOptions() {
         return answerOptions;
@@ -108,11 +108,27 @@ public class Question {
         this.answerOptions = answerOptions;
     }
 
+    public List<String> getQuestionAssets() {
+        return questionAssets;
+    }
+
+    public void setQuestionAssets(List<String> questionAssets) {
+        this.questionAssets = questionAssets;
+    }
+
     public List<String> getAnswerAssets() {
         return answerAssets;
     }
 
     public void setAnswerAssets(List<String> answerAssets) {
         this.answerAssets = answerAssets;
+    }
+
+    public String getAudio() {
+        return audio;
+    }
+
+    public void setAudio(String audio) {
+        this.audio = audio;
     }
 }

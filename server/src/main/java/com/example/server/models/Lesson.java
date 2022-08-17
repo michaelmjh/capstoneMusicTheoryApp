@@ -16,15 +16,22 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Enumerated(EnumType.STRING)
     private LessonName lessonName;
+
+
+    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"lesson"})
+    private List<LessonSlide> slides;
+
 
     @ManyToOne
     @JoinColumn(name="level_id", nullable = false)
     @JsonIgnoreProperties({"lessons"})
     private Level level;
 
-    private List<String> slides;
+
+
 
     public Lesson(LessonName lessonName, Level level){
         this.lessonName = lessonName;
@@ -60,11 +67,11 @@ public class Lesson {
         this.level = level;
     }
 
-    public List<String> getSlides() {
+    public List<LessonSlide> getSlides() {
         return slides;
     }
 
-    public void setSlides(List<String> slides) {
+    public void setSlides(List<LessonSlide> slides) {
         this.slides = slides;
     }
 }

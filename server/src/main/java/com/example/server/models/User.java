@@ -1,5 +1,7 @@
 package com.example.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +14,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name="userName")
     private String userName;
 
-    @Column
+    @Column(name="avatar")
     private String avatar;
 
-    @Column
-    private List<Enum> progress;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"})
+    private List<Progress> progress;
+
+
 
     public User(String userName, String avatar){
         this.userName = userName;
@@ -55,11 +60,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public List<Enum> getProgress() {
+    public List<Progress> getProgress() {
         return progress;
     }
 
-    public void setProgress(List<Enum> progress) {
+    public void setProgress(List<Progress> progress) {
         this.progress = progress;
     }
 }
