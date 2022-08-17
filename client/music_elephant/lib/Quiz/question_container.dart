@@ -286,7 +286,13 @@ class _QuestionContainerState extends State<QuestionContainer> {
               )
             : Column(
                 children: [
-                  Text(widget.submissionText),
+                  Text(
+                    widget.submissionText,
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Color(0xff5a3d2b),
+                    ),
+                  ),
                   ...(widget.question['answerAssets'] as List).map(
                     (answer) {
                       return Padding(
