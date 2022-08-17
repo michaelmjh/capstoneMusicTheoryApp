@@ -92,7 +92,6 @@ class TimelineWidget extends StatelessWidget {
         // this bit constructs the timeline - splits it out into builders
         // for the 3 main components - indicator, connector, contents
         builder: TimelineTileBuilder.connected(
-          // CONTENTS BUILDER
           contentsBuilder: (context, index) {
             // Contents widgets are split by level, therefore when building
             // the timeline we need to check which level each tile belongs to
@@ -112,111 +111,112 @@ class TimelineWidget extends StatelessWidget {
               // them from the lessons belonging to each level
             }
           },
-          // CONNECTOR BUILDER
           connectorBuilder: (_, index, __) {
+            var lesson = newList[index];
             // All of the below logic checks which colour should apply to
             // each connector, depending on the user's progress and whether
             // the tile being shown is a header or a boss
             if (index == 0 ||
-                userProgress[newList[index]['lessonName']] == 'REVISION') {
+                userProgress[lesson['lessonName']] == 'REVISION') {
               return SolidLineConnector(
                 color: Color(0xff75c8ae),
               );
-              // } else if (userProgress.containsKey(newList[index]['lessonName']) ==
-              //     true) {
-              //   return SolidLineConnector(
-              //     color: Color(0xff75c8ae),
-              //   );
-            } else if (userProgress.containsKey(newList[dummyIndexInt]) ==
-                    true &&
-                newList[index]['lessonName'] == "DummyIntermediate") {
-              if (userProgress[newList[dummyIndexInt]['lessonName']] ==
-                  'REVISION') {
-                return SolidLineConnector(
-                  color: Color(0xff75c8ae),
-                );
-              } else {
-                return SolidLineConnector(
-                  color: Color(0xff75c8ae),
-                );
-              }
-            } else if (userProgress.containsKey(newList[dummyIndexAdv]) ==
-                    true &&
-                newList[index]['lessonName'] == "DummyAdvanced") {
-              if (userProgress[newList[dummyIndexInt]] == 'REVISION') {
-                return SolidLineConnector(
-                  color: Color(0xff75c8ae),
-                );
-              } else {
-                return SolidLineConnector(
-                  color: Color(0xff75c8ae),
-                );
-              }
+              // } else if (userProgress.containsKey(newList[dummyIndexInt]) ==
+              //         true &&
+              //     lesson['lessonName'] == "DummyIntermediate") {
+              //   if (userProgress[newList[dummyIndexInt]['lessonName']] ==
+              //       'REVISION') {
+              //     return SolidLineConnector(
+              //       color: Color(0xff75c8ae),
+              //     );
+              //   } else {
+              //     return SolidLineConnector(
+              //       color: Color(0xff75c8ae),
+              //     );
+              //   }
+              // } else if (userProgress.containsKey(newList[dummyIndexAdv]) ==
+              //         true &&
+              //     newList[index]['lessonName'] == "DummyAdvanced") {
+              //   if (userProgress[newList[dummyIndexInt]] == 'REVISION') {
+              //     return SolidLineConnector(
+              //       color: Color(0xff75c8ae),
+              //     );
+              //   } else {
+              //     return SolidLineConnector(
+              //       color: Color(0xff75c8ae),
+              //     );
+              //   }
+            } else if (lesson['lessonName'] == "DummyIntermediate" &&
+                userProgress['BeginnerBoss'] == 'REVISION') {
+              return SolidLineConnector(
+                color: Color(0xff75c8ae),
+              );
+            } else if (lesson['lessonName'] == "DummyAdvanced" &&
+                userProgress['IntermediateBoss'] == 'REVISION') {
+              return SolidLineConnector(
+                color: Color(0xff75c8ae),
+              );
             } else {
               return SolidLineConnector(
                 color: Color(0xff5a3d2b),
               );
             }
           },
-          // INDICATOR BUILDER
           indicatorBuilder: (_, index) {
+            var lesson = newList[index];
             // Aaaall of this logic checks which indicator should be displayed
             // in each tile depending on the user's progress and whether the
             // level that tile belongs to has been unlocked yet
-            if (newList[index]['lessonName'] == "DummyBeginner") {
+            if (lesson['lessonName'] == "DummyBeginner") {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
               // if the tile is the Int header & this section is unlocked > show Int header indicator
               // otherwise it will show a padlock
-            } else if (newList[index]['lessonName'] == "DummyIntermediate" &&
+            } else if (lesson['lessonName'] == "DummyIntermediate" &&
                 userProgress.containsKey("BeginnerBoss")) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
               // if the tile is the adv header & section is unlocked > show Adv header indicator
               // otherwise it will show a padlock
-            } else if (newList[index]['lessonName'] == "DummyAdvanced" &&
+            } else if (lesson['lessonName'] == "DummyAdvanced" &&
                 userProgress.containsKey("IntermediateBoss")) {
               return DotIndicator(
                 color: Color(0xff75c8ae),
               );
               // if the tile is marked as revision in userProgress > display the pink tick indicator
-            } else if (userProgress[newList[index]['lessonName']] ==
-                'REVISION') {
-              return CompletedIndicator(newList[index], setSelectedLesson,
+            } else if (userProgress[lesson['lessonName']] == 'REVISION') {
+              return CompletedIndicator(lesson, setSelectedLesson,
                   quizGenerator, bossGenerator, addLessonToUserProgress);
               // if tile is a boss ...
-            } else if (newList[index]['lessonName'] == "BeginnerBoss" ||
-                newList[index]['lessonName'] == "IntermediateBoss" ||
-                newList[index]['lessonName'] == "AdvancedBoss") {
+            } else if (lesson['lessonName'] == "BeginnerBoss" ||
+                lesson['lessonName'] == "IntermediateBoss" ||
+                lesson['lessonName'] == "AdvancedBoss") {
               // we run a check function to see if our userProgress shows that
               // all lessons in the appropriate section have been completed
               // if this is true, the boss level unlocks, if not we show a padlock
-              if (checkIfBossUnlocked(newList[index]) == true) {
-                return BossIndicator(newList[index], setSelectedLesson,
-                    bossGenerator, addLessonToUserProgress);
+              if (checkIfBossUnlocked(lesson) == true) {
+                return BossIndicator(lesson, setSelectedLesson, bossGenerator,
+                    addLessonToUserProgress);
               } else {
                 return LockedIndicator();
               }
               // if the lesson exists in userProgress but it has not been marked as completed
               // the indicator is a pink lightbulb
-            } else if (userProgress.containsKey(newList[index]['lessonName']) &&
-                userProgress[newList[index]['level']['levelName']] !=
-                    'REVISION') {
+            } else if (userProgress.containsKey(lesson['lessonName']) &&
+                userProgress[lesson['lessonName']] != 'REVISION') {
               return AvailableIndicator(newList[index], setSelectedLesson,
                   quizGenerator, addLessonToUserProgress);
               // if the lesson is not contained in userProgress it is locked
-            } else if (userProgress.containsKey(newList[index]['lessonName']) ==
+            } else if (userProgress.containsKey(lesson['lessonName']) ==
                 false) {
-              if (checkIfBossCompleted(newList[index]['level']['levelName']) ||
-                  newList[index]['level']['levelName'] == 'BEGINNER') {
+              if (checkIfBossCompleted(lesson['level']['levelName']) ||
+                  lesson['level']['levelName'] == 'BEGINNER') {
                 return AvailableIndicator(newList[index], setSelectedLesson,
                     quizGenerator, addLessonToUserProgress);
               } else {
                 return LockedIndicator();
-                // return AvailableIndicator(newList[index], setSelectedLesson,
-                // quizGenerator, addLessonToUserProgress);
               }
             }
           },

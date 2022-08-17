@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_elephant/QuestionAssets/Enums/question_type.dart';
 import 'package:music_elephant/Quiz/question_widget2.dart';
 import 'package:collection/collection.dart';
+import 'package:quiver/collection.dart';
 
 import '../QuestionAssets/question_assets.dart';
 import '../QuestionAssets/question_model.dart';
@@ -40,8 +41,35 @@ class _QuestionContainerState extends State<QuestionContainer> {
 
   bool needsReset = false;
 
+  void submitArrange() {
+    if (listsEqual(submittedAnswers, widget.question['answerAssets']) == true) {
+      setState(() {
+        isSubmitted = true;
+        widget.submissionText = 'You got the right answer!';
+        needsReset = true;
+        widget.increaseScore();
+      });
+    } else if (submittedAnswers.isEmpty) {
+      null;
+    } else {
+      setState(() {
+        isSubmitted = true;
+        widget.submissionText = 'Aw boo you got it wrong :(';
+        needsReset = true;
+      });
+    }
+  }
+
   void submit() {
-    if (deepEq(submittedAnswers, widget.question['answerAssets'])) {
+    bool correct = false;
+    for (var item in widget.question['answerAssets']) {
+      for (var element in submittedAnswers) {
+        if (item == element) {
+          correct = true;
+        }
+      }
+    }
+    if (correct == true) {
       setState(() {
         isSubmitted = true;
         widget.submissionText = 'You got the right answer!';
@@ -69,14 +97,57 @@ class _QuestionContainerState extends State<QuestionContainer> {
     }
   }
 
+  bool answersFull = false;
+
 // this function adds answers to the above list at an index that matches
 // the correct answer list, if ths answer exists in that list
-  void answerQuestion(answer, question) {
+  void answerQuestion(answer) {
     var index;
-    if (question['answerAssets'].contains(answer)) {
-      index = question['answerAssets'].indexOf(answer);
-      submittedAnswers[index] = answer;
+    // setState(() {
+    //   isSelected = true;
+    // });
+
+    // submittedAnswers.add(answer);
+
+    // if (question['answerAssets'].contains(answer)) {
+    //   index = question['answerAssets'].indexOf(answer);
+    //   submittedAnswers[index] = answer;
+    // }
+
+    // var submittedAnswersCheck = [];
+
+    // for (var answer in submittedAnswers) {
+    //   if (answer == "") {
+    //     null;
+    //   } else
+    //     submittedAnswersCheck.add(answer);
+    // }
+
+    if (submittedAnswers.length != widget.question['answerAssets']!.length) {
+      setState(() {
+        submittedAnswers.add(answer);
+        isSelected = true;
+      });
+    } else if (submittedAnswers.length ==
+        widget.question['answerAssets']!.length) {
+      setState(() {
+        isSelected = true;
+        disabled = true;
+      });
     }
+    // print(isSelected);
+    // print(widget.question['answerAssets']);
+    print(disabled);
+    print(submittedAnswers);
+  }
+
+  void answerQuestionArrange(answer, question, index) {
+    var i;
+
+    i = index;
+    submittedAnswers[i] = answer;
+    print(submittedAnswers);
+
     if (submittedAnswers.length == widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
@@ -85,10 +156,10 @@ class _QuestionContainerState extends State<QuestionContainer> {
     }
   }
 
-  void clearAnswer() {
+  void clearAnswer(answer) {
     setState(() {
+      submittedAnswers.remove(answer);
       isSelected = false;
-      submittedAnswers.clear();
       disabled = false;
     });
   }
@@ -137,8 +208,8 @@ class _QuestionContainerState extends State<QuestionContainer> {
                         children: [
                           ...(widget.question['answerOptions'] as List)
                               .map((answer) {
-                            return QuestionWidget2(
-                                answerQuestion, needsReset, widget.question);
+                            return QuestionWidget2(answerQuestionArrange,
+                                needsReset, widget.question, answer);
                           }).toList(),
                         ],
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -148,7 +219,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                 },
               )
             : Builder(builder: (__) {
-                createEmptyAnswerList(widget.question);
+                // createEmptyAnswerList(widget.question);
                 return QuestionWidget(widget.question);
               }),
         !isSubmitted
@@ -169,12 +240,13 @@ class _QuestionContainerState extends State<QuestionContainer> {
                             ...(widget.question['answerOptions'] as List)
                                 .map((answer) {
                               return AnswerWidget(
-                                  () => answerQuestion(answer, widget.question),
+                                  // () => answerQuestion(answer, widget.question),
+                                  answerQuestion,
                                   answer,
                                   clearAnswer,
                                   disabled,
                                   submittedAnswers,
-                                  widget.question['answerAssets']);
+                                  widget.question);
                             }).toList(),
                           ],
                         ),
@@ -194,7 +266,11 @@ class _QuestionContainerState extends State<QuestionContainer> {
                           ),
                         ),
                         onPressed: () {
-                          submit();
+                          if (widget.question['questionType'] == "ARRANGE") {
+                            submitArrange();
+                          } else {
+                            submit();
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xffe5771e),
