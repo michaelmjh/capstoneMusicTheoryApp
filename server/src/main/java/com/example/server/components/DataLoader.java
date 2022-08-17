@@ -101,22 +101,22 @@ public class DataLoader implements ApplicationRunner {
         lessonRepository.save(chords1);
 
         LessonSlide chords1Slide1 = new LessonSlide(chords1,
-                "The next thing to go over is chords, they are basically a combination of notes played together to create a deeper harmony.\n\nWe are going to look at the 2 most common chords found in music, the Major Chord and the Minor Chord.\n\nContinuing on from your Major Scale lesson if you take the notes and number them from 1st to 8th it would look like the above image.\n\nThe numbers refer to the degrees of the scale, you’ll notice 1st and 8th are the same note but different octaves hence it’s referred to as the 8th degree, this continues into the next octave with 9th and so on but that’s for another lesson.", "images/lessonImages/chords_lesson_image_1.png");
+                "The next thing to go over is chords, they are basically a combination of notes played together to create a deeper harmony.\r\n\r\nWe are going to look at the 2 most common chords found in music, the Major Chord and the Minor Chord.\r\n\r\nContinuing on from your Major Scale lesson if you take the notes and number them from 1st to 8th it would look like the above image.\r\n\r\nThe numbers refer to the degrees of the scale, you’ll notice 1st and 8th are the same note but different octaves hence it’s referred to as the 8th degree, this continues into the next octave with 9th and so on but that’s for another lesson.", "images/lessonImages/chords_lesson_image_1.png");
 
         lessonSlideRepository.save(chords1Slide1);
 
         LessonSlide chords1Slide2 = new LessonSlide(chords1,
-                "The first chord to look at is the Major chord, It is made up of 3 notes, a root, a major 3rd and a 5th.\\n\\nLooking at a C major chord, the notes are C, E and G. C is your root note, E is your major 3rd and G is your 5th.", "images/lessonImages/chords_lesson_image_2.png");
+                "The first chord to look at is the Major chord, It is made up of 3 notes, a root, a major 3rd and a 5th.\r\n\r\nLooking at a C major chord, the notes are C, E and G. C is your root note, E is your major 3rd and G is your 5th.", "images/lessonImages/chords_lesson_image_2.png");
 
         lessonSlideRepository.save(chords1Slide2);
 
         LessonSlide chords1Slide3 = new LessonSlide(chords1,
-                "The tonality of the chord is defined by the 3rd, you’ll notice it has been referred to as a major 3rd.\n\\n\\nThis is because in a Major chord, the 3rd is 2 whole steps away from the root which creates a happy and positive sounding chord. \\n\\nThis pattern of root (2 whole steps) major 3rd (1 and a half steps) 5th is the make up of every major chord and like the previous lesson can be used starting from any note.", "images/lessonImages/chords_lesson_image_2.png");
+                "The tonality of the chord is defined by the 3rd, you’ll notice it has been referred to as a major 3rd.\r\n\r\nThis is because in a Major chord, the 3rd is 2 whole steps away from the root which creates a happy and positive sounding chord. \r\n\r\nThis pattern of root (2 whole steps) major 3rd (1 and a half steps) 5th is the make up of every major chord and like the previous lesson can be used starting from any note.", "images/lessonImages/chords_lesson_image_2.png");
 
         lessonSlideRepository.save(chords1Slide3);
 
         LessonSlide chords1Slide4 = new LessonSlide(chords1,
-                "If you were to try and figure out the notes of a C minor chord, all you need to do is flatten the 3rd by a half step to create a minor 3rd. \\n\\nSo if you take the major 3rd note of E and take it down a half step, it becomes Eb, so the notes of the C minor chord is C, Eb and G. \\n\\n\\nA minor 3rd is 1 and half steps from your root note this creates a sad sounding chord. The pattern for a minor chord is root (1 and a half steps) minor 3rd (2 whole steps) 5th.", "images/lessonImages/chords_lesson_image_3.png");
+                "If you were to try and figure out the notes of a C minor chord, all you need to do is flatten the 3rd by a half step to create a minor 3rd. \r\n\r\nSo if you take the major 3rd note of E and take it down a half step, it becomes Eb, so the notes of the C minor chord is C, Eb and G. \r\n\r\nA minor 3rd is 1 and half steps from your root note this creates a sad sounding chord. The pattern for a minor chord is root (1 and a half steps) minor 3rd (2 whole steps) 5th.", "images/lessonImages/chords_lesson_image_3.png");
 
         lessonSlideRepository.save(chords1Slide4);
 
