@@ -70,7 +70,6 @@ class _MyAppState extends State<MyApp> {
     ["images/dog-png-30.png", "Ian"],
     ["images/dog-png-30.png", "Josh"],
     ["images/dog-png-30.png", "Lou"],
-
   ];
 
   var avatars = [
@@ -96,7 +95,7 @@ class _MyAppState extends State<MyApp> {
     newUser['name'] = newName;
     newUser['image'] = "images/dog-png-30.png";
     newUser['userProgress'] = {};
-    users.add(newUser);
+    // users.add(newUser);
   }
 
   void deleteUser(selectedProfile) {
@@ -364,16 +363,16 @@ class _MyAppState extends State<MyApp> {
               selectedLesson,
               userProgress,
             ),
-        '/journey': (context) => Journey(
-              selectedProfile,
-              quizGenerator,
-            ),
+        // '/journey': (context) => Journey(
+        //       selectedProfile,
+        //       quizGenerator,
+        //     ),
         '/users': (context) => UserContainer(users, setSelectedProfile,
             getLevels, setTimelineLessonList, deleteUser),
         '/profile': (context) => SpecificProfile(
             selectedProfile, getLevels, setTimelineLessonList, deleteUser),
         '/addProfile': (context) => AddProfile(addUser),
-        '/editProfile': (context) => EditProfile(),
+        // '/editProfile': (context) => EditProfile(),
         '/timeline': (countext) => Timeline(
               newList,
               setSelectedLesson,
