@@ -7,8 +7,11 @@ class LandingPage extends StatefulWidget {
   // final Difficulty currentDifficulty;
   final selectedLesson;
   final userProgress;
+  final addLessonToUserProgress;
   // ignore: prefer_const_constructors_in_immutables
-  LandingPage(this.selectedLesson, this.userProgress, {super.key});
+  LandingPage(
+      this.selectedLesson, this.userProgress, this.addLessonToUserProgress,
+      {super.key});
 
   @override
   State<LandingPage> createState() => _LandingPageState();
@@ -173,6 +176,7 @@ class _LandingPageState extends State<LandingPage> {
                       ),
                     ),
                     onPressed: () {
+                      widget.addLessonToUserProgress();
                       Navigator.pushNamed(context, '/lesson');
                     },
                   ),

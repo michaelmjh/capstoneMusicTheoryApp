@@ -19,7 +19,6 @@ class CompletedIndicator extends StatelessWidget {
         color: Color(0xffffecb4),
         onPressed: () {
           setSelectedLesson(listItem);
-          addLessonToUserProgress();
 
           if (listItem['lessonName'] == "BeginnerBoss" ||
               listItem['lessonName'] == "IntermediateBoss" ||
@@ -29,32 +28,6 @@ class CompletedIndicator extends StatelessWidget {
             quizGenerator();
           }
 
-          Navigator.pushNamed(context, '/landingpage');
-        },
-      ),
-    );
-  }
-}
-
-class InProgressIndicator extends StatelessWidget {
-  final listItem;
-  final setSelectedLesson;
-  final quizGenerator;
-  final addLessonToUserProgress;
-
-  const InProgressIndicator(this.listItem, this.setSelectedLesson,
-      this.quizGenerator, this.addLessonToUserProgress);
-  @override
-  Widget build(BuildContext context) {
-    return DotIndicator(
-      color: Color(0xff75c8ae),
-      child: IconButton(
-        icon: Icon(Icons.lightbulb, size: 20.0),
-        color: Color(0xffffecb4),
-        onPressed: () {
-          setSelectedLesson(listItem);
-          addLessonToUserProgress();
-          quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
       ),
@@ -79,8 +52,6 @@ class BossIndicator extends StatelessWidget {
         color: Colors.black,
         onPressed: () {
           setSelectedLesson(listItem);
-          addLessonToUserProgress();
-
           bossGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
@@ -106,8 +77,6 @@ class AvailableIndicator extends StatelessWidget {
         iconSize: 15,
         onPressed: () {
           setSelectedLesson(listItem);
-          addLessonToUserProgress();
-
           quizGenerator();
           Navigator.pushNamed(context, '/landingpage');
         },
