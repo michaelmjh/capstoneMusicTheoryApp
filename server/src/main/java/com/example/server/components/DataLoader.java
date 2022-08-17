@@ -52,32 +52,32 @@ public class DataLoader implements ApplicationRunner {
         lessonRepository.save(scales1);
 
         LessonSlide scales1Slide1 = new LessonSlide(scales1,
-            "Scales are the building blocks of Music. They will unlock a lot of tools for understanding music theory!\n\nFirst you need to know all the notes that exist; they are all shown above.", "images/lessonImages/scales_lesson_image_1.png");
+            "Scales are the building blocks of Music. They will unlock a lot of tools for understanding music theory!\r\n\r\nFirst you need to know all the notes that exist; they are all shown above.", "images/lessonImages/scales_lesson_image_1.png");
 
         lessonSlideRepository.save(scales1Slide1);
 
         LessonSlide scales1Slide2 = new LessonSlide(scales1,
-                "An easier way to look at it is to visualise a piano.\\n\\nEach key is a note and the distance between each key is known as a Half step.", "images/lessonImages/scales_lesson_image_2.png");
+                "An easier way to look at it is to visualise a piano.\r\n\r\nEach key is a note and the distance between each key is known as a Half step.", "images/lessonImages/scales_lesson_image_2.png");
 
         lessonSlideRepository.save(scales1Slide2);
 
         LessonSlide scales1Slide3 = new LessonSlide(scales1,
-                "There are only 12 notes to learn.\\n\\nSome notes have 2 names, for example A#, also known as Bb.\\n\\nThese are called “Enharmonic Equivalents” which is a fancy term for notes with 2 names.\\n\\nThe name of the note will depend on which key the music is written in.", "images/lessonImages/scales_lesson_image_2.png");
+                "There are only 12 notes to learn.\r\n\r\nSome notes have 2 names, for example A#, also known as Bb.\r\n\r\nThese are called “Enharmonic Equivalents” which is a fancy term for notes with 2 names.\r\n\r\nThe name of the note will depend on which key the music is written in.", "images/lessonImages/scales_lesson_image_2.png");
 
         lessonSlideRepository.save(scales1Slide3);
 
         LessonSlide scales1Slide4 = new LessonSlide(scales1,
-                "Now to start we are going to look at Major Scales.\\n\\nAn easy way to remember the make up of a Major scale is:\\n\\n\\nWhole, Whole, Half, Whole, Whole, Whole, Half\\n\\n\\nThis refers to the distance between each note in the scale.\\n\\nA Whole Step is a jump of 2 notes and a Half Step is a jump of 1 note.", "images/lessonImages/scales_lesson_image_3.png");
+                "Now to start we are going to look at Major Scales.\r\n\r\nnAn easy way to remember the make up of a Major scale is:\r\n\r\nWhole, Whole, Half, Whole, Whole, Whole, Half\r\n\r\nThis refers to the distance between each note in the scale.\r\n\r\nA Whole Step is a jump of 2 notes and a Half Step is a jump of 1 note.", "images/lessonImages/scales_lesson_image_3.png");
 
         lessonSlideRepository.save(scales1Slide4);
 
         LessonSlide scales1Slide5 = new LessonSlide(scales1,
-                "So if we apply that formula to figure out the C Major Scale, it would be as above.\\n\\nSo the notes of the C Major Scale are:\\n\\nC  D E F G A B C\\n\\nYou can use this method to figure out any key!\\n\\nJust pick the starting note of the key you want to know and follow the same structure.", "images/lessonImages/scales_lesson_image_4.png");
+                "So if we apply that formula to figure out the C Major Scale, it would be as above.\r\n\r\nSo the notes of the C Major Scale are:\r\n\r\nC D E F G A B C\r\n\r\nYou can use this method to figure out any key!\r\n\r\nJust pick the starting note of the key you want to know and follow the same structure.", "images/lessonImages/scales_lesson_image_4.png");
 
         lessonSlideRepository.save(scales1Slide5);
 
         LessonSlide scales1Slide6 = new LessonSlide(scales1,
-                "As an example if we apply the same method to figure out G Major, it would look like the above.\\n\\nSo the notes of the G Major Scale are:\\n\\nG  A B C D E F# G", "images/lessonImages/scales_lesson_image_5.png");
+                "As an example if we apply the same method to figure out G Major, it would look like the above.\r\n\r\nSo the notes of the G Major Scale are:\r\n\r\nG A B C D E F# G", "images/lessonImages/scales_lesson_image_5.png");
 
         lessonSlideRepository.save(scales1Slide6);
 
@@ -641,7 +641,7 @@ public class DataLoader implements ApplicationRunner {
         answer23Options.add("G");
         answer23Options.add("C");
         answer23Options.add("E");
-        answer23Options.add("D");
+//        answer23Options.add("D");
 
 
         List answer23Assets = new ArrayList();
@@ -663,10 +663,10 @@ public class DataLoader implements ApplicationRunner {
         question24Assets.add("Arrange the G major chord in order");
 
         List answer24Options = new ArrayList<>();
-        answer24Options.add("C");
+        answer24Options.add("G");
         answer24Options.add("D");
         answer24Options.add("B");
-        answer24Options.add("G");
+//        answer24Options.add("C");
 
 
         List answer24Assets = new ArrayList();
@@ -780,8 +780,8 @@ public class DataLoader implements ApplicationRunner {
         List answer29Options = new ArrayList<>();
         answer29Options.add("A");
         answer29Options.add("F#");
-        answer29Options.add("E");
         answer29Options.add("D");
+//        answer29Options.add("E");
 
 
         List answer29Assets = new ArrayList();
@@ -806,7 +806,7 @@ public class DataLoader implements ApplicationRunner {
         answer30Options.add("A");
         answer30Options.add("E");
         answer30Options.add("C#");
-        answer30Options.add("B");
+//        answer30Options.add("B");
 
 
         List answer30Assets = new ArrayList();
@@ -917,10 +917,10 @@ public class DataLoader implements ApplicationRunner {
         question35Assets.add("Arrange the Gb minor chord in order");
 
         List answer35Options = new ArrayList<>();
-        answer35Options.add("Ab");
-        answer35Options.add("Db");
         answer35Options.add("Gb");
         answer35Options.add("A");
+        answer35Options.add("Db");
+//        answer35Options.add("A");
 
 
         List answer35Assets = new ArrayList();
@@ -943,9 +943,9 @@ public class DataLoader implements ApplicationRunner {
 
         List answer36Options = new ArrayList<>();
         answer36Options.add("Ab");
-        answer36Options.add("E");
         answer36Options.add("Db");
-        answer36Options.add("Gb");
+        answer36Options.add("E");
+//        answer36Options.add("Gb");
 
 
         List answer36Assets = new ArrayList();

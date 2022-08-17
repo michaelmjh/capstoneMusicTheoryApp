@@ -41,8 +41,8 @@ class _MyAppState extends State<MyApp> {
       "name": "Michael",
       "image": "images/profiles/michael.png",
       "userProgress": {
-        "SCALES1": "MEDIUM",
-        "CHORDS1": "EASY",
+        "SCALES1": "HARD",
+        "CHORDS1": "REVISION",
         // "BeginnerBoss": "REVISION",
         // "SCALES2": "REVISION",
         // "CHORDS2": "REVISION",
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         "CHORDS1": "REVISION",
         "BeginnerBoss": "REVISION",
         "SCALES2": "REVISION",
-        "CHORDS3": "MEDIUM"
+        "CHORDS2": "REVISION"
       }
     },
     {
