@@ -9,6 +9,7 @@ class QuestionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(question['questionAssets'][0],
               height: 200.00, width: 300.00),
