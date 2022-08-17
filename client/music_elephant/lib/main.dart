@@ -435,7 +435,7 @@ class _MyAppState extends State<MyApp> {
         //     ),
         '/users': (context) => UserContainer(users, setSelectedProfile,
 
-            getLevels, setTimelineLessonList, deleteUser),
+            getLevels, setTimelineLessonList, deleteUser, setUserProgress),
         '/profile': (context) => SpecificProfile(
             selectedProfile, getLevels, setTimelineLessonList, deleteUser , setUserProgress),
         // '/addProfile': (context) => AddProfile(addUser),
