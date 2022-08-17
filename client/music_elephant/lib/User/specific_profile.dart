@@ -28,6 +28,7 @@ class _SpecificProfileState extends State<SpecificProfile> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Material(
                   color: Color(0xffe5771e),
@@ -73,7 +74,7 @@ class _SpecificProfileState extends State<SpecificProfile> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(70.0),
+                      padding: const EdgeInsets.all(50.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 10,
@@ -84,7 +85,7 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: const Text(
                             'Begin Learning',
                             style: TextStyle(
@@ -112,7 +113,7 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: const Text(
                             'Edit Profile',
                             style: TextStyle(
@@ -127,7 +128,8 @@ class _SpecificProfileState extends State<SpecificProfile> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(70.0),
+                      padding: const EdgeInsets.only(
+                          top: 70.0, left: 70.0, right: 70.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xffe5771e),
@@ -137,9 +139,9 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: const Text(
-                            'delete Profile',
+                            'Delete Profile',
                             style: TextStyle(
                               fontSize: 32,
                               color: Color(0xffffecb4),
@@ -156,12 +158,14 @@ class _SpecificProfileState extends State<SpecificProfile> {
                 )
               ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(20),
-            //   child: Image.asset(
-            //     "images/us.jpg",
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Image.asset(
+                "images/us.jpg",
+                width: 650,
+                height: 550,
+              ),
+            ),
           ],
         ),
       ),
