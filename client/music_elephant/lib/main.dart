@@ -75,6 +75,7 @@ class _MyAppState extends State<MyApp> {
         "SCALES3": "REVISION",
         "CHORDS3": "REVISION"
       }
+
     },
     {
       "name": "Ian",
@@ -91,6 +92,7 @@ class _MyAppState extends State<MyApp> {
       "image": "images/dog-png-30.png",
       "userProgress": {},
     },
+
   ];
 
   var avatars = [
@@ -432,11 +434,13 @@ class _MyAppState extends State<MyApp> {
         //       quizGenerator,
         //     ),
         '/users': (context) => UserContainer(users, setSelectedProfile,
-            getLevels, setTimelineLessonList, deleteUser, setUserProgress),
-        '/profile': (context) => SpecificProfile(selectedProfile, getLevels,
-            setTimelineLessonList, deleteUser, setUserProgress),
+
+            getLevels, setTimelineLessonList, deleteUser),
+        '/profile': (context) => SpecificProfile(
+            selectedProfile, getLevels, setTimelineLessonList, deleteUser , setUserProgress),
         // '/addProfile': (context) => AddProfile(addUser),
-        '/editProfile': (context) => EditProfile(),
+        // '/editProfile': (context) => EditProfile(),
+
         '/timeline': (countext) => Timeline(
               newList,
               setSelectedLesson,
