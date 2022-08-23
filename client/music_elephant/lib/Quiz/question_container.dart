@@ -61,15 +61,15 @@ class _QuestionContainerState extends State<QuestionContainer> {
   }
 
   void submit() {
-    bool correct = false;
+    int correct = 0;
     for (var item in widget.question['answerAssets']) {
       for (var element in submittedAnswers) {
         if (item == element) {
-          correct = true;
+          correct++;
         }
       }
     }
-    if (correct == true) {
+    if (correct == widget.question['answerAssets'].length) {
       setState(() {
         isSubmitted = true;
         widget.submissionText = 'You got the right answer!';
@@ -248,31 +248,6 @@ class _QuestionContainerState extends State<QuestionContainer> {
                               } else {
                                 submit();
                               }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xffe5771e),
-                              elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: ElevatedButton(
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Clear",
-                                style: TextStyle(
-                                  fontSize: 32,
-                                  color: Color(0xffffecb4),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {
-                              reset();
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xffe5771e),
