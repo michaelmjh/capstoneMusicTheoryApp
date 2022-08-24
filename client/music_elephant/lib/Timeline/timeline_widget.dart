@@ -121,31 +121,6 @@ class TimelineWidget extends StatelessWidget {
               return SolidLineConnector(
                 color: Color(0xff75c8ae),
               );
-              // } else if (userProgress.containsKey(newList[dummyIndexInt]) ==
-              //         true &&
-              //     lesson['lessonName'] == "DummyIntermediate") {
-              //   if (userProgress[newList[dummyIndexInt]['lessonName']] ==
-              //       'REVISION') {
-              //     return SolidLineConnector(
-              //       color: Color(0xff75c8ae),
-              //     );
-              //   } else {
-              //     return SolidLineConnector(
-              //       color: Color(0xff75c8ae),
-              //     );
-              //   }
-              // } else if (userProgress.containsKey(newList[dummyIndexAdv]) ==
-              //         true &&
-              //     newList[index]['lessonName'] == "DummyAdvanced") {
-              //   if (userProgress[newList[dummyIndexInt]] == 'REVISION') {
-              //     return SolidLineConnector(
-              //       color: Color(0xff75c8ae),
-              //     );
-              //   } else {
-              //     return SolidLineConnector(
-              //       color: Color(0xff75c8ae),
-              //     );
-              //   }
             } else if (lesson['lessonName'] == "DummyIntermediate" &&
                 userProgress['BeginnerBoss'] == 'REVISION') {
               return SolidLineConnector(

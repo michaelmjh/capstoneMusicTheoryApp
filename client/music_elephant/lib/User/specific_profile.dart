@@ -6,9 +6,17 @@ class SpecificProfile extends StatefulWidget {
   final setTimelineLessonList;
   final deleteUser;
   final setUserProgress;
+  final clearData;
+  final newList;
 
-  SpecificProfile(this.selectedProfile, this.getLevels,
-      this.setTimelineLessonList, this.deleteUser, this.setUserProgress);
+  SpecificProfile(
+      this.selectedProfile,
+      this.getLevels,
+      this.setTimelineLessonList,
+      this.deleteUser,
+      this.setUserProgress,
+      this.clearData,
+      this.newList);
 
   @override
   State<SpecificProfile> createState() => _SpecificProfileState();
