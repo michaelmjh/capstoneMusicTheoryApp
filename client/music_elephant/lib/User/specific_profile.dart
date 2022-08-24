@@ -6,9 +6,17 @@ class SpecificProfile extends StatefulWidget {
   final setTimelineLessonList;
   final deleteUser;
   final setUserProgress;
+  final clearData;
+  final newList;
 
-  SpecificProfile(this.selectedProfile, this.getLevels,
-      this.setTimelineLessonList, this.deleteUser, this.setUserProgress);
+  SpecificProfile(
+      this.selectedProfile,
+      this.getLevels,
+      this.setTimelineLessonList,
+      this.deleteUser,
+      this.setUserProgress,
+      this.clearData,
+      this.newList);
 
   @override
   State<SpecificProfile> createState() => _SpecificProfileState();
@@ -95,9 +103,11 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         onPressed: () {
+                          // widget.clearData();
                           widget.setUserProgress();
                           widget.getLevels();
                           widget.setTimelineLessonList();
+                          print(widget.newList.length);
                           Navigator.pushNamed(context, '/timeline');
                         },
                       ),

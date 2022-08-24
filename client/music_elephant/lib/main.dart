@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_elephant/User/add_profile.dart';
 import 'package:music_elephant/User/specific_profile.dart';
 import 'package:music_elephant/User/user_container.dart';
 import 'package:music_elephant/landing_page.dart';
@@ -8,8 +7,6 @@ import 'package:music_elephant/Timeline/timeline_container.dart';
 import 'Helpers/helper.dart';
 import 'LessonAssets/lesson_assets.dart';
 import 'Quiz/quiz.dart';
-import 'User/edit_profile.dart';
-import 'home_page.dart';
 import 'lesson.dart';
 import 'landing_page.dart';
 
@@ -43,12 +40,6 @@ class _MyAppState extends State<MyApp> {
       "userProgress": {
         "SCALES1": "HARD",
         "CHORDS1": "REVISION",
-        // "BeginnerBoss": "REVISION",
-        // "SCALES2": "REVISION",
-        // "CHORDS2": "REVISION",
-        // "IntermediateBoss": "REVISION",
-        // "SCALES3": "REVISION",
-        // "CHORDS3": "REVISION",
       }
     },
     {
@@ -107,8 +98,6 @@ class _MyAppState extends State<MyApp> {
   var selectedLesson;
 
   // DUMMY DATA - USER PROGRESS
-  // this may need some wrangling - this will track the user's
-  // progress in the quizzes so we can show overall progress in the timeline
   var userProgress;
 
   void addUser(newName) {
@@ -116,7 +105,6 @@ class _MyAppState extends State<MyApp> {
     newUser['name'] = newName;
     newUser['image'] = "images/dog-png-30.png";
     newUser['userProgress'] = {};
-    // users.add(newUser);
   }
 
   void deleteUser(selectedProfile) {
@@ -275,7 +263,6 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       selectedProfile = newProfile;
     });
-    print(selectedProfile);
   }
 
   void updateProgress() {
@@ -294,7 +281,6 @@ class _MyAppState extends State<MyApp> {
         userProgress[lessonName] = 'REVISION';
       });
     }
-    print(userProgress);
   }
 
   void addLessonToUserProgress() {
@@ -308,8 +294,6 @@ class _MyAppState extends State<MyApp> {
     } else {
       null;
     }
-
-    print(userProgress);
   }
 
   void quizGenerator() {
@@ -379,23 +363,16 @@ class _MyAppState extends State<MyApp> {
       }
     });
 
-    for (var question in newQuestions) {
-      print(question['id']);
-      print(question['difficulty']);
-      print(question['lessonName']);
-    }
-
     newQuestions.shuffle();
     var shortList = selectTen(newQuestions);
     selectedQuestions = shortList;
   }
 
-  @override
-  void initState() {
-    super.initState();
-    getData();
-    // setUserProgress();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getData();
+  // }
 
   getData() async {
     lessons = await Helper().getLessons();
@@ -405,6 +382,15 @@ class _MyAppState extends State<MyApp> {
         isLoaded = true;
       });
     }
+  }
+
+  clearData() {
+    // lessons.clear();
+    // questions.clear();
+    begList.clear();
+    intList.clear();
+    advList.clear();
+    newList.clear();
   }
 
   @override
@@ -427,17 +413,24 @@ class _MyAppState extends State<MyApp> {
               userProgress,
               addLessonToUserProgress,
             ),
-        // '/journey': (context) => Journey(
-        //       selectedProfile,
-        //       quizGenerator,
-        //     ),
-        '/users': (context) => UserContainer(users, setSelectedProfile,
-            getLevels, setTimelineLessonList, deleteUser, setUserProgress),
-        '/profile': (context) => SpecificProfile(selectedProfile, getLevels,
-            setTimelineLessonList, deleteUser, setUserProgress),
-        // '/addProfile': (context) => AddProfile(addUser),
-        // '/editProfile': (context) => EditProfile(),
-
+        '/users': (context) => UserContainer(
+            users,
+            setSelectedProfile,
+            getLevels,
+            setTimelineLessonList,
+            deleteUser,
+            setUserProgress,
+            getData,
+            clearData,
+            newList),
+        '/profile': (context) => SpecificProfile(
+            selectedProfile,
+            getLevels,
+            setTimelineLessonList,
+            deleteUser,
+            setUserProgress,
+            clearData,
+            newList),
         '/timeline': (countext) => Timeline(
               newList,
               setSelectedLesson,
@@ -448,6 +441,7 @@ class _MyAppState extends State<MyApp> {
               checkIfBossCompleted,
               quizGenerator,
               addLessonToUserProgress,
+              clearData,
             ),
       },
     );

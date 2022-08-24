@@ -12,6 +12,7 @@ class Timeline extends StatefulWidget {
   final checkIfBossCompleted;
   final quizGenerator;
   final addLessonToUserProgress;
+  final clearData;
 
   const Timeline(
       this.lessons,
@@ -23,6 +24,7 @@ class Timeline extends StatefulWidget {
       this.checkIfBossCompleted,
       this.quizGenerator,
       this.addLessonToUserProgress,
+      this.clearData,
       {super.key});
 
   @override
@@ -51,7 +53,8 @@ class _TimelineState extends State<Timeline> {
             color: Color(0xffffecb4),
           ),
           onPressed: () {
-            Navigator.pushNamed(context, '/users');
+            widget.clearData();
+            Navigator.popAndPushNamed(context, '/users');
           },
         ),
       ),
