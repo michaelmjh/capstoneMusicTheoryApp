@@ -61,15 +61,15 @@ class _QuestionContainerState extends State<QuestionContainer> {
   }
 
   void submit() {
-    bool correct = false;
+    int correct = 0;
     for (var item in widget.question['answerAssets']) {
       for (var element in submittedAnswers) {
         if (item == element) {
-          correct = true;
+          correct++;
         }
       }
     }
-    if (correct == true) {
+    if (correct == widget.question['answerAssets'].length) {
       setState(() {
         isSubmitted = true;
         widget.submissionText = 'You got the right answer!';
@@ -102,52 +102,23 @@ class _QuestionContainerState extends State<QuestionContainer> {
 // this function adds answers to the above list at an index that matches
 // the correct answer list, if ths answer exists in that list
   void answerQuestion(answer) {
-    var index;
-    // setState(() {
-    //   isSelected = true;
-    // });
-
-    // submittedAnswers.add(answer);
-
-    // if (question['answerAssets'].contains(answer)) {
-    //   index = question['answerAssets'].indexOf(answer);
-    //   submittedAnswers[index] = answer;
-    // }
-
-    // var submittedAnswersCheck = [];
-
-    // for (var answer in submittedAnswers) {
-    //   if (answer == "") {
-    //     null;
-    //   } else
-    //     submittedAnswersCheck.add(answer);
-    // }
-
     if (submittedAnswers.length != widget.question['answerAssets']!.length) {
       setState(() {
         submittedAnswers.add(answer);
         isSelected = true;
-      });
-    } else if (submittedAnswers.length ==
-        widget.question['answerAssets']!.length) {
-      setState(() {
-        isSelected = true;
-        disabled = true;
+        if (submittedAnswers.length == widget.question['answerAssets'].length) {
+          disabled = true;
+        }
       });
     }
-    // print(isSelected);
-    // print(widget.question['answerAssets']);
-    print(disabled);
-    print(submittedAnswers);
   }
 
   void answerQuestionArrange(answer, question, index) {
-    var i;
+    // add the answer to the submitted answers list at the same index as the box the user
+    // has dragged it into
+    submittedAnswers[index] = answer;
 
-    i = index;
-    submittedAnswers[i] = answer;
-    print(submittedAnswers);
-
+    // check if all answers have been submitted
     if (submittedAnswers.length == widget.question['answerAssets']!.length) {
       setState(() {
         isSelected = true;
@@ -219,7 +190,6 @@ class _QuestionContainerState extends State<QuestionContainer> {
                 },
               )
             : Builder(builder: (__) {
-                // createEmptyAnswerList(widget.question);
                 return QuestionWidget(widget.question);
               }),
         !isSubmitted
@@ -235,51 +205,60 @@ class _QuestionContainerState extends State<QuestionContainer> {
                           ],
                           mainAxisAlignment: MainAxisAlignment.center,
                         )
-                      : Column(
-                          children: [
-                            ...(widget.question['answerOptions'] as List)
-                                .map((answer) {
-                              return AnswerWidget(
-                                  // () => answerQuestion(answer, widget.question),
-                                  answerQuestion,
-                                  answer,
-                                  clearAnswer,
-                                  disabled,
-                                  submittedAnswers,
-                                  widget.question);
-                            }).toList(),
-                          ],
+                      : Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ...(widget.question['answerOptions'] as List)
+                                  .map((answer) {
+                                return AnswerWidget(
+                                    answerQuestion,
+                                    answer,
+                                    clearAnswer,
+                                    disabled,
+                                    submittedAnswers,
+                                    widget.question);
+                              }).toList(),
+                            ],
+                          ),
                         ),
                   Visibility(
                     visible: isSelected,
-                    child: Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: ElevatedButton(
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            "Submit",
-                            style: TextStyle(
-                              fontSize: 32,
-                              color: Color(0xffffecb4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: ElevatedButton(
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  color: Color(0xffffecb4),
+                                ),
+                              ),
+                            ),
+                            onPressed: () {
+                              if (widget.question['questionType'] ==
+                                  "ARRANGE") {
+                                submitArrange();
+                              } else {
+                                submit();
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xffe5771e),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32),
+                              ),
                             ),
                           ),
                         ),
-                        onPressed: () {
-                          if (widget.question['questionType'] == "ARRANGE") {
-                            submitArrange();
-                          } else {
-                            submit();
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xffe5771e),
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32),
-                          ),
-                        ),
-                      ),
+                      ],
                     ),
                   )
                 ],

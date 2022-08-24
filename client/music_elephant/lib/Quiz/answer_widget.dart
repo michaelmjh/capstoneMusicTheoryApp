@@ -21,6 +21,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 8, right: 8),
       child: ElevatedButton(
         style: isSelected
             ? ElevatedButton.styleFrom(

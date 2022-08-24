@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class Users extends StatefulWidget {
   var users;
   final setSelectedProfile;
+  final getData;
+  final lessons;
 
-  Users(this.users, this.setSelectedProfile);
+  Users(this.users, this.setSelectedProfile, this.getData, this.lessons);
 
   @override
   State<Users> createState() => _UsersState();
@@ -56,6 +58,7 @@ class _UsersState extends State<Users> {
                         child: FlatButton(
                           onPressed: () {
                             widget.setSelectedProfile(user);
+                            widget.getData();
                             Navigator.pushNamed(context, "/profile");
                           },
                           child: Material(
