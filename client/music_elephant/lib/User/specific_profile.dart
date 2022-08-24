@@ -106,7 +106,6 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           widget.setUserProgress();
                           widget.getLevels();
                           widget.setTimelineLessonList();
-                          print(widget.newList.length);
                           Navigator.pushNamed(context, '/timeline');
                         },
                       ),

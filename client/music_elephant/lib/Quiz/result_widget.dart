@@ -91,7 +91,6 @@ class Result extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                print(selectedLesson['lessonName']);
                 if (selectedLesson['lessonName'] == 'BeginnerBoss' ||
                     selectedLesson['lessonName'] == 'IntermediateBoss' ||
                     selectedLesson['lessonName'] == 'AdvancedBoss') {

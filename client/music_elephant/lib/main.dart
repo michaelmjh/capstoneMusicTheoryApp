@@ -115,7 +115,6 @@ class _MyAppState extends State<MyApp> {
 
   void setUserProgress() {
     userProgress = selectedProfile['userProgress'];
-    print(userProgress);
   }
 
   // Function is run inside timeline_widget when user presses on timeline indicator
@@ -270,9 +269,17 @@ class _MyAppState extends State<MyApp> {
     var lessonName = selectedLesson['lessonName'];
     if (userProgress[lessonName] == null ||
         userProgress[lessonName] == 'EASY') {
-      setState(() {
-        userProgress[lessonName] = 'MEDIUM';
-      });
+      if (lessonName == 'BeginnerBoss' ||
+          lessonName == 'IntermediateBoss' ||
+          lessonName == 'AdvancedBoss') {
+        setState(() {
+          userProgress[lessonName] = 'REVISION';
+        });
+      } else {
+        setState(() {
+          userProgress[lessonName] = 'MEDIUM';
+        });
+      }
     } else if (userProgress[lessonName] == 'MEDIUM') {
       setState(() {
         userProgress[lessonName] = 'HARD';
@@ -349,7 +356,6 @@ class _MyAppState extends State<MyApp> {
   // from a particular level
   void bossGenerator() {
     var newQuestions = [];
-    var lessonName = selectedLesson['lessonName'];
 
     questions.forEach((question) {
       if (selectedLesson['level']['levelName'] == "BEGINNER" &&
