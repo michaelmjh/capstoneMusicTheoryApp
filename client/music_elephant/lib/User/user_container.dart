@@ -21,7 +21,8 @@ class UserContainer extends StatefulWidget {
       this.deleteUser,
       this.setUserProgress,
       this.getData,
-      this.clearData, this.newList);
+      this.clearData, 
+      this.newList);
 
   @override
   State<UserContainer> createState() => _UserContainerState();

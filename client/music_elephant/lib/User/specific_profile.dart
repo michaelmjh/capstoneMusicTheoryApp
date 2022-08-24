@@ -103,7 +103,6 @@ class _SpecificProfileState extends State<SpecificProfile> {
                           ),
                         ),
                         onPressed: () {
-                          // widget.clearData();
                           widget.setUserProgress();
                           widget.getLevels();
                           widget.setTimelineLessonList();

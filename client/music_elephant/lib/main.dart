@@ -115,6 +115,7 @@ class _MyAppState extends State<MyApp> {
 
   void setUserProgress() {
     userProgress = selectedProfile['userProgress'];
+    print(userProgress);
   }
 
   // Function is run inside timeline_widget when user presses on timeline indicator
@@ -385,12 +386,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   clearData() {
-    // lessons.clear();
-    // questions.clear();
     begList.clear();
     intList.clear();
     advList.clear();
     newList.clear();
+    completedLessons.clear();
   }
 
   @override
