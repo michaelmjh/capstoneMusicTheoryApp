@@ -1,8 +1,8 @@
 Welcome to our application Music Elephant. 
 
 This is a music theory learning application with test your knowledge quizzes and revision sessions. 
-The application was inspired by Ewan who realised there are easier methods of teaching and learning music.
-Ewan reached out to Shuna, Nick and Michael to form the group to plan, design and build this application.
+The application was inspired by Ewan who realised there are easier methods of teaching and learning music theory, when talking through the initial idea it became apparent that there is a gap in the market for educational apps to teach this subject.
+Ewan reached out to Shuna, Nick and Michael to form the group where we bgan to plan, design and build this application.
 
 The application uses a varied tech stack, which includes:
   - Java: The back end code, which builds the lessons, quiz, questions and user classes.
@@ -25,19 +25,44 @@ you can either run the application from VScode or open the simulator that comes 
 
 
 The application opens to our users page, here we can select the user we wish to continue with.
-
-
-
-
+-
+-
+-
 Once we have selected a user, we are presented with the users profile page, here we can continue to their learning page and either
 edit and/or delete the user. 
 (The statistics are currently a placeholder image, this is something that we wanted to work on however due to the time constraints at
 the time of development we didn't quite get to completion of this element.)
-
-
-
-
-
-
-
+-
+-
+-
 Now that we're onto the learning page, we have our map of lessons and quizzes. 
+-
+-
+-
+Here we can see that we have a collection of different difficulty levels, Beginner, Intermediate and Expert. you can only progress onto the next difficulty once all the lesson quizzes and level end quiz have been completed.
+-
+-
+-
+Going into the first quiz here, we have a collection of different question types, fill in the blank, identify and click and drag.
+-
+-
+-
+
+We were able to implement the ability to only allow the correct number of answers for the multipls choice questions, here there are 2 answers and you can see we can't select more than 2. 
+-
+-
+-
+We've also added the capacity to unselect an answer if you belive the selection to be incorrect.
+-
+-
+-
+Once completing a quiz succesfully you can see a star is filled in the progress stars. Once a quiz has been completed a new difficulty quiz will be unlocked.
+-
+-
+-
+To unlick the next section all quizes need to be completed for each lesson and the trest your knowledge quiz needs to pass.
+-
+-
+-
+
+
